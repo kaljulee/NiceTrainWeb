@@ -1,11 +1,11 @@
 import './App.css';
 import React from 'react';
-import ScheduleBoard from './pages/ScheduleBoard';
+import SchedulePage from './pages/SchedulePage';
 
 function App() {
   return (
     <div className="App">
-      <ScheduleBoard />
+      <SchedulePage />
     </div>
   );
 }
