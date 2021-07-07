@@ -1,12 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import ScheduleBoard from "./pages/ScheduleBoard";
-import React from "react";
+import React from 'react';
+import ScheduleBoard from './pages/ScheduleBoard';
 
 function App() {
   return (
     <div className="App">
-      <ScheduleBoard/>
+      <ScheduleBoard />
     </div>
   );
 }
