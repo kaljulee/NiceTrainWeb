@@ -1,8 +1,7 @@
 import React from 'react';
-import { ReactSVG } from 'react-svg';
-import nt_long_logo from '../../assets/nt_long_logo.svg';
 import ScheduleBoard from '../../components/ScheduleBoard';
 import data from '../../data';
+import ScheduleHeader from '../../components/ScheduleHeader';
 
 function SchedulePage() {
   return (
@@ -17,17 +16,7 @@ function SchedulePage() {
         alignItems: 'center'
       }}
     >
-      <div
-        style={{
-          display: 'flex',
-          border: '5px solid blue',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '80%'
-        }}
-      >
-        <ReactSVG style={{ width: '100%' }} src={nt_long_logo} />
-      </div>
+      <ScheduleHeader />
       <div
         style={{
           display: 'flex',
