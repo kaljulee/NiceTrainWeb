@@ -1,16 +1,33 @@
 import React from 'react';
 import colors from '../../styles/colors';
 
+function Square() {
+  return (
+    <div style={{ height: 70, width: 30, backgroundColor: colors.flipBack }} />
+  );
+}
+
 function ScheduleInfo(props) {
   return (
     <div
       style={{
-        width: '100%',
+        display: 'flex',
+        justifyContent: 'space-between',
+        backgroundColor: colors.boardBack,
         height: '100%',
-        backgroundColor: colors.boardComponent
+        width: '100%',
+        flexDirection: 'column'
       }}
     >
-      thing
+      <div style={{ flex: 1 }}>
+        <Square />
+      </div>
+      <div style={{ flex: 1 }}>
+        <Square />
+      </div>
+      <div style={{ flex: 1 }}>
+        <Square />
+      </div>
     </div>
   );
 }
