@@ -28,7 +28,7 @@ function ScheduleHeader(props) {
         style={{
           backgroundColor: colors.boardComponent,
           width: '100%',
-          marginLeft: 10,
+          marginLeft: 25,
           display: 'flex',
           justifyContent: 'flex-start',
           alignItems: 'center',
