@@ -7,9 +7,11 @@ import ScheduleInfo from '../../components/ScheduleInfo';
 
 function SchedulePage() {
   const sectionStyles = {
-    marginTop: 15,
-    marginBottom: 15,
-    backgroundColor: colors.boardComponent
+    marginTop: 5,
+    marginBottom: 5,
+    backgroundColor: colors.boardComponent,
+    width: '100%',
+    alignItems: 'center'
   };
   return (
     <div
@@ -20,18 +22,17 @@ function SchedulePage() {
         flexDirection: 'column',
         alignItems: 'center',
         alignSelf: 'center',
-        backgroundColor: colors.boardBack,
-        flex: 1
+        width: '90%',
+        backgroundColor: colors.boardBack
       }}
     >
-      <div style={{ ...sectionStyles, marginTop: 10, marginBottom: 10 }}>
+      <div style={{ ...sectionStyles, backgroundColor: colors.boardBack }}>
         <ScheduleHeader />
       </div>
       <div
         style={{
           ...sectionStyles,
-          flex: 6,
-          width: '100%'
+          flex: 10
         }}
       >
         <ScheduleBoard data={data} />
@@ -39,8 +40,7 @@ function SchedulePage() {
       <div
         style={{
           ...sectionStyles,
-          flex: 2,
-          width: '100%',
+          flex: 6,
           marginBottom: 10
         }}
       >

@@ -11,39 +11,39 @@ function ScheduleHeader(props) {
         justifyContent: 'flex-start',
         backgroundColor: colors.boardBack,
         height: '100%',
-        width: '80%'
+        width: '100%'
       }}
     >
       <ReactSVG
         src={nt_long_logo}
         style={{
-          marginTop: 10,
-          marginBottom: 10,
           display: 'flex',
           justifyContent: 'center',
+          width: '100%',
           backgroundColor: colors.boardComponent,
-          marginRight: 10
+          flex: 2
         }}
       />
       <div
         style={{
           backgroundColor: colors.boardComponent,
           width: '100%',
-          marginRight: '10%',
-          marginTop: 10,
-          marginBottom: 10,
           marginLeft: 10,
           display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          flex: 7
         }}
       >
         <span
           style={{
             display: 'inline-block',
             color: colors.boardLettering,
-            fontSize: 50,
-            fontFamily: 'times new roman'
+            fontSize: 60,
+            fontFamily: 'times new roman',
+            letterSpacing: 6,
+            paddingLeft: 15,
+            fontWeight: 'bold'
           }}
         >
           TRAIN INFORMATION
