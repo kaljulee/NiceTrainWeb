@@ -2,6 +2,7 @@ import React from 'react';
 import { ReactSVG } from 'react-svg';
 import nt_long_logo from '../../assets/nt_long_logo.svg';
 import ScheduleBoard from '../../components/ScheduleBoard';
+import data from '../../data';
 
 function SchedulePage() {
   return (
@@ -34,8 +35,9 @@ function SchedulePage() {
           border: '5px solid green',
           width: '80%'
         }}
-      />
-      <ScheduleBoard />
+      >
+        <ScheduleBoard data={data} />
+      </div>
     </div>
   );
 }

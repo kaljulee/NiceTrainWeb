@@ -2,21 +2,18 @@ import React, { useMemo } from 'react';
 import { useTable } from 'react-table';
 
 function ScheduleBoard(props) {
-  const data = useMemo(
-    () => [
-      {
-        col1: 'd1 c1',
-        col2: 'd1 c2'
-      },
-      { col1: 'd2 c1', col2: 'd2 c2' }
-    ],
-    []
-  );
-
+  const data = useMemo(() => props.data.events, []);
+  console.log(' --------------- scheduleboard --------');
+  console.log(props.data);
   const columns = useMemo(
     () => [
-      { header: 'column 1', accessor: 'col1' },
-      { header: 'column 2', accessor: 'col2' }
+      { Header: 'Date', accessor: 'date' },
+      { Header: 'Start', accessor: 'start' },
+      { Header: 'End', accessor: 'end' },
+      { Header: 'Station', accessor: 'station' },
+      { Header: 'Stand', accessor: 'standing' },
+      { Header: 'Ground', accessor: 'ground' },
+      { Header: 'Status', accessor: 'status' }
     ],
     []
   );
@@ -27,8 +24,28 @@ function ScheduleBoard(props) {
     tableInstance;
 
   return (
-    <table {...getTableProps()}>
-      <thead />
+    <table {...getTableProps()} style={{ height: '100%', width: '100%' }}>
+      <thead>
+        {headerGroups.map((headerGroup) => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column) => (
+              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <tbody {...getTableProps()}>
+        {rows.map((row) => {
+          prepareRow(row);
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map((cell) => (
+                <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              ))}
+            </tr>
+          );
+        })}
+      </tbody>
     </table>
   );
 }
