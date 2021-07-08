@@ -17,6 +17,7 @@ module.exports = {
     'no-restricted-globals': 'warn',
     'react/forbid-prop-types': 'warn',
     'no-unused-vars': 'warn',
+    'react/jsx-props-no-spreading': 0,
     'prettier/prettier': [
       'error',
       {
