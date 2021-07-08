@@ -1,7 +1,7 @@
 const colors = {
   boardLettering: 'white',
   boardBack: '#343434',
-  flipBack: '#202020',
+  flipBack: '#3c3c3c',
   boardComponent: 'black',
   boardGood: 'green',
   boardMaybe: 'orange',
