@@ -4,7 +4,7 @@ import colors from '../../styles/colors';
 function convertStringToFlip(message) {
   const output = [];
   for (let i = 0; i < message.length; i += 1) {
-    output.push(<FlipBox value={message[i]} />);
+    output.push(<FlipBox key={`${i}${message[i]}`} value={message[i]} />);
   }
   return output;
 }
