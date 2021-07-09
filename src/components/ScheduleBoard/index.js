@@ -68,8 +68,6 @@ function ScheduleBoard(props) {
                     paddingTop: 5,
                     paddingBottom: 5,
                     height: '100%'
-                    // marginTop: 5,
-                    // marginBottom: 5
                   }}
                 >
                   <div
