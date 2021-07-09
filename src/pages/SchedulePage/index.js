@@ -8,10 +8,12 @@ import ScheduleInfo from '../../components/ScheduleInfo';
 function SchedulePage() {
   const sectionStyles = {
     marginTop: 25,
-    // marginBottom: 5,
     backgroundColor: colors.boardComponent,
+    height: '100%',
     width: '100%',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'flex'
   };
   return (
     <div
@@ -34,6 +36,8 @@ function SchedulePage() {
       <div
         style={{
           ...sectionStyles,
+          justifyContent: 'flex-start',
+          flexDirection: 'column',
           flex: 10
         }}
       >
@@ -43,10 +47,20 @@ function SchedulePage() {
         style={{
           ...sectionStyles,
           flex: 6,
-          marginBottom: 25
+          marginBottom: 25,
+          flexDirection: 'column'
         }}
       >
-        <ScheduleInfo />
+        <div
+          style={{
+            display: 'flex',
+            flex: 1,
+            width: '100%',
+            backgroundColor: 'yellow'
+          }}
+        >
+          <ScheduleInfo />
+        </div>
       </div>
     </div>
   );
