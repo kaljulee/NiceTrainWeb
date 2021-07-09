@@ -1,11 +1,10 @@
 import React, { useMemo } from 'react';
 import { useTable } from 'react-table';
 import colors from '../../styles/colors';
+import { FlipRow } from '../FlipRow';
 
 function ScheduleBoard(props) {
   const data = useMemo(() => props.data.events, []);
-  console.log(' --------------- scheduleboard --------');
-  console.log(props.data);
   const columns = useMemo(
     () => [
       { Header: 'Date', accessor: 'date' },
@@ -19,6 +18,19 @@ function ScheduleBoard(props) {
     []
   );
 
+  function renderCell(cell) {
+    switch (cell.column.Header) {
+      // intentional fallthrough
+      case 'Date':
+      case 'Start':
+      case 'End':
+      case 'Station':
+        return <FlipRow message={cell.value} />;
+      default:
+        return cell.render('Cell');
+    }
+  }
+
   const tableInstance = useTable({ columns, data });
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -27,7 +39,6 @@ function ScheduleBoard(props) {
     <table
       {...getTableProps()}
       style={{
-        height: '100%',
         width: '100%',
         backgroundColor: colors.boardComponent,
         paddingLeft: 10,
@@ -68,21 +79,17 @@ function ScheduleBoard(props) {
                     paddingTop: 5,
                     paddingBottom: 5,
                     height: '100%'
-                    // marginTop: 5,
-                    // marginBottom: 5
                   }}
                 >
                   <div
                     style={{
                       height: '100%',
-                      width: '90%',
-                      backgroundColor: colors.flipBack,
                       fontSize: 32,
                       textAlign: 'center',
                       textJustify: 'center'
                     }}
                   >
-                    {cell.render('Cell')}
+                    {renderCell(cell)}
                   </div>
                 </td>
               ))}
