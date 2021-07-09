@@ -9,7 +9,7 @@ function ScheduleInfo(props) {
       style={{
         backgroundColor: colors.boardComponent,
         width: '100%',
-        border: '1px solid purple'
+        padding: 20
       }}
     >
       <FlipRow message={message} />

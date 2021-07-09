@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useTable } from 'react-table';
 import colors from '../../styles/colors';
 import { FlipRow } from '../FlipRow';
+import LongFlip from '../LongFlip';
 
 function ScheduleBoard(props) {
   const data = useMemo(() => props.data.events, []);
@@ -27,7 +28,7 @@ function ScheduleBoard(props) {
       case 'Station':
         return <FlipRow message={cell.value} />;
       default:
-        return cell.render('Cell');
+        return <LongFlip message={cell.value} />;
     }
   }
 
@@ -56,7 +57,8 @@ function ScheduleBoard(props) {
                   fontFamily: 'helvetica',
                   textAlign: 'left',
                   paddingTop: 10,
-                  fontSize: 24
+                  fontSize: 18,
+                  fontWeight: 'thin'
                 }}
               >
                 {column.render('Header')}
@@ -75,16 +77,12 @@ function ScheduleBoard(props) {
                 <td
                   {...cell.getCellProps()}
                   style={{
-                    color: colors.boardLettering,
-                    paddingTop: 5,
-                    paddingBottom: 5,
                     height: '100%'
                   }}
                 >
                   <div
                     style={{
                       height: '100%',
-                      fontSize: 32,
                       textAlign: 'center',
                       textJustify: 'center'
                     }}
