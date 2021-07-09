@@ -12,7 +12,9 @@ function convertStringToFlip(message) {
 export function FlipRow(props) {
   const { message } = props;
   return (
-    <div style={{ display: 'flex', width: '100%' }}>
+    <div
+      style={{ display: 'flex', width: '100%', marginTop: 5, marginBottom: 5 }}
+    >
       {convertStringToFlip(message)}
     </div>
   );
