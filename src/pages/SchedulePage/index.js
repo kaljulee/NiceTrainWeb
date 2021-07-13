@@ -30,7 +30,9 @@ function SchedulePage() {
         backgroundColor: colors.boardBack
       }}
     >
-      <div style={{ ...sectionStyles, backgroundColor: colors.boardBack }}>
+      <div
+        style={{ ...sectionStyles, backgroundColor: colors.boardBack, flex: 1 }}
+      >
         <ScheduleHeader />
       </div>
       <div
