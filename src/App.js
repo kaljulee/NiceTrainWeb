@@ -1,11 +1,14 @@
 import './App.css';
 import React from 'react';
+import { BreakpointProvider, setDefaultBreakpoints } from 'react-socks';
 import SchedulePage from './pages/SchedulePage';
 import colors from './styles/colors';
+import { settableBreakpoints } from './styles/breakpoints';
 
 function App() {
+  setDefaultBreakpoints(settableBreakpoints());
   return (
-    <div
+    <BreakpointProvider
       style={{
         id: 'app-container',
         width: '100%',
@@ -17,7 +20,7 @@ function App() {
       }}
     >
       <SchedulePage />
-    </div>
+    </BreakpointProvider>
   );
 }
 
