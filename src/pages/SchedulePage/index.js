@@ -1,4 +1,5 @@
 import React from 'react';
+import { Breakpoint } from 'react-socks';
 import ScheduleBoard from '../../components/ScheduleBoard';
 import data from '../../data';
 import ScheduleHeader from '../../components/ScheduleHeader';
@@ -27,6 +28,7 @@ function SchedulePage() {
         width: '100%',
         paddingRight: 25,
         paddingLeft: 25,
+        boxSizing: 'border-box',
         backgroundColor: colors.boardBack
       }}
     >
@@ -45,7 +47,9 @@ function SchedulePage() {
       >
         <ScheduleBoard data={data} />
       </div>
-      <div
+      <Breakpoint
+        large
+        up
         style={{
           ...sectionStyles,
           flex: 6,
@@ -57,13 +61,12 @@ function SchedulePage() {
           style={{
             display: 'flex',
             flex: 1,
-            width: '100%',
-            backgroundColor: 'yellow'
+            width: '100%'
           }}
         >
           <ScheduleInfo />
         </div>
-      </div>
+      </Breakpoint>
     </div>
   );
 }
