@@ -1,23 +1,29 @@
 import React, { useMemo } from 'react';
 import { useTable } from 'react-table';
+import { useCurrentWidth } from 'react-socks';
 import colors from '../../styles/colors';
-import { FlipRow } from '../FlipRow';
-import LongFlip from '../LongFlip';
+import { FlipRow } from '../FlipText/FlipRow';
+import LongFlip from '../FlipText/LongFlip';
+import breakpoints from '../../styles/breakpoints';
 
 function ScheduleBoard(props) {
   const data = useMemo(() => props.data.events, []);
-  const columns = useMemo(
-    () => [
+  const width = useCurrentWidth();
+  const columns = useMemo(() => {
+    const colInfo = [
       { Header: 'Date', accessor: 'date' },
       { Header: 'Start', accessor: 'start' },
       { Header: 'End', accessor: 'end' },
-      { Header: 'Station', accessor: 'station' },
-      { Header: 'Stand', accessor: 'standing' },
-      { Header: 'Ground', accessor: 'ground' },
-      { Header: 'Status', accessor: 'status' }
-    ],
-    []
-  );
+      { Header: 'Station', accessor: 'station' }
+    ];
+    if (width >= breakpoints.medium) {
+      colInfo.push({ Header: 'Stand', accessor: 'standing' });
+      colInfo.push({ Header: 'Ground', accessor: 'ground' });
+    }
+    colInfo.push({ Header: 'Status', accessor: 'status' });
+
+    return colInfo;
+  }, [width]);
 
   function renderCell(cell) {
     switch (cell.column.Header) {
