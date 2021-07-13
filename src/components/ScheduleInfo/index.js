@@ -1,6 +1,6 @@
 import React from 'react';
 import colors from '../../styles/colors';
-import { FlipRow } from '../FlipRow';
+import { FlipRow } from '../FlipText/FlipRow';
 
 function ScheduleInfo(props) {
   const { message } = props;
