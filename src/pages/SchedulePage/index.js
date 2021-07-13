@@ -48,7 +48,7 @@ function SchedulePage() {
         <ScheduleBoard data={data} />
       </div>
       <Breakpoint
-        large
+        medium
         up
         style={{
           ...sectionStyles,
