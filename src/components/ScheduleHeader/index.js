@@ -39,7 +39,7 @@ function ScheduleHeader(props) {
           style={{
             display: 'inline-block',
             color: colors.boardLettering,
-            fontSize: 60,
+            fontSize: 50,
             fontFamily: 'times new roman',
             letterSpacing: 6,
             paddingLeft: 15,
