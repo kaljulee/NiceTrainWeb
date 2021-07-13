@@ -1,14 +1,18 @@
 import React from 'react';
-import colors from '../../styles/colors';
+import { useCurrentWidth } from 'react-socks';
+import colors from '../../../styles/colors';
+import flipConstants from '../flipConstants';
 
 function LongFlip(props) {
   const { message } = props;
+  const width = useCurrentWidth();
   return (
     <div
       style={{
-        height: 40,
+        height: flipConstants.height,
         width: '90%',
         backgroundColor: colors.flipBack,
+        fontSize: 16,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'

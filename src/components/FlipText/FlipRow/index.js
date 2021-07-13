@@ -1,5 +1,6 @@
 import React from 'react';
-import colors from '../../styles/colors';
+import colors from '../../../styles/colors';
+import flipConstants from '../flipConstants';
 
 function convertStringToFlip(message) {
   const output = [];
@@ -9,6 +10,7 @@ function convertStringToFlip(message) {
   return output;
 }
 
+// row of flip box letters
 export function FlipRow(props) {
   const { message } = props;
   return (
@@ -20,10 +22,12 @@ export function FlipRow(props) {
   );
 }
 
+// single letter in flip box
 function FlipBox(props) {
   const { value } = props;
+  const flipBoxWidth = flipConstants.width;
   return (
-    <div style={{ height: 47, width: 30 }}>
+    <div style={{ height: flipConstants.height, width: flipBoxWidth }}>
       <div
         style={{
           backgroundColor: colors.flipBack,
@@ -37,9 +41,11 @@ function FlipBox(props) {
           style={{
             textJustify: 'center',
             textAlign: 'center',
-            fontSize: 32,
+            fontSize: 28,
             color: colors.boardLettering,
-            position: 'relative'
+            position: 'relative',
+            paddingTop: 3,
+            display: 'inline-block'
           }}
         >
           {value}
@@ -50,8 +56,8 @@ function FlipBox(props) {
           position: 'relative',
           backgroundColor: colors.boardBack,
           height: 2,
-          width: 30,
-          top: -25
+          width: flipBoxWidth,
+          top: -26
         }}
       />
     </div>
