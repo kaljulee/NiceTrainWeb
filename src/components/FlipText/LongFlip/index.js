@@ -2,6 +2,7 @@ import React from 'react';
 import { useCurrentWidth } from 'react-socks';
 import colors from '../../../styles/colors';
 import flipConstants from '../flipConstants';
+import breakpoints from '../../../styles/breakpoints';
 
 function LongFlip(props) {
   const { message } = props;
@@ -12,10 +13,13 @@ function LongFlip(props) {
         height: flipConstants.height,
         width: '90%',
         backgroundColor: colors.flipBack,
-        fontSize: 16,
+        fontSize: width >= breakpoints.xlarge ? 15 : 12,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        boxSizing: 'border-box',
+        paddingLeft: 15,
+        paddingRight: 15
       }}
     >
       <span
@@ -24,8 +28,8 @@ function LongFlip(props) {
           fontFamily: 'helvetica',
           display: 'inline-block',
           color: '#dddddd',
-          webkitTextStrokeWidth: 'thin',
-          webkitTextStrokeColor: 'white'
+          WebkitTextStrokeWidth: 'thin',
+          WebkitTextStrokeColor: 'white'
         }}
       >
         {message.toUpperCase()}
