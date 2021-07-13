@@ -12,10 +12,12 @@ function ScheduleBoard(props) {
   const columns = useMemo(() => {
     const colInfo = [
       { Header: 'Date', accessor: 'date' },
-      { Header: 'Start', accessor: 'start' },
-      { Header: 'End', accessor: 'end' },
-      { Header: 'Station', accessor: 'station' }
+      { Header: 'Start', accessor: 'start' }
     ];
+    if (width >= breakpoints.medium) {
+      colInfo.push({ Header: 'End', accessor: 'end' });
+    }
+    colInfo.push({ Header: 'Station', accessor: 'station' });
     if (width >= breakpoints.medium) {
       colInfo.push({ Header: 'Stand', accessor: 'standing' });
       colInfo.push({ Header: 'Ground', accessor: 'ground' });
@@ -76,7 +78,6 @@ function ScheduleBoard(props) {
       <tbody {...getTableProps()} style={{ height: '100%', width: '100%' }}>
         {rows.map((row) => {
           prepareRow(row);
-          console.log(row);
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map((cell) => (
