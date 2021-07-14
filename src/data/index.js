@@ -33,7 +33,7 @@ const data = {
       start: '1700',
       end: '1900',
       station: 'TURT',
-      ground: '',
+      ground: 'Scissor Sweep',
       standing: 'Hip Toss',
       status: 'ON TIME'
     }
