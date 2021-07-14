@@ -1,9 +1,12 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
+import { useCurrentWidth } from 'react-socks';
 import nt_long_logo from '../../assets/nt_long_logo.svg';
 import colors from '../../styles/colors';
+import breakpoints from '../../styles/breakpoints';
 
 function ScheduleHeader(props) {
+  const width = useCurrentWidth();
   return (
     <div
       style={{
@@ -19,7 +22,6 @@ function ScheduleHeader(props) {
         style={{
           display: 'flex',
           justifyContent: 'center',
-          width: '100%',
           backgroundColor: colors.boardComponent,
           flex: 2
         }}
@@ -27,7 +29,6 @@ function ScheduleHeader(props) {
       <div
         style={{
           backgroundColor: colors.boardComponent,
-          width: '100%',
           marginLeft: 25,
           display: 'flex',
           justifyContent: 'flex-start',
@@ -39,7 +40,7 @@ function ScheduleHeader(props) {
           style={{
             display: 'inline-block',
             color: colors.boardLettering,
-            fontSize: 50,
+            fontSize: width >= breakpoints.large ? 50 : 20,
             fontFamily: 'times new roman',
             letterSpacing: 6,
             paddingLeft: 15,

@@ -1,6 +1,6 @@
 const flipConstants = {
-  height: 47,
-  width: '4vh'
+  height: 38,
+  width: '3vh'
 };
 
 export default flipConstants;

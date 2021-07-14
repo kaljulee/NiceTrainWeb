@@ -41,10 +41,10 @@ function FlipBox(props) {
           style={{
             textJustify: 'center',
             textAlign: 'center',
-            fontSize: 28,
+            fontSize: 20,
             color: colors.boardLettering,
             position: 'relative',
-            paddingTop: 3,
+            paddingTop: 4,
             display: 'inline-block'
           }}
         >
@@ -57,7 +57,7 @@ function FlipBox(props) {
           backgroundColor: colors.boardBack,
           height: 2,
           width: flipBoxWidth,
-          top: -26
+          top: Math.ceil(flipConstants.height / -2) - 2
         }}
       />
     </div>

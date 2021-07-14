@@ -13,7 +13,7 @@ function LongFlip(props) {
         height: flipConstants.height,
         width: '90%',
         backgroundColor: colors.flipBack,
-        fontSize: width >= breakpoints.xlarge ? 15 : 12,
+        fontSize: width >= breakpoints.xlarge ? 16 : 12,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -28,8 +28,9 @@ function LongFlip(props) {
           fontFamily: 'helvetica',
           display: 'inline-block',
           color: '#dddddd',
-          WebkitTextStrokeWidth: 'thin',
-          WebkitTextStrokeColor: 'white'
+          paddingTop: 4
+          // WebkitTextStrokeWidth: 'thin',
+          // WebkitTextStrokeColor: 'white'
         }}
       >
         {message.toUpperCase()}
