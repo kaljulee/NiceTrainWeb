@@ -40,7 +40,7 @@ function ScheduleHeader(props) {
           style={{
             display: 'inline-block',
             color: colors.boardLettering,
-            fontSize: width >= breakpoints.large ? 50 : 20,
+            fontSize: width >= breakpoints.large ? 50 : 25,
             fontFamily: 'times new roman',
             letterSpacing: 6,
             paddingLeft: 15,

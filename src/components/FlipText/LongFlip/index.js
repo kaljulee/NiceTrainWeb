@@ -28,7 +28,7 @@ function LongFlip(props) {
           fontFamily: 'helvetica',
           display: 'inline-block',
           color: '#dddddd',
-          paddingTop: 4
+          paddingTop: 2
           // WebkitTextStrokeWidth: 'thin',
           // WebkitTextStrokeColor: 'white'
         }}

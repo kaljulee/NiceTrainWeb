@@ -15,7 +15,10 @@ export function FlipRow(props) {
   const { message } = props;
   return (
     <div
-      style={{ display: 'flex', width: '100%', marginTop: 5, marginBottom: 5 }}
+      style={{
+        display: 'flex',
+        width: '100%'
+      }}
     >
       {convertStringToFlip(message)}
     </div>
@@ -34,7 +37,8 @@ function FlipBox(props) {
           border: `2px solid ${'black'}`,
           textAlign: 'center',
           top: 2,
-          height: '100%'
+          height: '100%',
+          boxSizing: 'border-box'
         }}
       >
         <span
@@ -44,7 +48,7 @@ function FlipBox(props) {
             fontSize: 20,
             color: colors.boardLettering,
             position: 'relative',
-            paddingTop: 4,
+            paddingTop: 2,
             display: 'inline-block'
           }}
         >
@@ -57,7 +61,7 @@ function FlipBox(props) {
           backgroundColor: colors.boardBack,
           height: 2,
           width: flipBoxWidth,
-          top: Math.ceil(flipConstants.height / -2) - 2
+          top: Math.ceil(flipConstants.height / -2)
         }}
       />
     </div>
