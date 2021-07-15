@@ -4,7 +4,7 @@ import { useCurrentWidth } from 'react-socks';
 import nt_long_logo from '../../assets/nt_long_logo.svg';
 import colors from '../../styles/colors';
 import breakpoints from '../../styles/breakpoints';
-
+// todo use css for styles
 function ScheduleHeader(props) {
   const width = useCurrentWidth();
   return (
@@ -23,13 +23,14 @@ function ScheduleHeader(props) {
           display: 'flex',
           justifyContent: 'center',
           backgroundColor: colors.boardComponent,
-          flex: 2
+          flex: 2,
+          minWidth: '7vh'
         }}
       />
       <div
         style={{
           backgroundColor: colors.boardComponent,
-          marginLeft: 25,
+          marginLeft: '1vh',
           display: 'flex',
           justifyContent: 'flex-start',
           alignItems: 'center',
@@ -43,7 +44,7 @@ function ScheduleHeader(props) {
             fontSize: width >= breakpoints.large ? 50 : 25,
             fontFamily: 'times new roman',
             letterSpacing: 6,
-            paddingLeft: 15,
+            paddingLeft: '2vh',
             fontWeight: 'bold'
           }}
         >

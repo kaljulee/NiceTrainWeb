@@ -8,7 +8,7 @@ import ScheduleInfo from '../../components/ScheduleInfo';
 
 function SchedulePage() {
   const sectionStyles = {
-    marginTop: 25,
+    marginTop: '2vh',
     backgroundColor: colors.boardComponent,
     height: '100%',
     width: '100%',
@@ -26,8 +26,7 @@ function SchedulePage() {
         alignItems: 'center',
         alignSelf: 'center',
         width: '100%',
-        paddingRight: 25,
-        paddingLeft: 25,
+        padding: '1vh',
         boxSizing: 'border-box',
         backgroundColor: colors.boardBack
       }}
@@ -53,7 +52,7 @@ function SchedulePage() {
         style={{
           ...sectionStyles,
           flex: 6,
-          marginBottom: 25,
+          marginBottom: '1vh',
           flexDirection: 'column'
         }}
       >
