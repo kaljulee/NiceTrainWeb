@@ -45,7 +45,9 @@ function ScheduleHeader(props) {
             fontFamily: 'times new roman',
             letterSpacing: 6,
             paddingLeft: '2vh',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            paddingTop: '1vh',
+            paddingBottom: '1vh'
           }}
         >
           TRAIN INFORMATION
