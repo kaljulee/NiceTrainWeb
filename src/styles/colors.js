@@ -5,7 +5,8 @@ const colors = {
   boardComponent: 'black',
   boardGood: 'green',
   boardMaybe: 'orange',
-  boardBad: 'red'
+  boardBad: 'red',
+  logYellow: '#ffcc00'
 };
 
 export default colors;

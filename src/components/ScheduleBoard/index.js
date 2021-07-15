@@ -29,6 +29,14 @@ function ScheduleBoard(props) {
     return colInfo;
   }, [width]);
 
+  function renderHeader(column) {
+    console.log(column);
+    if (column.Header === 'Data') {
+      return <div />;
+    }
+    return column.render('Header');
+  }
+
   function renderCell(cell) {
     switch (cell.column.Header) {
       // intentional fallthrough
@@ -58,22 +66,24 @@ function ScheduleBoard(props) {
         paddingRight: 10
       }}
     >
-      <thead>
+      <thead style={{ marginBottom: 30 }}>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
               <th
-                {...column.getHeaderProps()}
-                style={{
-                  color: colors.boardLettering,
-                  fontFamily: 'helvetica',
-                  textAlign: 'left',
-                  paddingTop: 10,
-                  fontSize: 18,
-                  fontWeight: 'thin'
-                }}
+                {...column.getHeaderProps({
+                  style: {
+                    width: column.Header === 'Data' ? '1vh' : undefined,
+                    color: colors.boardLettering,
+                    fontFamily: 'helvetica',
+                    textAlign: 'left',
+                    paddingTop: 10,
+                    fontSize: width >= breakpoints.large ? 18 : 12,
+                    fontWeight: 'thin'
+                  }
+                })}
               >
-                {column.render('Header')}
+                {renderHeader(column)}
               </th>
             ))}
           </tr>
@@ -83,7 +93,7 @@ function ScheduleBoard(props) {
         {rows.map((row) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()}>
+            <tr {...row.getRowProps()} style={{ width: 'fit-content' }}>
               {row.cells.map((cell) => (
                 <td
                   {...cell.getCellProps()}
