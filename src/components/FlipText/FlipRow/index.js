@@ -48,7 +48,6 @@ function FlipBox(props) {
             fontSize: 20,
             color: colors.boardLettering,
             position: 'relative',
-            paddingTop: 2,
             display: 'inline-block'
           }}
         >
