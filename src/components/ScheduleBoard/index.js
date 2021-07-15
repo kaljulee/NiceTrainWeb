@@ -5,6 +5,7 @@ import colors from '../../styles/colors';
 import { FlipRow } from '../FlipText/FlipRow';
 import LongFlip from '../FlipText/LongFlip';
 import breakpoints from '../../styles/breakpoints';
+import InfoButton from '../InfoButton';
 
 function ScheduleBoard(props) {
   const data = useMemo(() => props.data.events, []);
@@ -23,6 +24,7 @@ function ScheduleBoard(props) {
       colInfo.push({ Header: 'Ground', accessor: 'ground' });
     }
     colInfo.push({ Header: 'Status', accessor: 'status' });
+    colInfo.push({ Header: 'Data', accessor: 'data' });
 
     return colInfo;
   }, [width]);
@@ -35,6 +37,8 @@ function ScheduleBoard(props) {
       case 'End':
       case 'Station':
         return <FlipRow message={cell.value} />;
+      case 'Data':
+        return <InfoButton />;
       default:
         return <LongFlip message={cell.value} />;
     }
