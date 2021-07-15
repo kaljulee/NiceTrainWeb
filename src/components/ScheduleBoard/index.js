@@ -62,8 +62,7 @@ function ScheduleBoard(props) {
       style={{
         width: '100%',
         backgroundColor: colors.boardComponent,
-        paddingLeft: 10,
-        paddingRight: 10
+        padding: '1vh 1vw 1vh 1vw'
       }}
     >
       <thead style={{ marginBottom: 30 }}>

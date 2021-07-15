@@ -17,7 +17,9 @@ function ScheduleInfo(props) {
       style={{
         backgroundColor: colors.boardComponent,
         width: '100%',
-        padding: 20
+        // paddingTop: '1vh',
+        //   paddingBottom: '1v
+        padding: '1vh 1vw 1vh 1vw'
       }}
     >
       <FlipRow message={message} rowLength={characterCount} />
