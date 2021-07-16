@@ -30,7 +30,6 @@ function ScheduleBoard(props) {
   }, [width]);
 
   function renderHeader(column) {
-    console.log(column);
     if (column.Header === 'Data') {
       return <div />;
     }

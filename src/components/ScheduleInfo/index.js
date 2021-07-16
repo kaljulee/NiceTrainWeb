@@ -4,18 +4,48 @@ import colors from '../../styles/colors';
 import { FlipRow } from '../FlipText/FlipRow';
 import flipConstants from '../FlipText/flipConstants';
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
+function useWindowDimensions() {
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowDimensions;
+}
+
 function calculateCharacterCount(width) {
   return Math.floor(width / flipConstants.width) - 2;
 }
 
 function ScheduleInfo(props) {
-  const { message } = props;
-  const width = useCurrentWidth();
+  const { messageArray } = props;
   const [characterCount, setCharacterCount] = useState(
-    calculateCharacterCount(width)
+    calculateCharacterCount(0)
   );
-  useEffect(() => setCharacterCount(calculateCharacterCount(width)), [width]);
-  console.log(characterCount);
+  const width = useCurrentWidth();
+  const { height: dimH, width: dimW } = useWindowDimensions();
+
+  // trigger on window changes as well as react-socks width
+  // to avoid being stuck on some weird wrong width
+  useEffect(() => {
+    setCharacterCount(calculateCharacterCount(width) - 4);
+  }, [width, dimW, dimH]);
   return (
     <div
       style={{
@@ -24,13 +54,15 @@ function ScheduleInfo(props) {
         padding: '1vh 1vw 1vh 1vw'
       }}
     >
-      <FlipRow message={message} rowLength={characterCount} />
-      <FlipRow message={message} rowLength={characterCount} />
-      <FlipRow rowLength={characterCount} />
+      <FlipRow message={messageArray[0]} rowLength={characterCount} />
+      <FlipRow message={messageArray[1]} rowLength={characterCount} />
+      <FlipRow message={messageArray[2]} rowLength={characterCount} />
     </div>
   );
 }
 
-ScheduleInfo.defaultProps = { message: 'DEFAULT MESSAGE Default Message' };
+ScheduleInfo.defaultProps = {
+  messageArray: ['Default Message 1', 'Default Message 2', 'Default Message 3']
+};
 
 export default ScheduleInfo;
