@@ -1,4 +1,5 @@
 import React from 'react';
+import { Breakpoint } from 'react-socks';
 import ScheduleBoard from '../../components/ScheduleBoard';
 import data from '../../data';
 import ScheduleHeader from '../../components/ScheduleHeader';
@@ -7,7 +8,7 @@ import ScheduleInfo from '../../components/ScheduleInfo';
 
 function SchedulePage() {
   const sectionStyles = {
-    marginTop: 25,
+    marginTop: '2vh',
     backgroundColor: colors.boardComponent,
     height: '100%',
     width: '100%',
@@ -25,12 +26,14 @@ function SchedulePage() {
         alignItems: 'center',
         alignSelf: 'center',
         width: '100%',
-        paddingRight: 25,
-        paddingLeft: 25,
+        padding: '1vh',
+        boxSizing: 'border-box',
         backgroundColor: colors.boardBack
       }}
     >
-      <div style={{ ...sectionStyles, backgroundColor: colors.boardBack }}>
+      <div
+        style={{ ...sectionStyles, backgroundColor: colors.boardBack, flex: 1 }}
+      >
         <ScheduleHeader />
       </div>
       <div
@@ -43,11 +46,13 @@ function SchedulePage() {
       >
         <ScheduleBoard data={data} />
       </div>
-      <div
+      <Breakpoint
+        xsmall
+        up
         style={{
           ...sectionStyles,
           flex: 6,
-          marginBottom: 25,
+          marginBottom: '1vh',
           flexDirection: 'column'
         }}
       >
@@ -55,13 +60,12 @@ function SchedulePage() {
           style={{
             display: 'flex',
             flex: 1,
-            width: '100%',
-            backgroundColor: 'yellow'
+            width: '100%'
           }}
         >
           <ScheduleInfo />
         </div>
-      </div>
+      </Breakpoint>
     </div>
   );
 }

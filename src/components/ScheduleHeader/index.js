@@ -1,9 +1,12 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
+import { useCurrentWidth } from 'react-socks';
 import nt_long_logo from '../../assets/nt_long_logo.svg';
 import colors from '../../styles/colors';
-
+import breakpoints from '../../styles/breakpoints';
+// todo use css for styles
 function ScheduleHeader(props) {
+  const width = useCurrentWidth();
   return (
     <div
       style={{
@@ -19,16 +22,15 @@ function ScheduleHeader(props) {
         style={{
           display: 'flex',
           justifyContent: 'center',
-          width: '100%',
           backgroundColor: colors.boardComponent,
-          flex: 2
+          flex: 2,
+          minWidth: '7vh'
         }}
       />
       <div
         style={{
           backgroundColor: colors.boardComponent,
-          width: '100%',
-          marginLeft: 25,
+          marginLeft: '1vh',
           display: 'flex',
           justifyContent: 'flex-start',
           alignItems: 'center',
@@ -39,11 +41,13 @@ function ScheduleHeader(props) {
           style={{
             display: 'inline-block',
             color: colors.boardLettering,
-            fontSize: 60,
+            fontSize: width >= breakpoints.large ? 50 : 25,
             fontFamily: 'times new roman',
             letterSpacing: 6,
-            paddingLeft: 15,
-            fontWeight: 'bold'
+            paddingLeft: '2vh',
+            fontWeight: 'bold',
+            paddingTop: '1vh',
+            paddingBottom: '1vh'
           }}
         >
           TRAIN INFORMATION

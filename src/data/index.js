@@ -17,7 +17,8 @@ const data = {
       station: 'TURT',
       ground: 'Scissor Sweep',
       standing: 'Forward Rolls',
-      status: 'ON TIME'
+      status: 'ON TIME',
+      detailsLink: 'something goes here'
     },
     {
       date: '0712',
@@ -26,15 +27,17 @@ const data = {
       station: 'TURT',
       ground: 'Turtle variations',
       standing: 'Hip Toss',
-      status: 'UNSURE'
+      status: 'UNSURE',
+      detailsLink: 'something goes here'
     },
     {
       date: '0714',
       start: '1700',
       end: '1900',
       station: 'TURT',
-      ground: '',
+      ground: 'Scissor Sweep',
       standing: 'Hip Toss',
+      detailsLink: 'something goes here',
       status: 'ON TIME'
     }
   ]
