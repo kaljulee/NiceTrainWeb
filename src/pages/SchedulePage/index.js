@@ -60,7 +60,8 @@ function SchedulePage() {
           style={{
             display: 'flex',
             flex: 1,
-            width: '100%'
+            width: '100%',
+            justifyContent: 'center'
           }}
         >
           <ScheduleInfo />
