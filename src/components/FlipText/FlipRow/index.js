@@ -39,15 +39,10 @@ function convertStringToFlip(message, rowLength) {
 // row of flip box letters
 export function FlipRow(props) {
   const { message, rowLength } = props;
-  // if (!message || !message.length) {
-  //     return
-  // }
   return (
     <div
       style={{
-        display: 'flex',
-        width: '100%',
-        justifyContent: 'center'
+        display: 'flex'
       }}
     >
       {convertStringToFlip(message, rowLength)}

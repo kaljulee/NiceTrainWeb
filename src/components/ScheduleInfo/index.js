@@ -51,7 +51,10 @@ function ScheduleInfo(props) {
       style={{
         backgroundColor: colors.boardComponent,
         width: '100%',
-        padding: '1vh 1vw 1vh 1vw'
+        padding: '1vh 1vw 1vh 1vw',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
       }}
     >
       <FlipRow message={messageArray[0]} rowLength={characterCount} />
