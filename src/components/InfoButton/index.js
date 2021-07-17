@@ -8,7 +8,12 @@ function InfoButton(props) {
     <div>
       <FontAwesomeIcon
         icon={faQuestionCircle}
-        style={{ color: colors.logYellow, width: '2vh', height: '2vh' }}
+        style={{
+          display: 'flex',
+          color: colors.logYellow,
+          width: '2vh',
+          height: '2vh'
+        }}
       />
     </div>
   );
