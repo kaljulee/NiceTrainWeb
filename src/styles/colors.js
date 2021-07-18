@@ -3,8 +3,8 @@ const colors = {
   boardBack: '#343434',
   flipBack: '#3c3c3c',
   boardComponent: 'black',
-  boardGood: 'green',
-  boardMaybe: 'orange',
+  boardGood: '#84ff00',
+  boardMaybe: '#ffb800',
   boardBad: 'red',
   logYellow: '#ffcc00'
 };
