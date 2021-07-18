@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useTable } from 'react-table';
 import { useCurrentWidth } from 'react-socks';
 import colors from '../../styles/colors';
@@ -28,7 +28,11 @@ function ScheduleBoard(props) {
 
     return colInfo;
   }, [width]);
+  const [showTrainDetails, setShowTrainDetails] = useState(false);
 
+  useEffect(() => {
+    console.log(`detail change to ${showTrainDetails}`);
+  }, [showTrainDetails]);
   function renderHeader(column) {
     if (column.Header === 'Data') {
       return <div />;
@@ -60,7 +64,11 @@ function ScheduleBoard(props) {
       case 'Station':
         return <FlipRow message={cell.value} />;
       case 'Data':
-        return <InfoButton />;
+        return (
+          <InfoButton
+            onClick={() => setShowTrainDetails(cell.row.original.id)}
+          />
+        );
       case 'Status':
         return (
           <LongFlip
