@@ -4,8 +4,13 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons/faQuestionCi
 import colors from '../../styles/colors';
 
 function InfoButton(props) {
+  const { onClick } = props;
   return (
-    <div>
+    <button
+      onClick={onClick}
+      type="button"
+      style={{ backgroundColor: colors.boardComponent, border: 'none' }}
+    >
       <FontAwesomeIcon
         icon={faQuestionCircle}
         style={{
@@ -15,8 +20,14 @@ function InfoButton(props) {
           height: '2vh'
         }}
       />
-    </div>
+    </button>
   );
 }
+
+InfoButton.defaultProps = {
+  onClick: () => {
+    console.log('info button clicked!');
+  }
+};
 
 export default InfoButton;

@@ -51,6 +51,7 @@ function ScheduleBoard(props) {
   }
 
   function renderCell(cell) {
+    console.log(cell);
     switch (cell.column.Header) {
       // intentional fallthrough
       case 'Date':
