@@ -5,11 +5,11 @@ function Activity(props) {
 }
 
 function TrainDetails(props) {
-  const { onCloseClick } = props;
+  const { onClickClose } = props;
   return (
     <div style={{ height: '100%', width: '100%' }}>
       <Activity />
-      <button type="button" onClick={onCloseClick}>
+      <button type="button" onClick={onClickClose}>
         close details
       </button>
     </div>

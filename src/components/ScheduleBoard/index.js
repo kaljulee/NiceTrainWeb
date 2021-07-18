@@ -6,6 +6,7 @@ import { FlipRow } from '../FlipText/FlipRow';
 import LongFlip from '../FlipText/LongFlip';
 import breakpoints from '../../styles/breakpoints';
 import InfoButton from '../InfoButton';
+import TrainDetails from '../TrainDetails';
 
 function ScheduleBoard(props) {
   const data = useMemo(() => props.data.events, []);
@@ -151,6 +152,13 @@ function ScheduleBoard(props) {
           })}
         </tbody>
       </table>
+      {showTrainDetails && (
+        <TrainDetails
+          onClickClose={() => {
+            setShowTrainDetails(undefined);
+          }}
+        />
+      )}
     </div>
   );
 }
