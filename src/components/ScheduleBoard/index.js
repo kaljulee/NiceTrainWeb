@@ -36,6 +36,20 @@ function ScheduleBoard(props) {
     return column.render('Header');
   }
 
+  // todo enum the status options
+  function getStatusTextColor(status) {
+    switch (status) {
+      case 'ON TIME':
+        return colors.boardGood;
+      case 'UNSURE':
+        return colors.boardMaybe;
+      case 'CANCELED':
+        return colors.boardBad;
+      default:
+        return undefined;
+    }
+  }
+
   function renderCell(cell) {
     switch (cell.column.Header) {
       // intentional fallthrough
@@ -46,6 +60,13 @@ function ScheduleBoard(props) {
         return <FlipRow message={cell.value} />;
       case 'Data':
         return <InfoButton />;
+      case 'Status':
+        return (
+          <LongFlip
+            textColor={getStatusTextColor(cell.value)}
+            message={cell.value}
+          />
+        );
       default:
         return <LongFlip message={cell.value} />;
     }
