@@ -5,7 +5,7 @@ import flipConstants from '../flipConstants';
 import breakpoints from '../../../styles/breakpoints';
 
 function LongFlip(props) {
-  const { message } = props;
+  const { message, textColor } = props;
   const width = useCurrentWidth();
   return (
     <div
@@ -27,7 +27,7 @@ function LongFlip(props) {
           letterSpacing: 2,
           fontFamily: 'helvetica',
           display: 'inline-block',
-          color: '#dddddd',
+          color: textColor,
           paddingTop: 2
           // WebkitTextStrokeWidth: 'thin',
           // WebkitTextStrokeColor: 'white'
@@ -38,5 +38,7 @@ function LongFlip(props) {
     </div>
   );
 }
+
+LongFlip.defaultProps = { textColor: '#dddddd' };
 
 export default LongFlip;
