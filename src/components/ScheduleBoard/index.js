@@ -86,65 +86,72 @@ function ScheduleBoard(props) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
   return (
-    <table
-      {...getTableProps()}
+    <div
       style={{
         width: '100%',
-        backgroundColor: colors.boardComponent,
+        boxSizing: 'border-box',
         padding: '1vh 1vw 1vh 1vw'
       }}
     >
-      <thead style={{ marginBottom: 30 }}>
-        {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <th
-                {...column.getHeaderProps({
-                  style: {
-                    width: column.Header === 'Data' ? '1vh' : undefined,
-                    color: colors.boardLettering,
-                    fontFamily: 'helvetica',
-                    textAlign: 'left',
-                    paddingTop: 10,
-                    fontSize: width >= breakpoints.large ? 18 : 12,
-                    fontWeight: 'thin'
-                  }
-                })}
-              >
-                {renderHeader(column)}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody {...getTableProps()} style={{ height: '100%', width: '100%' }}>
-        {rows.map((row) => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()} style={{ width: 'fit-content' }}>
-              {row.cells.map((cell) => (
-                <td
-                  {...cell.getCellProps()}
-                  style={{
-                    height: '100%'
-                  }}
+      <table
+        {...getTableProps()}
+        style={{
+          width: '100%',
+          backgroundColor: colors.boardComponent
+        }}
+      >
+        <thead style={{ marginBottom: 30 }}>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <th
+                  {...column.getHeaderProps({
+                    style: {
+                      width: column.Header === 'Data' ? '1vh' : undefined,
+                      color: colors.boardLettering,
+                      fontFamily: 'helvetica',
+                      textAlign: 'left',
+                      paddingTop: 10,
+                      fontSize: width >= breakpoints.large ? 18 : 12,
+                      fontWeight: 'thin'
+                    }
+                  })}
                 >
-                  <div
-                    style={{
-                      height: '100%',
-                      textAlign: 'center',
-                      textJustify: 'center'
-                    }}
-                  >
-                    {renderCell(cell)}
-                  </div>
-                </td>
+                  {renderHeader(column)}
+                </th>
               ))}
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+          ))}
+        </thead>
+        <tbody {...getTableProps()} style={{ height: '100%', width: '100%' }}>
+          {rows.map((row) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()} style={{ width: 'fit-content' }}>
+                {row.cells.map((cell) => (
+                  <td
+                    {...cell.getCellProps()}
+                    style={{
+                      height: '100%'
+                    }}
+                  >
+                    <div
+                      style={{
+                        height: '100%',
+                        textAlign: 'center',
+                        textJustify: 'center'
+                      }}
+                    >
+                      {renderCell(cell)}
+                    </div>
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
