@@ -11,6 +11,7 @@ const data = {
   },
   events: [
     {
+      id: 1,
       date: '0708',
       start: '1700',
       end: '1900',
@@ -21,6 +22,7 @@ const data = {
       detailsLink: 'something goes here'
     },
     {
+      id: 2,
       date: '0712',
       start: '1700',
       end: '1900',
@@ -31,6 +33,7 @@ const data = {
       detailsLink: 'something goes here'
     },
     {
+      id: 3,
       date: '0714',
       start: '1700',
       end: '1900',
