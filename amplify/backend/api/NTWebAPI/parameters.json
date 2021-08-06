@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "NTWebAPI",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authnicetrainweb00c581ca",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
