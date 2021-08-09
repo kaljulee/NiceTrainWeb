@@ -7,6 +7,7 @@ module.exports = {
     Blob: true
   },
   rules: {
+    'import/prefer-default-export': 'warn',
     'import/no-extraneous-dependencies': 'warn',
     'no-underscore-dangle': ['error', { allowAfterThis: true }],
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
