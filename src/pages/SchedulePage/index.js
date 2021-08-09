@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Breakpoint } from 'react-socks';
+import { connect, useSelector, useDispatch } from 'react-redux';
 import ScheduleBoard from '../../components/ScheduleBoard';
 import data from '../../data';
 import ScheduleHeader from '../../components/ScheduleHeader';
 import colors from '../../styles/colors';
 import ScheduleInfo from '../../components/ScheduleInfo';
+import { fetchStations } from '../../redux/reducers/baseReducer';
 
 function SchedulePage() {
   const sectionStyles = {
@@ -16,6 +18,15 @@ function SchedulePage() {
     justifyContent: 'center',
     display: 'flex'
   };
+
+  const stations = useSelector((state) => state.stations);
+  const dispatch = useDispatch();
+  console.log('stations');
+  console.log(stations);
+  useEffect(() => {
+    dispatch(fetchStations());
+  }, []);
+
   return (
     <div
       style={{
@@ -71,4 +82,7 @@ function SchedulePage() {
   );
 }
 
-export default SchedulePage;
+const mapStateToProps = (state) => state;
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SchedulePage);
