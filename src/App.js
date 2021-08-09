@@ -8,8 +8,8 @@ import colors from './styles/colors';
 import { settableBreakpoints } from './styles/breakpoints';
 import store from './redux/store';
 import awsconfig from './aws-exports';
-import { createTodo, updateTodo, deleteTodo } from './graphql/mutations';
-import { listTodos } from './graphql/queries';
+import { createStation } from './graphql/mutations';
+import { listStations } from './graphql/queries';
 
 Amplify.configure(awsconfig);
 // const todo = { name: 'my fist todo', description: 'hellow owrld' };
@@ -19,13 +19,21 @@ function App() {
   setDefaultBreakpoints(settableBreakpoints());
   useEffect(() => {
     console.log('in app UE, should happen only once');
-    async function getTodos() {
-      const response = await API.graphql(graphqlOperation(listTodos));
-      console.log('response');
-      console.log(response.data.listTodos.items);
-      console.log('////');
+    async function getStations() {
+      if (true) {
+        const response = await API.graphql(graphqlOperation(listStations));
+        console.log('response');
+        console.log(response.data.listStations.items);
+      } else {
+        console.log('trying to post');
+        const station = { name: 'my fist station', abbrev: 'STN1' };
+        console.log(
+          API.graphql(graphqlOperation(createStation, { input: station }))
+        );
+        console.log('////');
+      }
     }
-    getTodos();
+    getStations();
   }, []);
   return (
     <Provider store={store}>

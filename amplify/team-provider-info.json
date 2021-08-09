@@ -1,19 +1,24 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-nicetrainweb-dev-110602-authRole",
-      "UnauthRoleArn": "arn:aws:iam::620260802344:role/amplify-nicetrainweb-dev-110602-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::620260802344:role/amplify-nicetrainweb-dev-110602-authRole",
+      "AuthRoleName": "amplify-nicetrainweb-dev-113400-authRole",
+      "UnauthRoleArn": "arn:aws:iam::620260802344:role/amplify-nicetrainweb-dev-113400-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::620260802344:role/amplify-nicetrainweb-dev-113400-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-nicetrainweb-dev-110602-deployment",
-      "UnauthRoleName": "amplify-nicetrainweb-dev-110602-unauthRole",
-      "StackName": "amplify-nicetrainweb-dev-110602",
-      "StackId": "arn:aws:cloudformation:us-east-1:620260802344:stack/amplify-nicetrainweb-dev-110602/d23dea90-f6c7-11eb-8d2a-12328959da6d",
-      "AmplifyAppId": "d3r0rkj26209y7"
+      "DeploymentBucketName": "amplify-nicetrainweb-dev-113400-deployment",
+      "UnauthRoleName": "amplify-nicetrainweb-dev-113400-unauthRole",
+      "StackName": "amplify-nicetrainweb-dev-113400",
+      "StackId": "arn:aws:cloudformation:us-east-1:620260802344:stack/amplify-nicetrainweb-dev-113400/ba6e31f0-f6cb-11eb-8743-0a5afd1032bb",
+      "AmplifyAppId": "d11pjau8au0219"
     },
     "categories": {
       "auth": {
-        "nicetrainweb00c581ca": {}
+        "nicetrainweb591dd199": {
+          "userPoolId": "us-east-1_7TajWkpaM",
+          "userPoolName": "amplify_backend_manager_d11pjau8au0219",
+          "webClientId": "60g3ol4vmoffp24r0dful5j6gv",
+          "nativeClientId": "60g3ol4vmoffp24r0dful5j6gv"
+        }
       }
     }
   }
