@@ -1,7 +1,8 @@
 import React from 'react';
+import NiceTrainPage from '../NiceTrainPage';
 
 function AdminPage(props) {
-  return <div>admin page</div>;
+  return <NiceTrainPage>admin page</NiceTrainPage>;
 }
 
 export default AdminPage;

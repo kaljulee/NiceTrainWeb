@@ -19,6 +19,8 @@ import AdminPage from './pages/AdminPage';
 import LandingPage from './pages/LandingPage';
 import TopNav from './components/TopNav';
 import FourOhFourPage from './pages/FourOhFourPage';
+import PatchesGalleryPage from './pages/PatchesGalleryPage';
+import PatchDetailsPage from './pages/PatchDetailsPage';
 
 Amplify.configure(awsconfig);
 
@@ -42,6 +44,9 @@ function App() {
           <Switch>
             <Route path="/schedule">
               <SchedulePage />
+            </Route>
+            <Route exact path="/patches">
+              <PatchesGalleryPage />
             </Route>
             <Route path="/admin">
               <AdminPage />
