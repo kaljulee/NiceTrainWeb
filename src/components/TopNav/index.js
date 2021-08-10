@@ -34,9 +34,6 @@ function TopNav(props) {
       }}
     >
       <NTLink to="/schedule">SCHEDULE</NTLink>
-      <NTLink exact to="/">
-        LANDING
-      </NTLink>
       <NTLink to="/admin">ADMIN</NTLink>
     </div>
   );

@@ -3,7 +3,13 @@ import React, { useEffect } from 'react';
 import { BreakpointProvider, setDefaultBreakpoints } from 'react-socks';
 import { Provider, connect } from 'react-redux';
 import Amplify from 'aws-amplify';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from 'react-router-dom';
 import SchedulePage from './pages/SchedulePage';
 import colors from './styles/colors';
 import { settableBreakpoints } from './styles/breakpoints';
@@ -41,7 +47,7 @@ function App() {
               <AdminPage />
             </Route>
             <Route exact path="/">
-              <LandingPage />
+              <Redirect to="/schedule" />
             </Route>
             <Route component={FourOhFourPage} />
           </Switch>
