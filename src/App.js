@@ -3,11 +3,24 @@ import React, { useEffect } from 'react';
 import { BreakpointProvider, setDefaultBreakpoints } from 'react-socks';
 import { Provider, connect } from 'react-redux';
 import Amplify from 'aws-amplify';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from 'react-router-dom';
 import SchedulePage from './pages/SchedulePage';
 import colors from './styles/colors';
 import { settableBreakpoints } from './styles/breakpoints';
 import { store } from './redux/store';
 import awsconfig from './aws-exports';
+import AdminPage from './pages/AdminPage';
+import LandingPage from './pages/LandingPage';
+import TopNav from './components/TopNav';
+import FourOhFourPage from './pages/FourOhFourPage';
+import PatchesGalleryPage from './pages/PatchesGalleryPage';
+import PatchDetailsPage from './pages/PatchDetailsPage';
 
 Amplify.configure(awsconfig);
 
@@ -26,7 +39,24 @@ function App() {
           backgroundColor: colors.boardBack
         }}
       >
-        <SchedulePage />
+        <Router>
+          <TopNav />
+          <Switch>
+            <Route path="/schedule">
+              <SchedulePage />
+            </Route>
+            <Route exact path="/patches">
+              <PatchesGalleryPage />
+            </Route>
+            <Route path="/admin">
+              <AdminPage />
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/schedule" />
+            </Route>
+            <Route component={FourOhFourPage} />
+          </Switch>
+        </Router>
       </BreakpointProvider>
     </Provider>
   );

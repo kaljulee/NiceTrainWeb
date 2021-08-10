@@ -10,7 +10,7 @@ function InfoButton(props) {
         icon={faQuestionCircle}
         style={{
           display: 'flex',
-          color: colors.logYellow,
+          color: colors.logoYellow,
           width: '2vh',
           height: '2vh'
         }}
