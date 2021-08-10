@@ -6,7 +6,7 @@ const colors = {
   boardGood: '#84ff00',
   boardMaybe: '#ffb800',
   boardBad: 'red',
-  logYellow: '#ffcc00'
+  logoYellow: '#ffcc00'
 };
 
 export default colors;
