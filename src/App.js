@@ -11,6 +11,8 @@ import { store } from './redux/store';
 import awsconfig from './aws-exports';
 import AdminPage from './pages/AdminPage';
 import LandingPage from './pages/LandingPage';
+import TopNav from './components/TopNav';
+import FourOhFourPage from './pages/FourOhFourPage';
 
 Amplify.configure(awsconfig);
 
@@ -30,16 +32,18 @@ function App() {
         }}
       >
         <Router>
+          <TopNav />
           <Switch>
-            <Router path="/schedule">
+            <Route path="/schedule">
               <SchedulePage />
-            </Router>
-            <Router path="/admin">
+            </Route>
+            <Route path="/admin">
               <AdminPage />
-            </Router>
-            <Router path="/">
+            </Route>
+            <Route exact path="/">
               <LandingPage />
-            </Router>
+            </Route>
+            <Route component={FourOhFourPage} />
           </Switch>
         </Router>
       </BreakpointProvider>
