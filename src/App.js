@@ -14,13 +14,13 @@ import SchedulePage from './pages/SchedulePage';
 import colors from './styles/colors';
 import { settableBreakpoints } from './styles/breakpoints';
 import { store } from './redux/store';
-import awsconfig from './aws-exports';
+// import awsconfig from './aws-exports';
 import AdminPage from './pages/AdminPage';
 import TopNav from './components/TopNav';
 import FourOhFourPage from './pages/FourOhFourPage';
 import PatchesGalleryPage from './pages/PatchesGalleryPage';
 
-Amplify.configure(awsconfig);
+// Amplify.configure(awsconfig);
 
 function App() {
   setDefaultBreakpoints(settableBreakpoints());
