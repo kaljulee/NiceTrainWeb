@@ -16,11 +16,9 @@ import { settableBreakpoints } from './styles/breakpoints';
 import { store } from './redux/store';
 import awsconfig from './aws-exports';
 import AdminPage from './pages/AdminPage';
-import LandingPage from './pages/LandingPage';
 import TopNav from './components/TopNav';
 import FourOhFourPage from './pages/FourOhFourPage';
 import PatchesGalleryPage from './pages/PatchesGalleryPage';
-import PatchDetailsPage from './pages/PatchDetailsPage';
 
 Amplify.configure(awsconfig);
 
