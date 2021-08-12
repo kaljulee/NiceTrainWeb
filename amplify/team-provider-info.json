@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "nicetrainweb9ef7ba24": {}
+        "nicetrainweb9ef7ba24": {},
+        "userPoolGroups": {}
       }
     }
   }
