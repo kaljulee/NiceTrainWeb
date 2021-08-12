@@ -1,5 +1,84 @@
-type Todo @model {
+
+type Station
+@model
+@auth(
+rules:[{allow: private, provider: iam}, { allow: public, operations: [read] }]
+)
+{
+  id: ID!
+  name: String
+  abbrev: String
+  scheduledTrains: [ScheduledTrain] @connection(name: "byStation", fields: ["id"])
+}
+
+type ScheduledTrain
+@model
+@key(name: "byStation", fields: ["stationID"])
+@auth(
+  rules:[{allow: private, provider: iam}, { allow: public, operations: [read] }]
+)
+{
   id: ID!
   name: String!
   description: String
+  train_time: String
+  train_date: String
+  stationID: ID,
+  scheduledActivities: [ScheduledActivity] @connection(name: "byScheduledTrain", fields: ["id"])
 }
+
+type ScheduledActivity
+@model
+@key(name: "byScheduledTrain", fields: ["scheduledTrainID"])
+@key(name: "byActivity", fields: ["activityID"])
+@auth(
+rules:[{allow: private, provider: iam}, { allow: public, operations: [read] }]
+)
+{
+  id: ID!
+  name: String!
+  activityID: ID
+  scheduledTrainID: ID!
+  scheduledTrain: ScheduledTrain! @connection(fields: ["scheduledTrainID"])
+}
+
+type Activity
+@model
+@key(name: "byYouTubeResource", fields:["youTubeResourceID"])
+@auth(
+rules:[{allow: private, provider: iam}, { allow: public, operations: [read] }]
+)
+{
+  id: ID!
+  name: String!
+  description: String
+  scheduledActivities: [ScheduledActivity] @connection(name: "byActivity", fields: ["id"])
+  youTubeResourceID: ID
+}
+
+
+type YouTubeResource
+@model
+@auth(
+rules:[{allow: private, provider: iam}, { allow: public, operations: [read] }]
+)
+{
+  id: ID!
+  link: String!
+  author: String
+  description: String
+  activities: [Activity] @connection(name: "byYouTubeResource", fields: ["id"])
+}
+
+#type ActivitySupplementalResources
+#@model(queries: null)
+#@key(name: "byActivity", fields: ["activityID", "ytResourceID"])
+#@key(name: "byYTResourceID", fields: ["ytResourceID", "activityID"])
+#@auth(
+#rules:[{allow: private}, { allow: public, operations: [read] }]
+#)
+#{
+#    id: ID!
+#    activityID: ID!
+#    ytResourceID: ID!
+#}
