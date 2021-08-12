@@ -18,7 +18,6 @@ import TopNav from './components/TopNav';
 import FourOhFourPage from './pages/FourOhFourPage';
 import PatchesGalleryPage from './pages/PatchesGalleryPage';
 
-
 function App() {
   setDefaultBreakpoints(settableBreakpoints());
   return (
