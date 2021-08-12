@@ -2,7 +2,6 @@ import './App.css';
 import React, { useEffect } from 'react';
 import { BreakpointProvider, setDefaultBreakpoints } from 'react-socks';
 import { Provider, connect } from 'react-redux';
-import Amplify from 'aws-amplify';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,13 +13,11 @@ import SchedulePage from './pages/SchedulePage';
 import colors from './styles/colors';
 import { settableBreakpoints } from './styles/breakpoints';
 import { store } from './redux/store';
-// import awsconfig from './aws-exports';
 import AdminPage from './pages/AdminPage';
 import TopNav from './components/TopNav';
 import FourOhFourPage from './pages/FourOhFourPage';
 import PatchesGalleryPage from './pages/PatchesGalleryPage';
 
-// Amplify.configure(awsconfig);
 
 function App() {
   setDefaultBreakpoints(settableBreakpoints());
