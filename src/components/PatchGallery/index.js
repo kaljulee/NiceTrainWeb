@@ -1,9 +1,7 @@
 import React from 'react';
 
 function PatchGallery(props) {
-    return (<div>
-
-    </div>)
+  return <div />;
 }
 
 export default PatchGallery;

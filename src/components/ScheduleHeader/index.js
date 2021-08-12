@@ -4,6 +4,7 @@ import { useCurrentWidth } from 'react-socks';
 import nt_long_logo from '../../assets/nt_long_logo.svg';
 import colors from '../../styles/colors';
 import breakpoints from '../../styles/breakpoints';
+
 // todo use css for styles
 function ScheduleHeader(props) {
   const width = useCurrentWidth();
