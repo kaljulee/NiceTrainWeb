@@ -9,6 +9,7 @@ import {
   Link,
   Redirect
 } from 'react-router-dom';
+// import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import SchedulePage from './pages/SchedulePage';
 import colors from './styles/colors';
 import { settableBreakpoints } from './styles/breakpoints';
