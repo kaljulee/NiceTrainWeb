@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
 import colors from '../../styles/colors';
-import nt_120mm_horizontal from '../../assets/raster/nt_120mm_horizontal.jpeg';
+import nt_120mm_horizontal from '../../assets/raster/nt_120mm_horizontal.jpg';
 import bridge_and_shrimp from '../../assets/raster/bridge_and_shrimp.png';
 import night_train from '../../assets/raster/night_train.jpg';
 import nt_logo_landscape from '../../assets/raster/nt_logo_landscape.png';
