@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
 import { useCurrentWidth } from 'react-socks';
-import nt_long_logo from '../../assets/nt_long_logo.svg';
+import nt_long_logo from '../../assets/svg/nt_long_logo.svg';
 import colors from '../../styles/colors';
 import breakpoints from '../../styles/breakpoints';
 

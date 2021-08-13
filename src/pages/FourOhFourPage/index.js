@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-import nt_logo_404 from '../../assets/nt_logo_404.svg';
+import nt_logo_404 from '../../assets/svg/nt_logo_404.svg';
 import NiceTrainPage from '../NiceTrainPage';
 
 function FourOhFourPage(props) {

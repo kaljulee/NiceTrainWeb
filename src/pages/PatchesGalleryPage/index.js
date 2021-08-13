@@ -1,13 +1,61 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-import nt_long_logo from '../../assets/nt_long_logo.svg';
-import mat_pattern_square from '../../assets/mat_pattern_square.svg';
-import night_train from '../../assets/night_train.svg';
-import nt_120mm_bjj from '../../assets/nt_120mm_bjj.svg';
-import bridge_and_shrimp from '../../assets/bridge_and_shrimp.svg';
+// import nt_long_logo from '../../assets/svg/nt_long_logo.svg';
+// import mat_pattern_square from '../../assets/svg/mat_pattern_square.svg';
+// import night_train from '../../assets/svg/night_train.svg';
+// import nt_120mm_bjj from '../../assets/svg/nt_120mm_bjj.svg';
+// import bridge_and_shrimp from '../../assets/svg/bridge_and_shrimp.svg';
 import colors from '../../styles/colors';
+import nt_120mm_horizontal from '../../assets/raster/nt_120mm_horizontal.jpeg';
+import bridge_and_shrimp from '../../assets/raster/bridge_and_shrimp.png';
+import night_train from '../../assets/raster/night_train.jpg';
+import nt_logo_landscape from '../../assets/raster/nt_logo_landscape.png';
+import nt_logo_square from '../../assets/raster/nt_logo_square.png';
+import other_train_bridge_and_shrimp from '../../assets/raster/other_train_bridge_and_shrimp.png';
 
-function PatchItem(props) {
+function PatchItemRaster(props) {
+  const { title, rasterSource } = props;
+  return (
+    <div
+      style={{
+        backgroundColor: colors.boardBack,
+        display: 'flex',
+        flexDirection: 'column',
+        marginBottom: '2vh',
+        // alignItems: 'start',
+        paddingTop: '2vh',
+        paddingBottom: '2vh',
+        paddingLeft: '5vw',
+        paddingRight: '5vw',
+        alignItems: 'center',
+        width: '70vw'
+      }}
+    >
+      <span
+        style={{
+          display: 'inline-block',
+          alignSelf: 'start',
+          color: colors.logoYellow,
+          backgroundColor: 'black',
+          fontFamily: 'helvetica',
+          paddingLeft: '1vw',
+          paddingRight: '1vw',
+          paddingTop: '0.5vh',
+          paddingBottom: '0.5vh',
+          marginBottom: '2vh',
+          opacity: 0.6,
+          border: `1px solid ${colors.logoYellow}`,
+          letterSpacing: 2
+        }}
+      >
+        {title}
+      </span>
+      <img style={{ width: '100%' }} src={rasterSource} alt={title} />
+    </div>
+  );
+}
+
+function PatchItemSVG(props) {
   const { title, svgSource } = props;
   return (
     <div
@@ -48,14 +96,26 @@ function PatchesGalleryPage(props) {
     <div
       style={{
         paddingTop: '5vh',
-        backgroundColor: colors.boardBack
+        // backgroundColor: colors.boardBack,
+        backgroundColor: 'black',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}
     >
-      <PatchItem title="Nice Train" svgSource={mat_pattern_square} />
-      <PatchItem title="Shrimp and Bridge" svgSource={bridge_and_shrimp} />
-      <PatchItem title="Nice Train 2" svgSource={nt_long_logo} />
-      <PatchItem title="120mm BJJ" svgSource={nt_120mm_bjj} />
-      <PatchItem title="Night Train" svgSource={night_train} />
+      <PatchItemRaster title="Nice Train" rasterSource={nt_logo_square} />
+      <PatchItemRaster
+        title="Shrimp and Bridge"
+        rasterSource={bridge_and_shrimp}
+      />
+      <PatchItemRaster
+        title="The Other Train"
+        rasterSource={other_train_bridge_and_shrimp}
+      />
+      <PatchItemRaster title="Nice Train 2" rasterSource={nt_logo_landscape} />
+      <PatchItemRaster title="120mm BJJ" rasterSource={nt_120mm_horizontal} />
+      <PatchItemRaster title="Night Train" rasterSource={night_train} />
     </div>
   );
 }
