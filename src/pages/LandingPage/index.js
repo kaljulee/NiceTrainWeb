@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-import nt_long_logo from '../../assets/nt_long_logo.svg';
+import nt_long_logo from '../../assets/svg/nt_long_logo.svg';
 import NiceTrainPage from '../NiceTrainPage';
 
 function LandingPage(props) {
