@@ -14,7 +14,7 @@ import SchedulePage from './pages/SchedulePage';
 import colors from './styles/colors';
 import { settableBreakpoints } from './styles/breakpoints';
 import { store } from './redux/store';
-// import AdminPage from './pages/AdminPage';
+import AdminPage from './pages/AdminPage';
 import TopNav from './components/TopNav';
 import FourOhFourPage from './pages/FourOhFourPage';
 import PatchesGalleryPage from './pages/PatchesGalleryPage';
@@ -42,6 +42,9 @@ function App() {
             </Route>
             <Route exact path="/patches">
               <PatchesGalleryPage />
+            </Route>
+            <Route exact path="/admin">
+              <AdminPage />
             </Route>
             <Route exact path="/">
               <Redirect to="/schedule" />
