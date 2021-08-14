@@ -6,7 +6,10 @@ import data from '../../data';
 import ScheduleHeader from '../../components/ScheduleHeader';
 import colors from '../../styles/colors';
 import ScheduleInfo from '../../components/ScheduleInfo';
-import { fetchStations } from '../../redux/reducers/baseReducer';
+import {
+  fetchStations,
+  fetchYouTubeResources
+} from '../../redux/reducers/baseReducer';
 
 function SchedulePage() {
   const sectionStyles = {
@@ -24,7 +27,12 @@ function SchedulePage() {
   console.log('stations');
   console.log(stations);
   useEffect(() => {
+    console.log('dispatching fetch stations');
     dispatch(fetchStations());
+  }, []);
+  useEffect(() => {
+    console.log('dispatching fetch TYR');
+    dispatch(fetchYouTubeResources());
   }, []);
 
   return (

@@ -1,33 +1,69 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo {
-    onCreateTodo {
+export const onCreateStation = /* GraphQL */ `
+  subscription OnCreateStation {
+    onCreateStation {
       id
       name
+      abbrev
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateStation = /* GraphQL */ `
+  subscription OnUpdateStation {
+    onUpdateStation {
+      id
+      name
+      abbrev
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteStation = /* GraphQL */ `
+  subscription OnDeleteStation {
+    onDeleteStation {
+      id
+      name
+      abbrev
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateYouTubeResource = /* GraphQL */ `
+  subscription OnCreateYouTubeResource {
+    onCreateYouTubeResource {
+      id
+      link
+      author
       description
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo {
-    onUpdateTodo {
+export const onUpdateYouTubeResource = /* GraphQL */ `
+  subscription OnUpdateYouTubeResource {
+    onUpdateYouTubeResource {
       id
-      name
+      link
+      author
       description
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo {
-    onDeleteTodo {
+export const onDeleteYouTubeResource = /* GraphQL */ `
+  subscription OnDeleteYouTubeResource {
+    onDeleteYouTubeResource {
       id
-      name
+      link
+      author
       description
       createdAt
       updatedAt

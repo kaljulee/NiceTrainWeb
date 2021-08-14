@@ -1,42 +1,87 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createStation = /* GraphQL */ `
+  mutation CreateStation(
+    $input: CreateStationInput!
+    $condition: ModelStationConditionInput
   ) {
-    createTodo(input: $input, condition: $condition) {
+    createStation(input: $input, condition: $condition) {
       id
       name
+      abbrev
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateStation = /* GraphQL */ `
+  mutation UpdateStation(
+    $input: UpdateStationInput!
+    $condition: ModelStationConditionInput
+  ) {
+    updateStation(input: $input, condition: $condition) {
+      id
+      name
+      abbrev
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteStation = /* GraphQL */ `
+  mutation DeleteStation(
+    $input: DeleteStationInput!
+    $condition: ModelStationConditionInput
+  ) {
+    deleteStation(input: $input, condition: $condition) {
+      id
+      name
+      abbrev
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createYouTubeResource = /* GraphQL */ `
+  mutation CreateYouTubeResource(
+    $input: CreateYouTubeResourceInput!
+    $condition: ModelYouTubeResourceConditionInput
+  ) {
+    createYouTubeResource(input: $input, condition: $condition) {
+      id
+      link
+      author
       description
       createdAt
       updatedAt
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
+export const updateYouTubeResource = /* GraphQL */ `
+  mutation UpdateYouTubeResource(
+    $input: UpdateYouTubeResourceInput!
+    $condition: ModelYouTubeResourceConditionInput
   ) {
-    updateTodo(input: $input, condition: $condition) {
+    updateYouTubeResource(input: $input, condition: $condition) {
       id
-      name
+      link
+      author
       description
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
+export const deleteYouTubeResource = /* GraphQL */ `
+  mutation DeleteYouTubeResource(
+    $input: DeleteYouTubeResourceInput!
+    $condition: ModelYouTubeResourceConditionInput
   ) {
-    deleteTodo(input: $input, condition: $condition) {
+    deleteYouTubeResource(input: $input, condition: $condition) {
       id
-      name
+      link
+      author
       description
       createdAt
       updatedAt

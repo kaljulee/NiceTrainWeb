@@ -35,7 +35,7 @@ function TopNav(props) {
     >
       <NTLink to="/schedule">SCHEDULE</NTLink>
       <NTLink to="/patches">PATCHES</NTLink>
-      <NTLink to="/admin">PATCHES</NTLink>
+      <NTLink to="/admin">ADMIN</NTLink>
     </div>
   );
 }

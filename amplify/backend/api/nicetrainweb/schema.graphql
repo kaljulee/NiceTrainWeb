@@ -1,9 +1,31 @@
-type Todo
+
+type Station
 @model
 @auth(
-  rules: [{allow: groups, groups: ["ntadmin"]}]
-){
+  rules:[
+    {allow: groups, groups: ["ntadmin"], operations: [read, create, delete, update]},
+#    { allow: public, operations: [read] }
+  ]
+)
+{
   id: ID!
-  name: String!
+  name: String
+  abbrev: String
+#  scheduledTrains: [ScheduledTrain] @connection(name: "byStation", fields: ["id"])
+}
+
+type YouTubeResource
+@model
+@auth(
+  rules:[
+    {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
+#    { allow: public, operations: [read] }
+  ]
+)
+{
+  id: ID!
+  link: String!
+  author: String
   description: String
+#  activities: [Activity] @connection(name: "byYouTubeResource", fields: ["id"])
 }
