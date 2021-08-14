@@ -1,15 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { API, graphqlOperation } from 'aws-amplify';
-import { listStations } from '../../graphql/queries';
+// import { API, graphqlOperation } from 'aws-amplify';
+// import { listStations } from '../../graphql/queries';
 
 const initialState = { loading: 'idle', stations: [] };
 
 export const fetchStations = createAsyncThunk('stations/fetch', async () => {
-  const response = await API.graphql(graphqlOperation(listStations));
-  console.log('response');
-  console.log(response.data.listStations.items);
-  return response.data;
-  // return { listStations: { items: [] } };
+  const response = { listStations: { items: [] } }; // await API.graphql(graphqlOperation(listStations));
+  // console.log('response');
+  // console.log(response.data.listStations.items);
+  // return response.data;
+  return response;
 });
 
 export const baseSlice = createSlice({
