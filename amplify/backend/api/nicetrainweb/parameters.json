@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "nicetrainweb",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authnicetrainweb58d515ea",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

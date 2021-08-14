@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import { API, graphqlOperation } from 'aws-amplify';
+import { API, graphqlOperation } from 'aws-amplify';
 // import { listStations } from '../../graphql/queries';
+import { listTodos } from '../../graphql/queries';
 
 const initialState = { loading: 'idle', stations: [] };
 
 export const fetchStations = createAsyncThunk('stations/fetch', async () => {
+  console.log(API.graphql(graphqlOperation(listTodos)));
   const response = { listStations: { items: [] } }; // await API.graphql(graphqlOperation(listStations));
   // console.log('response');
   // console.log(response.data.listStations.items);
