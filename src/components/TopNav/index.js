@@ -39,9 +39,6 @@ function TopNav(props) {
       <NTLink to="/schedule">SCHEDULE</NTLink>
       <NTLink to="/patches">PATCHES</NTLink>
       <NTLink to="/admin">ADMIN</NTLink>
-      <button type="button" onClick={() => dispatch(callCreateStation())}>
-        create station
-      </button>
     </div>
   );
 }
