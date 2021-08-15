@@ -25,12 +25,8 @@ function AdminPage(props) {
     []
   );
   const dispatch = useDispatch();
-  const youTubeResources = useSelector((state) => state.youTubeResources);
-  const stations = useSelector((state) => state.stations);
-  console.log('YTR');
-  console.log(youTubeResources);
-  console.log('stations');
-  console.log(stations);
+  // const youTubeResources = useSelector((state) => state.youTubeResources);
+  // const stations = useSelector((state) => state.stations);
 
   useEffect(() => {
     dispatch(fetchYouTubeResources());
@@ -44,7 +40,6 @@ function AdminPage(props) {
       {authState === AuthState.SignedIn && user ? (
         <div>
           <div style={{ width: '100%', height: '10vh' }}>admin page</div>
-          <AmplifySignOut />
         </div>
       ) : (
         <AmplifyAuthContainer>

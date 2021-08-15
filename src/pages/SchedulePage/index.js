@@ -10,6 +10,7 @@ import {
   fetchStations,
   fetchYouTubeResources
 } from '../../redux/reducers/baseReducer';
+import NiceTrainPage from '../NiceTrainPage';
 
 function SchedulePage() {
   const sectionStyles = {
@@ -36,57 +37,65 @@ function SchedulePage() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        height: '100%',
-        minHeight: '100vh',
-        flexDirection: 'column',
-        alignItems: 'center',
-        alignSelf: 'center',
-        width: '100%',
-        padding: '1vh',
-        boxSizing: 'border-box',
-        backgroundColor: colors.boardBack
-      }}
-    >
-      <div
-        style={{ ...sectionStyles, backgroundColor: colors.boardBack, flex: 1 }}
-      >
-        <ScheduleHeader />
-      </div>
+    <NiceTrainPage>
       <div
         style={{
-          ...sectionStyles,
-          justifyContent: 'flex-start',
+          display: 'flex',
+          height: '100%',
+          minHeight: '100vh',
           flexDirection: 'column',
-          flex: 10
-        }}
-      >
-        <ScheduleBoard data={data} />
-      </div>
-      <Breakpoint
-        xsmall
-        up
-        style={{
-          ...sectionStyles,
-          flex: 6,
-          marginBottom: '1vh',
-          flexDirection: 'column'
+          alignItems: 'center',
+          alignSelf: 'center',
+          width: '100%',
+          // padding: '1vh',
+          paddingLeft: '1vw',
+          paddingRight: '1vw',
+          boxSizing: 'border-box',
+          backgroundColor: colors.boardBack
         }}
       >
         <div
           style={{
-            display: 'flex',
-            flex: 1,
-            width: '100%',
-            justifyContent: 'center'
+            ...sectionStyles,
+            backgroundColor: colors.boardBack,
+            flex: 1
           }}
         >
-          <ScheduleInfo />
+          <ScheduleHeader />
         </div>
-      </Breakpoint>
-    </div>
+        <div
+          style={{
+            ...sectionStyles,
+            justifyContent: 'flex-start',
+            flexDirection: 'column',
+            flex: 10
+          }}
+        >
+          <ScheduleBoard data={data} />
+        </div>
+        <Breakpoint
+          xsmall
+          up
+          style={{
+            ...sectionStyles,
+            flex: 6,
+            marginBottom: '1vh',
+            flexDirection: 'column'
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flex: 1,
+              width: '100%',
+              justifyContent: 'center'
+            }}
+          >
+            <ScheduleInfo />
+          </div>
+        </Breakpoint>
+      </div>
+    </NiceTrainPage>
   );
 }
 
