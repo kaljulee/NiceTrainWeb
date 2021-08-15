@@ -9,6 +9,19 @@ export const onCreateStation = /* GraphQL */ `
       abbrev
       createdAt
       updatedAt
+      scheduledTrains {
+        items {
+          id
+          name
+          description
+          train_time
+          train_date
+          stationID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -20,6 +33,19 @@ export const onUpdateStation = /* GraphQL */ `
       abbrev
       createdAt
       updatedAt
+      scheduledTrains {
+        items {
+          id
+          name
+          description
+          train_time
+          train_date
+          stationID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -31,6 +57,238 @@ export const onDeleteStation = /* GraphQL */ `
       abbrev
       createdAt
       updatedAt
+      scheduledTrains {
+        items {
+          id
+          name
+          description
+          train_time
+          train_date
+          stationID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onCreateScheduledTrain = /* GraphQL */ `
+  subscription OnCreateScheduledTrain {
+    onCreateScheduledTrain {
+      id
+      name
+      description
+      train_time
+      train_date
+      stationID
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onUpdateScheduledTrain = /* GraphQL */ `
+  subscription OnUpdateScheduledTrain {
+    onUpdateScheduledTrain {
+      id
+      name
+      description
+      train_time
+      train_date
+      stationID
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onDeleteScheduledTrain = /* GraphQL */ `
+  subscription OnDeleteScheduledTrain {
+    onDeleteScheduledTrain {
+      id
+      name
+      description
+      train_time
+      train_date
+      stationID
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onCreateScheduledActivity = /* GraphQL */ `
+  subscription OnCreateScheduledActivity {
+    onCreateScheduledActivity {
+      id
+      name
+      activityID
+      scheduledTrainID
+      createdAt
+      updatedAt
+      scheduledTrain {
+        id
+        name
+        description
+        train_time
+        train_date
+        stationID
+        createdAt
+        updatedAt
+        scheduledActivities {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onUpdateScheduledActivity = /* GraphQL */ `
+  subscription OnUpdateScheduledActivity {
+    onUpdateScheduledActivity {
+      id
+      name
+      activityID
+      scheduledTrainID
+      createdAt
+      updatedAt
+      scheduledTrain {
+        id
+        name
+        description
+        train_time
+        train_date
+        stationID
+        createdAt
+        updatedAt
+        scheduledActivities {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onDeleteScheduledActivity = /* GraphQL */ `
+  subscription OnDeleteScheduledActivity {
+    onDeleteScheduledActivity {
+      id
+      name
+      activityID
+      scheduledTrainID
+      createdAt
+      updatedAt
+      scheduledTrain {
+        id
+        name
+        description
+        train_time
+        train_date
+        stationID
+        createdAt
+        updatedAt
+        scheduledActivities {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onCreateActivity = /* GraphQL */ `
+  subscription OnCreateActivity {
+    onCreateActivity {
+      id
+      name
+      description
+      youTubeResourceID
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onUpdateActivity = /* GraphQL */ `
+  subscription OnUpdateActivity {
+    onUpdateActivity {
+      id
+      name
+      description
+      youTubeResourceID
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onDeleteActivity = /* GraphQL */ `
+  subscription OnDeleteActivity {
+    onDeleteActivity {
+      id
+      name
+      description
+      youTubeResourceID
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -43,6 +301,17 @@ export const onCreateYouTubeResource = /* GraphQL */ `
       description
       createdAt
       updatedAt
+      activities {
+        items {
+          id
+          name
+          description
+          youTubeResourceID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -55,6 +324,17 @@ export const onUpdateYouTubeResource = /* GraphQL */ `
       description
       createdAt
       updatedAt
+      activities {
+        items {
+          id
+          name
+          description
+          youTubeResourceID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -65,6 +345,47 @@ export const onDeleteYouTubeResource = /* GraphQL */ `
       link
       author
       description
+      createdAt
+      updatedAt
+      activities {
+        items {
+          id
+          name
+          description
+          youTubeResourceID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onCreateBoardLongMessage = /* GraphQL */ `
+  subscription OnCreateBoardLongMessage {
+    onCreateBoardLongMessage {
+      id
+      text
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBoardLongMessage = /* GraphQL */ `
+  subscription OnUpdateBoardLongMessage {
+    onUpdateBoardLongMessage {
+      id
+      text
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBoardLongMessage = /* GraphQL */ `
+  subscription OnDeleteBoardLongMessage {
+    onDeleteBoardLongMessage {
+      id
+      text
       createdAt
       updatedAt
     }
