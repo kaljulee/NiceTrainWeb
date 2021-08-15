@@ -3,8 +3,8 @@ type Station
 @model
 @auth(
   rules:[
-    {allow: groups, groups: ["ntadmin"], operations: [read, create, delete, update]},
-#    { allow: public, operations: [read] }
+    {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
+    {allow: public, operations: [read]}
   ]
 )
 {

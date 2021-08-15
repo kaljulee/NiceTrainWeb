@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import colors from '../../styles/colors';
+import { callCreateStation } from '../../redux/reducers/baseReducer';
 
 function NTLink(props) {
   // const { to, children, exact } = props;
@@ -22,6 +24,7 @@ function NTLink(props) {
 }
 
 function TopNav(props) {
+  const dispatch = useDispatch();
   return (
     <div
       style={{
@@ -36,6 +39,9 @@ function TopNav(props) {
       <NTLink to="/schedule">SCHEDULE</NTLink>
       <NTLink to="/patches">PATCHES</NTLink>
       <NTLink to="/admin">ADMIN</NTLink>
+      <button type="button" onClick={() => dispatch(callCreateStation())}>
+        create station
+      </button>
     </div>
   );
 }

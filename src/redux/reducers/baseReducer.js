@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
 import { listStations, listYouTubeResources } from '../../graphql/queries';
+import { createStation } from '../../graphql/mutations';
 
 const initialState = {
   stationsLoading: 'idle',
@@ -14,7 +15,8 @@ export const fetchYouTubeResources = createAsyncThunk(
   async () => {
     const response = await API.graphql({
       query: listYouTubeResources,
-      authMode: 'AMAZON_COGNITO_USER_POOLS'
+      // authMode: 'AMAZON_COGNITO_USER_POOLS',
+      authMode: 'API_KEY'
     });
     return response.data;
   }
@@ -26,6 +28,21 @@ export const fetchStations = createAsyncThunk('stations/fetch', async () => {
   console.log(response);
   return response.data;
 });
+
+export const callCreateStation = createAsyncThunk(
+  'stations/create',
+  async () => {
+    const newStation = { name: 'fake station', abbrev: 'FAKE' };
+    const response = await API.graphql({
+      query: createStation,
+      variables: { input: newStation },
+      AUTHMODE: 'AMAZON_COGNITO_USER_POOLS'
+    });
+    console.log('creating station');
+    console.log(response);
+    return response.data;
+  }
+);
 
 export const baseSlice = createSlice({
   name: 'base',
@@ -62,6 +79,10 @@ export const baseSlice = createSlice({
       console.log(action);
       // eslint-disable-next-line no-param-reassign
       state.youtube = action.payload.listYouTubeResources.items;
+    });
+    builder.addCase(callCreateStation.fulfilled, (state, action) => {
+      console.log('create fulfilled!');
+      console.log(action);
     });
   }
 });
