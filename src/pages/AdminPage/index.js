@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  withAuthenticator,
   AmplifySignOut,
-  useAuth
+  AmplifyAuthenticator,
+  AmplifyAuthContainer,
+  AmplifySignIn
 } from '@aws-amplify/ui-react';
-import { connect, useSelector, useDispatch } from 'react-redux';
+import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import { useSelector, useDispatch } from 'react-redux';
 import NiceTrainPage from '../NiceTrainPage';
 import {
   fetchStations,
@@ -12,11 +14,16 @@ import {
 } from '../../redux/reducers/baseReducer';
 
 function AdminPage(props) {
-  const { state: authState, user, signOut } = useAuth();
-  console.log('user data');
-  console.log(authState);
-  console.log(user);
-  console.log('///');
+  const [authState, setAuthState] = useState();
+  const [user, setUser] = useState();
+  useEffect(
+    () =>
+      onAuthUIStateChange((nextAuthState, authData) => {
+        setAuthState(nextAuthState);
+        setUser(authData);
+      }),
+    []
+  );
   const dispatch = useDispatch();
   const youTubeResources = useSelector((state) => state.youTubeResources);
   const stations = useSelector((state) => state.stations);
@@ -34,18 +41,24 @@ function AdminPage(props) {
 
   return (
     <NiceTrainPage>
-      <div style={{ width: '100%', height: '10vh' }}>admin page</div>
-      <AmplifySignOut />
+      {authState === AuthState.SignedIn && user ? (
+        <div>
+          <div style={{ width: '100%', height: '10vh' }}>admin page</div>
+          <AmplifySignOut />
+        </div>
+      ) : (
+        <AmplifyAuthContainer>
+          <AmplifyAuthenticator>
+            <AmplifySignIn
+              hideSignUp
+              slot="sign-in"
+              headerText="Nice Train Admin"
+            />
+          </AmplifyAuthenticator>
+        </AmplifyAuthContainer>
+      )}
     </NiceTrainPage>
   );
 }
 
-export default withAuthenticator(AdminPage, {
-  usernameAttributes: 'email',
-  theme: {
-    '--amplify-primary-color': 'green'
-  },
-  signUpConfig: {
-    hiddenDefaults: ['phone_number']
-  }
-});
+export default AdminPage;
