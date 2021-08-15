@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { API, graphqlOperation, Auth } from 'aws-amplify';
+import { API, graphqlOperation } from 'aws-amplify';
 import { listStations, listYouTubeResources } from '../../graphql/queries';
 import { createStation } from '../../graphql/mutations';
+
+const apiKey = 'API_KEY';
 
 const initialState = {
   stationsLoading: 'idle',
@@ -15,15 +17,17 @@ export const fetchYouTubeResources = createAsyncThunk(
   async () => {
     const response = await API.graphql({
       query: listYouTubeResources,
-      // authMode: 'AMAZON_COGNITO_USER_POOLS',
-      authMode: 'API_KEY'
+      authMode: apiKey
     });
     return response.data;
   }
 );
 
 export const fetchStations = createAsyncThunk('stations/fetch', async () => {
-  const response = await API.graphql(graphqlOperation(listStations));
+  const response = await API.graphql({
+    query: listStations,
+    authMode: apiKey
+  });
   console.log('list stations response');
   console.log(response);
   return response.data;
@@ -32,14 +36,10 @@ export const fetchStations = createAsyncThunk('stations/fetch', async () => {
 export const callCreateStation = createAsyncThunk(
   'stations/create',
   async () => {
-    const newStation = { name: 'fake station', abbrev: 'FAKE' };
-    const response = await API.graphql({
-      query: createStation,
-      variables: { input: newStation },
-      AUTHMODE: 'AMAZON_COGNITO_USER_POOLS'
-    });
-    console.log('creating station');
-    console.log(response);
+    const newStation = { name: 'faker station', abbrev: 'FAKR' };
+    const response = await API.graphql(
+      graphqlOperation(createStation, { input: newStation })
+    );
     return response.data;
   }
 );
@@ -75,12 +75,11 @@ export const baseSlice = createSlice({
       state.stations = action.payload.listStations.items;
     });
     builder.addCase(fetchYouTubeResources.fulfilled, (state, action) => {
-      console.log('yt res action');
-      console.log(action);
       // eslint-disable-next-line no-param-reassign
       state.youtube = action.payload.listYouTubeResources.items;
     });
     builder.addCase(callCreateStation.fulfilled, (state, action) => {
+      // todo update stations
       console.log('create fulfilled!');
       console.log(action);
     });
