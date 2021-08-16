@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
 import {
   callCreateStation,
   callDeleteStation,
@@ -34,7 +35,7 @@ function AdminForm(props) {
     };
     const stationValidation = stationValidator(updatedStation);
     if (!stationValidation.isOk) {
-      console.log(stationValidation.error);
+      toast.error(stationValidation.error);
       return;
     }
     dispatch(callUpdateStation(updatedStation));
@@ -44,7 +45,7 @@ function AdminForm(props) {
     const newStation = { name: nameValue, abbrev: abbrevValue };
     const stationValidation = stationValidator(newStation);
     if (!stationValidation.isOk) {
-      console.log(stationValidation.error);
+      toast.error(stationValidation.error);
       return;
     }
     dispatch(callCreateStation(newStation));
@@ -119,6 +120,7 @@ function AdminForm(props) {
           </button>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }
