@@ -64,9 +64,9 @@ export const trainSlice = createSlice({
         state.youtube = action.payload.listYouTubeResources.items;
       })
       .addCase(callCreateStation.fulfilled, (state, action) => {
-        // todo update stations
-        console.log('create fulfilled!');
-        console.log(action);
+        // todo need validation, should not create on empty fields
+        const newStation = action.payload.createStation;
+        state.stations.push(newStation);
       })
       // todo data verification
       .addCase(callUpdateStation.fulfilled, (state, action) => {

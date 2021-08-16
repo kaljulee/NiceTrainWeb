@@ -13,8 +13,6 @@ export const callListStations = createAsyncThunk('stations/fetch', async () => {
     query: listStations,
     authMode: apiKey
   });
-  console.log('list stations response');
-  console.log(response);
   return response.data;
 });
 

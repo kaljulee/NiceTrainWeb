@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
+  callCreateStation,
   callDeleteStation,
   callUpdateStation
 } from '../../../redux/thunks/station';
@@ -34,8 +35,11 @@ function AdminForm(props) {
     );
   }
 
+  function handleCreate() {
+    dispatch(callCreateStation({ name: nameValue, abbrev: abbrevValue }));
+  }
+
   function handleDelete() {
-    console.log('would delete');
     dispatch(callDeleteStation({ id: currentDatum.id }));
   }
   return (
@@ -67,9 +71,8 @@ function AdminForm(props) {
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <button
             style={{
-              width: 150,
+              width: 100,
               height: 30,
-              alignSelf: 'flex-end',
               marginBottom: 10
             }}
             type="submit"
@@ -79,9 +82,21 @@ function AdminForm(props) {
           </button>
           <button
             style={{
-              width: 150,
+              width: 100,
               height: 30,
-              alignSelf: 'flex-end',
+              marginBottom: 10,
+              color: 'white',
+              backgroundColor: 'green'
+            }}
+            onClick={handleCreate}
+            type="button"
+          >
+            new
+          </button>
+          <button
+            style={{
+              width: 100,
+              height: 30,
               marginBottom: 10,
               color: 'white',
               backgroundColor: 'red'
