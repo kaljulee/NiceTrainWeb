@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 function AdminForm(props) {
-  const { title } = props;
+  const { title, currentDatum } = props;
 
-  const [nameValue, setNameValue] = useState(props.name);
-  const [abbrevValue, setAbbrevValue] = useState(props.abbrev);
+  const [nameValue, setNameValue] = useState(currentDatum.name);
+  const [abbrevValue, setAbbrevValue] = useState(currentDatum.abbrev);
 
   function handleNameChange(event) {
     setNameValue(event.target.value);

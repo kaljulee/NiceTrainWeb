@@ -1,10 +1,14 @@
-import React from 'react';
-import { TabPanel, Tabs } from 'react-tabs';
+import React, { useState } from 'react';
 import AdminList from '../AdminList';
 import AdminForm from '../AdminForm';
 
 function AdminPanel(props) {
   const { title, listData, listFields } = props;
+  const [currentDatum, setCurrentDatum] = useState();
+  function onDatumClick(id) {
+    setCurrentDatum(listData.find((datum) => datum.id === id));
+  }
+  console.log(currentDatum);
   return (
     <div style={{ height: '100%' }}>
       <div style={{ display: 'flex' }}>
@@ -17,7 +21,12 @@ function AdminPanel(props) {
             marginLeft: '2vw'
           }}
         >
-          <AdminList title={title} data={listData} fields={listFields} />
+          <AdminList
+            title={title}
+            data={listData}
+            fields={listFields}
+            onDatumClick={onDatumClick}
+          />
         </div>
         <div
           style={{
@@ -28,7 +37,7 @@ function AdminPanel(props) {
             marginRight: '2vw'
           }}
         >
-          <AdminForm title={title} />
+          <AdminForm title={title} currentDatum={currentDatum} />
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactList from 'react-list';
 
 function AdminList(props) {
-  const { title, data, fields } = props;
+  const { title, data, fields, onDatumClick } = props;
   return (
     <div style={{ height: '100%', width: '100%' }}>
       <h2 style={{ color: 'goldenrod' }}>{`${title}s`}</h2>
@@ -14,15 +14,31 @@ function AdminList(props) {
             <div
               style={{
                 display: 'flex',
-                justifyContent: 'space-around',
-                backgroundColor: 'ghostwhite',
-                paddingTop: '1vh',
-                paddingBottom: '1vh'
+                backgroundColor: 'grey',
+                height: '5vh',
+                borderTop: '1px solid black',
+                borderBottom: '1px slolid black',
+                margin: 'auto'
               }}
               key={key}
             >
               {fields.map((field) => (
-                <div key={`${index}${field}`}>{data[index][field]}</div>
+                <div
+                  key={`${index}${field}`}
+                  onClick={() => onDatumClick(data[index].id)}
+                  onKeyDown={() => onDatumClick(data[index].id)}
+                  role="button"
+                  tabIndex={0}
+                  style={{
+                    width: '100%',
+                    backgroundColor: 'ghostwhite',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  {data[index][field]}
+                </div>
               ))}
             </div>
           )}
