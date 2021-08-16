@@ -6,10 +6,8 @@ import data from '../../data';
 import ScheduleHeader from '../../components/ScheduleHeader';
 import colors from '../../styles/colors';
 import ScheduleInfo from '../../components/ScheduleInfo';
-import {
-  fetchStations,
-  fetchYouTubeResources
-} from '../../redux/reducers/trainReducer';
+import { fetchYouTubeResources } from '../../redux/reducers/trainReducer';
+import { callListStations } from '../../redux/thunks/station';
 import NiceTrainPage from '../NiceTrainPage';
 
 function SchedulePage() {
@@ -29,7 +27,7 @@ function SchedulePage() {
   console.log(stations);
   useEffect(() => {
     console.log('dispatching fetch stations');
-    dispatch(fetchStations());
+    dispatch(callListStations());
   }, []);
   useEffect(() => {
     console.log('dispatching fetch TYR');

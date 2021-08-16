@@ -2,8 +2,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listStations, listYouTubeResources } from '../../graphql/queries';
 import { createStation, updateStation } from '../../graphql/mutations';
-
-const apiKey = 'API_KEY';
+import {
+  callUpdateStation,
+  callCreateStation,
+  callListStations
+} from '../thunks/station';
+import { apiKey } from '../../constants';
 
 const initialState = {
   stationsLoading: 'idle',
@@ -23,42 +27,42 @@ export const fetchYouTubeResources = createAsyncThunk(
   }
 );
 
-export const fetchStations = createAsyncThunk('stations/fetch', async () => {
-  const response = await API.graphql({
-    query: listStations,
-    authMode: apiKey
-  });
-  console.log('list stations response');
-  console.log(response);
-  return response.data;
-});
-
-export const callCreateStation = createAsyncThunk(
-  'stations/create',
-  async () => {
-    const newStation = { name: 'faker station', abbrev: 'FAKR' };
-    const response = await API.graphql(
-      graphqlOperation(createStation, { input: newStation })
-    );
-    return response.data;
-  }
-);
-
-export const callUpdateStation = createAsyncThunk(
-  'stations/update',
-  async (data) => {
-    const updatedStationData = {};
-    Object.keys(data).forEach((k) => {
-      if (data[k].length > 0) {
-        updatedStationData[k] = data[k];
-      }
-    });
-    const response = await API.graphql(
-      graphqlOperation(updateStation, { input: updatedStationData })
-    );
-    return response.data;
-  }
-);
+// export const callListStations = createAsyncThunk('stations/fetch', async () => {
+//   const response = await API.graphql({
+//     query: listStations,
+//     authMode: apiKey
+//   });
+//   console.log('list stations response');
+//   console.log(response);
+//   return response.data;
+// });
+//
+// export const callCreateStation = createAsyncThunk(
+//   'stations/create',
+//   async () => {
+//     const newStation = { name: 'faker station', abbrev: 'FAKR' };
+//     const response = await API.graphql(
+//       graphqlOperation(createStation, { input: newStation })
+//     );
+//     return response.data;
+//   }
+// );
+//
+// export const callUpdateStation = createAsyncThunk(
+//   'stations/update',
+//   async (data) => {
+//     const updatedStationData = {};
+//     Object.keys(data).forEach((k) => {
+//       if (data[k].length > 0) {
+//         updatedStationData[k] = data[k];
+//       }
+//     });
+//     const response = await API.graphql(
+//       graphqlOperation(updateStation, { input: updatedStationData })
+//     );
+//     return response.data;
+//   }
+// );
 
 export const trainSlice = createSlice({
   name: 'train',
@@ -87,7 +91,7 @@ export const trainSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchStations.fulfilled, (state, action) => {
+      .addCase(callListStations.fulfilled, (state, action) => {
         // eslint-disable-next-line no-param-reassign
         state.stations = action.payload.listStations.items;
       })

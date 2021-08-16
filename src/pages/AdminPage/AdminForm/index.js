@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { callUpdateStation } from '../../../redux/reducers/trainReducer';
+import { callUpdateStation } from '../../../redux/thunks/station';
 
 function AdminForm(props) {
   const { title, currentDatum } = props;

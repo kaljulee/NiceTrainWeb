@@ -9,13 +9,9 @@ import {
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import NiceTrainPage from '../NiceTrainPage';
-import {
-  fetchStations,
-  fetchYouTubeResources
-} from '../../redux/reducers/trainReducer';
+import { fetchYouTubeResources } from '../../redux/reducers/trainReducer';
+import { callListStations } from '../../redux/thunks/station';
 import colors from '../../styles/colors';
-import AdminList from './AdminList';
-import AdminForm from './AdminForm';
 import AdminPanel from './AdminPanel';
 
 function AdminPage(props) {
@@ -31,14 +27,12 @@ function AdminPage(props) {
     []
   );
   const dispatch = useDispatch();
-  // const youTubeResources = useSelector((state) => state.youTubeResources);
-  // const stations = useSelector((state) => state.stations);
 
   useEffect(() => {
     dispatch(fetchYouTubeResources());
   }, []);
   useEffect(() => {
-    dispatch(fetchStations());
+    dispatch(callListStations());
   }, []);
 
   return (
