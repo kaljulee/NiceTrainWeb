@@ -17,6 +17,7 @@ import {
 } from '../../redux/reducers/baseReducer';
 import colors from '../../styles/colors';
 import AdminList from './AdminList';
+import AdminForm from './AdminForm';
 
 function AdminPage(props) {
   const [authState, setAuthState] = useState();
@@ -88,7 +89,7 @@ function AdminPage(props) {
                     marginRight: '2vw'
                   }}
                 >
-                  <h2 style={{ color: 'goldenrod' }}>current station</h2>
+                  <AdminForm title="Edit Station" />
                 </div>
               </div>
             </TabPanel>
