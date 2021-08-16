@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import '../../styles/css/custom-react-tabs.css';
 import {
-  AmplifySignOut,
   AmplifyAuthenticator,
   AmplifyAuthContainer,
   AmplifySignIn
@@ -11,11 +12,16 @@ import NiceTrainPage from '../NiceTrainPage';
 import {
   fetchStations,
   fetchYouTubeResources
-} from '../../redux/reducers/baseReducer';
+} from '../../redux/reducers/trainReducer';
+import colors from '../../styles/colors';
+import AdminList from './AdminList';
+import AdminForm from './AdminForm';
+import AdminPanel from './AdminPanel';
 
 function AdminPage(props) {
   const [authState, setAuthState] = useState();
   const [user, setUser] = useState();
+  const stations = useSelector((state) => state.stations);
   useEffect(
     () =>
       onAuthUIStateChange((nextAuthState, authData) => {
@@ -38,8 +44,42 @@ function AdminPage(props) {
   return (
     <NiceTrainPage>
       {authState === AuthState.SignedIn && user ? (
-        <div>
-          <div style={{ width: '100%', height: '10vh' }}>admin page</div>
+        <div
+          style={{
+            backgroundColor: colors.boardBack,
+            height: '100%',
+            width: '90vw',
+            margin: 'auto'
+          }}
+        >
+          <Tabs>
+            <TabList>
+              <Tab>Stations</Tab>
+              <Tab>YT Resources</Tab>
+              <Tab>Activities</Tab>
+              <Tab>Train Scheduling</Tab>
+              <Tab>Information Message</Tab>
+            </TabList>
+            <TabPanel>
+              <AdminPanel
+                title="Station"
+                listData={stations}
+                listFields={['name', 'abbrev']}
+              />
+            </TabPanel>
+            <TabPanel>
+              <h2>yt panel</h2>
+            </TabPanel>
+            <TabPanel>
+              <h2>activity panel</h2>
+            </TabPanel>
+            <TabPanel>
+              <h2>scheduling panel</h2>
+            </TabPanel>
+            <TabPanel>
+              <h2>info message panel</h2>
+            </TabPanel>
+          </Tabs>
         </div>
       ) : (
         <AmplifyAuthContainer>

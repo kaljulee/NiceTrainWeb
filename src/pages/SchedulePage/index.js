@@ -9,7 +9,7 @@ import ScheduleInfo from '../../components/ScheduleInfo';
 import {
   fetchStations,
   fetchYouTubeResources
-} from '../../redux/reducers/baseReducer';
+} from '../../redux/reducers/trainReducer';
 import NiceTrainPage from '../NiceTrainPage';
 
 function SchedulePage() {

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import baseReducer from './baseReducer';
+import trainReducer from './trainReducer';
 
 const rootReducer = combineReducers({
-  base: baseReducer
+  train: trainReducer
 });
 
 export default rootReducer;
