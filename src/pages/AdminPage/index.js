@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import {
   AmplifySignOut,
   AmplifyAuthenticator,
@@ -38,8 +40,31 @@ function AdminPage(props) {
   return (
     <NiceTrainPage>
       {authState === AuthState.SignedIn && user ? (
-        <div>
-          <div style={{ width: '100%', height: '10vh' }}>admin page</div>
+        <div style={{ backgroundColor: 'orange' }}>
+          <Tabs>
+            <TabList>
+              <Tab>Stations</Tab>
+              <Tab>YT Resources</Tab>
+              <Tab>Activities</Tab>
+              <Tab>Train Scheduling</Tab>
+              <Tab>Information Message</Tab>
+            </TabList>
+            <TabPanel>
+              <h2>station panel</h2>
+            </TabPanel>
+            <TabPanel>
+              <h2>yt panel</h2>
+            </TabPanel>
+            <TabPanel>
+              <h2>activity panel</h2>
+            </TabPanel>
+            <TabPanel>
+              <h2>scheduling panel</h2>
+            </TabPanel>
+            <TabPanel>
+              <h2>info message panel</h2>
+            </TabPanel>
+          </Tabs>
         </div>
       ) : (
         <AmplifyAuthContainer>
