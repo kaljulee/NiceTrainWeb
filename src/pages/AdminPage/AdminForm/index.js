@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { callUpdateStation } from '../../../redux/reducers/trainReducer';
 
 function AdminForm(props) {
   const { title, currentDatum } = props;
-
+  const dispatch = useDispatch();
   const [nameValue, setNameValue] = useState(currentDatum.name);
   const [abbrevValue, setAbbrevValue] = useState(currentDatum.abbrev);
+
+  useEffect(() => {
+    setNameValue(currentDatum.name);
+    setAbbrevValue(currentDatum.abbrev);
+  }, [title, currentDatum]);
 
   function handleNameChange(event) {
     setNameValue(event.target.value);
@@ -14,12 +21,14 @@ function AdminForm(props) {
     setAbbrevValue(event.target.value);
   }
 
-  function handleSubmit(arg1, arg2, arg3) {
-    console.log('would handle submit with args of');
-    console.log(arg1);
-    console.log(arg2);
-    console.log(arg3);
-    console.log('...l');
+  function handleSubmit() {
+    dispatch(
+      callUpdateStation({
+        name: nameValue,
+        abbrev: abbrevValue,
+        id: currentDatum.id
+      })
+    );
   }
   return (
     <div style={{ height: '100%', width: '100%' }}>
@@ -63,8 +72,7 @@ function AdminForm(props) {
 }
 
 AdminForm.defaultProps = {
-  name: '',
-  abbrev: ''
+  currentDatum: { name: '', abbrev: '' }
 };
 
 export default AdminForm;

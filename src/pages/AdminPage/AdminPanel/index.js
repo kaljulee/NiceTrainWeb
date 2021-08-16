@@ -8,7 +8,6 @@ function AdminPanel(props) {
   function onDatumClick(id) {
     setCurrentDatum(listData.find((datum) => datum.id === id));
   }
-  console.log(currentDatum);
   return (
     <div style={{ height: '100%' }}>
       <div style={{ display: 'flex' }}>

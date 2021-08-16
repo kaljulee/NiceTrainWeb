@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listStations, listYouTubeResources } from '../../graphql/queries';
-import { createStation } from '../../graphql/mutations';
+import { createStation, updateStation } from '../../graphql/mutations';
 
 const apiKey = 'API_KEY';
 
@@ -44,6 +44,22 @@ export const callCreateStation = createAsyncThunk(
   }
 );
 
+export const callUpdateStation = createAsyncThunk(
+  'stations/update',
+  async (data) => {
+    const updatedStationData = {};
+    Object.keys(data).forEach((k) => {
+      if (data[k].length > 0) {
+        updatedStationData[k] = data[k];
+      }
+    });
+    const response = await API.graphql(
+      graphqlOperation(updateStation, { input: updatedStationData })
+    );
+    return response.data;
+  }
+);
+
 export const trainSlice = createSlice({
   name: 'train',
   initialState,
@@ -70,19 +86,32 @@ export const trainSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchStations.fulfilled, (state, action) => {
-      // eslint-disable-next-line no-param-reassign
-      state.stations = action.payload.listStations.items;
-    });
-    builder.addCase(fetchYouTubeResources.fulfilled, (state, action) => {
-      // eslint-disable-next-line no-param-reassign
-      state.youtube = action.payload.listYouTubeResources.items;
-    });
-    builder.addCase(callCreateStation.fulfilled, (state, action) => {
-      // todo update stations
-      console.log('create fulfilled!');
-      console.log(action);
-    });
+    builder
+      .addCase(fetchStations.fulfilled, (state, action) => {
+        // eslint-disable-next-line no-param-reassign
+        state.stations = action.payload.listStations.items;
+      })
+      .addCase(fetchYouTubeResources.fulfilled, (state, action) => {
+        // eslint-disable-next-line no-param-reassign
+        state.youtube = action.payload.listYouTubeResources.items;
+      })
+      .addCase(callCreateStation.fulfilled, (state, action) => {
+        // todo update stations
+        console.log('create fulfilled!');
+        console.log(action);
+      })
+      // todo data verification
+      .addCase(callUpdateStation.fulfilled, (state, action) => {
+        const updatedStationData = action.payload.updateStation;
+        const index = state.stations.findIndex(
+          (s) => s.id === updatedStationData.id
+        );
+        if (index !== -1) {
+          // eslint-disable-next-line no-param-reassign
+          state.stations[index] = updatedStationData;
+        }
+      })
+      .addDefaultCase((state, action) => {});
   }
 });
 
