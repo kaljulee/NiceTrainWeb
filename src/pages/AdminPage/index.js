@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+// import 'react-tabs/style/react-tabs.css';
+import '../../styles/css/custom-react-tabs.css';
 import {
   AmplifySignOut,
   AmplifyAuthenticator,
@@ -14,6 +15,7 @@ import {
   fetchStations,
   fetchYouTubeResources
 } from '../../redux/reducers/baseReducer';
+import colors from '../../styles/colors';
 
 function AdminPage(props) {
   const [authState, setAuthState] = useState();
@@ -40,7 +42,14 @@ function AdminPage(props) {
   return (
     <NiceTrainPage>
       {authState === AuthState.SignedIn && user ? (
-        <div style={{ backgroundColor: 'orange' }}>
+        <div
+          style={{
+            backgroundColor: colors.boardBack,
+            height: '100%',
+            width: '90vw',
+            margin: 'auto'
+          }}
+        >
           <Tabs>
             <TabList>
               <Tab>Stations</Tab>
@@ -49,7 +58,7 @@ function AdminPage(props) {
               <Tab>Train Scheduling</Tab>
               <Tab>Information Message</Tab>
             </TabList>
-            <TabPanel>
+            <TabPanel style={{ height: '100%' }}>
               <h2>station panel</h2>
             </TabPanel>
             <TabPanel>
