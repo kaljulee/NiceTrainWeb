@@ -1,7 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listStations } from '../../graphql/queries';
-import { createStation, updateStation } from '../../graphql/mutations';
+import {
+  createStation,
+  updateStation,
+  deleteStation
+} from '../../graphql/mutations';
 import { apiKey } from '../../constants';
 
 export const callListStations = createAsyncThunk('stations/fetch', async () => {
@@ -16,10 +20,10 @@ export const callListStations = createAsyncThunk('stations/fetch', async () => {
 
 export const callCreateStation = createAsyncThunk(
   'stations/create',
-  async () => {
-    const newStation = { name: 'faker station', abbrev: 'FAKR' };
+  async (data) => {
+    // const newStation = { name: 'faker station', abbrev: 'FAKR' };
     const response = await API.graphql(
-      graphqlOperation(createStation, { input: newStation })
+      graphqlOperation(createStation, { input: data })
     );
     return response.data;
   }
@@ -38,5 +42,15 @@ export const callUpdateStation = createAsyncThunk(
       graphqlOperation(updateStation, { input: updatedStationData })
     );
     return response.data;
+  }
+);
+
+export const callDeleteStation = createAsyncThunk(
+  'stations/delete',
+  async (data) => {
+    const response = await API.graphql(
+      graphqlOperation(deleteStation, { input: data })
+    );
+    return response;
   }
 );

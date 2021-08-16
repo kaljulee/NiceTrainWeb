@@ -5,7 +5,8 @@ import { createStation, updateStation } from '../../graphql/mutations';
 import {
   callUpdateStation,
   callCreateStation,
-  callListStations
+  callListStations,
+  callDeleteStation
 } from '../thunks/station';
 import { apiKey } from '../../constants';
 
@@ -26,43 +27,6 @@ export const fetchYouTubeResources = createAsyncThunk(
     return response.data;
   }
 );
-
-// export const callListStations = createAsyncThunk('stations/fetch', async () => {
-//   const response = await API.graphql({
-//     query: listStations,
-//     authMode: apiKey
-//   });
-//   console.log('list stations response');
-//   console.log(response);
-//   return response.data;
-// });
-//
-// export const callCreateStation = createAsyncThunk(
-//   'stations/create',
-//   async () => {
-//     const newStation = { name: 'faker station', abbrev: 'FAKR' };
-//     const response = await API.graphql(
-//       graphqlOperation(createStation, { input: newStation })
-//     );
-//     return response.data;
-//   }
-// );
-//
-// export const callUpdateStation = createAsyncThunk(
-//   'stations/update',
-//   async (data) => {
-//     const updatedStationData = {};
-//     Object.keys(data).forEach((k) => {
-//       if (data[k].length > 0) {
-//         updatedStationData[k] = data[k];
-//       }
-//     });
-//     const response = await API.graphql(
-//       graphqlOperation(updateStation, { input: updatedStationData })
-//     );
-//     return response.data;
-//   }
-// );
 
 export const trainSlice = createSlice({
   name: 'train',
@@ -113,6 +77,21 @@ export const trainSlice = createSlice({
         if (index !== -1) {
           // eslint-disable-next-line no-param-reassign
           state.stations[index] = updatedStationData;
+        }
+      })
+      .addCase(callDeleteStation.fulfilled, (state, action) => {
+        const deletedStationData = action.payload.data.deleteStation;
+        const index = state.stations.findIndex(
+          (s) => s.id === deletedStationData.id
+        );
+        if (index !== -1) {
+          // eslint-disable-next-line no-param-reassign
+          state.stations = state.stations.reduce((acc, s) => {
+            if (s.id !== deletedStationData.id) {
+              acc.push(s);
+            }
+            return acc;
+          }, []);
         }
       })
       .addDefaultCase((state, action) => {});

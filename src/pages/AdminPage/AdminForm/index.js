@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { callUpdateStation } from '../../../redux/thunks/station';
+import {
+  callDeleteStation,
+  callUpdateStation
+} from '../../../redux/thunks/station';
 
 function AdminForm(props) {
   const { title, currentDatum } = props;
@@ -30,42 +33,65 @@ function AdminForm(props) {
       })
     );
   }
+
+  function handleDelete() {
+    console.log('would delete');
+    dispatch(callDeleteStation({ id: currentDatum.id }));
+  }
   return (
     <div style={{ height: '100%', width: '100%' }}>
       <h2 style={{ color: 'goldenrod' }}>{`Edit ${title}`}</h2>
-      <div
-        style={{
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column'
-        }}
-      >
-        <span style={{ color: 'goldenrod' }}>name</span>
-        <input
-          type="text"
-          style={{ height: 30, marginBottom: 10 }}
-          value={nameValue}
-          onChange={handleNameChange}
-        />
-        <span style={{ color: 'goldenrod' }}>abbrev</span>
-        <input
-          type="text"
-          style={{ height: 30, marginBottom: 10 }}
-          value={abbrevValue}
-          onChange={handleAbbrevChange}
-        />
-        <button
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div
           style={{
-            width: 150,
-            height: 30,
-            alignSelf: 'flex-end',
-            marginBottom: 10
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column'
           }}
-          type="submit"
-          onClick={handleSubmit}
         >
-          save
-        </button>
+          <span style={{ color: 'goldenrod' }}>name</span>
+          <input
+            type="text"
+            style={{ height: 30, marginBottom: 10 }}
+            value={nameValue}
+            onChange={handleNameChange}
+          />
+          <span style={{ color: 'goldenrod' }}>abbrev</span>
+          <input
+            type="text"
+            style={{ height: 30, marginBottom: 10 }}
+            value={abbrevValue}
+            onChange={handleAbbrevChange}
+          />
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <button
+            style={{
+              width: 150,
+              height: 30,
+              alignSelf: 'flex-end',
+              marginBottom: 10
+            }}
+            type="submit"
+            onClick={handleSubmit}
+          >
+            save
+          </button>
+          <button
+            style={{
+              width: 150,
+              height: 30,
+              alignSelf: 'flex-end',
+              marginBottom: 10,
+              color: 'white',
+              backgroundColor: 'red'
+            }}
+            onClick={handleDelete}
+            type="button"
+          >
+            delete
+          </button>
+        </div>
       </div>
     </div>
   );
