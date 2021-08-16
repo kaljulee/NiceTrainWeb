@@ -16,6 +16,7 @@ import {
   fetchYouTubeResources
 } from '../../redux/reducers/baseReducer';
 import colors from '../../styles/colors';
+import AdminList from './AdminList';
 
 function AdminPage(props) {
   const [authState, setAuthState] = useState();
@@ -72,28 +73,11 @@ function AdminPage(props) {
                     marginLeft: '2vw'
                   }}
                 >
-                  <h2 style={{ color: 'goldenrod' }}>Stations</h2>
-                  <div style={{ maxHeight: '60vh', overflow: 'auto' }}>
-                    <ReactList
-                      type="uniform"
-                      length={stations.length}
-                      itemRenderer={(index, key) => (
-                        <div
-                          style={{
-                            display: 'flex',
-                            justifyContent: 'space-around',
-                            backgroundColor: 'ghostwhite',
-                            paddingTop: '1vh',
-                            paddingBottom: '1vh'
-                          }}
-                          key={key}
-                        >
-                          <div>{stations[index].name}</div>
-                          <div>{stations[index].abbrev}</div>
-                        </div>
-                      )}
-                    />
-                  </div>
+                  <AdminList
+                    title="Stations"
+                    data={stations}
+                    fields={['name', 'abbrev']}
+                  />
                 </div>
                 <div
                   style={{
