@@ -23,7 +23,7 @@ function AdminForm(props) {
   }
   return (
     <div style={{ height: '100%', width: '100%' }}>
-      <h2 style={{ color: 'goldenrod' }}>{title}</h2>
+      <h2 style={{ color: 'goldenrod' }}>{`Edit ${title}`}</h2>
       <div
         style={{
           height: '100%',

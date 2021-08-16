@@ -16,6 +16,7 @@ import {
 import colors from '../../styles/colors';
 import AdminList from './AdminList';
 import AdminForm from './AdminForm';
+import AdminPanel from './AdminPanel';
 
 function AdminPage(props) {
   const [authState, setAuthState] = useState();
@@ -59,35 +60,12 @@ function AdminPage(props) {
               <Tab>Train Scheduling</Tab>
               <Tab>Information Message</Tab>
             </TabList>
-            <TabPanel style={{ height: '100%' }}>
-              <div style={{ display: 'flex' }}>
-                <div
-                  style={{
-                    display: 'flex',
-                    flex: 4,
-                    flexDirection: 'column',
-                    marginRight: '2vw',
-                    marginLeft: '2vw'
-                  }}
-                >
-                  <AdminList
-                    title="Stations"
-                    data={stations}
-                    fields={['name', 'abbrev']}
-                  />
-                </div>
-                <div
-                  style={{
-                    flex: 5,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    marginLeft: '2vw',
-                    marginRight: '2vw'
-                  }}
-                >
-                  <AdminForm title="Edit Station" />
-                </div>
-              </div>
+            <TabPanel>
+              <AdminPanel
+                title="Station"
+                listData={stations}
+                listFields={['name', 'abbrev']}
+              />
             </TabPanel>
             <TabPanel>
               <h2>yt panel</h2>

@@ -5,7 +5,7 @@ function AdminList(props) {
   const { title, data, fields } = props;
   return (
     <div style={{ height: '100%', width: '100%' }}>
-      <h2 style={{ color: 'goldenrod' }}>{title}</h2>
+      <h2 style={{ color: 'goldenrod' }}>{`${title}s`}</h2>
       <div style={{ maxHeight: '60vh', overflow: 'auto' }}>
         <ReactList
           type="uniform"
