@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import ReactList from 'react-list';
 import '../../styles/css/custom-react-tabs.css';
 import {
-  AmplifySignOut,
   AmplifyAuthenticator,
   AmplifyAuthContainer,
   AmplifySignIn
@@ -23,8 +21,6 @@ function AdminPage(props) {
   const [authState, setAuthState] = useState();
   const [user, setUser] = useState();
   const stations = useSelector((state) => state.stations);
-  console.log('stations in admin');
-  console.log(stations);
   useEffect(
     () =>
       onAuthUIStateChange((nextAuthState, authData) => {
