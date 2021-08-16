@@ -7,6 +7,7 @@ import {
   callUpdateStation
 } from '../../../redux/thunks/station';
 import { stationValidator } from '../../../redux/validators';
+import AdminInput from '../AdminInput';
 
 function AdminForm(props) {
   const { title, currentDatum } = props;
@@ -65,17 +66,13 @@ function AdminForm(props) {
             flexDirection: 'column'
           }}
         >
-          <span style={{ color: 'goldenrod' }}>name</span>
-          <input
-            type="text"
-            style={{ height: 30, marginBottom: 10 }}
+          <AdminInput
+            label="name"
             value={nameValue}
             onChange={handleNameChange}
           />
-          <span style={{ color: 'goldenrod' }}>abbrev</span>
-          <input
-            type="text"
-            style={{ height: 30, marginBottom: 10 }}
+          <AdminInput
+            label="abbrev"
             value={abbrevValue}
             onChange={handleAbbrevChange}
           />
