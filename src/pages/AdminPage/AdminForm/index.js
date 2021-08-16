@@ -5,6 +5,7 @@ import {
   callDeleteStation,
   callUpdateStation
 } from '../../../redux/thunks/station';
+import { stationValidator } from '../../../redux/validators';
 
 function AdminForm(props) {
   const { title, currentDatum } = props;
@@ -25,18 +26,28 @@ function AdminForm(props) {
     setAbbrevValue(event.target.value);
   }
 
-  function handleSubmit() {
-    dispatch(
-      callUpdateStation({
-        name: nameValue,
-        abbrev: abbrevValue,
-        id: currentDatum.id
-      })
-    );
+  function handleUpdate() {
+    const updatedStation = {
+      name: nameValue,
+      abbrev: abbrevValue,
+      id: currentDatum.id
+    };
+    const stationValidation = stationValidator(updatedStation);
+    if (!stationValidation.isOk) {
+      console.log(stationValidation.error);
+      return;
+    }
+    dispatch(callUpdateStation(updatedStation));
   }
 
   function handleCreate() {
-    dispatch(callCreateStation({ name: nameValue, abbrev: abbrevValue }));
+    const newStation = { name: nameValue, abbrev: abbrevValue };
+    const stationValidation = stationValidator(newStation);
+    if (!stationValidation.isOk) {
+      console.log(stationValidation.error);
+      return;
+    }
+    dispatch(callCreateStation(newStation));
   }
 
   function handleDelete() {
@@ -76,7 +87,7 @@ function AdminForm(props) {
               marginBottom: 10
             }}
             type="submit"
-            onClick={handleSubmit}
+            onClick={handleUpdate}
           >
             save
           </button>
