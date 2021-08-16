@@ -22,7 +22,7 @@ function AdminList(props) {
               key={key}
             >
               {fields.map((field) => (
-                <div>{data[index][field]}</div>
+                <div key={`${index}${field}`}>{data[index][field]}</div>
               ))}
             </div>
           )}
