@@ -2,8 +2,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listStations, listYouTubeResources } from '../../graphql/queries';
 import { createStation, updateStation } from '../../graphql/mutations';
-
-const apiKey = 'API_KEY';
+import {
+  callUpdateStation,
+  callCreateStation,
+  callListStations,
+  callDeleteStation
+} from '../thunks/station';
+import { apiKey } from '../../constants';
 
 const initialState = {
   stationsLoading: 'idle',
@@ -19,43 +24,6 @@ export const fetchYouTubeResources = createAsyncThunk(
       query: listYouTubeResources,
       authMode: apiKey
     });
-    return response.data;
-  }
-);
-
-export const fetchStations = createAsyncThunk('stations/fetch', async () => {
-  const response = await API.graphql({
-    query: listStations,
-    authMode: apiKey
-  });
-  console.log('list stations response');
-  console.log(response);
-  return response.data;
-});
-
-export const callCreateStation = createAsyncThunk(
-  'stations/create',
-  async () => {
-    const newStation = { name: 'faker station', abbrev: 'FAKR' };
-    const response = await API.graphql(
-      graphqlOperation(createStation, { input: newStation })
-    );
-    return response.data;
-  }
-);
-
-export const callUpdateStation = createAsyncThunk(
-  'stations/update',
-  async (data) => {
-    const updatedStationData = {};
-    Object.keys(data).forEach((k) => {
-      if (data[k].length > 0) {
-        updatedStationData[k] = data[k];
-      }
-    });
-    const response = await API.graphql(
-      graphqlOperation(updateStation, { input: updatedStationData })
-    );
     return response.data;
   }
 );
@@ -87,7 +55,7 @@ export const trainSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchStations.fulfilled, (state, action) => {
+      .addCase(callListStations.fulfilled, (state, action) => {
         // eslint-disable-next-line no-param-reassign
         state.stations = action.payload.listStations.items;
       })
@@ -96,9 +64,9 @@ export const trainSlice = createSlice({
         state.youtube = action.payload.listYouTubeResources.items;
       })
       .addCase(callCreateStation.fulfilled, (state, action) => {
-        // todo update stations
-        console.log('create fulfilled!');
-        console.log(action);
+        // todo need validation, should not create on empty fields
+        const newStation = action.payload.createStation;
+        state.stations.push(newStation);
       })
       // todo data verification
       .addCase(callUpdateStation.fulfilled, (state, action) => {
@@ -109,6 +77,21 @@ export const trainSlice = createSlice({
         if (index !== -1) {
           // eslint-disable-next-line no-param-reassign
           state.stations[index] = updatedStationData;
+        }
+      })
+      .addCase(callDeleteStation.fulfilled, (state, action) => {
+        const deletedStationData = action.payload.data.deleteStation;
+        const index = state.stations.findIndex(
+          (s) => s.id === deletedStationData.id
+        );
+        if (index !== -1) {
+          // eslint-disable-next-line no-param-reassign
+          state.stations = state.stations.reduce((acc, s) => {
+            if (s.id !== deletedStationData.id) {
+              acc.push(s);
+            }
+            return acc;
+          }, []);
         }
       })
       .addDefaultCase((state, action) => {});
