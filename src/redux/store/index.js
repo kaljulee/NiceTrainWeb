@@ -1,4 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import baseReducer from '../reducers/baseReducer';
+import trainReducer from '../reducers/trainReducer';
 
-export const store = configureStore({ reducer: baseReducer });
+export const store = configureStore({ reducer: trainReducer });

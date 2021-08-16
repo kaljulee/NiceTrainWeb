@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import colors from '../../styles/colors';
-import { callCreateStation } from '../../redux/reducers/baseReducer';
+import { callCreateStation } from '../../redux/reducers/trainReducer';
 
 const baseStyle = {
   padding: 10,

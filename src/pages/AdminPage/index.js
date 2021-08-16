@@ -12,7 +12,7 @@ import NiceTrainPage from '../NiceTrainPage';
 import {
   fetchStations,
   fetchYouTubeResources
-} from '../../redux/reducers/baseReducer';
+} from '../../redux/reducers/trainReducer';
 import colors from '../../styles/colors';
 import AdminList from './AdminList';
 import AdminForm from './AdminForm';

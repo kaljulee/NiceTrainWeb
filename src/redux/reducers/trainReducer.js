@@ -44,8 +44,8 @@ export const callCreateStation = createAsyncThunk(
   }
 );
 
-export const baseSlice = createSlice({
-  name: 'base',
+export const trainSlice = createSlice({
+  name: 'train',
   initialState,
   reducers: {
     stationsLoading(state, action) {
@@ -91,6 +91,6 @@ export const {
   stationsReceived,
   youTubeResourcesLoading,
   youTubeResourcesReceived
-} = baseSlice.actions;
+} = trainSlice.actions;
 
-export default baseSlice.reducer;
+export default trainSlice.reducer;
