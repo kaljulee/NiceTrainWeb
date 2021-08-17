@@ -12,10 +12,8 @@ export const getStation = /* GraphQL */ `
       scheduledTrains {
         items {
           id
-          name
           description
-          train_time
-          train_date
+          train_date_time
           stationID
           createdAt
           updatedAt
@@ -50,10 +48,8 @@ export const getScheduledTrain = /* GraphQL */ `
   query GetScheduledTrain($id: ID!) {
     getScheduledTrain(id: $id) {
       id
-      name
       description
-      train_time
-      train_date
+      train_date_time
       stationID
       createdAt
       updatedAt
@@ -80,10 +76,8 @@ export const listScheduledTrains = /* GraphQL */ `
     listScheduledTrains(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
         description
-        train_time
-        train_date
+        train_date_time
         stationID
         createdAt
         updatedAt
@@ -106,10 +100,8 @@ export const getScheduledActivity = /* GraphQL */ `
       updatedAt
       scheduledTrain {
         id
-        name
         description
-        train_time
-        train_date
+        train_date_time
         stationID
         createdAt
         updatedAt
@@ -140,10 +132,8 @@ export const listScheduledActivities = /* GraphQL */ `
         updatedAt
         scheduledTrain {
           id
-          name
           description
-          train_time
-          train_date
+          train_date_time
           stationID
           createdAt
           updatedAt

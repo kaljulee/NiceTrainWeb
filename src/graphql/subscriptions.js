@@ -12,10 +12,8 @@ export const onCreateStation = /* GraphQL */ `
       scheduledTrains {
         items {
           id
-          name
           description
-          train_time
-          train_date
+          train_date_time
           stationID
           createdAt
           updatedAt
@@ -36,10 +34,8 @@ export const onUpdateStation = /* GraphQL */ `
       scheduledTrains {
         items {
           id
-          name
           description
-          train_time
-          train_date
+          train_date_time
           stationID
           createdAt
           updatedAt
@@ -60,10 +56,8 @@ export const onDeleteStation = /* GraphQL */ `
       scheduledTrains {
         items {
           id
-          name
           description
-          train_time
-          train_date
+          train_date_time
           stationID
           createdAt
           updatedAt
@@ -77,10 +71,8 @@ export const onCreateScheduledTrain = /* GraphQL */ `
   subscription OnCreateScheduledTrain {
     onCreateScheduledTrain {
       id
-      name
       description
-      train_time
-      train_date
+      train_date_time
       stationID
       createdAt
       updatedAt
@@ -102,10 +94,8 @@ export const onUpdateScheduledTrain = /* GraphQL */ `
   subscription OnUpdateScheduledTrain {
     onUpdateScheduledTrain {
       id
-      name
       description
-      train_time
-      train_date
+      train_date_time
       stationID
       createdAt
       updatedAt
@@ -127,10 +117,8 @@ export const onDeleteScheduledTrain = /* GraphQL */ `
   subscription OnDeleteScheduledTrain {
     onDeleteScheduledTrain {
       id
-      name
       description
-      train_time
-      train_date
+      train_date_time
       stationID
       createdAt
       updatedAt
@@ -159,10 +147,8 @@ export const onCreateScheduledActivity = /* GraphQL */ `
       updatedAt
       scheduledTrain {
         id
-        name
         description
-        train_time
-        train_date
+        train_date_time
         stationID
         createdAt
         updatedAt
@@ -184,10 +170,8 @@ export const onUpdateScheduledActivity = /* GraphQL */ `
       updatedAt
       scheduledTrain {
         id
-        name
         description
-        train_time
-        train_date
+        train_date_time
         stationID
         createdAt
         updatedAt
@@ -209,10 +193,8 @@ export const onDeleteScheduledActivity = /* GraphQL */ `
       updatedAt
       scheduledTrain {
         id
-        name
         description
-        train_time
-        train_date
+        train_date_time
         stationID
         createdAt
         updatedAt

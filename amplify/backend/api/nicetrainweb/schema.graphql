@@ -25,10 +25,8 @@ type ScheduledTrain
 )
 {
   id: ID!
-  name: String!
   description: String
-  train_time: String
-  train_date: String
+  train_date_time: AWSDateTime
   stationID: ID,
   scheduledActivities: [ScheduledActivity] @connection(name: "byScheduledTrain", fields: ["id"])
 }
