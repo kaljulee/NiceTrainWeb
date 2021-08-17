@@ -9,12 +9,14 @@ import { callListActivities } from './redux/thunks/activity';
 import { store } from './redux/store';
 import { callListStations } from './redux/thunks/station';
 import { callListYouTubeResources } from './redux/thunks/youTubeResource';
+import { callListScheduledTrains } from './redux/thunks/scheduledTrain';
 
 Amplify.configure(config);
 
 store.dispatch(callListActivities());
 store.dispatch(callListStations());
 store.dispatch(callListYouTubeResources());
+store.dispatch(callListScheduledTrains());
 
 ReactDOM.render(
   <React.StrictMode>
