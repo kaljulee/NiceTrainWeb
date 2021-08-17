@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactList from 'react-list';
 
 function AdminList(props) {
   const { title, data, fields, onDatumClick } = props;
+  const [activeDatumID, setActiveDatumID] = useState();
+
+  function handleDatumClick(id) {
+    setActiveDatumID(id);
+    onDatumClick(id);
+  }
+
   return (
     <div style={{ height: '100%', width: '100%' }}>
       <h2 style={{ color: 'goldenrod' }}>{`${title}s`}</h2>
@@ -25,13 +32,16 @@ function AdminList(props) {
               {fields.map((field) => (
                 <div
                   key={`${index}${field}`}
-                  onClick={() => onDatumClick(data[index].id)}
-                  onKeyDown={() => onDatumClick(data[index].id)}
+                  onClick={() => handleDatumClick(data[index].id)}
+                  onKeyDown={() => handleDatumClick(data[index].id)}
                   role="button"
                   tabIndex={0}
                   style={{
                     width: '100%',
-                    backgroundColor: 'ghostwhite',
+                    backgroundColor:
+                      activeDatumID === data[index].id
+                        ? '#fad255'
+                        : 'ghostwhite',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center'
