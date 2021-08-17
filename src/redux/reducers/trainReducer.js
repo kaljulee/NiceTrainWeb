@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+/* eslint-disable no-param-reassign */
+import { createSlice } from '@reduxjs/toolkit';
 import {
   callUpdateStation,
   callCreateStation,
@@ -11,36 +12,56 @@ import {
   callListYouTubeResources,
   callUpdateYouTubeResource
 } from '../thunks/youTubeResource';
+import {
+  callCreateActivity,
+  callDeleteActivity,
+  callUpdateActivity,
+  callListActivities
+} from '../thunks/activity';
 
 const initialState = {
   stationsLoading: 'idle',
   youTubeResourcesLoading: 'idle',
   stations: [],
-  youTubeResources: []
+  youTubeResources: [],
+  activities: []
 };
+
+function findIndexByID(items, id) {
+  return items.findIndex((v) => v.id === id);
+}
+
+function isValidIndex(index) {
+  return index !== -1;
+}
+
+function removeByID(items, id) {
+  return items.reduce((acc, i) => {
+    if (i.id !== id) {
+      acc.push(i);
+    }
+    return acc;
+  }, []);
+}
 
 export const trainSlice = createSlice({
   name: 'train',
   initialState,
   reducers: {
-    stationsLoading(state, action) {
+    stationsLoading(state) {
       if (state.stationsLoading === 'idle') {
-        // eslint-disable-next-line no-param-reassign
         state.stationsLoading = 'pending';
       }
     },
-    stationsReceived: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
+    stationsReceived: (state) => {
       state.stationsLoading = 'idle';
     },
-    youTubeResourcesLoading(state, action) {
+    youTubeResourcesLoading(state) {
       if (state.youTubeResourcesLoading === 'idle') {
-        // eslint-disable-next-line no-param-reassign
         state.youTubeResourcesLoading = 'pending';
       }
     },
-    youTubeResourcesReceived: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
+    youTubeResourcesReceived: (state) => {
       state.youTubeResourcesLoading = 'idle';
     }
   },
@@ -48,7 +69,6 @@ export const trainSlice = createSlice({
     // station calls
     builder
       .addCase(callListStations.fulfilled, (state, action) => {
-        // eslint-disable-next-line no-param-reassign
         state.stations = action.payload.listStations.items;
       })
       .addCase(callCreateStation.fulfilled, (state, action) => {
@@ -61,7 +81,6 @@ export const trainSlice = createSlice({
           (s) => s.id === updatedStationData.id
         );
         if (index !== -1) {
-          // eslint-disable-next-line no-param-reassign
           state.stations[index] = updatedStationData;
         }
       })
@@ -71,7 +90,6 @@ export const trainSlice = createSlice({
           (s) => s.id === deletedStationData.id
         );
         if (index !== -1) {
-          // eslint-disable-next-line no-param-reassign
           state.stations = state.stations.reduce((acc, s) => {
             if (s.id !== deletedStationData.id) {
               acc.push(s);
@@ -82,7 +100,6 @@ export const trainSlice = createSlice({
       })
       // YTR calls
       .addCase(callListYouTubeResources.fulfilled, (state, action) => {
-        // eslint-disable-next-line no-param-reassign
         state.youTubeResources = action.payload.listYouTubeResources.items;
       })
       .addCase(callUpdateYouTubeResource.fulfilled, (state, action) => {
@@ -93,7 +110,6 @@ export const trainSlice = createSlice({
           (ytr) => ytr.id === updatedYTR.id
         );
         if (index !== -1) {
-          // eslint-disable-next-line no-param-reassign
           state.youTubeResources[index] = updatedYTR;
         }
       })
@@ -111,13 +127,33 @@ export const trainSlice = createSlice({
           (ytr) => ytr.id === deletedYTR.id
         );
         if (index !== -1) {
-          // eslint-disable-next-line no-param-reassign
           state.youTubeResources = state.youTubeResources.reduce((acc, ytr) => {
             if (ytr.id !== deletedYTR.id) {
               acc.push(ytr);
             }
             return acc;
           }, []);
+        }
+      })
+      // activity calls
+      .addCase(callListActivities.fulfilled, (state, action) => {
+        state.activities = action.payload.listActivities.items;
+      })
+      .addCase(callCreateActivity.fulfilled, (state, action) => {
+        state.activities.push(action.payload.createActivity);
+      })
+      .addCase(callUpdateActivity.fulfilled, (state, action) => {
+        const updatedActivity = action.payload.updateActivity;
+        const index = findIndexByID(state.activities, updatedActivity.id);
+        if (index !== -1) {
+          state.activities[index] = updatedActivity;
+        }
+      })
+      .addCase(callDeleteActivity.fulfilled, (state, action) => {
+        const deletedActivity = action.payload.data.deleteActivity;
+        const index = findIndexByID(state.activities, deletedActivity.id);
+        if (isValidIndex(index)) {
+          state.activities = removeByID(state.activities, deletedActivity.id);
         }
       })
       .addDefaultCase((state, action) => {});
