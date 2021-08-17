@@ -26,3 +26,10 @@ export function youTubeResourceValidator(data) {
   }
   return { isOk: true };
 }
+
+export function activityValidator(data) {
+  if (!data) {
+    return { isOk: false, error: 'no data' };
+  }
+  return { isOk: true };
+}
