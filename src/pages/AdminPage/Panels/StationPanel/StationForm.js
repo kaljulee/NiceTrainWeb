@@ -89,7 +89,6 @@ function StationForm(props) {
   );
 }
 
-StationForm.defaultProps = {
-};
+StationForm.defaultProps = { currentDatum: {} };
 
 export default StationForm;

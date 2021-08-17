@@ -10,8 +10,9 @@ import {
 import { scheduledTrainValidator } from '../../../../redux/validators';
 import AdminInput from '../../AdminInput';
 import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
-import {createOption, getCurrentOption} from '../../../../utils';
-import ActivityForm from "../ActivityPanel/ActivityForm";
+import { createOption, getCurrentOption } from '../../../../utils';
+import ActivityForm from '../ActivityPanel/ActivityForm';
+import AdminSelect from '../../AdminSelect';
 
 function ScheduledTrainForm(props) {
   const { title, currentDatum, youTubeResources } = props;
@@ -23,9 +24,7 @@ function ScheduledTrainForm(props) {
   const [descriptionValue, setDescriptionValue] = useState(
     currentDatum.description
   );
-  const [stationOption, setStationOption] = useState(
-    getCurrentOption(stations, currentDatum.stationID)
-  );
+  const [stationOption, setStationOption] = useState(createOption(stations[0]));
 
   useEffect(() => {
     setNameValue(currentDatum.name);
@@ -113,11 +112,14 @@ function ScheduledTrainForm(props) {
             value={descriptionValue}
             onChange={handleDescriptionChange}
           />
-          <Select
-            options={stations.map((s) => createOption(s))}
-            value={stationOption}
-            onChange={handleStationSelect}
-          />
+          <div>
+            <AdminSelect
+              label="station"
+              options={stations.map((s) => createOption(s))}
+              currentOption={stationOption}
+              onChange={handleStationSelect}
+            />
+          </div>
         </div>
         <AdminSubmitButtonBar
           handleCreate={handleCreate}
