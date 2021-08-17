@@ -11,6 +11,7 @@ import { activityValidator } from '../../../../redux/validators';
 import AdminInput from '../../AdminInput';
 import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
 import { createOption, getCurrentOption } from '../../../../utils';
+import AdminSelect from '../../AdminSelect';
 
 function ActivityForm(props) {
   const { title, currentDatum, youTubeResources } = props;
@@ -99,9 +100,10 @@ function ActivityForm(props) {
             value={descriptionValue}
             onChange={handleDescriptionChange}
           />
-          <Select
+          <AdminSelect
+            label="youTube resource"
             options={youTubeResources.map((ytr) => createOption(ytr))}
-            value={ytrOption}
+            currentOption={ytrOption}
             onChange={handleYTRSelect}
           />
         </div>
