@@ -13,6 +13,7 @@ import AdminInput from '../../AdminInput';
 import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
 import { createOption, getCurrentOption } from '../../../../utils';
 import AdminSelect from '../../AdminSelect';
+import AdminDateTimePicker from '../../AdminDateTimePicker';
 
 function ScheduledTrainForm(props) {
   const { title, currentDatum, youTubeResources } = props;
@@ -93,28 +94,21 @@ function ScheduledTrainForm(props) {
             flexDirection: 'column'
           }}
         >
-          <div style={{ width: '100%', height: '100%' }}>
-            <span style={{ color: 'goldenrod' }}>date and time</span>
-            <div style={{ backgroundColor: 'white', width: 'max-content' }}>
-              <DateTimePicker
-                value={dateTimeValue}
-                onChange={handleDateTimeChange}
-              />
-            </div>
-          </div>
+          <AdminDateTimePicker
+            value={dateTimeValue}
+            onChange={handleDateTimeChange}
+          />
           <AdminInput
             label="description"
             value={descriptionValue}
             onChange={handleDescriptionChange}
           />
-          <div>
-            <AdminSelect
-              label="station"
-              options={stations.map((s) => createOption(s))}
-              currentOption={stationOption}
-              onChange={handleStationSelect}
-            />
-          </div>
+          <AdminSelect
+            label="station"
+            options={stations.map((s) => createOption(s))}
+            currentOption={stationOption}
+            onChange={handleStationSelect}
+          />
         </div>
         <AdminSubmitButtonBar
           handleCreate={handleCreate}
