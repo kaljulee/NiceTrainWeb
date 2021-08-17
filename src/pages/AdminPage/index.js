@@ -9,15 +9,15 @@ import {
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import NiceTrainPage from '../NiceTrainPage';
-import { fetchYouTubeResources } from '../../redux/reducers/trainReducer';
+import { callListYouTubeResources } from '../../redux/thunks/youTubeResource';
 import { callListStations } from '../../redux/thunks/station';
 import colors from '../../styles/colors';
-import AdminPanel from './AdminPanel';
+import StationPanel from './Panels/StationPanel';
+import YouTubeResourcePanel from './Panels/YouTubeResourcePanel';
 
 function AdminPage(props) {
   const [authState, setAuthState] = useState();
   const [user, setUser] = useState();
-  const stations = useSelector((state) => state.stations);
   useEffect(
     () =>
       onAuthUIStateChange((nextAuthState, authData) => {
@@ -27,9 +27,9 @@ function AdminPage(props) {
     []
   );
   const dispatch = useDispatch();
-
+  // todo centralize initial redux population
   useEffect(() => {
-    dispatch(fetchYouTubeResources());
+    dispatch(callListYouTubeResources());
   }, []);
   useEffect(() => {
     dispatch(callListStations());
@@ -55,14 +55,10 @@ function AdminPage(props) {
               <Tab>Information Message</Tab>
             </TabList>
             <TabPanel>
-              <AdminPanel
-                title="Station"
-                listData={stations}
-                listFields={['name', 'abbrev']}
-              />
+              <StationPanel />
             </TabPanel>
             <TabPanel>
-              <h2>yt panel</h2>
+              <YouTubeResourcePanel />
             </TabPanel>
             <TabPanel>
               <h2>activity panel</h2>
