@@ -18,6 +18,12 @@ import {
   callUpdateActivity,
   callListActivities
 } from '../thunks/activity';
+import {
+  callListScheduledTrains,
+  callCreateScheduledTrain,
+  callUpdateScheduledTrain,
+  callDeleteScheduledTrain
+} from '../thunks/scheduledTrain';
 
 const initialState = {
   stationsLoading: 'idle',
@@ -154,6 +160,33 @@ export const trainSlice = createSlice({
         const index = findIndexByID(state.activities, deletedActivity.id);
         if (isValidIndex(index)) {
           state.activities = removeByID(state.activities, deletedActivity.id);
+        }
+      })
+      // scheduled train calls
+      .addCase(callListScheduledTrains.fulfilled, (state, action) => {
+        state.activities = action.payload.listScheduledTrains.items;
+      })
+      .addCase(callCreateScheduledTrain.fulfilled, (state, action) => {
+        state.scheduledTrains.push(action.payload.createScheduledTrain);
+      })
+      .addCase(callUpdateScheduledTrain.fulfilled, (state, action) => {
+        const updatedScheduledTrain = action.payload.updateScheduledTrain;
+        const index = findIndexByID(state.activities, updatedScheduledTrain.id);
+        if (index !== -1) {
+          state.scheduledTrains[index] = updatedScheduledTrain;
+        }
+      })
+      .addCase(callDeleteScheduledTrain.fulfilled, (state, action) => {
+        const deletedScheduledTrain = action.payload.data.deleteScheduledTrain;
+        const index = findIndexByID(
+          state.scheduledTrains,
+          deletedScheduledTrain.id
+        );
+        if (isValidIndex(index)) {
+          state.activities = removeByID(
+            state.scheduledTrains,
+            deletedScheduledTrain.id
+          );
         }
       })
       .addDefaultCase((state, action) => {});
