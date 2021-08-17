@@ -10,18 +10,7 @@ import {
 import { activityValidator } from '../../../../redux/validators';
 import AdminInput from '../../AdminInput';
 import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
-
-function createYTROption(ytr) {
-  return { label: ytr.description, value: ytr.id };
-}
-
-function getCurrentYTROption(ytrs, id) {
-  const currentYTR = ytrs.find((ytr) => ytr.id === id);
-  if (!currentYTR) {
-    return {};
-  }
-  return createYTROption(currentYTR);
-}
+import { createOption, getCurrentOption } from '../../../../utils';
 
 function ActivityForm(props) {
   const { title, currentDatum, youTubeResources } = props;
@@ -31,14 +20,14 @@ function ActivityForm(props) {
     currentDatum.description
   );
   const [ytrOption, setYTROption] = useState(
-    getCurrentYTROption(youTubeResources, currentDatum.youTubeResourceID)
+    getCurrentOption(youTubeResources, currentDatum.youTubeResourceID)
   );
 
   useEffect(() => {
     setNameValue(currentDatum.name);
     setDescriptionValue(currentDatum.description);
     setYTROption(
-      getCurrentYTROption(youTubeResources, currentDatum.youTubeResourceID)
+      getCurrentOption(youTubeResources, currentDatum.youTubeResourceID)
     );
   }, [title, currentDatum]);
 
@@ -111,7 +100,7 @@ function ActivityForm(props) {
             onChange={handleDescriptionChange}
           />
           <Select
-            options={youTubeResources.map((ytr) => createYTROption(ytr))}
+            options={youTubeResources.map((ytr) => createOption(ytr))}
             value={ytrOption}
             onChange={handleYTRSelect}
           />
@@ -128,7 +117,7 @@ function ActivityForm(props) {
 }
 
 ActivityForm.defaultProps = {
-  currentDatum: { name: '', description: '' }
+  currentDatum: {}
 };
 
 export default ActivityForm;
