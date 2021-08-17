@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Breakpoint } from 'react-socks';
-import { connect, useSelector, useDispatch } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import ScheduleBoard from '../../components/ScheduleBoard';
 import data from '../../data';
 import ScheduleHeader from '../../components/ScheduleHeader';
 import colors from '../../styles/colors';
 import ScheduleInfo from '../../components/ScheduleInfo';
-import { callListYouTubeResources } from '../../redux/thunks/youTubeResource';
-import { callListStations } from '../../redux/thunks/station';
 import NiceTrainPage from '../NiceTrainPage';
 
 function SchedulePage() {
@@ -22,17 +20,6 @@ function SchedulePage() {
   };
 
   const stations = useSelector((state) => state.stations);
-  const dispatch = useDispatch();
-  console.log('stations');
-  console.log(stations);
-  useEffect(() => {
-    console.log('dispatching fetch stations');
-    dispatch(callListStations());
-  }, []);
-  useEffect(() => {
-    console.log('dispatching fetch TYR');
-    dispatch(callListYouTubeResources());
-  }, []);
 
   return (
     <NiceTrainPage>
@@ -45,7 +32,6 @@ function SchedulePage() {
           alignItems: 'center',
           alignSelf: 'center',
           width: '100%',
-          // padding: '1vh',
           paddingLeft: '1vw',
           paddingRight: '1vw',
           boxSizing: 'border-box',

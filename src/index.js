@@ -5,8 +5,16 @@ import Amplify from 'aws-amplify';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import config from './aws-exports';
+import { callListActivities } from './redux/thunks/activity';
+import { store } from './redux/store';
+import { callListStations } from './redux/thunks/station';
+import { callListYouTubeResources } from './redux/thunks/youTubeResource';
 
 Amplify.configure(config);
+
+store.dispatch(callListActivities());
+store.dispatch(callListStations());
+store.dispatch(callListYouTubeResources());
 
 ReactDOM.render(
   <React.StrictMode>

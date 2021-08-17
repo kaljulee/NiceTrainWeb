@@ -1,15 +1,13 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BreakpointProvider, setDefaultBreakpoints } from 'react-socks';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect
 } from 'react-router-dom';
-// import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import SchedulePage from './pages/SchedulePage';
 import colors from './styles/colors';
 import { settableBreakpoints } from './styles/breakpoints';
