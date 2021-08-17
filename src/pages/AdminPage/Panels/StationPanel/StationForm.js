@@ -5,12 +5,12 @@ import {
   callCreateStation,
   callDeleteStation,
   callUpdateStation
-} from '../../../redux/thunks/station';
-import { stationValidator } from '../../../redux/validators';
-import AdminInput from '../AdminInput';
-import AdminSubmitButtonBar from '../AdminSubmitButtonBar';
+} from '../../../../redux/thunks/station';
+import { stationValidator } from '../../../../redux/validators';
+import AdminInput from '../../AdminInput';
+import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
 
-function AdminForm(props) {
+function StationForm(props) {
   const { title, currentDatum } = props;
   const dispatch = useDispatch();
   const [nameValue, setNameValue] = useState(currentDatum.name);
@@ -89,8 +89,8 @@ function AdminForm(props) {
   );
 }
 
-AdminForm.defaultProps = {
+StationForm.defaultProps = {
   currentDatum: { name: '', abbrev: '' }
 };
 
-export default AdminForm;
+export default StationForm;

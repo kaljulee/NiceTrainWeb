@@ -98,15 +98,15 @@ type BoardLongMessage
   text: String
 }
 
-#type ActivitySupplementalResources
-#@model(queries: null)
-#@key(name: "byActivity", fields: ["activityID", "ytResourceID"])
-#@key(name: "byYTResourceID", fields: ["ytResourceID", "activityID"])
+#type ExtraTable
+#@model
 #@auth(
-#rules:[{allow: private}, { allow: public, operations: [read] }]
+#  rules:[
+#    {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
+#    { allow: public, operations: [read] }
+#  ]
 #)
 #{
-#    id: ID!
-#    activityID: ID!
-#    ytResourceID: ID!
+#  id: ID!
+#  text: String
 #}

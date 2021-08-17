@@ -12,3 +12,17 @@ export function stationValidator(data) {
   }
   return { isOk: true };
 }
+
+export function youTubeResourceValidator(data) {
+  if (!data) {
+    return { isOk: false, error: 'no data' };
+  }
+  const { description, link } = data;
+  if (!description || description.length < 1) {
+    return { isOk: false, error: 'bad description' };
+  }
+  if (!link || link.length < 1) {
+    return { isOk: false, error: 'bad link' };
+  }
+  return { isOk: true };
+}

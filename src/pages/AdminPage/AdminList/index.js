@@ -48,4 +48,8 @@ function AdminList(props) {
   );
 }
 
+AdminList.defaultProps = {
+  data: []
+};
+
 export default AdminList;
