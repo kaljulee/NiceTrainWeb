@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import toast, { Toaster } from 'react-hot-toast';
+import DateTimePicker from 'react-datetime-picker';
 import {
   callCreateScheduledTrain,
   callDeleteScheduledTrain,
@@ -11,30 +12,26 @@ import { scheduledTrainValidator } from '../../../../redux/validators';
 import AdminInput from '../../AdminInput';
 import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
 import { createOption, getCurrentOption } from '../../../../utils';
-import ActivityForm from '../ActivityPanel/ActivityForm';
 import AdminSelect from '../../AdminSelect';
 
 function ScheduledTrainForm(props) {
   const { title, currentDatum, youTubeResources } = props;
   const dispatch = useDispatch();
   const stations = useSelector((state) => state.stations);
-  const [nameValue, setNameValue] = useState(currentDatum.name);
-  const [timeValue, setTimeValue] = useState(currentDatum.train_time);
-  const [dateValue, setDateValue] = useState(currentDatum.train_date);
+  const activities = useSelector((state) => state.activities);
+  const [dateTimeValue, setDateTimeValue] = useState(
+    Date(currentDatum.train_date_time)
+  );
   const [descriptionValue, setDescriptionValue] = useState(
     currentDatum.description
   );
   const [stationOption, setStationOption] = useState(createOption(stations[0]));
 
   useEffect(() => {
-    setNameValue(currentDatum.name);
     setDescriptionValue(currentDatum.description);
     setStationOption(getCurrentOption(stations, currentDatum.stationID));
+    setDateTimeValue(Date(currentDatum.train_date_time));
   }, [title, currentDatum]);
-
-  function handleNameChange(event) {
-    setNameValue(event.target.value);
-  }
 
   function handleDescriptionChange(event) {
     setDescriptionValue(event.target.value);
@@ -44,22 +41,16 @@ function ScheduledTrainForm(props) {
     setStationOption(item);
   }
 
-  function handleTimeChange(event) {
-    console.log('handleTimeChange');
+  function handleDateTimeChange(event) {
+    console.log('date time change');
     console.log(event);
-  }
-
-  function handleDateChange(event) {
-    console.log('handleDateChange');
-    console.log(event);
+    setDateTimeValue(Date(event));
   }
 
   function handleUpdate() {
     const updatedScheduledTrain = {
-      name: nameValue,
       description: descriptionValue,
-      train_time: timeValue,
-      train_date: dateValue,
+      train_date_time: dateTimeValue,
       stationID: stationOption.value,
       id: currentDatum.id
     };
@@ -75,8 +66,8 @@ function ScheduledTrainForm(props) {
 
   function handleCreate() {
     const newScheduledTrain = {
-      name: nameValue,
       description: descriptionValue,
+      train_date_time: dateTimeValue,
       stationID: stationOption.value
     };
     const scheduledTrainValidation = scheduledTrainValidator(newScheduledTrain);
@@ -102,11 +93,15 @@ function ScheduledTrainForm(props) {
             flexDirection: 'column'
           }}
         >
-          <AdminInput
-            label="name"
-            value={nameValue}
-            onChange={handleNameChange}
-          />
+          <div style={{ width: '100%', height: '100%' }}>
+            <span style={{ color: 'goldenrod' }}>date and time</span>
+            <div style={{ backgroundColor: 'white', width: 'max-content' }}>
+              <DateTimePicker
+                value={dateTimeValue}
+                onChange={handleDateTimeChange}
+              />
+            </div>
+          </div>
           <AdminInput
             label="description"
             value={descriptionValue}

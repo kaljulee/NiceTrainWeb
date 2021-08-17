@@ -12,6 +12,7 @@ import colors from '../../styles/colors';
 import StationPanel from './Panels/StationPanel';
 import YouTubeResourcePanel from './Panels/YouTubeResourcePanel';
 import ActivityPanel from './Panels/ActivityPanel';
+import ScheduledTrainPanel from './Panels/ScheduledTrainPanel';
 
 function AdminPage(props) {
   const [authState, setAuthState] = useState();
@@ -54,7 +55,7 @@ function AdminPage(props) {
               <ActivityPanel />
             </TabPanel>
             <TabPanel>
-              <h2>scheduling panel</h2>
+              <ScheduledTrainPanel />
             </TabPanel>
             <TabPanel>
               <h2>info message panel</h2>
