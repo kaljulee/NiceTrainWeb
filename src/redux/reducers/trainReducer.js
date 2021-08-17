@@ -1,14 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { API, graphqlOperation } from 'aws-amplify';
-import { listStations, listYouTubeResources } from '../../graphql/queries';
-import { createStation, updateStation } from '../../graphql/mutations';
 import {
   callUpdateStation,
   callCreateStation,
   callListStations,
   callDeleteStation
 } from '../thunks/station';
-import { apiKey } from '../../constants';
+import {
+  callCreateYouTubeResource,
+  callDeleteYouTubeResource,
+  callListYouTubeResources,
+  callUpdateYouTubeResource
+} from '../thunks/youTubeResource';
 
 const initialState = {
   stationsLoading: 'idle',
@@ -16,17 +18,6 @@ const initialState = {
   stations: [],
   youTubeResources: []
 };
-
-export const fetchYouTubeResources = createAsyncThunk(
-  'youTubeResources/fetch',
-  async () => {
-    const response = await API.graphql({
-      query: listYouTubeResources,
-      authMode: apiKey
-    });
-    return response.data;
-  }
-);
 
 export const trainSlice = createSlice({
   name: 'train',
@@ -54,21 +45,16 @@ export const trainSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
+    // station calls
     builder
       .addCase(callListStations.fulfilled, (state, action) => {
         // eslint-disable-next-line no-param-reassign
         state.stations = action.payload.listStations.items;
       })
-      .addCase(fetchYouTubeResources.fulfilled, (state, action) => {
-        // eslint-disable-next-line no-param-reassign
-        state.youtube = action.payload.listYouTubeResources.items;
-      })
       .addCase(callCreateStation.fulfilled, (state, action) => {
-        // todo need validation, should not create on empty fields
         const newStation = action.payload.createStation;
         state.stations.push(newStation);
       })
-      // todo data verification
       .addCase(callUpdateStation.fulfilled, (state, action) => {
         const updatedStationData = action.payload.updateStation;
         const index = state.stations.findIndex(
@@ -89,6 +75,46 @@ export const trainSlice = createSlice({
           state.stations = state.stations.reduce((acc, s) => {
             if (s.id !== deletedStationData.id) {
               acc.push(s);
+            }
+            return acc;
+          }, []);
+        }
+      })
+      // YTR calls
+      .addCase(callListYouTubeResources.fulfilled, (state, action) => {
+        // eslint-disable-next-line no-param-reassign
+        state.youTubeResources = action.payload.listYouTubeResources.items;
+      })
+      .addCase(callUpdateYouTubeResource.fulfilled, (state, action) => {
+        console.log('yt updated');
+        console.log(action);
+        const updatedYTR = action.payload.updateYouTubeResource;
+        const index = state.youTubeResources.findIndex(
+          (ytr) => ytr.id === updatedYTR.id
+        );
+        if (index !== -1) {
+          // eslint-disable-next-line no-param-reassign
+          state.youTubeResources[index] = updatedYTR;
+        }
+      })
+      .addCase(callCreateYouTubeResource.fulfilled, (state, action) => {
+        console.log('yt create');
+        console.log(action);
+        const newYTR = action.payload.createYouTubeResource;
+        state.youTubeResources.push(newYTR);
+      })
+      .addCase(callDeleteYouTubeResource.fulfilled, (state, action) => {
+        console.log('yt delete');
+        console.log(action);
+        const deletedYTR = action.payload.payload.deleteYouTubeResource;
+        const index = state.youTubeResources.findIndex(
+          (ytr) => ytr.id === deletedYTR.id
+        );
+        if (index !== -1) {
+          // eslint-disable-next-line no-param-reassign
+          state.youTubeResources = state.youTubeResources.reduce((acc, ytr) => {
+            if (ytr.id !== deletedYTR.id) {
+              acc.push(ytr);
             }
             return acc;
           }, []);
