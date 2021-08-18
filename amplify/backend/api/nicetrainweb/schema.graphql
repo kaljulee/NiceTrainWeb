@@ -1,4 +1,4 @@
-
+# scheduled trains have a single station
 type Station
 @model
 @auth(
@@ -35,6 +35,7 @@ type ScheduledActivity
 @model
 @key(name: "byScheduledTrain", fields: ["scheduledTrainID"])
 @key(name: "byActivity", fields: ["activityID"])
+@key(name: "byFormat", fields: ["formatID"])
 @auth(
   rules:[
     {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
@@ -46,10 +47,26 @@ type ScheduledActivity
   name: String!
   activityID: ID
   scheduledTrainID: ID!
+  formatID: ID!
   scheduledTrain: ScheduledTrain! @connection(fields: ["scheduledTrainID"])
 }
 
+# Scheduled activities should have a format
+type Format
+@model
+@auth(
+  rules:[
+    {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
+    { allow: public, operations: [read] }
+  ]
+)
+{
+  id: ID!
+  name: String!
+  scheduledActivities: [ScheduledActivity] @connection(name: "byFormat", fields: ["id"])
+}
 
+# activities are a ytr and a description
 type Activity
 @model
 @key(name: "byYouTubeResource", fields:["youTubeResourceID"])
@@ -67,6 +84,8 @@ type Activity
   youTubeResourceID: ID
 }
 
+# Activities have an optional primary YTR; might have an arbitrary number
+# of additional YTRs in the future
 type YouTubeResource
 @model
 @auth(
@@ -83,6 +102,8 @@ type YouTubeResource
   activities: [Activity] @connection(name: "byYouTubeResource", fields: ["id"])
 }
 
+# message for the long board
+# maybe should be split up to accomodate smallest screen
 type BoardLongMessage
 @model
 @auth(

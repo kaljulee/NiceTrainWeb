@@ -82,6 +82,7 @@ export const onCreateScheduledTrain = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }
@@ -105,6 +106,7 @@ export const onUpdateScheduledTrain = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }
@@ -128,6 +130,7 @@ export const onDeleteScheduledTrain = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }
@@ -143,6 +146,7 @@ export const onCreateScheduledActivity = /* GraphQL */ `
       name
       activityID
       scheduledTrainID
+      formatID
       createdAt
       updatedAt
       scheduledTrain {
@@ -166,6 +170,7 @@ export const onUpdateScheduledActivity = /* GraphQL */ `
       name
       activityID
       scheduledTrainID
+      formatID
       createdAt
       updatedAt
       scheduledTrain {
@@ -189,6 +194,7 @@ export const onDeleteScheduledActivity = /* GraphQL */ `
       name
       activityID
       scheduledTrainID
+      formatID
       createdAt
       updatedAt
       scheduledTrain {
@@ -201,6 +207,72 @@ export const onDeleteScheduledActivity = /* GraphQL */ `
         scheduledActivities {
           nextToken
         }
+      }
+    }
+  }
+`;
+export const onCreateFormat = /* GraphQL */ `
+  subscription OnCreateFormat {
+    onCreateFormat {
+      id
+      name
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          formatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onUpdateFormat = /* GraphQL */ `
+  subscription OnUpdateFormat {
+    onUpdateFormat {
+      id
+      name
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          formatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onDeleteFormat = /* GraphQL */ `
+  subscription OnDeleteFormat {
+    onDeleteFormat {
+      id
+      name
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          formatID
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
     }
   }
@@ -220,6 +292,7 @@ export const onCreateActivity = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }
@@ -243,6 +316,7 @@ export const onUpdateActivity = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }
@@ -266,6 +340,7 @@ export const onDeleteActivity = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }

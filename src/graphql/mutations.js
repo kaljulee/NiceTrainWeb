@@ -94,6 +94,7 @@ export const createScheduledTrain = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }
@@ -120,6 +121,7 @@ export const updateScheduledTrain = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }
@@ -146,6 +148,7 @@ export const deleteScheduledTrain = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }
@@ -164,6 +167,7 @@ export const createScheduledActivity = /* GraphQL */ `
       name
       activityID
       scheduledTrainID
+      formatID
       createdAt
       updatedAt
       scheduledTrain {
@@ -190,6 +194,7 @@ export const updateScheduledActivity = /* GraphQL */ `
       name
       activityID
       scheduledTrainID
+      formatID
       createdAt
       updatedAt
       scheduledTrain {
@@ -216,6 +221,7 @@ export const deleteScheduledActivity = /* GraphQL */ `
       name
       activityID
       scheduledTrainID
+      formatID
       createdAt
       updatedAt
       scheduledTrain {
@@ -228,6 +234,81 @@ export const deleteScheduledActivity = /* GraphQL */ `
         scheduledActivities {
           nextToken
         }
+      }
+    }
+  }
+`;
+export const createFormat = /* GraphQL */ `
+  mutation CreateFormat(
+    $input: CreateFormatInput!
+    $condition: ModelFormatConditionInput
+  ) {
+    createFormat(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          formatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const updateFormat = /* GraphQL */ `
+  mutation UpdateFormat(
+    $input: UpdateFormatInput!
+    $condition: ModelFormatConditionInput
+  ) {
+    updateFormat(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          formatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const deleteFormat = /* GraphQL */ `
+  mutation DeleteFormat(
+    $input: DeleteFormatInput!
+    $condition: ModelFormatConditionInput
+  ) {
+    deleteFormat(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          formatID
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
     }
   }
@@ -250,6 +331,7 @@ export const createActivity = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }
@@ -276,6 +358,7 @@ export const updateActivity = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }
@@ -302,6 +385,7 @@ export const deleteActivity = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }

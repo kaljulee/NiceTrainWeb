@@ -59,6 +59,7 @@ export const getScheduledTrain = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }
@@ -96,6 +97,7 @@ export const getScheduledActivity = /* GraphQL */ `
       name
       activityID
       scheduledTrainID
+      formatID
       createdAt
       updatedAt
       scheduledTrain {
@@ -128,6 +130,7 @@ export const listScheduledActivities = /* GraphQL */ `
         name
         activityID
         scheduledTrainID
+        formatID
         createdAt
         updatedAt
         scheduledTrain {
@@ -137,6 +140,48 @@ export const listScheduledActivities = /* GraphQL */ `
           stationID
           createdAt
           updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getFormat = /* GraphQL */ `
+  query GetFormat($id: ID!) {
+    getFormat(id: $id) {
+      id
+      name
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          formatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const listFormats = /* GraphQL */ `
+  query ListFormats(
+    $filter: ModelFormatFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listFormats(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        scheduledActivities {
+          nextToken
         }
       }
       nextToken
@@ -158,6 +203,7 @@ export const getActivity = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
           createdAt
           updatedAt
         }
