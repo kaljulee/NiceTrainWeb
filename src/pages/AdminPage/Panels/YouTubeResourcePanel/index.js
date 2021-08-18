@@ -4,7 +4,6 @@ import AdminList from '../../AdminList';
 import YouTubeResourceForm from './YouTubeResourceForm';
 
 function YouTubeResourcePanel(props) {
-  // const { title, listData, listFields } = props;
   const title = 'YouTube Resource';
   const listData = useSelector((state) => state.youTubeResources);
   const listFields = ['description', 'author', 'link'];

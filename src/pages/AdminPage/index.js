@@ -13,6 +13,7 @@ import StationPanel from './Panels/StationPanel';
 import YouTubeResourcePanel from './Panels/YouTubeResourcePanel';
 import ActivityPanel from './Panels/ActivityPanel';
 import ScheduledTrainPanel from './Panels/ScheduledTrainPanel';
+import FormatPanel from './Panels/FormatPanel';
 
 function AdminPage(props) {
   const [authState, setAuthState] = useState();
@@ -41,6 +42,7 @@ function AdminPage(props) {
             <TabList>
               <Tab>Stations</Tab>
               <Tab>YT Resources</Tab>
+              <Tab>Formats</Tab>
               <Tab>Activities</Tab>
               <Tab>Train Scheduling</Tab>
               <Tab>Information Message</Tab>
@@ -50,6 +52,9 @@ function AdminPage(props) {
             </TabPanel>
             <TabPanel>
               <YouTubeResourcePanel />
+            </TabPanel>
+            <TabPanel>
+              <FormatPanel />
             </TabPanel>
             <TabPanel>
               <ActivityPanel />
