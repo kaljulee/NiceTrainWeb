@@ -13,7 +13,8 @@ export const onCreateStation = /* GraphQL */ `
         items {
           id
           description
-          train_date_time
+          train_date
+          train_time
           stationID
           createdAt
           updatedAt
@@ -35,7 +36,8 @@ export const onUpdateStation = /* GraphQL */ `
         items {
           id
           description
-          train_date_time
+          train_date
+          train_time
           stationID
           createdAt
           updatedAt
@@ -57,7 +59,8 @@ export const onDeleteStation = /* GraphQL */ `
         items {
           id
           description
-          train_date_time
+          train_date
+          train_time
           stationID
           createdAt
           updatedAt
@@ -72,7 +75,8 @@ export const onCreateScheduledTrain = /* GraphQL */ `
     onCreateScheduledTrain {
       id
       description
-      train_date_time
+      train_date
+      train_time
       stationID
       createdAt
       updatedAt
@@ -96,7 +100,8 @@ export const onUpdateScheduledTrain = /* GraphQL */ `
     onUpdateScheduledTrain {
       id
       description
-      train_date_time
+      train_date
+      train_time
       stationID
       createdAt
       updatedAt
@@ -120,7 +125,8 @@ export const onDeleteScheduledTrain = /* GraphQL */ `
     onDeleteScheduledTrain {
       id
       description
-      train_date_time
+      train_date
+      train_time
       stationID
       createdAt
       updatedAt
@@ -152,7 +158,8 @@ export const onCreateScheduledActivity = /* GraphQL */ `
       scheduledTrain {
         id
         description
-        train_date_time
+        train_date
+        train_time
         stationID
         createdAt
         updatedAt
@@ -176,7 +183,8 @@ export const onUpdateScheduledActivity = /* GraphQL */ `
       scheduledTrain {
         id
         description
-        train_date_time
+        train_date
+        train_time
         stationID
         createdAt
         updatedAt
@@ -200,7 +208,8 @@ export const onDeleteScheduledActivity = /* GraphQL */ `
       scheduledTrain {
         id
         description
-        train_date_time
+        train_date
+        train_time
         stationID
         createdAt
         updatedAt
