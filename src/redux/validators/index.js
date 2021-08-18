@@ -40,3 +40,13 @@ export function scheduledTrainValidator(data) {
   }
   return { isOk: true };
 }
+
+export function formatValidator(data) {
+  if (!data) {
+    return { isOk: false, error: 'no data' };
+  }
+  if (!data.name || data.name.length < 1) {
+    return { isOk: false, error: 'bad name' };
+  }
+  return { isOk: true };
+}

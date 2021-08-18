@@ -24,13 +24,20 @@ import {
   callUpdateScheduledTrain,
   callDeleteScheduledTrain
 } from '../thunks/scheduledTrain';
+import {
+  callListFormats,
+  callCreateFormat,
+  callUpdateFormat,
+  callDeleteFormat
+} from '../thunks/format';
 
 const initialState = {
   stationsLoading: 'idle',
   youTubeResourcesLoading: 'idle',
   stations: [],
   youTubeResources: [],
-  activities: []
+  activities: [],
+  formats: []
 };
 
 function findIndexByID(items, id) {
@@ -164,7 +171,7 @@ export const trainSlice = createSlice({
       })
       // scheduled train calls
       .addCase(callListScheduledTrains.fulfilled, (state, action) => {
-        state.activities = action.payload.listScheduledTrains.items;
+        state.schduledTrains = action.payload.listScheduledTrains.items;
       })
       .addCase(callCreateScheduledTrain.fulfilled, (state, action) => {
         state.scheduledTrains.push(action.payload.createScheduledTrain);
@@ -183,12 +190,34 @@ export const trainSlice = createSlice({
           deletedScheduledTrain.id
         );
         if (isValidIndex(index)) {
-          state.activities = removeByID(
+          state.scheduledTrains = removeByID(
             state.scheduledTrains,
             deletedScheduledTrain.id
           );
         }
       })
+      // format calls
+      .addCase(callListFormats.fulfilled, (state, action) => {
+        state.formats = action.payload.listFormats.items;
+      })
+      .addCase(callCreateFormat.fulfilled, (state, action) => {
+        state.formats.push(action.payload.createFormat);
+      })
+      .addCase(callUpdateFormat.fulfilled, (state, action) => {
+        const updatedFormat = action.payload.updateFormat;
+        const index = findIndexByID(state.formats, updatedFormat.id);
+        if (index !== -1) {
+          state.formats[index] = updatedFormat;
+        }
+      })
+      .addCase(callDeleteFormat.fulfilled, (state, action) => {
+        const deletedFormat = action.payload.data.deleteFormat;
+        const index = findIndexByID(state.formats, deletedFormat.id);
+        if (isValidIndex(index)) {
+          state.formats = removeByID(state.formats, deletedFormat.id);
+        }
+      })
+
       .addDefaultCase((state, action) => {});
   }
 });
