@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import toast, { Toaster } from 'react-hot-toast';
-import DateTimePicker from 'react-datetime-picker';
 import {
   callCreateScheduledTrain,
   callDeleteScheduledTrain,
@@ -11,27 +10,33 @@ import {
 import { scheduledTrainValidator } from '../../../../redux/validators';
 import AdminInput from '../../AdminInput';
 import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
-import { createOption, getCurrentOption } from '../../../../utils';
+import { createOption, formatDate, getCurrentOption } from '../../../../utils';
 import AdminSelect from '../../AdminSelect';
-import AdminDateTimePicker from '../../AdminDateTimePicker';
+import AdminDatePicker from '../../AdminDatePicker';
+import AdminTimePicker from '../../AdminTimePicker';
 
 function ScheduledTrainForm(props) {
   const { title, currentDatum, youTubeResources } = props;
   const dispatch = useDispatch();
   const stations = useSelector((state) => state.stations);
   const activities = useSelector((state) => state.activities);
-  const [dateTimeValue, setDateTimeValue] = useState(
-    Date(currentDatum.train_date_time)
-  );
+  const formats = useSelector((state) => state.formats);
+  const [dateValue, setDateValue] = useState(currentDatum.train_time);
+  const [timeValue, setTimeValue] = useState(currentDatum.train_time);
   const [descriptionValue, setDescriptionValue] = useState(
     currentDatum.description
   );
-  const [stationOption, setStationOption] = useState(createOption(stations[0]));
+  const [stationOption, setStationOption] = useState(
+    createOption(stations[0], 'name')
+  );
 
   useEffect(() => {
     setDescriptionValue(currentDatum.description);
-    setStationOption(getCurrentOption(stations, currentDatum.stationID));
-    setDateTimeValue(Date(currentDatum.train_date_time));
+    setStationOption(
+      getCurrentOption(stations, currentDatum.stationID, 'name')
+    );
+    setDateValue(currentDatum.train_date);
+    setTimeValue(currentDatum.train_time);
   }, [title, currentDatum]);
 
   function handleDescriptionChange(event) {
@@ -42,16 +47,19 @@ function ScheduledTrainForm(props) {
     setStationOption(item);
   }
 
-  function handleDateTimeChange(event) {
-    console.log('date time change');
-    console.log(event);
-    setDateTimeValue(Date(event));
+  function handleDateChange(event) {
+    setDateValue(event);
+  }
+
+  function handleTimeChange(event) {
+    setTimeValue(event);
   }
 
   function handleUpdate() {
     const updatedScheduledTrain = {
       description: descriptionValue,
-      train_date_time: dateTimeValue,
+      train_date: dateValue,
+      train_time: timeValue,
       stationID: stationOption.value,
       id: currentDatum.id
     };
@@ -68,7 +76,8 @@ function ScheduledTrainForm(props) {
   function handleCreate() {
     const newScheduledTrain = {
       description: descriptionValue,
-      train_date_time: dateTimeValue,
+      train_date: dateValue,
+      train_time: timeValue,
       stationID: stationOption.value
     };
     const scheduledTrainValidation = scheduledTrainValidator(newScheduledTrain);
@@ -94,10 +103,8 @@ function ScheduledTrainForm(props) {
             flexDirection: 'column'
           }}
         >
-          <AdminDateTimePicker
-            value={dateTimeValue}
-            onChange={handleDateTimeChange}
-          />
+          <AdminDatePicker value={dateValue} onChange={handleDateChange} />
+          <AdminTimePicker value={timeValue} onChange={handleTimeChange} />
           <AdminInput
             label="description"
             value={descriptionValue}
@@ -105,7 +112,7 @@ function ScheduledTrainForm(props) {
           />
           <AdminSelect
             label="station"
-            options={stations.map((s) => createOption(s))}
+            options={stations.map((s) => createOption(s, 'name'))}
             currentOption={stationOption}
             onChange={handleStationSelect}
           />
