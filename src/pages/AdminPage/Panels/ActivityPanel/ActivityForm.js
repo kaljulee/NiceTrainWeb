@@ -21,14 +21,22 @@ function ActivityForm(props) {
     currentDatum.description
   );
   const [ytrOption, setYTROption] = useState(
-    getCurrentOption(youTubeResources, currentDatum.youTubeResourceID)
+    getCurrentOption(
+      youTubeResources,
+      currentDatum.youTubeResourceID,
+      'description'
+    )
   );
 
   useEffect(() => {
     setNameValue(currentDatum.name);
     setDescriptionValue(currentDatum.description);
     setYTROption(
-      getCurrentOption(youTubeResources, currentDatum.youTubeResourceID)
+      getCurrentOption(
+        youTubeResources,
+        currentDatum.youTubeResourceID,
+        'description'
+      )
     );
   }, [title, currentDatum]);
 
@@ -102,7 +110,9 @@ function ActivityForm(props) {
           />
           <AdminSelect
             label="youTube resource"
-            options={youTubeResources.map((ytr) => createOption(ytr))}
+            options={youTubeResources.map((ytr) =>
+              createOption(ytr, 'description')
+            )}
             currentOption={ytrOption}
             onChange={handleYTRSelect}
           />
