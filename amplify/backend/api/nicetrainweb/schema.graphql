@@ -49,6 +49,7 @@ type ScheduledActivity
   activityID: ID
   scheduledTrainID: ID!
   formatID: ID!
+  order: Int!
   scheduledTrain: ScheduledTrain! @connection(fields: ["scheduledTrainID"])
 }
 

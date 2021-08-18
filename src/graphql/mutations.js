@@ -99,6 +99,7 @@ export const createScheduledTrain = /* GraphQL */ `
           activityID
           scheduledTrainID
           formatID
+          order
           createdAt
           updatedAt
         }
@@ -127,6 +128,7 @@ export const updateScheduledTrain = /* GraphQL */ `
           activityID
           scheduledTrainID
           formatID
+          order
           createdAt
           updatedAt
         }
@@ -155,6 +157,7 @@ export const deleteScheduledTrain = /* GraphQL */ `
           activityID
           scheduledTrainID
           formatID
+          order
           createdAt
           updatedAt
         }
@@ -174,6 +177,7 @@ export const createScheduledActivity = /* GraphQL */ `
       activityID
       scheduledTrainID
       formatID
+      order
       createdAt
       updatedAt
       scheduledTrain {
@@ -202,6 +206,7 @@ export const updateScheduledActivity = /* GraphQL */ `
       activityID
       scheduledTrainID
       formatID
+      order
       createdAt
       updatedAt
       scheduledTrain {
@@ -230,6 +235,7 @@ export const deleteScheduledActivity = /* GraphQL */ `
       activityID
       scheduledTrainID
       formatID
+      order
       createdAt
       updatedAt
       scheduledTrain {
@@ -264,6 +270,7 @@ export const createFormat = /* GraphQL */ `
           activityID
           scheduledTrainID
           formatID
+          order
           createdAt
           updatedAt
         }
@@ -289,6 +296,7 @@ export const updateFormat = /* GraphQL */ `
           activityID
           scheduledTrainID
           formatID
+          order
           createdAt
           updatedAt
         }
@@ -314,6 +322,7 @@ export const deleteFormat = /* GraphQL */ `
           activityID
           scheduledTrainID
           formatID
+          order
           createdAt
           updatedAt
         }
@@ -341,6 +350,7 @@ export const createActivity = /* GraphQL */ `
           activityID
           scheduledTrainID
           formatID
+          order
           createdAt
           updatedAt
         }
@@ -368,6 +378,7 @@ export const updateActivity = /* GraphQL */ `
           activityID
           scheduledTrainID
           formatID
+          order
           createdAt
           updatedAt
         }
@@ -395,6 +406,7 @@ export const deleteActivity = /* GraphQL */ `
           activityID
           scheduledTrainID
           formatID
+          order
           createdAt
           updatedAt
         }
