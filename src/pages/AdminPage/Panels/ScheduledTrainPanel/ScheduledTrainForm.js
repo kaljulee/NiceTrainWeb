@@ -93,7 +93,9 @@ function ScheduledTrainForm(props) {
   }
 
   return (
-    <div style={{ height: '100%', width: '100%' }}>
+    <div
+      style={{ height: '100%', width: '100%', border: '1px solid goldenrod' }}
+    >
       <h2 style={{ color: 'goldenrod' }}>{`Edit ${title}`}</h2>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div
