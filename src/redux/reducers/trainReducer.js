@@ -37,7 +37,8 @@ const initialState = {
   stations: [],
   youTubeResources: [],
   activities: [],
-  formats: []
+  formats: [],
+  scheduledTrains: []
 };
 
 function findIndexByID(items, id) {
@@ -116,8 +117,6 @@ export const trainSlice = createSlice({
         state.youTubeResources = action.payload.listYouTubeResources.items;
       })
       .addCase(callUpdateYouTubeResource.fulfilled, (state, action) => {
-        console.log('yt updated');
-        console.log(action);
         const updatedYTR = action.payload.updateYouTubeResource;
         const index = state.youTubeResources.findIndex(
           (ytr) => ytr.id === updatedYTR.id
@@ -127,14 +126,10 @@ export const trainSlice = createSlice({
         }
       })
       .addCase(callCreateYouTubeResource.fulfilled, (state, action) => {
-        console.log('yt create');
-        console.log(action);
         const newYTR = action.payload.createYouTubeResource;
         state.youTubeResources.push(newYTR);
       })
       .addCase(callDeleteYouTubeResource.fulfilled, (state, action) => {
-        console.log('yt delete');
-        console.log(action);
         const deletedYTR = action.payload.payload.deleteYouTubeResource;
         const index = state.youTubeResources.findIndex(
           (ytr) => ytr.id === deletedYTR.id
@@ -171,7 +166,7 @@ export const trainSlice = createSlice({
       })
       // scheduled train calls
       .addCase(callListScheduledTrains.fulfilled, (state, action) => {
-        state.schduledTrains = action.payload.listScheduledTrains.items;
+        state.scheduledTrains = action.payload.listScheduledTrains.items;
       })
       .addCase(callCreateScheduledTrain.fulfilled, (state, action) => {
         state.scheduledTrains.push(action.payload.createScheduledTrain);

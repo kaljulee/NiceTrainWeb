@@ -11150,22 +11150,6 @@ react-date-picker@^8.3.2:
     react-fit "^1.0.3"
     update-input-width "^1.2.2"
 
-react-datetime-picker@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/react-datetime-picker/-/react-datetime-picker-3.4.0.tgz#fbe1c17d5b735199904253c7707dc4f19c7c01ae"
-  integrity sha512-YoamYoN1zyWmeCx/mScnwjnZTAMHviylEdKwKyes5mLu7OGnNiUPFujW2iveM/2VWuOqP2Md/KCH6iZugnAsLQ==
-  dependencies:
-    "@wojtekmaj/date-utils" "^1.0.3"
-    get-user-locale "^1.2.0"
-    make-event-props "^1.1.0"
-    merge-class-names "^1.1.1"
-    prop-types "^15.6.0"
-    react-calendar "^3.3.1"
-    react-clock "^3.0.0"
-    react-date-picker "^8.3.2"
-    react-fit "^1.0.3"
-    react-time-picker "^4.4.1"
-
 react-dev-utils@^11.0.3:
   version "11.0.4"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-11.0.4.tgz#a7ccb60257a1ca2e0efe7a83e38e6700d17aa37a"

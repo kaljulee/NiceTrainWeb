@@ -22,8 +22,6 @@ export const callListYouTubeResources = createAsyncThunk(
 export const callCreateYouTubeResource = createAsyncThunk(
   'ytr/create',
   async (data) => {
-    console.log('data getting pushed to ytr');
-    console.log(data);
     const response = await API.graphql(
       graphqlOperation(createYouTubeResource, { input: data })
     );
@@ -34,16 +32,12 @@ export const callCreateYouTubeResource = createAsyncThunk(
 export const callUpdateYouTubeResource = createAsyncThunk(
   'ytr/update',
   async (data) => {
-    console.log('data in CUTYR');
-    console.log(data);
     const updatedYTRData = { author: 'noooo' };
     Object.keys(data).forEach((k) => {
       if (data[k].length > 0) {
         updatedYTRData[k] = data[k];
       }
     });
-    console.log('object being pushed');
-    console.log(updatedYTRData);
     const response = await API.graphql(
       graphqlOperation(updateYouTubeResource, { input: updatedYTRData })
     );
