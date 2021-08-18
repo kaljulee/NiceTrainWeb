@@ -6,7 +6,7 @@ import ScheduledTrainForm from './ScheduledTrainForm';
 function ScheduledTrainPanel(props) {
   const title = 'ScheduledTrain';
   const listData = useSelector((state) => state.scheduledTrains);
-  const listFields = ['name', 'train_date'];
+  const listFields = ['description', 'train_date', 'train_time'];
   const [currentDatum, setCurrentDatum] = useState();
   function onDatumClick(id) {
     setCurrentDatum(listData.find((datum) => datum.id === id));
