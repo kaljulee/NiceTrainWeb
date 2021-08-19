@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import AdminList from '../../AdminList';
 import ScheduledTrainForm from './ScheduledTrainForm';
+import ScheduledActivityPanel from '../ScheduledActivityPanel';
 
 function ScheduledTrainPanel(props) {
   const title = 'ScheduledTrain';
@@ -13,7 +14,7 @@ function ScheduledTrainPanel(props) {
   }
   return (
     <div style={{ height: '100%' }}>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div
           style={{
             display: 'flex',
@@ -39,7 +40,10 @@ function ScheduledTrainPanel(props) {
             marginRight: '2vw'
           }}
         >
-          <ScheduledTrainForm title={title} currentDatum={currentDatum} />
+          <div style={{ display: 'flex' }}>
+            <ScheduledTrainForm title={title} currentDatum={currentDatum} />
+            <ScheduledActivityPanel />
+          </div>
         </div>
       </div>
     </div>

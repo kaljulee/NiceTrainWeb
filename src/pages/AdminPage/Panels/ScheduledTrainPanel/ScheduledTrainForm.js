@@ -21,6 +21,7 @@ function ScheduledTrainForm(props) {
   const stations = useSelector((state) => state.stations);
   const activities = useSelector((state) => state.activities);
   const formats = useSelector((state) => state.formats);
+  const scheduledActivities = useSelector((state) => state.scheduledActivities);
   const [dateValue, setDateValue] = useState(currentDatum.train_time);
   const [timeValue, setTimeValue] = useState(currentDatum.train_time);
   const [descriptionValue, setDescriptionValue] = useState(
