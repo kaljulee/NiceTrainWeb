@@ -50,12 +50,14 @@ type ScheduledActivity
   scheduledTrainID: ID!
   formatID: ID!
   order: Int!
+  color: String
   scheduledTrain: ScheduledTrain! @connection(fields: ["scheduledTrainID"])
 }
 
 # Scheduled activities should have a format
 type Format
 @model
+@key(name: "byColor", fields: ["colorID"])
 @auth(
   rules:[
     {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
@@ -65,6 +67,7 @@ type Format
 {
   id: ID!
   name: String!
+  colorID: ID
   scheduledActivities: [ScheduledActivity] @connection(name: "byFormat", fields: ["id"])
 }
 
@@ -72,6 +75,7 @@ type Format
 type Activity
 @model
 @key(name: "byYouTubeResource", fields:["youTubeResourceID"])
+@key(name: "byColor", fields: ["colorID"])
 @auth(
   rules:[
     {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
@@ -82,6 +86,7 @@ type Activity
   id: ID!
   name: String!
   description: String
+  colorID: ID
   scheduledActivities: [ScheduledActivity] @connection(name: "byActivity", fields: ["id"])
   youTubeResourceID: ID
 }
@@ -117,6 +122,21 @@ type BoardLongMessage
 {
   id: ID!
   text: String
+}
+
+type Color
+@model
+@auth(
+  rules:[
+    {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
+    { allow: public, operations: [read] }
+  ]
+)
+{
+  id: ID!
+  name: String!
+  primary: String!
+  contrast: String!
 }
 
 #type ExtraTable

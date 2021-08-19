@@ -88,6 +88,7 @@ export const onCreateScheduledTrain = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -114,6 +115,7 @@ export const onUpdateScheduledTrain = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -140,6 +142,7 @@ export const onDeleteScheduledTrain = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -157,6 +160,7 @@ export const onCreateScheduledActivity = /* GraphQL */ `
       scheduledTrainID
       formatID
       order
+      color
       createdAt
       updatedAt
       scheduledTrain {
@@ -183,6 +187,7 @@ export const onUpdateScheduledActivity = /* GraphQL */ `
       scheduledTrainID
       formatID
       order
+      color
       createdAt
       updatedAt
       scheduledTrain {
@@ -209,6 +214,7 @@ export const onDeleteScheduledActivity = /* GraphQL */ `
       scheduledTrainID
       formatID
       order
+      color
       createdAt
       updatedAt
       scheduledTrain {
@@ -231,6 +237,7 @@ export const onCreateFormat = /* GraphQL */ `
     onCreateFormat {
       id
       name
+      colorID
       createdAt
       updatedAt
       scheduledActivities {
@@ -241,6 +248,7 @@ export const onCreateFormat = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -254,6 +262,7 @@ export const onUpdateFormat = /* GraphQL */ `
     onUpdateFormat {
       id
       name
+      colorID
       createdAt
       updatedAt
       scheduledActivities {
@@ -264,6 +273,7 @@ export const onUpdateFormat = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -277,6 +287,7 @@ export const onDeleteFormat = /* GraphQL */ `
     onDeleteFormat {
       id
       name
+      colorID
       createdAt
       updatedAt
       scheduledActivities {
@@ -287,6 +298,7 @@ export const onDeleteFormat = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -301,6 +313,7 @@ export const onCreateActivity = /* GraphQL */ `
       id
       name
       description
+      colorID
       youTubeResourceID
       createdAt
       updatedAt
@@ -312,6 +325,7 @@ export const onCreateActivity = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -326,6 +340,7 @@ export const onUpdateActivity = /* GraphQL */ `
       id
       name
       description
+      colorID
       youTubeResourceID
       createdAt
       updatedAt
@@ -337,6 +352,7 @@ export const onUpdateActivity = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -351,6 +367,7 @@ export const onDeleteActivity = /* GraphQL */ `
       id
       name
       description
+      colorID
       youTubeResourceID
       createdAt
       updatedAt
@@ -362,6 +379,7 @@ export const onDeleteActivity = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -384,6 +402,7 @@ export const onCreateYouTubeResource = /* GraphQL */ `
           id
           name
           description
+          colorID
           youTubeResourceID
           createdAt
           updatedAt
@@ -407,6 +426,7 @@ export const onUpdateYouTubeResource = /* GraphQL */ `
           id
           name
           description
+          colorID
           youTubeResourceID
           createdAt
           updatedAt
@@ -430,6 +450,7 @@ export const onDeleteYouTubeResource = /* GraphQL */ `
           id
           name
           description
+          colorID
           youTubeResourceID
           createdAt
           updatedAt
@@ -464,6 +485,42 @@ export const onDeleteBoardLongMessage = /* GraphQL */ `
     onDeleteBoardLongMessage {
       id
       text
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateColor = /* GraphQL */ `
+  subscription OnCreateColor {
+    onCreateColor {
+      id
+      name
+      primary
+      contrast
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateColor = /* GraphQL */ `
+  subscription OnUpdateColor {
+    onUpdateColor {
+      id
+      name
+      primary
+      contrast
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteColor = /* GraphQL */ `
+  subscription OnDeleteColor {
+    onDeleteColor {
+      id
+      name
+      primary
+      contrast
       createdAt
       updatedAt
     }

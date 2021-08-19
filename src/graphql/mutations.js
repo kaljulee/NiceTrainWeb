@@ -100,6 +100,7 @@ export const createScheduledTrain = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -129,6 +130,7 @@ export const updateScheduledTrain = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -158,6 +160,7 @@ export const deleteScheduledTrain = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -178,6 +181,7 @@ export const createScheduledActivity = /* GraphQL */ `
       scheduledTrainID
       formatID
       order
+      color
       createdAt
       updatedAt
       scheduledTrain {
@@ -207,6 +211,7 @@ export const updateScheduledActivity = /* GraphQL */ `
       scheduledTrainID
       formatID
       order
+      color
       createdAt
       updatedAt
       scheduledTrain {
@@ -236,6 +241,7 @@ export const deleteScheduledActivity = /* GraphQL */ `
       scheduledTrainID
       formatID
       order
+      color
       createdAt
       updatedAt
       scheduledTrain {
@@ -261,6 +267,7 @@ export const createFormat = /* GraphQL */ `
     createFormat(input: $input, condition: $condition) {
       id
       name
+      colorID
       createdAt
       updatedAt
       scheduledActivities {
@@ -271,6 +278,7 @@ export const createFormat = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -287,6 +295,7 @@ export const updateFormat = /* GraphQL */ `
     updateFormat(input: $input, condition: $condition) {
       id
       name
+      colorID
       createdAt
       updatedAt
       scheduledActivities {
@@ -297,6 +306,7 @@ export const updateFormat = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -313,6 +323,7 @@ export const deleteFormat = /* GraphQL */ `
     deleteFormat(input: $input, condition: $condition) {
       id
       name
+      colorID
       createdAt
       updatedAt
       scheduledActivities {
@@ -323,6 +334,7 @@ export const deleteFormat = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -340,6 +352,7 @@ export const createActivity = /* GraphQL */ `
       id
       name
       description
+      colorID
       youTubeResourceID
       createdAt
       updatedAt
@@ -351,6 +364,7 @@ export const createActivity = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -368,6 +382,7 @@ export const updateActivity = /* GraphQL */ `
       id
       name
       description
+      colorID
       youTubeResourceID
       createdAt
       updatedAt
@@ -379,6 +394,7 @@ export const updateActivity = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -396,6 +412,7 @@ export const deleteActivity = /* GraphQL */ `
       id
       name
       description
+      colorID
       youTubeResourceID
       createdAt
       updatedAt
@@ -407,6 +424,7 @@ export const deleteActivity = /* GraphQL */ `
           scheduledTrainID
           formatID
           order
+          color
           createdAt
           updatedAt
         }
@@ -432,6 +450,7 @@ export const createYouTubeResource = /* GraphQL */ `
           id
           name
           description
+          colorID
           youTubeResourceID
           createdAt
           updatedAt
@@ -458,6 +477,7 @@ export const updateYouTubeResource = /* GraphQL */ `
           id
           name
           description
+          colorID
           youTubeResourceID
           createdAt
           updatedAt
@@ -484,6 +504,7 @@ export const deleteYouTubeResource = /* GraphQL */ `
           id
           name
           description
+          colorID
           youTubeResourceID
           createdAt
           updatedAt
@@ -527,6 +548,51 @@ export const deleteBoardLongMessage = /* GraphQL */ `
     deleteBoardLongMessage(input: $input, condition: $condition) {
       id
       text
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createColor = /* GraphQL */ `
+  mutation CreateColor(
+    $input: CreateColorInput!
+    $condition: ModelColorConditionInput
+  ) {
+    createColor(input: $input, condition: $condition) {
+      id
+      name
+      primary
+      contrast
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateColor = /* GraphQL */ `
+  mutation UpdateColor(
+    $input: UpdateColorInput!
+    $condition: ModelColorConditionInput
+  ) {
+    updateColor(input: $input, condition: $condition) {
+      id
+      name
+      primary
+      contrast
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteColor = /* GraphQL */ `
+  mutation DeleteColor(
+    $input: DeleteColorInput!
+    $condition: ModelColorConditionInput
+  ) {
+    deleteColor(input: $input, condition: $condition) {
+      id
+      name
+      primary
+      contrast
       createdAt
       updatedAt
     }
