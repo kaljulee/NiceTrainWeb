@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Box, ToggleMenu } from '../../../../components/layoutComponents';
 import { trainPamphlet } from '../../../../styles/colors';
+import TrainActivitiesEditor from './TrainActivitiesEditor';
 
 const TrainPamphletToggleMenu = styled(ToggleMenu)`
   background: ${trainPamphlet.background};
@@ -21,7 +22,8 @@ function ScheduledActivityPanel(props) {
           <TrainPamphletButton type="button" onClick={requestClose}>
             close
           </TrainPamphletButton>
-          <span>something here</span>
+          <button type="button">add new</button>
+          <TrainActivitiesEditor />
         </div>
       </TrainPamphletToggleMenu>
     </Box>

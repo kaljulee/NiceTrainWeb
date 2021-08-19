@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import AdminList from '../../AdminList';
 import ScheduledTrainForm from './ScheduledTrainForm';
-import ScheduledActivityDnD from '../ScheduledActivityDnD';
+// import ScheduledActivityDnD from '../ScheduledActivityDnD';
 import ScheduledActivityPanel from '../ScheduledActivityPanel';
+import AdminDnD from '../../AdminDnD';
 
 function ScheduledTrainPanel(props) {
   const title = 'ScheduledTrain';
   const listData = useSelector((state) => state.scheduledTrains);
   const listFields = ['description', 'train_date', 'train_time'];
-  const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [isPanelOpen, setIsPanelOpen] = useState(true);
   const [currentDatum, setCurrentDatum] = useState();
 
   function handlePanelToggle() {
@@ -53,7 +54,7 @@ function ScheduledTrainPanel(props) {
           <div style={{ display: 'flex', height: '100%' }}>
             <ScheduledTrainForm title={title} currentDatum={currentDatum} />
             <div style={{ width: '100%' }}>
-              <ScheduledActivityDnD currentScheduledTrain={currentDatum} />
+              <AdminDnD currentScheduledTrain={currentDatum} />
             </div>
           </div>
         </div>
