@@ -226,7 +226,7 @@ export const trainSlice = createSlice({
           action.payload.listScheduledActivities.items;
       })
       .addCase(callCreateScheduledActivity.fulfilled, (state, action) => {
-        state.scheduledActivity.push(action.payload.createScheduledActivity);
+        state.scheduledActivities.push(action.payload.createScheduledActivity);
       })
       .addCase(callUpdateScheduledActivity.fulfilled, (state, action) => {
         const updatedScheduledActivity = action.payload.updateScheduledActivity;
