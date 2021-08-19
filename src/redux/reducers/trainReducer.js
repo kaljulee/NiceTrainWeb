@@ -30,6 +30,12 @@ import {
   callUpdateFormat,
   callDeleteFormat
 } from '../thunks/format';
+import {
+  callCreateScheduledActivity,
+  callDeleteScheduledActivity,
+  callListScheduledActivities,
+  callUpdateScheduledActivity
+} from '../thunks/scheduledActivity';
 
 const initialState = {
   stationsLoading: 'idle',
@@ -38,7 +44,8 @@ const initialState = {
   youTubeResources: [],
   activities: [],
   formats: [],
-  scheduledTrains: []
+  scheduledTrains: [],
+  scheduledActivities: []
 };
 
 function findIndexByID(items, id) {
@@ -212,7 +219,39 @@ export const trainSlice = createSlice({
           state.formats = removeByID(state.formats, deletedFormat.id);
         }
       })
-
+      // scheduledActivity calls
+      // todo add logic to sort scheduledActivities into fields keyed on train id
+      .addCase(callListScheduledActivities.fulfilled, (state, action) => {
+        state.scheduledActivities =
+          action.payload.listScheduledActivities.items;
+      })
+      .addCase(callCreateScheduledActivity.fulfilled, (state, action) => {
+        state.scheduledActivity.push(action.payload.createScheduledActivity);
+      })
+      .addCase(callUpdateScheduledActivity.fulfilled, (state, action) => {
+        const updatedScheduledActivity = action.payload.updateScheduledActivity;
+        const index = findIndexByID(
+          state.scheduledActivities,
+          updatedScheduledActivity.id
+        );
+        if (index !== -1) {
+          state.scheduledActivities[index] = updatedScheduledActivity;
+        }
+      })
+      .addCase(callDeleteScheduledActivity.fulfilled, (state, action) => {
+        const deletedScheduledActivity =
+          action.payload.data.deleteScheduledActivity;
+        const index = findIndexByID(
+          state.scheduledActivities,
+          deletedScheduledActivity.id
+        );
+        if (isValidIndex(index)) {
+          state.scheduledActivities = removeByID(
+            state.scheduledActivities,
+            deletedScheduledActivity.id
+          );
+        }
+      })
       .addDefaultCase((state, action) => {});
   }
 });
