@@ -1,7 +1,7 @@
 import React from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import styled from '@emotion/styled';
-import { AdminTitle, Box } from '../../../components/styledComponents/layout';
+import { AdminTitle, Box } from '../../../components/layoutComponents';
 
 const ListItem = styled.div({
   backgroundColor: 'rgba(0,0,0,0.5)',

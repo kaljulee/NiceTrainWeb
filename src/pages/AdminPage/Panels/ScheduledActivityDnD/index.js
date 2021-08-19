@@ -1,9 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import {
-  AdminTitle,
-  Box
-} from '../../../../components/styledComponents/layout';
+import { AdminTitle, Box } from '../../../../components/layoutComponents';
 import AdminDnD from '../../AdminDnD';
 
 function ScheduledActivityDnD(props) {
