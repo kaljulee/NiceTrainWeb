@@ -101,6 +101,7 @@ export const createScheduledTrain = /* GraphQL */ `
           formatID
           order
           color
+          duration
           createdAt
           updatedAt
         }
@@ -131,6 +132,7 @@ export const updateScheduledTrain = /* GraphQL */ `
           formatID
           order
           color
+          duration
           createdAt
           updatedAt
         }
@@ -161,6 +163,7 @@ export const deleteScheduledTrain = /* GraphQL */ `
           formatID
           order
           color
+          duration
           createdAt
           updatedAt
         }
@@ -182,6 +185,7 @@ export const createScheduledActivity = /* GraphQL */ `
       formatID
       order
       color
+      duration
       createdAt
       updatedAt
       scheduledTrain {
@@ -212,6 +216,7 @@ export const updateScheduledActivity = /* GraphQL */ `
       formatID
       order
       color
+      duration
       createdAt
       updatedAt
       scheduledTrain {
@@ -242,6 +247,7 @@ export const deleteScheduledActivity = /* GraphQL */ `
       formatID
       order
       color
+      duration
       createdAt
       updatedAt
       scheduledTrain {
@@ -279,6 +285,7 @@ export const createFormat = /* GraphQL */ `
           formatID
           order
           color
+          duration
           createdAt
           updatedAt
         }
@@ -307,6 +314,7 @@ export const updateFormat = /* GraphQL */ `
           formatID
           order
           color
+          duration
           createdAt
           updatedAt
         }
@@ -335,6 +343,7 @@ export const deleteFormat = /* GraphQL */ `
           formatID
           order
           color
+          duration
           createdAt
           updatedAt
         }
@@ -365,6 +374,7 @@ export const createActivity = /* GraphQL */ `
           formatID
           order
           color
+          duration
           createdAt
           updatedAt
         }
@@ -395,6 +405,7 @@ export const updateActivity = /* GraphQL */ `
           formatID
           order
           color
+          duration
           createdAt
           updatedAt
         }
@@ -425,6 +436,7 @@ export const deleteActivity = /* GraphQL */ `
           formatID
           order
           color
+          duration
           createdAt
           updatedAt
         }

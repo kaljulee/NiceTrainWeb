@@ -64,6 +64,7 @@ export const getScheduledTrain = /* GraphQL */ `
           formatID
           order
           color
+          duration
           createdAt
           updatedAt
         }
@@ -105,6 +106,7 @@ export const getScheduledActivity = /* GraphQL */ `
       formatID
       order
       color
+      duration
       createdAt
       updatedAt
       scheduledTrain {
@@ -141,6 +143,7 @@ export const listScheduledActivities = /* GraphQL */ `
         formatID
         order
         color
+        duration
         createdAt
         updatedAt
         scheduledTrain {
@@ -174,6 +177,7 @@ export const getFormat = /* GraphQL */ `
           formatID
           order
           color
+          duration
           createdAt
           updatedAt
         }
@@ -222,6 +226,7 @@ export const getActivity = /* GraphQL */ `
           formatID
           order
           color
+          duration
           createdAt
           updatedAt
         }

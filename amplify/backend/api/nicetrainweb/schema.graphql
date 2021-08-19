@@ -51,6 +51,7 @@ type ScheduledActivity
   formatID: ID!
   order: Int!
   color: String
+  duration: Int!
   scheduledTrain: ScheduledTrain! @connection(fields: ["scheduledTrainID"])
 }
 
