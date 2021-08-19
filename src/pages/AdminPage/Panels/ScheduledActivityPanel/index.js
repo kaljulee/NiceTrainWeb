@@ -1,17 +1,30 @@
 import React from 'react';
-import { ToggleMenu } from '../../../../components/layoutComponents';
+import styled from '@emotion/styled';
+import { Box, ToggleMenu } from '../../../../components/layoutComponents';
+import { trainPamphlet } from '../../../../styles/colors';
+
+const TrainPamphletToggleMenu = styled(ToggleMenu)`
+  background: ${trainPamphlet.background};
+`;
+
+const TrainPamphletButton = styled.button`
+  background: ${trainPamphlet.surface};
+  color: ${trainPamphlet.onSurface};
+`;
 
 function ScheduledActivityPanel(props) {
   const { isOpen, requestClose } = props;
   return (
-    <ToggleMenu isOpen={isOpen}>
-      <div style={{ height: '50vh' }}>
-        <button type="button" onClick={requestClose}>
-          close
-        </button>
-        <span>something here</span>
-      </div>
-    </ToggleMenu>
+    <Box>
+      <TrainPamphletToggleMenu isOpen={isOpen}>
+        <div style={{ height: '50vh' }}>
+          <TrainPamphletButton type="button" onClick={requestClose}>
+            close
+          </TrainPamphletButton>
+          <span>something here</span>
+        </div>
+      </TrainPamphletToggleMenu>
+    </Box>
   );
 }
 

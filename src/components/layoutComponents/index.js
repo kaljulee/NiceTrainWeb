@@ -20,12 +20,12 @@ export const Column = styled.div({
 });
 
 export const ToggleMenu = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   max-height: ${(props) => (props.isOpen ? '100%' : '0')};
   width: 100%;
   background-color: pink;
   background: pink;
   overflow: hidden;
-  transition: all 0.3s ease-out;
+  transition: all 0.8s ease-out;
 `;
