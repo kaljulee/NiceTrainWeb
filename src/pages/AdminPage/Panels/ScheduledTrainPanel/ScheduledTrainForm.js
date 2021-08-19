@@ -19,7 +19,7 @@ import {
   Box,
   Column,
   Row
-} from '../../../../components/styledComponents';
+} from '../../../../components/styledComponents/layout';
 
 function ScheduledTrainForm(props) {
   const { title, currentDatum, youTubeResources } = props;

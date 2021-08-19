@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToggleMenu } from '../../../../components/styledComponents';
+import { ToggleMenu } from '../../../../components/styledComponents/layout';
 
 function ScheduledActivityPanel(props) {
   const { isOpen, requestClose } = props;

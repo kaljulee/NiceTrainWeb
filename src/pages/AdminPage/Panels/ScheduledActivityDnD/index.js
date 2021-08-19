@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { AdminTitle, Box } from '../../../../components/styledComponents';
+import {
+  AdminTitle,
+  Box
+} from '../../../../components/styledComponents/layout';
 import AdminDnD from '../../AdminDnD';
 
 function ScheduledActivityDnD(props) {
   const { currentScheduledTrain, title } = props;
-  console.log('SAP');
-  console.log(currentScheduledTrain);
-  console.log('...');
   const scheduledActivities = useSelector((state) => state.scheduledActivities);
   return (
     <Box>
