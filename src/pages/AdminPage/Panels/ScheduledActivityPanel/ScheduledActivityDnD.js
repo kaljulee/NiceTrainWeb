@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
-import { useTheme } from '@emotion/react';
 import { Box, Row } from '../../../../components/layoutComponents';
 import AdminSelect from '../../AdminSelect';
 import { createOption } from '../../../../utils';
 import AdminDurationInput from '../../AdminDurationInput';
 import AdminInput from '../../AdminInput';
+import { callDeleteScheduledActivity } from '../../../../redux/thunks/scheduledActivity';
 
 const ActivityRow = styled(Row)`
   display: flex;
@@ -20,6 +20,11 @@ const SaveButton = styled.button`
   height: 100%;
 `;
 
+const DeleteButton = styled(SaveButton)`
+  background: ${(props) => props.theme.onSurface};
+  color: ${(props) => props.theme.surface};
+`;
+
 function DragItem(props) {
   const { activity } = props;
   const possibleActivities = useSelector((state) => state.activities);
@@ -27,9 +32,14 @@ function DragItem(props) {
   const [currentActivityOption, setCurrentActivityOption] = useState();
   const [currentFormatOption, setCurrentFormatOption] = useState();
   const [nameValue, setNameValue] = useState();
+  const dispatch = useDispatch();
 
   function saveChanges() {
     console.log('would save changes');
+  }
+
+  function deleteScheduledActivity() {
+    dispatch(callDeleteScheduledActivity({ id: activity.id }));
   }
 
   const activtyOptions = possibleActivities.map((a) =>
@@ -62,6 +72,9 @@ function DragItem(props) {
           <SaveButton type="submit" onClick={saveChanges}>
             save
           </SaveButton>
+          <DeleteButton type="submit" onClick={deleteScheduledActivity}>
+            delete
+          </DeleteButton>
         </ActivityRow>
       )}
     </Draggable>
