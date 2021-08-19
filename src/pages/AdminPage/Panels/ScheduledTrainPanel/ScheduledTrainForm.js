@@ -14,6 +14,7 @@ import { createOption, formatDate, getCurrentOption } from '../../../../utils';
 import AdminSelect from '../../AdminSelect';
 import AdminDatePicker from '../../AdminDatePicker';
 import AdminTimePicker from '../../AdminTimePicker';
+import { AdminTitle, Box } from '../../../../components/styledComponents';
 
 function ScheduledTrainForm(props) {
   const { title, currentDatum, youTubeResources } = props;
@@ -94,10 +95,8 @@ function ScheduledTrainForm(props) {
   }
 
   return (
-    <div
-      style={{ height: '100%', width: '100%', border: '1px solid goldenrod' }}
-    >
-      <h2 style={{ color: 'goldenrod' }}>{`Edit ${title}`}</h2>
+    <Box>
+      <AdminTitle>{`Edit ${title}`}</AdminTitle>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div
           style={{
@@ -127,7 +126,7 @@ function ScheduledTrainForm(props) {
         />
       </div>
       <Toaster />
-    </div>
+    </Box>
   );
 }
 

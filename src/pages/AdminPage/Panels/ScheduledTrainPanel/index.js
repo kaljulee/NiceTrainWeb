@@ -10,6 +10,11 @@ function ScheduledTrainPanel(props) {
   const listFields = ['description', 'train_date', 'train_time'];
   const [currentDatum, setCurrentDatum] = useState();
   function onDatumClick(id) {
+    console.log('datum click id');
+    console.log(id);
+    console.log('from');
+    console.log(listData);
+    console.log('....');
     setCurrentDatum(listData.find((datum) => datum.id === id));
   }
   return (
@@ -40,9 +45,11 @@ function ScheduledTrainPanel(props) {
             marginRight: '2vw'
           }}
         >
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex', height: '100%' }}>
             <ScheduledTrainForm title={title} currentDatum={currentDatum} />
-            <ScheduledActivityPanel />
+            <div style={{ width: '100%' }}>
+              <ScheduledActivityPanel currentScheduledTrain={currentDatum} />
+            </div>
           </div>
         </div>
       </div>
