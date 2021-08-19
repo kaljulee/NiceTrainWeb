@@ -14,11 +14,6 @@ const List = styled(Box)`
 
 function DnDListItem(props) {
   const { item, labelField } = props;
-  console.log('item');
-  console.log(item);
-  console.log('labelfield');
-  console.log(labelField);
-  console.log('...');
   return (
     <Draggable draggableId={`${item.id}`} index={item.order}>
       {(provided) => (
