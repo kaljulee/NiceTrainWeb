@@ -10,11 +10,16 @@ import {
 import { scheduledTrainValidator } from '../../../../redux/validators';
 import AdminInput from '../../AdminInput';
 import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
-import { createOption, formatDate, getCurrentOption } from '../../../../utils';
+import { createOption, getCurrentOption } from '../../../../utils';
 import AdminSelect from '../../AdminSelect';
 import AdminDatePicker from '../../AdminDatePicker';
 import AdminTimePicker from '../../AdminTimePicker';
-import { AdminTitle, Box } from '../../../../components/styledComponents';
+import {
+  AdminTitle,
+  Box,
+  Column,
+  Row
+} from '../../../../components/styledComponents';
 
 function ScheduledTrainForm(props) {
   const { title, currentDatum, youTubeResources } = props;
@@ -97,34 +102,37 @@ function ScheduledTrainForm(props) {
   return (
     <Box>
       <AdminTitle>{`Edit ${title}`}</AdminTitle>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div
-          style={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          <AdminDatePicker value={dateValue} onChange={handleDateChange} />
-          <AdminTimePicker value={timeValue} onChange={handleTimeChange} />
-          <AdminInput
-            label="description"
-            value={descriptionValue}
-            onChange={handleDescriptionChange}
+      <Row>
+        <Column>
+          <div
+            style={{
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            <AdminDatePicker value={dateValue} onChange={handleDateChange} />
+            <AdminTimePicker value={timeValue} onChange={handleTimeChange} />
+            <AdminInput
+              label="description"
+              value={descriptionValue}
+              onChange={handleDescriptionChange}
+            />
+            <AdminSelect
+              label="station"
+              options={stations.map((s) => createOption(s, 'name'))}
+              currentOption={stationOption}
+              onChange={handleStationSelect}
+            />
+          </div>
+          <AdminSubmitButtonBar
+            handleCreate={handleCreate}
+            handleUpdate={handleUpdate}
+            handleDelete={handleDelete}
           />
-          <AdminSelect
-            label="station"
-            options={stations.map((s) => createOption(s, 'name'))}
-            currentOption={stationOption}
-            onChange={handleStationSelect}
-          />
-        </div>
-        <AdminSubmitButtonBar
-          handleCreate={handleCreate}
-          handleUpdate={handleUpdate}
-          handleDelete={handleDelete}
-        />
-      </div>
+        </Column>
+        <Column />
+      </Row>
       <Toaster />
     </Box>
   );

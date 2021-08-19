@@ -2,23 +2,28 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import AdminList from '../../AdminList';
 import ScheduledTrainForm from './ScheduledTrainForm';
+import ScheduledActivityDnD from '../ScheduledActivityDnD';
 import ScheduledActivityPanel from '../ScheduledActivityPanel';
 
 function ScheduledTrainPanel(props) {
   const title = 'ScheduledTrain';
   const listData = useSelector((state) => state.scheduledTrains);
   const listFields = ['description', 'train_date', 'train_time'];
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [currentDatum, setCurrentDatum] = useState();
+
+  function handlePanelToggle() {
+    setIsPanelOpen(!isPanelOpen);
+  }
+
   function onDatumClick(id) {
-    console.log('datum click id');
-    console.log(id);
-    console.log('from');
-    console.log(listData);
-    console.log('....');
     setCurrentDatum(listData.find((datum) => datum.id === id));
   }
   return (
     <div style={{ height: '100%' }}>
+      <button type="button" onClick={handlePanelToggle}>
+        edit activities
+      </button>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div
           style={{
@@ -48,11 +53,12 @@ function ScheduledTrainPanel(props) {
           <div style={{ display: 'flex', height: '100%' }}>
             <ScheduledTrainForm title={title} currentDatum={currentDatum} />
             <div style={{ width: '100%' }}>
-              <ScheduledActivityPanel currentScheduledTrain={currentDatum} />
+              <ScheduledActivityDnD currentScheduledTrain={currentDatum} />
             </div>
           </div>
         </div>
       </div>
+      <ScheduledActivityPanel isOpen={isPanelOpen} />
     </div>
   );
 }
