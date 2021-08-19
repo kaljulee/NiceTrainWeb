@@ -2,10 +2,13 @@ import React from 'react';
 import { ToggleMenu } from '../../../../components/styledComponents';
 
 function ScheduledActivityPanel(props) {
-  const { isOpen } = props;
+  const { isOpen, requestClose } = props;
   return (
     <ToggleMenu isOpen={isOpen}>
-      <div style={{ height: 300 }}>
+      <div style={{ height: '50vh' }}>
+        <button type="button" onClick={requestClose}>
+          close
+        </button>
         <span>something here</span>
       </div>
     </ToggleMenu>

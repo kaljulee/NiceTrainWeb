@@ -58,7 +58,12 @@ function ScheduledTrainPanel(props) {
           </div>
         </div>
       </div>
-      <ScheduledActivityPanel isOpen={isPanelOpen} />
+      <ScheduledActivityPanel
+        isOpen={isPanelOpen}
+        requestClose={() => {
+          setIsPanelOpen(false);
+        }}
+      />
     </div>
   );
 }
