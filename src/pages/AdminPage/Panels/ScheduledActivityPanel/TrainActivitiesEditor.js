@@ -7,7 +7,7 @@ const ActivityFieldTabs = styled(Box)`
   background: green;
 `;
 
-function TrainActivitiesEditor() {
+function TrainActivitiesEditor(props) {
   return (
     <Row style={{ border: '1px solid black', height: '100%' }}>
       <div style={{ flex: 8 }}>

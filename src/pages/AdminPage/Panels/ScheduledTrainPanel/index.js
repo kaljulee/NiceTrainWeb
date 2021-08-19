@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
 import AdminList from '../../AdminList';
 import ScheduledTrainForm from './ScheduledTrainForm';
 // import ScheduledActivityDnD from '../ScheduledActivityDnD';
@@ -9,11 +10,18 @@ import AdminDnD from '../../AdminDnD';
 function ScheduledTrainPanel(props) {
   const title = 'ScheduledTrain';
   const listData = useSelector((state) => state.scheduledTrains);
+  const scheduledActivities = useSelector((state) => state.scheduledActivities);
   const listFields = ['description', 'train_date', 'train_time'];
   const [isPanelOpen, setIsPanelOpen] = useState(true);
   const [currentDatum, setCurrentDatum] = useState();
 
   function handlePanelToggle() {
+    if (!isPanelOpen) {
+      if (!currentDatum) {
+        toast.error('No train selected');
+        return;
+      }
+    }
     setIsPanelOpen(!isPanelOpen);
   }
 
@@ -54,17 +62,22 @@ function ScheduledTrainPanel(props) {
           <div style={{ display: 'flex', height: '100%' }}>
             <ScheduledTrainForm title={title} currentDatum={currentDatum} />
             <div style={{ width: '100%' }}>
-              <AdminDnD currentScheduledTrain={currentDatum} />
+              <AdminDnD
+                currentScheduledTrain={currentDatum}
+                scheduledActivites={scheduledActivities}
+              />
             </div>
           </div>
         </div>
       </div>
       <ScheduledActivityPanel
         isOpen={isPanelOpen}
+        scheduledTrainID={currentDatum ? currentDatum.id : undefined}
         requestClose={() => {
           setIsPanelOpen(false);
         }}
       />
+      <Toaster />
     </div>
   );
 }

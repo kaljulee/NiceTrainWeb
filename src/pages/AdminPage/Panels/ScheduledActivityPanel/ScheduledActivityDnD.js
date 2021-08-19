@@ -2,14 +2,22 @@ import React, { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
 import styled from '@emotion/styled';
+import { useTheme } from '@emotion/react';
 import { Box, Row } from '../../../../components/layoutComponents';
 import AdminSelect from '../../AdminSelect';
 import { createOption } from '../../../../utils';
 import AdminDurationInput from '../../AdminDurationInput';
+import AdminInput from '../../AdminInput';
 
 const ActivityRow = styled(Row)`
   display: flex;
   justify-content: space-between;
+`;
+
+const SaveButton = styled.button`
+  background: ${(props) => props.theme.surface};
+  color: ${(props) => props.theme.onSurface};
+  height: 100%;
 `;
 
 function DragItem(props) {
@@ -18,12 +26,12 @@ function DragItem(props) {
   const possibleFormats = useSelector((state) => state.formats);
   const [currentActivityOption, setCurrentActivityOption] = useState();
   const [currentFormatOption, setCurrentFormatOption] = useState();
+  const [nameValue, setNameValue] = useState();
 
   function saveChanges() {
     console.log('would save changes');
   }
 
-  console.log(`item id ${activity.id}`);
   const activtyOptions = possibleActivities.map((a) =>
     createOption(a, 'description')
   );
@@ -32,11 +40,12 @@ function DragItem(props) {
     <Draggable draggableId={activity.id} index={activity.order}>
       {(provided) => (
         <ActivityRow
-          style={{ justifyContent: 'space-between' }}
-          ref={provided.ref}
+          style={{ justifyContent: 'space-between', padding: `2px 0 2px 0` }}
+          ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
+          <AdminInput label="name" value={nameValue} onChange={setNameValue} />
           <AdminSelect
             label="Activity"
             options={activtyOptions}
@@ -50,9 +59,9 @@ function DragItem(props) {
             onChange={setCurrentFormatOption}
           />
           <AdminDurationInput />
-          <button type="submit" onClick={saveChanges}>
+          <SaveButton type="submit" onClick={saveChanges}>
             save
-          </button>
+          </SaveButton>
         </ActivityRow>
       )}
     </Draggable>
@@ -60,12 +69,12 @@ function DragItem(props) {
 }
 
 function DragList(props) {
-  const { activities } = props;
+  const { scheduledActivities } = props;
   return (
     <Droppable droppableId="droppable">
       {(provided) => (
         <div ref={provided.innerRef} {...provided.droppableProps}>
-          {activities.map((activity) => (
+          {scheduledActivities.map((activity) => (
             <DragItem key={activity.id} activity={activity} />
           ))}
           {provided.placeholder}
@@ -76,24 +85,14 @@ function DragList(props) {
 }
 
 function ScheduledActivityDnD(props) {
-  const { activities } = props;
-  console.log('activities');
-  console.log(activities);
-  console.log(props);
+  const scheduledActivities = useSelector((state) => state.scheduledActivities);
   return (
     <Box>
       <DragDropContext>
-        <DragList activities={activities} />
+        <DragList scheduledActivities={scheduledActivities} />
       </DragDropContext>
     </Box>
   );
 }
-
-ScheduledActivityDnD.defaultProps = {
-  activities: [
-    { id: 'ham', order: 1 },
-    { id: 'snax', order: 2 }
-  ]
-};
 
 export default ScheduledActivityDnD;
