@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import toast, { Toaster } from 'react-hot-toast';
 import AdminList from '../../AdminList';
 import ScheduledTrainForm from './ScheduledTrainForm';
 // import ScheduledActivityDnD from '../ScheduledActivityDnD';
 import ScheduledActivityPanel from '../ScheduledActivityPanel';
 import AdminDnD from '../../AdminDnD';
+import { callListScheduledActivities } from '../../../../redux/thunks/scheduledActivity';
 
 function ScheduledTrainPanel(props) {
   const title = 'ScheduledTrain';
+  const dispatch = useDispatch();
   const listData = useSelector((state) => state.scheduledTrains);
   const scheduledActivities = useSelector((state) => state.scheduledActivities);
   const listFields = ['description', 'train_date', 'train_time'];
   const [isPanelOpen, setIsPanelOpen] = useState(true);
   const [currentDatum, setCurrentDatum] = useState();
-
   function handlePanelToggle() {
     if (!isPanelOpen) {
       if (!currentDatum) {
@@ -26,7 +27,10 @@ function ScheduledTrainPanel(props) {
   }
 
   function onDatumClick(id) {
-    setCurrentDatum(listData.find((datum) => datum.id === id));
+    if (!currentDatum || id !== currentDatum.id) {
+      setCurrentDatum(listData.find((datum) => datum.id === id));
+      dispatch(callListScheduledActivities(id));
+    }
   }
   return (
     <div style={{ height: '100%' }}>
