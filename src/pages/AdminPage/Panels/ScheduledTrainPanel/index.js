@@ -1,21 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import toast, { Toaster } from 'react-hot-toast';
 import AdminList from '../../AdminList';
 import ScheduledTrainForm from './ScheduledTrainForm';
-// import ScheduledActivityDnD from '../ScheduledActivityDnD';
 import ScheduledActivityPanel from '../ScheduledActivityPanel';
 import AdminDnD from '../../AdminDnD';
-import { callListScheduledActivities } from '../../../../redux/thunks/scheduledActivity';
+import { callGetScheduledActivitiesByTrain } from '../../../../redux/thunks/scheduledActivity';
 
 function ScheduledTrainPanel(props) {
   const title = 'ScheduledTrain';
   const dispatch = useDispatch();
   const listData = useSelector((state) => state.scheduledTrains);
-  const scheduledActivities = useSelector((state) => state.scheduledActivities);
+  const allScheduledActivities = useSelector(
+    (state) => state.scheduledActivities
+  );
   const listFields = ['description', 'train_date', 'train_time'];
   const [isPanelOpen, setIsPanelOpen] = useState(true);
   const [currentDatum, setCurrentDatum] = useState();
+
+  const [scheduledActivities, setScheduledActivities] = useState([]);
+  useEffect(() => {
+    if (!currentDatum) {
+      return;
+    }
+    const { id } = currentDatum;
+    if (!allScheduledActivities[id]) {
+      dispatch(callGetScheduledActivitiesByTrain(id));
+    } else {
+      setScheduledActivities(allScheduledActivities[id]);
+    }
+  }, [allScheduledActivities, currentDatum]);
+
   function handlePanelToggle() {
     if (!isPanelOpen) {
       if (!currentDatum) {
@@ -29,7 +44,6 @@ function ScheduledTrainPanel(props) {
   function onDatumClick(id) {
     if (!currentDatum || id !== currentDatum.id) {
       setCurrentDatum(listData.find((datum) => datum.id === id));
-      dispatch(callListScheduledActivities(id));
     }
   }
   return (
@@ -76,6 +90,7 @@ function ScheduledTrainPanel(props) {
       </div>
       <ScheduledActivityPanel
         isOpen={isPanelOpen}
+        scheduledActivities={scheduledActivities}
         scheduledTrainID={currentDatum ? currentDatum.id : undefined}
         requestClose={() => {
           setIsPanelOpen(false);
