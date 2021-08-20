@@ -18,11 +18,15 @@ function AdminInput(props) {
           color: theme.onBackground,
           border: 'none'
         }}
-        value={value}
+        value={value || value === 0 ? value : ''}
         onChange={onChange}
       />
     </div>
   );
 }
+
+AdminInput.defaultProps = {
+  value: ''
+};
 
 export default AdminInput;

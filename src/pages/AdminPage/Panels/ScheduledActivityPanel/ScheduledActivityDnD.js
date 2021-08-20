@@ -62,7 +62,11 @@ function DragItem(props) {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <AdminInput label="name" value={nameValue} onChange={setNameValue} />
+          <AdminInput
+            label="name"
+            value={nameValue}
+            onChange={(event) => setNameValue(event.target.value)}
+          />
           <AdminInput
             label="order"
             value={activity.order}
