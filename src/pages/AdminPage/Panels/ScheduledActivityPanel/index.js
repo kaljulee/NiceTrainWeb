@@ -24,7 +24,8 @@ function ScheduledActivityPanel(props) {
     dispatch(
       callCreateScheduledActivity({
         scheduledTrainID,
-        order: scheduledActivities.length
+        order: scheduledActivities.length,
+        duration: 0
       })
     );
   }

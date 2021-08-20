@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
+import { Toaster, toast } from 'react-hot-toast';
 import { Box, Row } from '../../../../components/layoutComponents';
 import AdminSelect from '../../AdminSelect';
 import {
   createOption,
   getCurrentOption,
-  hmsToSeconds
+  hmsToSeconds,
+  secondsToHMS
 } from '../../../../utils';
 import AdminDurationInput from '../../AdminDurationInput';
 import AdminInput from '../../AdminInput';
@@ -43,13 +45,24 @@ function DragItem(props) {
     getCurrentOption(possibleFormats, activity.formatID, 'name')
   );
   const [hmsValue, setHMSValue] = useState(
-    activity.duration ? activity.duration : {}
+    Number.isNaN(activity.duration)
+      ? { h: 0, m: 0, s: 0 }
+      : secondsToHMS(activity.duration)
   );
   const [nameValue, setNameValue] = useState(activity.name);
   const dispatch = useDispatch();
 
   function onDurationChange(arg) {
-    setHMSValue({ ...hmsValue, ...arg });
+    let goodInput = true;
+    Object.keys(arg).forEach((k) => {
+      if (isNaN(arg[k])) {
+        goodInput = false;
+        toast.error('must be a number');
+      }
+    });
+    if (goodInput) {
+      setHMSValue({ ...hmsValue, ...arg });
+    }
   }
 
   function saveChanges() {
@@ -137,6 +150,7 @@ function ScheduledActivityDnD(props) {
       <DragDropContext>
         <DragList scheduledActivities={scheduledActivities} />
       </DragDropContext>
+      <Toaster />
     </Box>
   );
 }
