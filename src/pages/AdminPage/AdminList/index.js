@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ReactList from 'react-list';
 
+// todo this needs to handle fields that are IDs,
+// todo needs a way to get the relevant info about related data
 function AdminList(props) {
   const { title, data, fields, onDatumClick } = props;
   const [activeDatumID, setActiveDatumID] = useState();

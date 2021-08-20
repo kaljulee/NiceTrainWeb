@@ -80,9 +80,11 @@ function ScheduledTrainPanel(props) {
           <div style={{ display: 'flex', height: '100%' }}>
             <ScheduledTrainForm title={title} currentDatum={currentDatum} />
             <div style={{ width: '100%' }}>
-              <AdminDnD
-                currentScheduledTrain={currentDatum}
-                scheduledActivites={scheduledActivities}
+              <AdminList
+                title="Activity"
+                data={scheduledActivities}
+                fields={['name']}
+                onDatumClick={() => {}}
               />
             </div>
           </div>
