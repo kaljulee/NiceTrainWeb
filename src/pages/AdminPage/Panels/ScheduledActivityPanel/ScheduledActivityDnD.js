@@ -4,10 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 import { Box, Row } from '../../../../components/layoutComponents';
 import AdminSelect from '../../AdminSelect';
-import { createOption } from '../../../../utils';
+import {
+  createOption,
+  getCurrentOption,
+  hmsToSeconds
+} from '../../../../utils';
 import AdminDurationInput from '../../AdminDurationInput';
 import AdminInput from '../../AdminInput';
-import { callDeleteScheduledActivity } from '../../../../redux/thunks/scheduledActivity';
+import {
+  callDeleteScheduledActivity,
+  callUpdateScheduledActivity
+} from '../../../../redux/thunks/scheduledActivity';
 
 const ActivityRow = styled(Row)`
   display: flex;
@@ -29,8 +36,12 @@ function DragItem(props) {
   const { activity } = props;
   const possibleActivities = useSelector((state) => state.activities);
   const possibleFormats = useSelector((state) => state.formats);
-  const [currentActivityOption, setCurrentActivityOption] = useState();
-  const [currentFormatOption, setCurrentFormatOption] = useState();
+  const [currentActivityOption, setCurrentActivityOption] = useState(
+    getCurrentOption(possibleActivities, activity.activityID, 'description')
+  );
+  const [currentFormatOption, setCurrentFormatOption] = useState(
+    getCurrentOption(possibleFormats, activity.formatID, 'name')
+  );
   const [hmsValue, setHMSValue] = useState(
     activity.duration ? activity.duration : {}
   );
@@ -42,7 +53,18 @@ function DragItem(props) {
   }
 
   function saveChanges() {
-    console.log('would save changes');
+    const sActivityUpdate = {
+      id: activity.id,
+      name: nameValue,
+      duration: hmsToSeconds(hmsValue)
+    };
+    if (currentActivityOption && currentActivityOption.value) {
+      sActivityUpdate.activityID = currentActivityOption.value;
+    }
+    if (currentFormatOption && currentFormatOption.value) {
+      sActivityUpdate.formatID = currentFormatOption.value;
+    }
+    dispatch(callUpdateScheduledActivity(sActivityUpdate));
   }
 
   function deleteScheduledActivity() {
@@ -66,11 +88,6 @@ function DragItem(props) {
             label="name"
             value={nameValue}
             onChange={(event) => setNameValue(event.target.value)}
-          />
-          <AdminInput
-            label="order"
-            value={activity.order}
-            onChange={() => {}}
           />
           <AdminSelect
             label="Activity"

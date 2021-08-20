@@ -113,7 +113,7 @@ function ActivityForm(props) {
             options={youTubeResources.map((ytr) =>
               createOption(ytr, 'description')
             )}
-            currentOption={ytrOption}
+            value={ytrOption}
             onChange={handleYTRSelect}
           />
         </div>

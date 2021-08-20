@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { useTheme } from '@emotion/react';
 
 function AdminSelect(props) {
-  const { options, currentOption, label, onChange } = props;
+  const { options, value, label, onChange } = props;
   const theme = useTheme();
   const customStyles = {
     option: (provided) => ({
@@ -55,7 +55,7 @@ function AdminSelect(props) {
       <Select
         styles={customStyles}
         options={options}
-        value={currentOption}
+        value={value}
         onChange={onChange}
       />
     </div>

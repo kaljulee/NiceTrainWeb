@@ -121,7 +121,7 @@ function ScheduledTrainForm(props) {
             <AdminSelect
               label="station"
               options={stations.map((s) => createOption(s, 'name'))}
-              currentOption={stationOption}
+              value={stationOption}
               onChange={handleStationSelect}
             />
           </div>
