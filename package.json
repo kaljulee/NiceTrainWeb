@@ -5,6 +5,8 @@
   "dependencies": {
     "@aws-amplify/ui-components": "^1.7.2",
     "@aws-amplify/ui-react": "1.2.9",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
@@ -23,6 +25,8 @@
     "luxon": "^1.27.0",
     "prettier": "^2.3.2",
     "react": "^17.0.2",
+    "react-beautiful-dnd": "^13.1.0",
+    "react-date-picker": "^8.3.2",
     "react-dom": "^17.0.2",
     "react-hot-toast": "^2.1.0",
     "react-list": "^0.8.16",
@@ -34,6 +38,7 @@
     "react-svg": "^14.0.3",
     "react-table": "^7.7.0",
     "react-tabs": "^3.2.2",
+    "react-time-picker": "^4.4.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

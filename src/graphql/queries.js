@@ -12,10 +12,9 @@ export const getStation = /* GraphQL */ `
       scheduledTrains {
         items {
           id
-          name
           description
-          train_time
           train_date
+          train_time
           stationID
           createdAt
           updatedAt
@@ -50,10 +49,9 @@ export const getScheduledTrain = /* GraphQL */ `
   query GetScheduledTrain($id: ID!) {
     getScheduledTrain(id: $id) {
       id
-      name
       description
-      train_time
       train_date
+      train_time
       stationID
       createdAt
       updatedAt
@@ -63,6 +61,10 @@ export const getScheduledTrain = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
+          order
+          color
+          duration
           createdAt
           updatedAt
         }
@@ -80,10 +82,9 @@ export const listScheduledTrains = /* GraphQL */ `
     listScheduledTrains(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
         description
-        train_time
         train_date
+        train_time
         stationID
         createdAt
         updatedAt
@@ -102,14 +103,17 @@ export const getScheduledActivity = /* GraphQL */ `
       name
       activityID
       scheduledTrainID
+      formatID
+      order
+      color
+      duration
       createdAt
       updatedAt
       scheduledTrain {
         id
-        name
         description
-        train_time
         train_date
+        train_time
         stationID
         createdAt
         updatedAt
@@ -136,17 +140,67 @@ export const listScheduledActivities = /* GraphQL */ `
         name
         activityID
         scheduledTrainID
+        formatID
+        order
+        color
+        duration
         createdAt
         updatedAt
         scheduledTrain {
           id
-          name
           description
-          train_time
           train_date
+          train_time
           stationID
           createdAt
           updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getFormat = /* GraphQL */ `
+  query GetFormat($id: ID!) {
+    getFormat(id: $id) {
+      id
+      name
+      colorID
+      createdAt
+      updatedAt
+      scheduledActivities {
+        items {
+          id
+          name
+          activityID
+          scheduledTrainID
+          formatID
+          order
+          color
+          duration
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const listFormats = /* GraphQL */ `
+  query ListFormats(
+    $filter: ModelFormatFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listFormats(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        colorID
+        createdAt
+        updatedAt
+        scheduledActivities {
+          nextToken
         }
       }
       nextToken
@@ -159,6 +213,7 @@ export const getActivity = /* GraphQL */ `
       id
       name
       description
+      colorID
       youTubeResourceID
       createdAt
       updatedAt
@@ -168,6 +223,10 @@ export const getActivity = /* GraphQL */ `
           name
           activityID
           scheduledTrainID
+          formatID
+          order
+          color
+          duration
           createdAt
           updatedAt
         }
@@ -187,6 +246,7 @@ export const listActivities = /* GraphQL */ `
         id
         name
         description
+        colorID
         youTubeResourceID
         createdAt
         updatedAt
@@ -212,6 +272,7 @@ export const getYouTubeResource = /* GraphQL */ `
           id
           name
           description
+          colorID
           youTubeResourceID
           createdAt
           updatedAt
@@ -271,6 +332,37 @@ export const listBoardLongMessages = /* GraphQL */ `
       items {
         id
         text
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getColor = /* GraphQL */ `
+  query GetColor($id: ID!) {
+    getColor(id: $id) {
+      id
+      name
+      primary
+      contrast
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listColors = /* GraphQL */ `
+  query ListColors(
+    $filter: ModelColorFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listColors(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        primary
+        contrast
         createdAt
         updatedAt
       }

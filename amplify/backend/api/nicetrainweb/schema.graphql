@@ -1,4 +1,4 @@
-
+# scheduled trains have a single station
 type Station
 @model
 @auth(
@@ -25,10 +25,9 @@ type ScheduledTrain
 )
 {
   id: ID!
-  name: String!
   description: String
-  train_time: String
   train_date: String
+  train_time: String
   stationID: ID,
   scheduledActivities: [ScheduledActivity] @connection(name: "byScheduledTrain", fields: ["id"])
 }
@@ -37,6 +36,29 @@ type ScheduledActivity
 @model
 @key(name: "byScheduledTrain", fields: ["scheduledTrainID"])
 @key(name: "byActivity", fields: ["activityID"])
+@key(name: "byFormat", fields: ["formatID"])
+@auth(
+  rules:[
+    {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
+    { allow: public, operations: [read] }
+  ]
+)
+{
+  id: ID!
+  name: String
+  activityID: ID
+  scheduledTrainID: ID!
+  formatID: ID
+  order: Int!
+  color: String
+  duration: Int
+  scheduledTrain: ScheduledTrain! @connection(fields: ["scheduledTrainID"])
+}
+
+# Scheduled activities should have a format
+type Format
+@model
+@key(name: "byColor", fields: ["colorID"])
 @auth(
   rules:[
     {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
@@ -46,15 +68,15 @@ type ScheduledActivity
 {
   id: ID!
   name: String!
-  activityID: ID
-  scheduledTrainID: ID!
-  scheduledTrain: ScheduledTrain! @connection(fields: ["scheduledTrainID"])
+  colorID: ID
+  scheduledActivities: [ScheduledActivity] @connection(name: "byFormat", fields: ["id"])
 }
 
-
+# activities are a ytr and a description
 type Activity
 @model
 @key(name: "byYouTubeResource", fields:["youTubeResourceID"])
+@key(name: "byColor", fields: ["colorID"])
 @auth(
   rules:[
     {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
@@ -65,10 +87,13 @@ type Activity
   id: ID!
   name: String!
   description: String
+  colorID: ID
   scheduledActivities: [ScheduledActivity] @connection(name: "byActivity", fields: ["id"])
   youTubeResourceID: ID
 }
 
+# Activities have an optional primary YTR; might have an arbitrary number
+# of additional YTRs in the future
 type YouTubeResource
 @model
 @auth(
@@ -85,6 +110,8 @@ type YouTubeResource
   activities: [Activity] @connection(name: "byYouTubeResource", fields: ["id"])
 }
 
+# message for the long board
+# maybe should be split up to accomodate smallest screen
 type BoardLongMessage
 @model
 @auth(
@@ -96,6 +123,21 @@ type BoardLongMessage
 {
   id: ID!
   text: String
+}
+
+type Color
+@model
+@auth(
+  rules:[
+    {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
+    { allow: public, operations: [read] }
+  ]
+)
+{
+  id: ID!
+  name: String!
+  primary: String!
+  contrast: String!
 }
 
 #type ExtraTable

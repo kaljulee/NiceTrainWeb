@@ -18,13 +18,36 @@ import {
   callUpdateActivity,
   callListActivities
 } from '../thunks/activity';
+import {
+  callListScheduledTrains,
+  callCreateScheduledTrain,
+  callUpdateScheduledTrain,
+  callDeleteScheduledTrain
+} from '../thunks/scheduledTrain';
+import {
+  callListFormats,
+  callCreateFormat,
+  callUpdateFormat,
+  callDeleteFormat
+} from '../thunks/format';
+import {
+  callCreateScheduledActivity,
+  callDeleteScheduledActivity,
+  callGetScheduledActivitiesByTrain,
+  callListScheduledActivities,
+  callUpdateScheduledActivity
+} from '../thunks/scheduledActivity';
+import { sortByOrder } from '../../utils';
 
 const initialState = {
   stationsLoading: 'idle',
   youTubeResourcesLoading: 'idle',
   stations: [],
   youTubeResources: [],
-  activities: []
+  activities: [],
+  formats: [],
+  scheduledTrains: [],
+  scheduledActivities: {}
 };
 
 function findIndexByID(items, id) {
@@ -103,8 +126,6 @@ export const trainSlice = createSlice({
         state.youTubeResources = action.payload.listYouTubeResources.items;
       })
       .addCase(callUpdateYouTubeResource.fulfilled, (state, action) => {
-        console.log('yt updated');
-        console.log(action);
         const updatedYTR = action.payload.updateYouTubeResource;
         const index = state.youTubeResources.findIndex(
           (ytr) => ytr.id === updatedYTR.id
@@ -114,14 +135,10 @@ export const trainSlice = createSlice({
         }
       })
       .addCase(callCreateYouTubeResource.fulfilled, (state, action) => {
-        console.log('yt create');
-        console.log(action);
         const newYTR = action.payload.createYouTubeResource;
         state.youTubeResources.push(newYTR);
       })
       .addCase(callDeleteYouTubeResource.fulfilled, (state, action) => {
-        console.log('yt delete');
-        console.log(action);
         const deletedYTR = action.payload.payload.deleteYouTubeResource;
         const index = state.youTubeResources.findIndex(
           (ytr) => ytr.id === deletedYTR.id
@@ -154,6 +171,114 @@ export const trainSlice = createSlice({
         const index = findIndexByID(state.activities, deletedActivity.id);
         if (isValidIndex(index)) {
           state.activities = removeByID(state.activities, deletedActivity.id);
+        }
+      })
+      // scheduled train calls
+      .addCase(callListScheduledTrains.fulfilled, (state, action) => {
+        state.scheduledTrains = action.payload.listScheduledTrains.items;
+      })
+      .addCase(callCreateScheduledTrain.fulfilled, (state, action) => {
+        state.scheduledTrains.push(action.payload.createScheduledTrain);
+      })
+      .addCase(callUpdateScheduledTrain.fulfilled, (state, action) => {
+        const updatedScheduledTrain = action.payload.updateScheduledTrain;
+        const index = findIndexByID(state.activities, updatedScheduledTrain.id);
+        if (index !== -1) {
+          state.scheduledTrains[index] = updatedScheduledTrain;
+        }
+      })
+      .addCase(callDeleteScheduledTrain.fulfilled, (state, action) => {
+        const deletedScheduledTrain = action.payload.data.deleteScheduledTrain;
+        const index = findIndexByID(
+          state.scheduledTrains,
+          deletedScheduledTrain.id
+        );
+        if (isValidIndex(index)) {
+          state.scheduledTrains = removeByID(
+            state.scheduledTrains,
+            deletedScheduledTrain.id
+          );
+        }
+      })
+      // format calls
+      .addCase(callListFormats.fulfilled, (state, action) => {
+        state.formats = action.payload.listFormats.items;
+      })
+      .addCase(callCreateFormat.fulfilled, (state, action) => {
+        state.formats.push(action.payload.createFormat);
+      })
+      .addCase(callUpdateFormat.fulfilled, (state, action) => {
+        const updatedFormat = action.payload.updateFormat;
+        const index = findIndexByID(state.formats, updatedFormat.id);
+        if (index !== -1) {
+          state.formats[index] = updatedFormat;
+        }
+      })
+      .addCase(callDeleteFormat.fulfilled, (state, action) => {
+        const deletedFormat = action.payload.data.deleteFormat;
+        const index = findIndexByID(state.formats, deletedFormat.id);
+        if (isValidIndex(index)) {
+          state.formats = removeByID(state.formats, deletedFormat.id);
+        }
+      })
+      // scheduledActivity calls
+      .addCase(callListScheduledActivities.fulfilled, (state, action) => {
+        const newActivities = action.payload.listScheduledActivities.items;
+        newActivities.forEach((a) => {
+          const trainID = a.scheduledTrainID;
+          if (!state.scheduledActivities[trainID]) {
+            state.scheduledActivities[trainID] = [];
+          }
+          state.scheduledActivities[trainID].push(a);
+        });
+        Object.keys(state.scheduledActivities).forEach((key) =>
+          sortByOrder(state.scheduledActivities[key])
+        );
+      })
+      .addCase(callGetScheduledActivitiesByTrain.fulfilled, (state, action) => {
+        const {
+          meta,
+          payload: {
+            listScheduledActivities: { items }
+          }
+        } = action;
+        const trainID = meta.arg;
+        state.scheduledActivities[trainID] = items;
+        sortByOrder(state.scheduledActivities[trainID]);
+      })
+      .addCase(callCreateScheduledActivity.fulfilled, (state, action) => {
+        const newSA = action.payload.createScheduledActivity;
+        if (!state.scheduledActivities[newSA.scheduledTrainID]) {
+          state.scheduledActivities[newSA.scheduledTrainID] = [];
+        }
+        // newly created should always have largest order field
+        state.scheduledActivities[newSA.scheduledTrainID].push(newSA);
+      })
+      .addCase(callUpdateScheduledActivity.fulfilled, (state, action) => {
+        const updatedScheduledActivity = action.payload.updateScheduledActivity;
+        const trainID = updatedScheduledActivity.scheduledTrainID;
+        const index = findIndexByID(
+          state.scheduledActivities[trainID],
+          updatedScheduledActivity.id
+        );
+        if (index !== -1) {
+          state.scheduledActivities[trainID][index] = updatedScheduledActivity;
+          sortByOrder(state.scheduledActivities[trainID]);
+        }
+      })
+      .addCase(callDeleteScheduledActivity.fulfilled, (state, action) => {
+        const deletedScheduledActivity =
+          action.payload.data.deleteScheduledActivity;
+        const trainID = deletedScheduledActivity.scheduledTrainID;
+        const index = findIndexByID(
+          state.scheduledActivities[trainID],
+          deletedScheduledActivity.id
+        );
+        if (isValidIndex(index)) {
+          state.scheduledActivities[trainID] = removeByID(
+            state.scheduledActivities[trainID],
+            deletedScheduledActivity.id
+          );
         }
       })
       .addDefaultCase((state, action) => {});

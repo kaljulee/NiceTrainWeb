@@ -1,9 +1,13 @@
+function stringIsOk(value) {
+  return !!value && value.length > 0;
+}
+
 export function stationValidator(data) {
   if (!data) {
     return { isOk: false, error: 'no data' };
   }
   const { name, abbrev } = data;
-  if (!name || name.length < 1) {
+  if (!stringIsOk(name)) {
     return { isOk: false, error: 'bad name' };
   }
 
@@ -18,10 +22,10 @@ export function youTubeResourceValidator(data) {
     return { isOk: false, error: 'no data' };
   }
   const { description, link } = data;
-  if (!description || description.length < 1) {
+  if (!stringIsOk(description)) {
     return { isOk: false, error: 'bad description' };
   }
-  if (!link || link.length < 1) {
+  if (!stringIsOk(link)) {
     return { isOk: false, error: 'bad link' };
   }
   return { isOk: true };
@@ -30,6 +34,29 @@ export function youTubeResourceValidator(data) {
 export function activityValidator(data) {
   if (!data) {
     return { isOk: false, error: 'no data' };
+  }
+  return { isOk: true };
+}
+
+export function scheduledTrainValidator(data) {
+  if (!data) {
+    return { isOk: false, error: 'no data' };
+  }
+  if (!stringIsOk(data.description)) {
+    return { isOk: false, error: 'bad description' };
+  }
+  if (!stringIsOk(data.stationID)) {
+    return { isOk: false, error: 'bad station' };
+  }
+  return { isOk: true };
+}
+
+export function formatValidator(data) {
+  if (!data) {
+    return { isOk: false, error: 'no data' };
+  }
+  if (!stringIsOk(data.name)) {
+    return { isOk: false, error: 'bad name' };
   }
   return { isOk: true };
 }

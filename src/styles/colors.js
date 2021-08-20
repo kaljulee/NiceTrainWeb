@@ -10,3 +10,10 @@ const colors = {
 };
 
 export default colors;
+
+export const trainPamphlet = {
+  background: '#fcf5ef',
+  onBackground: '#35598a',
+  surface: '#35598a',
+  onSurface: '#fcf5ef'
+};

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import AdminList from '../../AdminList';
-import YouTubeResourceForm from './YouTubeResourceForm';
+import FormatForm from './FormatForm';
 
-function YouTubeResourcePanel(props) {
-  const title = 'YouTube Resource';
-  const listData = useSelector((state) => state.youTubeResources);
-  const listFields = ['description', 'author', 'link'];
+function FormatPanel(props) {
+  const title = 'Format';
+  const listData = useSelector((state) => state.formats);
+  const listFields = ['name'];
   const [currentDatum, setCurrentDatum] = useState();
   function onDatumClick(id) {
     setCurrentDatum(listData.find((datum) => datum.id === id));
@@ -39,11 +39,11 @@ function YouTubeResourcePanel(props) {
             marginRight: '2vw'
           }}
         >
-          <YouTubeResourceForm title={title} currentDatum={currentDatum} />
+          <FormatForm title={title} currentDatum={currentDatum} />
         </div>
       </div>
     </div>
   );
 }
 
-export default YouTubeResourcePanel;
+export default FormatPanel;

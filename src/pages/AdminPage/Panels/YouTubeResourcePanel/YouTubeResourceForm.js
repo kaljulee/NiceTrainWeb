@@ -108,7 +108,7 @@ function YouTubeResourceForm(props) {
 }
 
 YouTubeResourceForm.defaultProps = {
-  currentDatum: { description: '', link: '' }
+  currentDatum: {}
 };
 
 export default YouTubeResourceForm;
