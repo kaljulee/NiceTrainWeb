@@ -46,3 +46,7 @@ export function secondsToHMS(time) {
   const s = pulledMinutes.untracked;
   return { h, m, s };
 }
+
+export function sortByOrder(array) {
+  array.sort((a, b) => (a.order > b.order ? 1 : -1));
+}
