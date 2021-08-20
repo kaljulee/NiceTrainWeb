@@ -145,9 +145,23 @@ function DragList(props) {
 
 function ScheduledActivityDnD(props) {
   const { scheduledActivities } = props;
+  const dispatch = useDispatch();
+  function onDragEnd(result) {
+    const { destination, source } = result;
+    if (!destination || destination.index === source.index) {
+      return;
+    }
+    // todo find a less hackish way to push order changes
+    const spliced = Array.from(scheduledActivities);
+    const [removed] = spliced.splice(source.index, 1);
+    spliced.splice(destination.index, 0, removed);
+    spliced.forEach((sa, index) => {
+      dispatch(callUpdateScheduledActivity({ id: sa.id, order: index }));
+    });
+  }
   return (
     <Box>
-      <DragDropContext>
+      <DragDropContext onDragEnd={onDragEnd}>
         <DragList scheduledActivities={scheduledActivities} />
       </DragDropContext>
       <Toaster />

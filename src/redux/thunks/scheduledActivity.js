@@ -47,15 +47,9 @@ export const callCreateScheduledActivity = createAsyncThunk(
 export const callUpdateScheduledActivity = createAsyncThunk(
   'scheduledActivities/update',
   async (data) => {
-    const updatedScheduledActivityData = {};
-    Object.keys(data).forEach((k) => {
-      if (data[k].length > 0) {
-        updatedScheduledActivityData[k] = data[k];
-      }
-    });
     const response = await API.graphql(
       graphqlOperation(updateScheduledActivity, {
-        input: updatedScheduledActivityData
+        input: data
       })
     );
     return response.data;
