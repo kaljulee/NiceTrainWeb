@@ -10,15 +10,25 @@ import { apiKey } from '../../constants';
 
 export const callListScheduledActivities = createAsyncThunk(
   'scheduledActivities/fetch',
-  async (id) => {
+  async () => {
     const graphqlOptions = {
       query: listScheduledActivities,
       authMode: apiKey
     };
-    if (id) {
-      const filter = { scheduledTrainID: { eq: id } };
-      graphqlOptions.variables = { filter };
-    }
+    const response = await API.graphql(graphqlOptions);
+    return response.data;
+  }
+);
+
+export const callGetScheduledActivitiesByTrain = createAsyncThunk(
+  'scheduledActivities/byScheduledTrain',
+  async (id) => {
+    const filter = { scheduledTrainID: { eq: id } };
+    const graphqlOptions = {
+      query: listScheduledActivities,
+      authMode: apiKey,
+      variables: { filter }
+    };
     const response = await API.graphql(graphqlOptions);
     return response.data;
   }

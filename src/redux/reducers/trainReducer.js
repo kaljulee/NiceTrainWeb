@@ -33,9 +33,11 @@ import {
 import {
   callCreateScheduledActivity,
   callDeleteScheduledActivity,
+  callGetScheduledActivitiesByTrain,
   callListScheduledActivities,
   callUpdateScheduledActivity
 } from '../thunks/scheduledActivity';
+import { sortByOrder } from '../../utils';
 
 const initialState = {
   stationsLoading: 'idle',
@@ -45,7 +47,7 @@ const initialState = {
   activities: [],
   formats: [],
   scheduledTrains: [],
-  scheduledActivities: []
+  scheduledActivities: {}
 };
 
 function findIndexByID(items, id) {
@@ -220,34 +222,61 @@ export const trainSlice = createSlice({
         }
       })
       // scheduledActivity calls
-      // todo add logic to sort scheduledActivities into fields keyed on train id
       .addCase(callListScheduledActivities.fulfilled, (state, action) => {
-        state.scheduledActivities =
-          action.payload.listScheduledActivities.items;
+        const newActivities = action.payload.listScheduledActivities.items;
+        newActivities.forEach((a) => {
+          const trainID = a.scheduledTrainID;
+          if (!state.scheduledActivities[trainID]) {
+            state.scheduledActivities[trainID] = [];
+          }
+          state.scheduledActivities[trainID].push(a);
+        });
+        Object.keys(state.scheduledActivities).forEach((key) =>
+          sortByOrder(state.scheduledActivities[key])
+        );
+      })
+      .addCase(callGetScheduledActivitiesByTrain.fulfilled, (state, action) => {
+        const {
+          meta,
+          payload: {
+            listScheduledActivities: { items }
+          }
+        } = action;
+        const trainID = meta.arg;
+        state.scheduledActivities[trainID] = items;
+        sortByOrder(state.scheduledActivities[trainID]);
       })
       .addCase(callCreateScheduledActivity.fulfilled, (state, action) => {
-        state.scheduledActivities.push(action.payload.createScheduledActivity);
+        const newSA = action.payload.createScheduledActivity;
+        if (!state.scheduledActivities[newSA.scheduledTrainID]) {
+          state.scheduledActivities[newSA.scheduledTrainID] = [];
+        }
+        // newly created should always have largest order field
+        state.scheduledActivities[newSA.scheduledTrainID].push(newSA);
       })
       .addCase(callUpdateScheduledActivity.fulfilled, (state, action) => {
         const updatedScheduledActivity = action.payload.updateScheduledActivity;
+        const trainID = updatedScheduledActivity.scheduledTrainID;
         const index = findIndexByID(
-          state.scheduledActivities,
+          state.scheduledActivities[trainID],
           updatedScheduledActivity.id
         );
         if (index !== -1) {
-          state.scheduledActivities[index] = updatedScheduledActivity;
+          state.scheduledActivities[trainID][index] = updatedScheduledActivity;
+          sortByOrder(state.scheduledActivities[trainID]);
         }
       })
       .addCase(callDeleteScheduledActivity.fulfilled, (state, action) => {
         const deletedScheduledActivity =
           action.payload.data.deleteScheduledActivity;
+        const trainID = deletedScheduledActivity.scheduledTrainID;
         const index = findIndexByID(
-          state.scheduledActivities,
+          state.scheduledActivities[trainID],
           deletedScheduledActivity.id
         );
         if (isValidIndex(index)) {
-          state.scheduledActivities = removeByID(
-            state.scheduledActivities,
+          state.scheduledActivities[trainID] = removeByID(
+            state.scheduledActivities[trainID],
             deletedScheduledActivity.id
           );
         }
