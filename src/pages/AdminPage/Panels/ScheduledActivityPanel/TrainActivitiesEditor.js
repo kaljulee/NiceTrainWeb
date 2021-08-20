@@ -8,10 +8,11 @@ const ActivityFieldTabs = styled(Box)`
 `;
 
 function TrainActivitiesEditor(props) {
+  const { scheduledActivities } = props;
   return (
     <Row style={{ border: '1px solid black', height: '100%' }}>
       <div style={{ flex: 8 }}>
-        <ScheduledActivityDnD />
+        <ScheduledActivityDnD scheduledActivities={scheduledActivities} />
       </div>
       <div style={{ flex: 3 }}>
         <ActivityFieldTabs />

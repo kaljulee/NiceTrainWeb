@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { ThemeProvider } from '@emotion/react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,8 +17,8 @@ const ThemedButton = styled.button`
 `;
 
 function ScheduledActivityPanel(props) {
-  const { isOpen, requestClose, scheduledTrainID } = props;
-  const scheduledActivities = useSelector((state) => state.scheduledActivities);
+  // scheduledActivities fetch calls are controlled by the scheduledTrain controls
+  const { isOpen, requestClose, scheduledTrainID, scheduledActivities } = props;
   const dispatch = useDispatch();
   function handleAdd() {
     dispatch(
@@ -39,7 +39,7 @@ function ScheduledActivityPanel(props) {
             <ThemedButton onClick={handleAdd} type="button">
               add new
             </ThemedButton>
-            <TrainActivitiesEditor />
+            <TrainActivitiesEditor scheduledActivities={scheduledActivities} />
           </div>
         </ThemedToggleMenu>
       </ThemeProvider>
