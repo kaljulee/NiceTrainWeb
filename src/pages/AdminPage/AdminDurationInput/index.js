@@ -15,15 +15,25 @@ function DurationInput(props) {
 function AdminDurationInput(props) {
   const {
     duration: { h, m, s },
-    setMinute,
-    setSecond,
-    setHour
+    onChange
   } = props;
   return (
     <Row>
-      <DurationInput label="hour" value={h} onChange={setHour} />
-      <DurationInput label="min" value={m} onChange={setMinute} />
-      <DurationInput label="sec" value={s} onChange={setSecond} />
+      <DurationInput
+        label="hour"
+        value={h}
+        onChange={(event) => onChange({ h: event.target.value })}
+      />
+      <DurationInput
+        label="min"
+        value={m}
+        onChange={(event) => onChange({ m: event.target.value })}
+      />
+      <DurationInput
+        label="sec"
+        value={s}
+        onChange={(event) => onChange({ s: event.target.value })}
+      />
     </Row>
   );
 }

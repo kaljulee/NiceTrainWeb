@@ -31,8 +31,15 @@ function DragItem(props) {
   const possibleFormats = useSelector((state) => state.formats);
   const [currentActivityOption, setCurrentActivityOption] = useState();
   const [currentFormatOption, setCurrentFormatOption] = useState();
-  const [nameValue, setNameValue] = useState();
+  const [hmsValue, setHMSValue] = useState(
+    activity.duration ? activity.duration : {}
+  );
+  const [nameValue, setNameValue] = useState(activity.name);
   const dispatch = useDispatch();
+
+  function onDurationChange(arg) {
+    setHMSValue({ ...hmsValue, ...arg });
+  }
 
   function saveChanges() {
     console.log('would save changes');
@@ -56,6 +63,11 @@ function DragItem(props) {
           {...provided.dragHandleProps}
         >
           <AdminInput label="name" value={nameValue} onChange={setNameValue} />
+          <AdminInput
+            label="order"
+            value={activity.order}
+            onChange={() => {}}
+          />
           <AdminSelect
             label="Activity"
             options={activtyOptions}
@@ -68,7 +80,7 @@ function DragItem(props) {
             value={currentFormatOption}
             onChange={setCurrentFormatOption}
           />
-          <AdminDurationInput />
+          <AdminDurationInput duration={hmsValue} onChange={onDurationChange} />
           <SaveButton type="submit" onClick={saveChanges}>
             save
           </SaveButton>
@@ -98,7 +110,7 @@ function DragList(props) {
 }
 
 function ScheduledActivityDnD(props) {
-  const scheduledActivities = useSelector((state) => state.scheduledActivities);
+  const { scheduledActivities } = props;
   return (
     <Box>
       <DragDropContext>
