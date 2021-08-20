@@ -26,7 +26,7 @@ function pullTime(total, unit) {
   return { tracked: 0, untracked: total };
 }
 
-export function HMSToSeconds(hms) {
+export function hmsToSeconds(hms) {
   if (
     !hms ||
     Number.isNaN(hms.h) ||
