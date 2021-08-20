@@ -27,7 +27,12 @@ function pullTime(total, unit) {
 }
 
 export function HMSToSeconds(hms) {
-  if (!hms || isNaN(hms.h) || isNaN(hms.m) || isNaN(hms.s)) {
+  if (
+    !hms ||
+    Number.isNaN(hms.h) ||
+    Number.isNaN(hms.m) ||
+    Number.isNaN(hms.s)
+  ) {
     return NaN;
   }
 
