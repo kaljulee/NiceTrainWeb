@@ -9,6 +9,7 @@ import {
 import { stationValidator } from '../../../../redux/validators';
 import AdminInput from '../../AdminInput';
 import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
+import { Box, Column } from '../../../../components/layoutComponents';
 
 function StationForm(props) {
   const { title, currentDatum } = props;
@@ -57,16 +58,10 @@ function StationForm(props) {
     dispatch(callDeleteStation({ id: currentDatum.id }));
   }
   return (
-    <div style={{ height: '100%', width: '100%' }}>
+    <Box>
       <h2 style={{ color: 'goldenrod' }}>{`Edit ${title}`}</h2>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div
-          style={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
+      <Column>
+        <Column>
           <AdminInput
             label="name"
             value={nameValue}
@@ -77,15 +72,15 @@ function StationForm(props) {
             value={abbrevValue}
             onChange={handleAbbrevChange}
           />
-        </div>
+        </Column>
         <AdminSubmitButtonBar
           handleCreate={handleCreate}
           handleUpdate={handleUpdate}
           handleDelete={handleDelete}
         />
-      </div>
+      </Column>
       <Toaster />
-    </div>
+    </Box>
   );
 }
 
