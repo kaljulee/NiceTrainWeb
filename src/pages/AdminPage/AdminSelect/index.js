@@ -1,6 +1,8 @@
 import React from 'react';
 import Select from 'react-select';
 import { useTheme } from '@emotion/react';
+import { NTColumn } from '../../../components/layoutComponents';
+import { NTLabel } from '../../../components/styledComponents';
 
 function AdminSelect(props) {
   const { options, value, label, onChange } = props;
@@ -10,6 +12,9 @@ function AdminSelect(props) {
       ...provided,
       color: theme.onBackground,
       backgroundColor: theme.background
+    }),
+    singleValue: (provided) => ({
+      color: theme.onBackground
     }),
     container: (provided) => ({
       ...provided,
@@ -48,17 +53,15 @@ function AdminSelect(props) {
     })
   };
   return (
-    <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
-      <span style={{ backgroundColor: theme.surface, color: theme.onSurface }}>
-        {label}
-      </span>
+    <NTColumn>
+      <NTLabel>{label}</NTLabel>
       <Select
         styles={customStyles}
         options={options}
         value={value}
         onChange={onChange}
       />
-    </div>
+    </NTColumn>
   );
 }
 

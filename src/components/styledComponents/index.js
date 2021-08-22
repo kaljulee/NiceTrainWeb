@@ -42,7 +42,6 @@ export const NTSubTitle = styled.h3`
 
 export const NTLabel = styled.h4`
   color: ${(p) => p.theme.accent};
-  width: 100px;
   margin: 5px 0 5px 0;
 `;
 
