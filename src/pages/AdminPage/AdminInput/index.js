@@ -4,13 +4,12 @@ import { NTColumn } from '../../../components/layoutComponents';
 import { NTLabel, NTInput } from '../../../components/styledComponents';
 
 function AdminInput(props) {
-  const { label, value, onChange } = props;
-  const theme = useTheme();
+  const { label, value, onChange, type = 'text' } = props;
   return (
     <NTColumn>
       <NTLabel>{label}</NTLabel>
       <NTInput
-        type="text"
+        type={type}
         value={value || value === 0 ? value : ''}
         onChange={onChange}
       />
