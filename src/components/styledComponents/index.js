@@ -32,11 +32,12 @@ export const AdminDateStyler = styled.div`
 `;
 
 export const NTTitle = styled.h2`
-  ${adminStyles}
+  color: ${(p) => p.theme.accent};
 `;
 
 export const NTSubTitle = styled.h3`
-  ${adminStyles}
+  color: ${(p) => p.theme.accent};
+  margin: 5px 0 5px 0;
 `;
 
 export const NTLabel = styled.h4`

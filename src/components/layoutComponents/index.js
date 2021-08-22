@@ -23,10 +23,12 @@ export const NTRow = styled.div({
   flexDirection: 'row'
 });
 
-export const NTColumn = styled.div({
-  display: 'flex',
-  flexDirection: 'column'
-});
+export const NTColumn = styled(NTBox)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`;
 
 export const ToggleMenu = styled.div`
   position: fixed;

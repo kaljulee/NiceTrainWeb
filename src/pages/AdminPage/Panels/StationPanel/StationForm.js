@@ -59,9 +59,9 @@ function StationForm(props) {
     dispatch(callDeleteStation({ id: currentDatum.id }));
   }
   return (
-    <NTBox>
-      <NTTitle>{`Edit ${title}`}</NTTitle>
+    <NTBox style={{ display: 'flex' }}>
       <NTColumn>
+        <NTTitle>{`Edit ${title}`}</NTTitle>
         <NTColumn>
           <AdminInput
             label="name"
