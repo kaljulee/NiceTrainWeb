@@ -83,6 +83,32 @@ export const NTNewButton = styled(NTButton)`
   color: ${(p) => p.theme.onWarning};
 `;
 
+export const NTList = styled.div`
+  max-height: 60vh;
+  overflow: auto;
+  background: ${(p) => p.theme.primarySurface};
+  color: ${(p) => p.theme.onPrimarySurface};
+`;
+
+export const NTListItem = styled.div`
+  display: flex;
+  background-color: ${(p) => p.theme.secondarySurface};
+  color: ${(p) => p.theme.onSecondarySurface};
+  height: 5vh;
+  border-top: 1px solid ${(p) => p.theme.primarySurface};
+  border-bottom: 1px solid ${(p) => p.theme.primarySurface};
+  margin: auto;
+`;
+
+export const NTListItemField = styled.div`
+  width: 100%;
+  background: ${(p) => (p.$isActive ? p.theme.accent : p.theme.surface)};
+  color: ${(p) => (p.$isActive ? p.theme.onAccent : p.theme.onSurface)};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const TabContainer = styled.div`
   background: ${(p) => p.theme.primarySurface};
   padding: 1vh 0 1vh 0;

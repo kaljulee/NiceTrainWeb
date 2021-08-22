@@ -40,7 +40,7 @@ export const niceTrainTheme = {
   warning: 'orange',
   onSuccess: '#ffffff',
   onError: '#ffffff',
-  onWarning: '#ffffff'
+  onWarning: '#000000'
 };
 
 export const NightTrainTheme = {

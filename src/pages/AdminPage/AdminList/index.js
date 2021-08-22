@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
 import ReactList from 'react-list';
+import {
+  NTList,
+  NTListItem,
+  NTListItemField,
+  NTTitle
+} from '../../../components/styledComponents';
+import { NTBox } from '../../../components/layoutComponents';
 
 // todo this needs to handle fields that are IDs,
 // todo needs a way to get the relevant info about related data
@@ -13,50 +20,31 @@ function AdminList(props) {
   }
 
   return (
-    <div style={{ height: '100%', width: '100%' }}>
-      <h2 style={{ color: 'goldenrod' }}>{`${title}s`}</h2>
-      <div style={{ maxHeight: '60vh', overflow: 'auto' }}>
+    <NTBox>
+      <NTTitle>{`${title}s`}</NTTitle>
+      <NTList style={{ maxHeight: '60vh', overflow: 'auto' }}>
         <ReactList
           type="uniform"
           length={data.length}
           itemRenderer={(index, key) => (
-            <div
-              style={{
-                display: 'flex',
-                backgroundColor: 'grey',
-                height: '5vh',
-                borderTop: '1px solid black',
-                borderBottom: '1px slolid black',
-                margin: 'auto'
-              }}
-              key={key}
-            >
+            <NTListItem key={key}>
               {fields.map((field) => (
-                <div
+                <NTListItemField
                   key={`${index}${field}`}
                   onClick={() => handleDatumClick(data[index].id)}
                   onKeyDown={() => handleDatumClick(data[index].id)}
                   role="button"
                   tabIndex={0}
-                  style={{
-                    width: '100%',
-                    backgroundColor:
-                      activeDatumID === data[index].id
-                        ? '#fad255'
-                        : 'ghostwhite',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
+                  $isActive={activeDatumID === data[index].id}
                 >
                   {data[index][field]}
-                </div>
+                </NTListItemField>
               ))}
-            </div>
+            </NTListItem>
           )}
         />
-      </div>
-    </div>
+      </NTList>
+    </NTBox>
   );
 }
 
