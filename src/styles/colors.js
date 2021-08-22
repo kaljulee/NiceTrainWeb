@@ -18,8 +18,10 @@ const pamphletSurface = '#35598a';
 export const trainPamphletTheme = {
   background: pamphletBackground,
   onBackground: pamphletSurface,
-  surface: pamphletSurface,
-  onSurface: pamphletBackground,
+  primarySurface: pamphletSurface,
+  onPrimarySurface: pamphletBackground,
+  secondarySurface: pamphletSurface,
+  onSecondarySurface: pamphletBackground,
   accent: pamphletSurface,
   onAccent: pamphletBackground
 };
