@@ -12,7 +12,7 @@ import YouTubeResourcePanel from './Panels/YouTubeResourcePanel';
 import ActivityPanel from './Panels/ActivityPanel';
 import ScheduledTrainPanel from './Panels/ScheduledTrainPanel';
 import FormatPanel from './Panels/FormatPanel';
-import { Page, Section } from '../../components/layoutComponents';
+import { NTPage, NTSection } from '../../components/layoutComponents';
 import { TabContainer } from '../../components/styledComponents';
 
 function AdminPage(props) {
@@ -28,9 +28,9 @@ function AdminPage(props) {
   );
 
   return (
-    <Page>
+    <NTPage>
       {authState === AuthState.SignedIn && user ? (
-        <Section
+        <NTSection
           style={{
             height: '100%',
             width: '90vw',
@@ -67,7 +67,7 @@ function AdminPage(props) {
               </TabPanel>
             </Tabs>
           </TabContainer>
-        </Section>
+        </NTSection>
       ) : (
         <AmplifyAuthContainer>
           <AmplifyAuthenticator>
@@ -79,7 +79,7 @@ function AdminPage(props) {
           </AmplifyAuthenticator>
         </AmplifyAuthContainer>
       )}
-    </Page>
+    </NTPage>
   );
 }
 

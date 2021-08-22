@@ -1,14 +1,15 @@
 import React from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import styled from '@emotion/styled';
-import { AdminTitle, Box } from '../../../components/layoutComponents';
+import { NTBox } from '../../../components/layoutComponents';
+import { NTTitle } from '../../../components/styledComponents';
 
 const ListItem = styled.div({
   backgroundColor: 'rgba(0,0,0,0.5)',
   color: 'white'
 });
 
-const List = styled(Box)`
+const List = styled(NTBox)`
   background-color: grey;
 `;
 
@@ -48,11 +49,11 @@ function DnDList(props) {
 function AdminDnD(props) {
   const { listData, labelField } = props;
   return (
-    <Box>
+    <NTBox>
       <DragDropContext>
         <DnDList listData={listData} labelField={labelField} />
       </DragDropContext>
-    </Box>
+    </NTBox>
   );
 }
 

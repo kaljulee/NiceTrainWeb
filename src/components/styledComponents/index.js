@@ -31,23 +31,34 @@ export const AdminDateStyler = styled.div`
   ${datePickerStyles}
 `;
 
-export const AdminTitle = styled.h1`
+export const NTTitle = styled.h2`
   ${adminStyles}
 `;
 
-export const AdminSubTitle = styled.h2`
+export const NTSubTitle = styled.h3`
   ${adminStyles}
 `;
 
-export const AdminLabel = styled.h3`
-  ${adminStyles}
+export const NTLabel = styled.h4`
+  color: ${(p) => p.theme.accent};
+  width: 100px;
 `;
 
-export const AdminText = styled.text`
-  ${adminStyles}
+export const NTInput = styled.input`
+  height: 30px;
+  margin-bottom: 10;
+  background: ${(p) => p.theme.background};
+  color: ${(p) => p.theme.onBackground};
+  border: 'none';
 `;
 
-export const AdminButton = styled.button((props) => ({
+export const NTText = styled.text`
+  ${adminStyles}
+  background: ${(p) => p.theme.surface};
+  color: ${(p) => p.theme.onSurface};
+`;
+
+export const NTButton = styled.button((props) => ({
   background: props.accent,
   color: props.onAccent,
   border: 'none'

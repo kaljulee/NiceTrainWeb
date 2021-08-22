@@ -1,29 +1,29 @@
 import styled from '@emotion/styled';
 
-export const Box = styled.div({
+export const NTBox = styled.div({
   width: '100%',
   height: '100%',
   boxSizing: 'border-box'
 });
 
-export const Page = styled(Box)`
+export const NTPage = styled(NTBox)`
   padding-top: 5vh;
   background: ${(p) => p.theme.background};
   color: ${(p) => p.theme.onBackground};
 `;
 
-export const Section = styled(Box)`
+export const NTSection = styled(NTBox)`
   background: ${(p) => p.theme.primarySurface};
   color: ${(p) => p.theme.onPrimarySurface};
   padding: 0 1vw 0 1vw;
 `;
 
-export const Row = styled.div({
+export const NTRow = styled.div({
   display: 'flex',
   flexDirection: 'row'
 });
 
-export const Column = styled.div({
+export const NTColumn = styled.div({
   display: 'flex',
   flexDirection: 'column'
 });

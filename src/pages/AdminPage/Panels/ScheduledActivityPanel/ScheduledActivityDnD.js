@@ -3,7 +3,7 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 import { Toaster, toast } from 'react-hot-toast';
-import { Box, Row } from '../../../../components/layoutComponents';
+import { NTBox, NTRow } from '../../../../components/layoutComponents';
 import AdminSelect from '../../AdminSelect';
 import {
   createOption,
@@ -18,20 +18,20 @@ import {
   callUpdateScheduledActivity
 } from '../../../../redux/thunks/scheduledActivity';
 
-const ActivityRow = styled(Row)`
+const ActivityRow = styled(NTRow)`
   display: flex;
   justify-content: space-between;
 `;
 
 const SaveButton = styled.button`
-  background: ${(props) => props.theme.surface};
-  color: ${(props) => props.theme.onSurface};
+  background: ${(props) => props.theme.primarySurface};
+  color: ${(props) => props.theme.onPrimarySurface};
   height: 100%;
 `;
 
 const DeleteButton = styled(SaveButton)`
-  background: ${(props) => props.theme.onSurface};
-  color: ${(props) => props.theme.surface};
+  background: ${(props) => props.theme.onPrimarySurface};
+  color: ${(props) => props.theme.pirmarySurface};
 `;
 
 function DragItem(props) {
@@ -160,12 +160,12 @@ function ScheduledActivityDnD(props) {
     });
   }
   return (
-    <Box>
+    <NTBox>
       <DragDropContext onDragEnd={onDragEnd}>
         <DragList scheduledActivities={scheduledActivities} />
       </DragDropContext>
       <Toaster />
-    </Box>
+    </NTBox>
   );
 }
 

@@ -15,7 +15,7 @@ function ScheduledTrainPanel(props) {
     (state) => state.scheduledActivities
   );
   const listFields = ['description', 'train_date', 'train_time'];
-  const [isPanelOpen, setIsPanelOpen] = useState(true);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [currentDatum, setCurrentDatum] = useState();
 
   const [scheduledActivities, setScheduledActivities] = useState([]);

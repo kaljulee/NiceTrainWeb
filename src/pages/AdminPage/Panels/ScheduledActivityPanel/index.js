@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { ThemeProvider } from '@emotion/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, ToggleMenu } from '../../../../components/layoutComponents';
-import { trainPamphlet } from '../../../../styles/colors';
+import { NTBox, ToggleMenu } from '../../../../components/layoutComponents';
+import { trainPamphletTheme } from '../../../../styles/colors';
 import TrainActivitiesEditor from './TrainActivitiesEditor';
 import { callCreateScheduledActivity } from '../../../../redux/thunks/scheduledActivity';
 
@@ -30,8 +30,8 @@ function ScheduledActivityPanel(props) {
     );
   }
   return (
-    <Box>
-      <ThemeProvider theme={trainPamphlet}>
+    <NTBox>
+      <ThemeProvider theme={trainPamphletTheme}>
         <ThemedToggleMenu isOpen={isOpen}>
           <div style={{ height: '50vh' }}>
             <ThemedButton type="button" onClick={requestClose}>
@@ -44,7 +44,7 @@ function ScheduledActivityPanel(props) {
           </div>
         </ThemedToggleMenu>
       </ThemeProvider>
-    </Box>
+    </NTBox>
   );
 }
 

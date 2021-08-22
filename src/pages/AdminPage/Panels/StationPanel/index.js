@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import AdminList from '../../AdminList';
 import StationForm from './StationForm';
 import {
-  Box,
-  Column,
-  Row,
-  Section
+  NTBox,
+  NTColumn,
+  NTRow,
+  NTSection
 } from '../../../../components/layoutComponents';
 
 function StationPanel() {
@@ -18,33 +18,33 @@ function StationPanel() {
     setCurrentDatum(listData.find((datum) => datum.id === id));
   }
   return (
-    <Box>
-      <Row>
-        <Column
+    <NTBox>
+      <NTRow>
+        <NTColumn
           style={{
             flex: 4
           }}
         >
-          <Section>
+          <NTSection>
             <AdminList
               title={title}
               data={listData}
               fields={listFields}
               onDatumClick={onDatumClick}
             />
-          </Section>
-        </Column>
-        <Column
+          </NTSection>
+        </NTColumn>
+        <NTColumn
           style={{
             flex: 5
           }}
         >
-          <Section>
+          <NTSection>
             <StationForm title={title} currentDatum={currentDatum} />
-          </Section>
-        </Column>
-      </Row>
-    </Box>
+          </NTSection>
+        </NTColumn>
+      </NTRow>
+    </NTBox>
   );
 }
 
