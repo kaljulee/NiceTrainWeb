@@ -1,6 +1,8 @@
 import React from 'react';
 import Select from 'react-select';
 import { useTheme } from '@emotion/react';
+import { NTColumn } from '../../../components/layoutComponents';
+import { NTLabel } from '../../../components/styledComponents';
 
 function AdminSelect(props) {
   const { options, value, label, onChange } = props;
@@ -8,57 +10,65 @@ function AdminSelect(props) {
   const customStyles = {
     option: (provided) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background
+      color: theme.onPrimarySurface,
+      backgroundColor: theme.primarySurface
+    }),
+    singleValue: (provided) => ({
+      background: theme.primarySurface,
+      color: theme.onPrimarySurface
     }),
     container: (provided) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background
+      color: theme.onPrimarySurface,
+      backgroundColor: theme.primarySurface
     }),
     input: (provided) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background
+      color: theme.onPrimarySurface,
+      backgroundColor: theme.primarySurface
     }),
-    control: (provided) => ({
+    control: (provided, selectState) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background,
-      border: 'none'
+      color: theme.onPrimarySurface,
+      boxShadow: 0,
+      backgroundColor: theme.primarySurface,
+      borderColor: selectState.isFocused
+        ? theme.accent
+        : theme.secondarySurface,
+      '&:hover': {
+        borderColor: theme.accent
+      }
     }),
     indicatorSelector: (provided) => ({
       ...provided,
-      color: theme.onBackground
+      color: theme.onPrimarySurface
     }),
     valueContainer: (provided) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background
+      color: theme.onPrimarySurface,
+      backgroundColor: theme.primarySurface
     }),
     indicatorContainer: (provided) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background
+      color: theme.onPrimarySurface,
+      backgroundColor: theme.primarySurface
     }),
     menu: (provided) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background
+      color: theme.onSecondarySurface,
+      backgroundColor: theme.secondarySurface
     })
   };
   return (
-    <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
-      <span style={{ backgroundColor: theme.surface, color: theme.onSurface }}>
-        {label}
-      </span>
+    <NTColumn>
+      <NTLabel>{label}</NTLabel>
       <Select
         styles={customStyles}
         options={options}
         value={value}
         onChange={onChange}
       />
-    </div>
+    </NTColumn>
   );
 }
 

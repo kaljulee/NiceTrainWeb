@@ -1,27 +1,25 @@
 import React from 'react';
 import { jsx, useTheme } from '@emotion/react';
+import styled from '@emotion/styled';
+import { NTColumn } from '../../../components/layoutComponents';
+import { NTLabel, NTInput } from '../../../components/styledComponents';
+
+const NTInputColumn = styled(NTColumn)`
+  justify-content: space-around;
+  padding: 5px 0 5px 0;
+`;
 
 function AdminInput(props) {
-  const { label, value, onChange } = props;
-  const theme = useTheme();
+  const { label, value, onChange, type = 'text' } = props;
   return (
-    <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
-      <span style={{ backgroundColor: theme.surface, color: theme.onSurface }}>
-        {label}
-      </span>
-      <input
-        type="text"
-        style={{
-          height: 30,
-          marginBottom: 10,
-          background: theme.background,
-          color: theme.onBackground,
-          border: 'none'
-        }}
+    <NTInputColumn>
+      <NTLabel>{label}</NTLabel>
+      <NTInput
+        type={type}
         value={value || value === 0 ? value : ''}
         onChange={onChange}
       />
-    </div>
+    </NTInputColumn>
   );
 }
 

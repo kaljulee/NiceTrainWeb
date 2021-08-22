@@ -15,11 +15,11 @@ import AdminSelect from '../../AdminSelect';
 import AdminDatePicker from '../../AdminDatePicker';
 import AdminTimePicker from '../../AdminTimePicker';
 import {
-  AdminTitle,
-  Box,
-  Column,
-  Row
+  NTBox,
+  NTColumn,
+  NTRow
 } from '../../../../components/layoutComponents';
+import { NTTitle } from '../../../../components/styledComponents';
 
 function ScheduledTrainForm(props) {
   const { title, currentDatum, youTubeResources } = props;
@@ -100,10 +100,10 @@ function ScheduledTrainForm(props) {
   }
 
   return (
-    <Box>
-      <AdminTitle>{`Edit ${title}`}</AdminTitle>
-      <Row>
-        <Column>
+    <NTBox>
+      <NTTitle>{`Edit ${title}`}</NTTitle>
+      <NTRow>
+        <NTColumn>
           <div
             style={{
               height: '100%',
@@ -130,11 +130,11 @@ function ScheduledTrainForm(props) {
             handleUpdate={handleUpdate}
             handleDelete={handleDelete}
           />
-        </Column>
-        <Column />
-      </Row>
+        </NTColumn>
+        <NTColumn />
+      </NTRow>
       <Toaster />
-    </Box>
+    </NTBox>
   );
 }
 

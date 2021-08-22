@@ -8,8 +8,9 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
+import { ThemeProvider } from '@emotion/react';
 import SchedulePage from './pages/SchedulePage';
-import colors from './styles/colors';
+import colors, { niceTrainTheme } from './styles/colors';
 import { settableBreakpoints } from './styles/breakpoints';
 import { store } from './redux/store';
 import AdminPage from './pages/AdminPage';
@@ -21,36 +22,38 @@ function App() {
   setDefaultBreakpoints(settableBreakpoints());
   return (
     <Provider store={store}>
-      <BreakpointProvider
-        style={{
-          id: 'app-container',
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: colors.boardBack
-        }}
-      >
-        <Router>
-          <TopNav />
-          <Switch>
-            <Route path="/schedule">
-              <SchedulePage />
-            </Route>
-            <Route exact path="/patches">
-              <PatchesGalleryPage />
-            </Route>
-            <Route exact path="/admin">
-              <AdminPage />
-            </Route>
-            <Route exact path="/">
-              <Redirect to="/schedule" />
-            </Route>
-            <Route component={FourOhFourPage} />
-          </Switch>
-        </Router>
-      </BreakpointProvider>
+      <ThemeProvider theme={niceTrainTheme}>
+        <BreakpointProvider
+          style={{
+            id: 'app-container',
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: colors.boardBack
+          }}
+        >
+          <Router>
+            <TopNav />
+            <Switch>
+              <Route path="/schedule">
+                <SchedulePage />
+              </Route>
+              <Route exact path="/patches">
+                <PatchesGalleryPage />
+              </Route>
+              <Route exact path="/admin">
+                <AdminPage />
+              </Route>
+              <Route exact path="/">
+                <Redirect to="/schedule" />
+              </Route>
+              <Route component={FourOhFourPage} />
+            </Switch>
+          </Router>
+        </BreakpointProvider>
+      </ThemeProvider>
     </Provider>
   );
 }

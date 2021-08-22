@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css, jsx } from '@emotion/react';
-import { Row } from '../../../components/layoutComponents';
+import { NTRow } from '../../../components/layoutComponents';
 import AdminInput from '../AdminInput';
 
 function DurationInput(props) {
@@ -18,7 +18,7 @@ function AdminDurationInput(props) {
     onChange
   } = props;
   return (
-    <Row>
+    <NTRow>
       <DurationInput
         label="hour"
         value={h}
@@ -34,7 +34,7 @@ function AdminDurationInput(props) {
         value={s}
         onChange={(event) => onChange({ s: event.target.value })}
       />
-    </Row>
+    </NTRow>
   );
 }
 
