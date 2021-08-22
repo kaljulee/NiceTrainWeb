@@ -1,47 +1,25 @@
 import React from 'react';
+import { NTRow } from '../../../components/layoutComponents';
+import {
+  NTNewButton,
+  NTSaveButton,
+  NTDeleteButton
+} from '../../../components/styledComponents';
 
 function AdminSubmitButtonBar(props) {
   const { handleCreate, handleDelete, handleUpdate } = props;
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-      <button
-        style={{
-          width: 100,
-          height: 30,
-          marginBottom: 10
-        }}
-        type="submit"
-        onClick={handleUpdate}
-      >
+    <NTRow style={{ justifyContent: 'space-between' }}>
+      <NTSaveButton type="submit" onClick={handleUpdate}>
         save
-      </button>
-      <button
-        style={{
-          width: 100,
-          height: 30,
-          marginBottom: 10,
-          color: 'white',
-          backgroundColor: 'green'
-        }}
-        onClick={handleCreate}
-        type="button"
-      >
+      </NTSaveButton>
+      <NTNewButton onClick={handleCreate} type="button">
         new
-      </button>
-      <button
-        style={{
-          width: 100,
-          height: 30,
-          marginBottom: 10,
-          color: 'white',
-          backgroundColor: 'red'
-        }}
-        onClick={handleDelete}
-        type="button"
-      >
+      </NTNewButton>
+      <NTDeleteButton onClick={handleDelete} type="button">
         delete
-      </button>
-    </div>
+      </NTDeleteButton>
+    </NTRow>
   );
 }
 

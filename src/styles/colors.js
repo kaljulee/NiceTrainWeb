@@ -37,7 +37,10 @@ export const niceTrainTheme = {
   onAccent: '#000000',
   success: 'green',
   error: 'red',
-  warning: 'orange'
+  warning: 'orange',
+  onSuccess: '#ffffff',
+  onError: '#ffffff',
+  onWarning: '#ffffff'
 };
 
 export const NightTrainTheme = {

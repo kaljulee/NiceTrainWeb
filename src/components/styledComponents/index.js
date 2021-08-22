@@ -42,6 +42,7 @@ export const NTSubTitle = styled.h3`
 export const NTLabel = styled.h4`
   color: ${(p) => p.theme.accent};
   width: 100px;
+  margin: 5px 0 5px 0;
 `;
 
 export const NTInput = styled.input`
@@ -58,11 +59,28 @@ export const NTText = styled.text`
   color: ${(p) => p.theme.onSurface};
 `;
 
-export const NTButton = styled.button((props) => ({
-  background: props.accent,
-  color: props.onAccent,
-  border: 'none'
-}));
+export const NTButton = styled.button`
+  background: ${(p) => p.theme.accent};
+  color: ${(p) => p.theme.onAccent};
+  border: none;
+  width: 100px;
+  height: 30px;
+`;
+
+export const NTSaveButton = styled(NTButton)`
+  background: ${(p) => p.theme.success};
+  color: ${(p) => p.theme.onSuccess};
+`;
+
+export const NTDeleteButton = styled(NTButton)`
+  background: ${(p) => p.theme.error};
+  color: ${(p) => p.theme.onError};
+`;
+
+export const NTNewButton = styled(NTButton)`
+  background: ${(p) => p.theme.warning};
+  color: ${(p) => p.theme.onWarning};
+`;
 
 export const TabContainer = styled.div`
   background: ${(p) => p.theme.primarySurface};
