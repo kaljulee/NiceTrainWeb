@@ -10,46 +10,54 @@ function AdminSelect(props) {
   const customStyles = {
     option: (provided) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background
+      color: theme.onPrimarySurface,
+      backgroundColor: theme.primarySurface
     }),
     singleValue: (provided) => ({
-      color: theme.onBackground
+      background: theme.primarySurface,
+      color: theme.onPrimarySurface
     }),
     container: (provided) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background
+      color: theme.onPrimarySurface,
+      backgroundColor: theme.primarySurface
     }),
     input: (provided) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background
+      color: theme.onPrimarySurface,
+      backgroundColor: theme.primarySurface
     }),
-    control: (provided) => ({
+    control: (provided, selectState) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background,
-      border: 'none'
+      color: theme.onPrimarySurface,
+      boxShadow: 0,
+      backgroundColor: theme.primarySurface,
+      // border: `1px solid ${}`,
+      borderColor: selectState.isFocused
+        ? theme.accent
+        : theme.secondarySurface,
+      '&:hover': {
+        borderColor: theme.accent
+      }
     }),
     indicatorSelector: (provided) => ({
       ...provided,
-      color: theme.onBackground
+      color: theme.onPrimarySurface
     }),
     valueContainer: (provided) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background
+      color: theme.onPrimarySurface,
+      backgroundColor: theme.primarySurface
     }),
     indicatorContainer: (provided) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background
+      color: theme.onPrimarySurface,
+      backgroundColor: theme.primarySurface
     }),
     menu: (provided) => ({
       ...provided,
-      color: theme.onBackground,
-      backgroundColor: theme.background
+      color: theme.onSecondarySurface,
+      backgroundColor: theme.secondarySurface
     })
   };
   return (

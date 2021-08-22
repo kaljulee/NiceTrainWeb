@@ -48,9 +48,9 @@ export const NTLabel = styled.h4`
 export const NTInput = styled.input`
   height: 30px;
   margin-bottom: 10;
-  background: ${(p) => p.theme.background};
-  color: ${(p) => p.theme.onBackground};
-  border: 'none';
+  background: ${(p) => p.theme.primarySurface};
+  color: ${(p) => p.theme.onPrimarySurface};
+  border: 1px solid ${(p) => p.theme.secondarySurface};
 `;
 
 export const NTText = styled.text`
