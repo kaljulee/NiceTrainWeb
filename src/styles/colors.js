@@ -11,9 +11,40 @@ const colors = {
 
 export default colors;
 
-export const trainPamphlet = {
-  background: '#fcf5ef',
-  onBackground: '#35598a',
-  surface: '#35598a',
-  onSurface: '#fcf5ef'
+// in case of inevitable palette tinkering
+const pamphletBackground = '#fcf5ef';
+const pamphletSurface = '#35598a';
+
+export const trainPamphletTheme = {
+  background: pamphletBackground,
+  onBackground: pamphletSurface,
+  surface: pamphletSurface,
+  onSurface: pamphletBackground,
+  accent: pamphletSurface,
+  onAccent: pamphletBackground
+};
+
+export const niceTrainTheme = {
+  background: '#000000',
+  primarySurface: '#343434',
+  secondarySurface: '#3c3c3c',
+  onBackground: '#ffffff',
+  onPrimarySurface: '#ffffff',
+  onSecondarySurface: '#ffffff',
+  accent: '#ffcc00',
+  onAccent: '#000000',
+  success: 'green',
+  error: 'red',
+  warning: 'orange'
+};
+
+export const NightTrainTheme = {
+  background: '#000000',
+  primarySurface: '#343434',
+  secondarySurface: '#3c3c3c',
+  onBackground: '#ffffff',
+  onPrimarySurface: '#ffffff',
+  onSecondarySurface: '#ffffff',
+  accent: '#ffcc00',
+  onAccent: '#000000'
 };
