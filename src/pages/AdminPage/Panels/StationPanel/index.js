@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import AdminList from '../../AdminList';
 import StationForm from './StationForm';
+import {
+  Box,
+  Column,
+  Row,
+  Section
+} from '../../../../components/layoutComponents';
 
-function StationPanel(props) {
-  // const { title, listData, listFields } = props;
+function StationPanel() {
   const title = 'Station';
   const listData = useSelector((state) => state.stations);
   const listFields = ['name', 'abbrev'];
@@ -13,37 +18,33 @@ function StationPanel(props) {
     setCurrentDatum(listData.find((datum) => datum.id === id));
   }
   return (
-    <div style={{ height: '100%' }}>
-      <div style={{ display: 'flex' }}>
-        <div
+    <Box>
+      <Row>
+        <Column
           style={{
-            display: 'flex',
-            flex: 4,
-            flexDirection: 'column',
-            marginRight: '2vw',
-            marginLeft: '2vw'
+            flex: 4
           }}
         >
-          <AdminList
-            title={title}
-            data={listData}
-            fields={listFields}
-            onDatumClick={onDatumClick}
-          />
-        </div>
-        <div
+          <Section>
+            <AdminList
+              title={title}
+              data={listData}
+              fields={listFields}
+              onDatumClick={onDatumClick}
+            />
+          </Section>
+        </Column>
+        <Column
           style={{
-            flex: 5,
-            display: 'flex',
-            flexDirection: 'column',
-            marginLeft: '2vw',
-            marginRight: '2vw'
+            flex: 5
           }}
         >
-          <StationForm title={title} currentDatum={currentDatum} />
-        </div>
-      </div>
-    </div>
+          <Section>
+            <StationForm title={title} currentDatum={currentDatum} />
+          </Section>
+        </Column>
+      </Row>
+    </Box>
   );
 }
 
