@@ -9,26 +9,103 @@ export const adminStyles = (props) => ({
   background: props.theme.background
 });
 
-// export const AdminTitle = styled.h2(AdminStyle);
-//
-// export const AdminSubTitle = styled.h3(AdminStyle);
-
-// export const AdminMiniTitle = styled.h4(AdminStyle);
-
-const datePickerStyles = (props) => css`
+export const NTDatePicker = styled.div`
   .react-date-picker {
-    background: ${props.theme.primarySurface};
+    display: inline-flex;
+    position: relative;
+    color: ${(p) => p.onPrimarySurface};
+  }
+  .react-date-picker,
+  .react-date-picker *,
+  .react-date-picker *:before,
+  .react-date-picker *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .react-date-picker--disabled {
+    background-color: #f0f0f0;
+    color: #6d6d6d;
   }
   .react-date-picker__wrapper {
-    border: 1px solid ${props.theme.accent};
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    border: thin solid ${(p) => p.theme.secondarySurface};
+    color: ${(p) => p.theme.onPrimarySurface};
   }
-  input {
-    color: ${props.theme.onPrimarySurface};
+  .react-date-picker__inputGroup {
+    min-width: calc((4px * 3) + 0.54em * 8 + 0.217em * 2);
+    flex-grow: 1;
+    padding: 0 2px;
+    box-sizing: content-box;
+    background: ${(p) => p.theme.primarySurface};
+    color: ${(p) => p.theme.onPrimarySurface};
   }
-`;
-
-export const AdminDateStyler = styled.div`
-  ${datePickerStyles}
+  .react-date-picker__inputGroup__divider {
+    padding: 1px 0;
+    white-space: pre;
+  }
+  .react-date-picker__inputGroup__input {
+    min-width: 0.54em;
+    height: 100%;
+    position: relative;
+    padding: 0 1px;
+    border: 0;
+    background: ${(p) => p.theme.primarySurface};
+    color: ${(p) => p.theme.onPrimarySurface};
+    font: inherit;
+    box-sizing: content-box;
+    -moz-appearance: textfield;
+  }
+  .react-date-picker__inputGroup__input::-webkit-outer-spin-button,
+  .react-date-picker__inputGroup__input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .react-date-picker__inputGroup__input:invalid {
+    background: rgba(255, 0, 0, 0.1);
+  }
+  .react-date-picker__inputGroup__input--hasLeadingZero {
+    margin-left: -0.54em;
+    padding-left: calc(1px + 0.54em);
+  }
+  .react-date-picker__button {
+    border: 0;
+    background: transparent;
+    padding: 4px 6px;
+    stroke: ${(p) => p.theme.onPrimarySurface};
+    color: ${(p) => p.theme.onPrimarySurface};
+  }
+  .react-date-picker__button:enabled {
+    cursor: pointer;
+  }
+  .react-date-picker__button:enabled:hover .react-date-picker__button__icon,
+  .react-date-picker__button:enabled:focus .react-date-picker__button__icon {
+    stroke: ${(p) => p.theme.accent};
+  }
+  .react-date-picker__button:disabled .react-date-picker__button__icon {
+    stroke: #6d6d6d;
+  }
+  .react-date-picker__button svg {
+    display: inherit;
+    stroke: ${(p) => p.theme.onPrimarySurface};
+    color: ${(p) => p.theme.onPrimarySurface};
+  }
+  .react-date-picker__calendar {
+    width: 350px;
+    max-width: 100vw;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+  }
+  .react-date-picker__calendar--closed {
+    display: none;
+  }
+  .react-date-picker__calendar .react-calendar {
+    border-width: thin;
+  }
 `;
 
 export const NTTitle = styled.h2`
