@@ -2,12 +2,21 @@ import styled from '@emotion/styled';
 
 export const Box = styled.div({
   width: '100%',
-  height: '100%'
+  height: '100%',
+  boxSizing: 'border-box'
 });
 
-export const AdminTitle = styled.h3({
-  color: 'goldenrod'
-});
+export const Page = styled(Box)`
+  padding-top: 5vh;
+  background: ${(p) => p.theme.background};
+  color: ${(p) => p.theme.onBackground};
+`;
+
+export const Section = styled(Box)`
+  background: ${(p) => p.theme.primarySurface};
+  color: ${(p) => p.theme.onPrimarySurface};
+  padding: 0 1vw 0 1vw;
+`;
 
 export const Row = styled.div({
   display: 'flex',
