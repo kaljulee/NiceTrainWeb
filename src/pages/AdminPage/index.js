@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import '../../styles/css/custom-react-tabs.css';
+// import '../../styles/css/custom-react-tabs.css';
 import {
   AmplifyAuthenticator,
   AmplifyAuthContainer,
   AmplifySignIn
 } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import NiceTrainPage from '../NiceTrainPage';
-import colors from '../../styles/colors';
 import StationPanel from './Panels/StationPanel';
 import YouTubeResourcePanel from './Panels/YouTubeResourcePanel';
 import ActivityPanel from './Panels/ActivityPanel';
 import ScheduledTrainPanel from './Panels/ScheduledTrainPanel';
 import FormatPanel from './Panels/FormatPanel';
+import { Page, Section } from '../../components/layoutComponents';
+import { TabContainer } from '../../components/styledComponents';
 
 function AdminPage(props) {
   const [authState, setAuthState] = useState();
@@ -28,45 +28,46 @@ function AdminPage(props) {
   );
 
   return (
-    <NiceTrainPage>
+    <Page>
       {authState === AuthState.SignedIn && user ? (
-        <div
+        <Section
           style={{
-            backgroundColor: colors.boardBack,
             height: '100%',
             width: '90vw',
             margin: 'auto'
           }}
         >
-          <Tabs>
-            <TabList>
-              <Tab>Stations</Tab>
-              <Tab>YT Resources</Tab>
-              <Tab>Formats</Tab>
-              <Tab>Activities</Tab>
-              <Tab>Train Scheduling</Tab>
-              <Tab>Information Message</Tab>
-            </TabList>
-            <TabPanel>
-              <StationPanel />
-            </TabPanel>
-            <TabPanel>
-              <YouTubeResourcePanel />
-            </TabPanel>
-            <TabPanel>
-              <FormatPanel />
-            </TabPanel>
-            <TabPanel>
-              <ActivityPanel />
-            </TabPanel>
-            <TabPanel>
-              <ScheduledTrainPanel />
-            </TabPanel>
-            <TabPanel>
-              <h2>info message panel</h2>
-            </TabPanel>
-          </Tabs>
-        </div>
+          <TabContainer>
+            <Tabs>
+              <TabList>
+                <Tab>Stations</Tab>
+                <Tab>YT Resources</Tab>
+                <Tab>Formats</Tab>
+                <Tab>Activities</Tab>
+                <Tab>Train Scheduling</Tab>
+                <Tab>Information Message</Tab>
+              </TabList>
+              <TabPanel>
+                <StationPanel />
+              </TabPanel>
+              <TabPanel>
+                <YouTubeResourcePanel />
+              </TabPanel>
+              <TabPanel>
+                <FormatPanel />
+              </TabPanel>
+              <TabPanel>
+                <ActivityPanel />
+              </TabPanel>
+              <TabPanel>
+                <ScheduledTrainPanel />
+              </TabPanel>
+              <TabPanel>
+                <h2>info message panel</h2>
+              </TabPanel>
+            </Tabs>
+          </TabContainer>
+        </Section>
       ) : (
         <AmplifyAuthContainer>
           <AmplifyAuthenticator>
@@ -78,7 +79,7 @@ function AdminPage(props) {
           </AmplifyAuthenticator>
         </AmplifyAuthContainer>
       )}
-    </NiceTrainPage>
+    </Page>
   );
 }
 
