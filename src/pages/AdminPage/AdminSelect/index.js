@@ -32,7 +32,6 @@ function AdminSelect(props) {
       color: theme.onPrimarySurface,
       boxShadow: 0,
       backgroundColor: theme.primarySurface,
-      // border: `1px solid ${}`,
       borderColor: selectState.isFocused
         ? theme.accent
         : theme.secondarySurface,
