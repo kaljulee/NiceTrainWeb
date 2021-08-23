@@ -51,6 +51,10 @@ function ScheduledTrainForm(props) {
     );
     setDateValue(currentDatum.train_date);
     setTimeValue(currentDatum.train_time);
+    setStandingTagValue(currentDatum.standingTag);
+    setGroundTagValue(currentDatum.groundTag);
+    setStatusValue(currentDatum.status);
+    setDescriptionValue(currentDatum.description);
   }, [title, currentDatum]);
 
   function handleDescriptionChange(event) {
@@ -99,6 +103,7 @@ function ScheduledTrainForm(props) {
       toast.error(scheduledTrainValidation.error);
       return;
     }
+    console.log('dispatching st update');
     dispatch(callUpdateScheduledTrain(updatedScheduledTrain));
   }
 

@@ -33,12 +33,12 @@ function LongFlip(props) {
           // WebkitTextStrokeColor: 'white'
         }}
       >
-        {message.toUpperCase()}
+        {message ? message.toUpperCase() : ''}
       </span>
     </div>
   );
 }
 
-LongFlip.defaultProps = { textColor: '#dddddd' };
+LongFlip.defaultProps = { textColor: '#dddddd', message: '' };
 
 export default LongFlip;
