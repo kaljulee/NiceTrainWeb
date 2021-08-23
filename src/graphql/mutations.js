@@ -526,12 +526,12 @@ export const deleteYouTubeResource = /* GraphQL */ `
     }
   }
 `;
-export const createBoardLongMessage = /* GraphQL */ `
-  mutation CreateBoardLongMessage(
-    $input: CreateBoardLongMessageInput!
-    $condition: ModelBoardLongMessageConditionInput
+export const createLongMessage = /* GraphQL */ `
+  mutation CreateLongMessage(
+    $input: CreateLongMessageInput!
+    $condition: ModelLongMessageConditionInput
   ) {
-    createBoardLongMessage(input: $input, condition: $condition) {
+    createLongMessage(input: $input, condition: $condition) {
       id
       text
       createdAt
@@ -539,12 +539,12 @@ export const createBoardLongMessage = /* GraphQL */ `
     }
   }
 `;
-export const updateBoardLongMessage = /* GraphQL */ `
-  mutation UpdateBoardLongMessage(
-    $input: UpdateBoardLongMessageInput!
-    $condition: ModelBoardLongMessageConditionInput
+export const updateLongMessage = /* GraphQL */ `
+  mutation UpdateLongMessage(
+    $input: UpdateLongMessageInput!
+    $condition: ModelLongMessageConditionInput
   ) {
-    updateBoardLongMessage(input: $input, condition: $condition) {
+    updateLongMessage(input: $input, condition: $condition) {
       id
       text
       createdAt
@@ -552,12 +552,12 @@ export const updateBoardLongMessage = /* GraphQL */ `
     }
   }
 `;
-export const deleteBoardLongMessage = /* GraphQL */ `
-  mutation DeleteBoardLongMessage(
-    $input: DeleteBoardLongMessageInput!
-    $condition: ModelBoardLongMessageConditionInput
+export const deleteLongMessage = /* GraphQL */ `
+  mutation DeleteLongMessage(
+    $input: DeleteLongMessageInput!
+    $condition: ModelLongMessageConditionInput
   ) {
-    deleteBoardLongMessage(input: $input, condition: $condition) {
+    deleteLongMessage(input: $input, condition: $condition) {
       id
       text
       createdAt

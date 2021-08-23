@@ -387,7 +387,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getBoardLongMessage",
+          "name" : "getLongMessage",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -405,20 +405,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "BoardLongMessage",
+            "name" : "LongMessage",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listBoardLongMessages",
+          "name" : "listLongMessages",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelBoardLongMessageFilterInput",
+              "name" : "ModelLongMessageFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -443,7 +443,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelBoardLongMessageConnection",
+            "name" : "ModelLongMessageConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2632,7 +2632,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "BoardLongMessage",
+        "name" : "LongMessage",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -2697,7 +2697,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelBoardLongMessageConnection",
+        "name" : "ModelLongMessageConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -2708,7 +2708,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "BoardLongMessage",
+              "name" : "LongMessage",
               "ofType" : null
             }
           },
@@ -2732,7 +2732,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelBoardLongMessageFilterInput",
+        "name" : "ModelLongMessageFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2761,7 +2761,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelBoardLongMessageFilterInput",
+              "name" : "ModelLongMessageFilterInput",
               "ofType" : null
             }
           },
@@ -2774,7 +2774,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelBoardLongMessageFilterInput",
+              "name" : "ModelLongMessageFilterInput",
               "ofType" : null
             }
           },
@@ -2784,7 +2784,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelBoardLongMessageFilterInput",
+            "name" : "ModelLongMessageFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3605,7 +3605,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createBoardLongMessage",
+          "name" : "createLongMessage",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -3615,7 +3615,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateBoardLongMessageInput",
+                "name" : "CreateLongMessageInput",
                 "ofType" : null
               }
             },
@@ -3625,20 +3625,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelBoardLongMessageConditionInput",
+              "name" : "ModelLongMessageConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "BoardLongMessage",
+            "name" : "LongMessage",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateBoardLongMessage",
+          "name" : "updateLongMessage",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -3648,7 +3648,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateBoardLongMessageInput",
+                "name" : "UpdateLongMessageInput",
                 "ofType" : null
               }
             },
@@ -3658,20 +3658,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelBoardLongMessageConditionInput",
+              "name" : "ModelLongMessageConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "BoardLongMessage",
+            "name" : "LongMessage",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteBoardLongMessage",
+          "name" : "deleteLongMessage",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -3681,7 +3681,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteBoardLongMessageInput",
+                "name" : "DeleteLongMessageInput",
                 "ofType" : null
               }
             },
@@ -3691,14 +3691,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelBoardLongMessageConditionInput",
+              "name" : "ModelLongMessageConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "BoardLongMessage",
+            "name" : "LongMessage",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -5059,7 +5059,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateBoardLongMessageInput",
+        "name" : "CreateLongMessageInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -5086,7 +5086,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelBoardLongMessageConditionInput",
+        "name" : "ModelLongMessageConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -5106,7 +5106,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelBoardLongMessageConditionInput",
+              "name" : "ModelLongMessageConditionInput",
               "ofType" : null
             }
           },
@@ -5119,7 +5119,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelBoardLongMessageConditionInput",
+              "name" : "ModelLongMessageConditionInput",
               "ofType" : null
             }
           },
@@ -5129,7 +5129,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelBoardLongMessageConditionInput",
+            "name" : "ModelLongMessageConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -5139,7 +5139,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateBoardLongMessageInput",
+        "name" : "UpdateLongMessageInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -5170,7 +5170,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteBoardLongMessageInput",
+        "name" : "DeleteLongMessageInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -5592,34 +5592,34 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateBoardLongMessage",
+          "name" : "onCreateLongMessage",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "BoardLongMessage",
+            "name" : "LongMessage",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateBoardLongMessage",
+          "name" : "onUpdateLongMessage",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "BoardLongMessage",
+            "name" : "LongMessage",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteBoardLongMessage",
+          "name" : "onDeleteLongMessage",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "BoardLongMessage",
+            "name" : "LongMessage",
             "ofType" : null
           },
           "isDeprecated" : false,
