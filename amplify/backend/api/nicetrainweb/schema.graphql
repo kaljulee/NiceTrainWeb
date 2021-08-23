@@ -112,7 +112,7 @@ type YouTubeResource
 
 # message for the long board
 # maybe should be split up to accomodate smallest screen
-type BoardLongMessage
+type LongMessage
 @model
 @auth(
   rules:[
@@ -138,6 +138,24 @@ type Color
   name: String!
   primary: String!
   contrast: String!
+}
+
+type Setting
+@model
+@key(fields: ["settingType"])
+@auth(
+  rules:[
+    {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
+    { allow: public, operations: [read] }
+  ]
+)
+{
+  settingType: SettingType!
+  value: String
+}
+
+enum SettingType {
+  ACTIVE_LONG_MESSAGE
 }
 
 #type ExtraTable

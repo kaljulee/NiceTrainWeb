@@ -36,8 +36,8 @@ const DeleteButton = styled(SaveButton)`
 
 function DragItem(props) {
   const { activity } = props;
-  const possibleActivities = useSelector((state) => state.activities);
-  const possibleFormats = useSelector((state) => state.formats);
+  const possibleActivities = useSelector((state) => state.train.activities);
+  const possibleFormats = useSelector((state) => state.train.formats);
   const [currentActivityOption, setCurrentActivityOption] = useState(
     getCurrentOption(possibleActivities, activity.activityID, 'description')
   );

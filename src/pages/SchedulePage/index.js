@@ -19,7 +19,7 @@ function SchedulePage() {
     display: 'flex'
   };
 
-  const stations = useSelector((state) => state.stations);
+  const stations = useSelector((state) => state.train.stations);
 
   return (
     <NiceTrainPage>

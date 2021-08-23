@@ -37,6 +37,12 @@ import {
   callListScheduledActivities,
   callUpdateScheduledActivity
 } from '../thunks/scheduledActivity';
+import {
+  callListLongMessages,
+  callCreateLongMessage,
+  callDeleteLongMessage,
+  callUpdateLongMessage
+} from '../thunks/longMessage';
 import { sortByOrder } from '../../utils';
 
 const initialState = {
@@ -47,7 +53,8 @@ const initialState = {
   activities: [],
   formats: [],
   scheduledTrains: [],
-  scheduledActivities: {}
+  scheduledActivities: {},
+  longMessages: undefined
 };
 
 function findIndexByID(items, id) {
@@ -279,6 +286,41 @@ export const trainSlice = createSlice({
             state.scheduledActivities[trainID],
             deletedScheduledActivity.id
           );
+        }
+      })
+      // long message calls
+      .addCase(callListLongMessages.fulfilled, (state, action) => {
+        state.longMessages = action.payload.listLongMessages.items;
+      })
+      .addCase(callCreateLongMessage.fulfilled, (state, action) => {
+        const newLongMessage = action.payload.createLongMessage;
+        if (!state.longMessages) {
+          console.err('something went wrong, no long messages present');
+          state.longMessages = [];
+        }
+        state.longMessages.push(newLongMessage);
+      })
+      .addCase(callUpdateLongMessage.fulfilled, (state, action) => {
+        const updatedLongMessageData = action.payload.updateLongMessage;
+        const index = state.longMessages.findIndex(
+          (s) => s.id === updatedLongMessageData.id
+        );
+        if (index !== -1) {
+          state.longMessages[index] = updatedLongMessageData;
+        }
+      })
+      .addCase(callDeleteLongMessage.fulfilled, (state, action) => {
+        const deletedLongMessageData = action.payload.data.deleteLongMessage;
+        const index = state.longMessages.findIndex(
+          (s) => s.id === deletedLongMessageData.id
+        );
+        if (index !== -1) {
+          state.stations = state.longMessages.reduce((acc, s) => {
+            if (s.id !== deletedLongMessageData.id) {
+              acc.push(s);
+            }
+            return acc;
+          }, []);
         }
       })
       .addDefaultCase((state, action) => {});

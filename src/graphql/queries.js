@@ -308,9 +308,9 @@ export const listYouTubeResources = /* GraphQL */ `
     }
   }
 `;
-export const getBoardLongMessage = /* GraphQL */ `
-  query GetBoardLongMessage($id: ID!) {
-    getBoardLongMessage(id: $id) {
+export const getLongMessage = /* GraphQL */ `
+  query GetLongMessage($id: ID!) {
+    getLongMessage(id: $id) {
       id
       text
       createdAt
@@ -318,17 +318,13 @@ export const getBoardLongMessage = /* GraphQL */ `
     }
   }
 `;
-export const listBoardLongMessages = /* GraphQL */ `
-  query ListBoardLongMessages(
-    $filter: ModelBoardLongMessageFilterInput
+export const listLongMessages = /* GraphQL */ `
+  query ListLongMessages(
+    $filter: ModelLongMessageFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listBoardLongMessages(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
+    listLongMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         text
@@ -363,6 +359,41 @@ export const listColors = /* GraphQL */ `
         name
         primary
         contrast
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getSetting = /* GraphQL */ `
+  query GetSetting($settingType: SettingType!) {
+    getSetting(settingType: $settingType) {
+      settingType
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listSettings = /* GraphQL */ `
+  query ListSettings(
+    $settingType: SettingType
+    $filter: ModelSettingFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listSettings(
+      settingType: $settingType
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        settingType
+        value
         createdAt
         updatedAt
       }

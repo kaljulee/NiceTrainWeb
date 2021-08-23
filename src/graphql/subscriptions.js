@@ -472,9 +472,9 @@ export const onDeleteYouTubeResource = /* GraphQL */ `
     }
   }
 `;
-export const onCreateBoardLongMessage = /* GraphQL */ `
-  subscription OnCreateBoardLongMessage {
-    onCreateBoardLongMessage {
+export const onCreateLongMessage = /* GraphQL */ `
+  subscription OnCreateLongMessage {
+    onCreateLongMessage {
       id
       text
       createdAt
@@ -482,9 +482,9 @@ export const onCreateBoardLongMessage = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateBoardLongMessage = /* GraphQL */ `
-  subscription OnUpdateBoardLongMessage {
-    onUpdateBoardLongMessage {
+export const onUpdateLongMessage = /* GraphQL */ `
+  subscription OnUpdateLongMessage {
+    onUpdateLongMessage {
       id
       text
       createdAt
@@ -492,9 +492,9 @@ export const onUpdateBoardLongMessage = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteBoardLongMessage = /* GraphQL */ `
-  subscription OnDeleteBoardLongMessage {
-    onDeleteBoardLongMessage {
+export const onDeleteLongMessage = /* GraphQL */ `
+  subscription OnDeleteLongMessage {
+    onDeleteLongMessage {
       id
       text
       createdAt
@@ -533,6 +533,36 @@ export const onDeleteColor = /* GraphQL */ `
       name
       primary
       contrast
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateSetting = /* GraphQL */ `
+  subscription OnCreateSetting {
+    onCreateSetting {
+      settingType
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateSetting = /* GraphQL */ `
+  subscription OnUpdateSetting {
+    onUpdateSetting {
+      settingType
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteSetting = /* GraphQL */ `
+  subscription OnDeleteSetting {
+    onDeleteSetting {
+      settingType
+      value
       createdAt
       updatedAt
     }

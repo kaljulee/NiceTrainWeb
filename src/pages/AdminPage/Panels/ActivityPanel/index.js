@@ -5,8 +5,8 @@ import ActivityForm from './ActivityForm';
 
 function ActivityPanel(props) {
   const title = 'Activity';
-  const listData = useSelector((state) => state.activities);
-  const availableYTRs = useSelector((state) => state.youTubeResources);
+  const listData = useSelector((state) => state.train.activities);
+  const availableYTRs = useSelector((state) => state.train.youTubeResources);
   const listFields = ['name'];
   const [currentDatum, setCurrentDatum] = useState();
   function onDatumClick(id) {

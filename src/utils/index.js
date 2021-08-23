@@ -2,7 +2,7 @@ export function createOption(item, labelField) {
   return { label: item[labelField], value: item.id };
 }
 
-export function getCurrentOption(items, id, labelField) {
+export function getCurrentOption(items = [], id, labelField) {
   const currentItem = items.find((item) => item.id === id);
   if (!currentItem) {
     return {};

@@ -1,4 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import trainReducer from '../reducers/trainReducer';
+import settingsReducer from '../reducers/settingsReducer';
 
-export const store = configureStore({ reducer: trainReducer });
+// eslint-disable-next-line import/prefer-default-export
+export const store = configureStore({
+  reducer: { train: trainReducer, settings: settingsReducer }
+});

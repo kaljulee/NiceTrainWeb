@@ -11,7 +11,7 @@ import {
 
 function StationPanel() {
   const title = 'Station';
-  const listData = useSelector((state) => state.stations);
+  const listData = useSelector((state) => state.train.stations);
   const listFields = ['name', 'abbrev'];
   const [currentDatum, setCurrentDatum] = useState();
   function onDatumClick(id) {

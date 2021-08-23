@@ -5,7 +5,7 @@ import YouTubeResourceForm from './YouTubeResourceForm';
 
 function YouTubeResourcePanel(props) {
   const title = 'YouTube Resource';
-  const listData = useSelector((state) => state.youTubeResources);
+  const listData = useSelector((state) => state.train.youTubeResources);
   const listFields = ['description', 'author', 'link'];
   const [currentDatum, setCurrentDatum] = useState();
   function onDatumClick(id) {
