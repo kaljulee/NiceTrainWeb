@@ -112,7 +112,7 @@ type YouTubeResource
 
 # message for the long board
 # maybe should be split up to accomodate smallest screen
-type BoardLongMessage
+type LongMessage
 @model
 @auth(
   rules:[
