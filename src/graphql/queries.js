@@ -18,6 +18,7 @@ export const getStation = /* GraphQL */ `
           stationID
           standingTag
           groundTag
+          status
           createdAt
           updatedAt
         }
@@ -57,6 +58,7 @@ export const getScheduledTrain = /* GraphQL */ `
       stationID
       standingTag
       groundTag
+      status
       createdAt
       updatedAt
       scheduledActivities {
@@ -92,6 +94,7 @@ export const listScheduledTrains = /* GraphQL */ `
         stationID
         standingTag
         groundTag
+        status
         createdAt
         updatedAt
         scheduledActivities {
@@ -123,6 +126,7 @@ export const getScheduledActivity = /* GraphQL */ `
         stationID
         standingTag
         groundTag
+        status
         createdAt
         updatedAt
         scheduledActivities {
@@ -162,6 +166,7 @@ export const listScheduledActivities = /* GraphQL */ `
           stationID
           standingTag
           groundTag
+          status
           createdAt
           updatedAt
         }

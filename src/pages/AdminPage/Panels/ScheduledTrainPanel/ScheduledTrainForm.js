@@ -39,6 +39,7 @@ function ScheduledTrainForm(props) {
   const [descriptionValue, setDescriptionValue] = useState(
     currentDatum.description
   );
+  const [statusValue, setStatusValue] = useState(currentDatum.status);
   const [stationOption, setStationOption] = useState(
     createOption(stations[0], 'name')
   );
@@ -64,6 +65,10 @@ function ScheduledTrainForm(props) {
     setStandingTagValue(event.target.value);
   }
 
+  function handleStatusChange(event) {
+    setStatusValue(event.target.value);
+  }
+
   function handleStationSelect(item) {
     setStationOption(item);
   }
@@ -84,6 +89,7 @@ function ScheduledTrainForm(props) {
       stationID: stationOption.value,
       standingTag: standingTagValue,
       groundTag: groundTagValue,
+      status: statusValue,
       id: currentDatum.id
     };
     const scheduledTrainValidation = scheduledTrainValidator(
@@ -103,6 +109,7 @@ function ScheduledTrainForm(props) {
       train_time: timeValue,
       standingTag: standingTagValue,
       groundTag: groundTagValue,
+      status: statusValue,
       stationID: stationOption.value
     };
     const scheduledTrainValidation = scheduledTrainValidator(newScheduledTrain);
@@ -131,6 +138,11 @@ function ScheduledTrainForm(props) {
           >
             <AdminDatePicker value={dateValue} onChange={handleDateChange} />
             <AdminTimePicker value={timeValue} onChange={handleTimeChange} />
+            <AdminInput
+              label="status"
+              value={statusValue}
+              onChange={handleStatusChange}
+            />
             <AdminInput
               label="description"
               value={descriptionValue}
