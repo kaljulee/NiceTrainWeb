@@ -39,9 +39,9 @@ function LongMessagePanel() {
     }
   }, []);
 
-  useEffect(() => {
-    // setActiveMessage(getCurrentOption(listData, currentDatum.id, 'text'));
-  }, [currentDatum]);
+  // useEffect(() => {
+  //   // setActiveMessage(getCurrentOption(listData, currentDatum.id, 'text'));
+  // }, [currentDatum]);
 
   useEffect(() => {
     const currentOption = getCurrentOption(listData, activeMessageID, 'text');

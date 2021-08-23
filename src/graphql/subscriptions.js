@@ -16,6 +16,8 @@ export const onCreateStation = /* GraphQL */ `
           train_date
           train_time
           stationID
+          standingTag
+          groundTag
           createdAt
           updatedAt
         }
@@ -39,6 +41,8 @@ export const onUpdateStation = /* GraphQL */ `
           train_date
           train_time
           stationID
+          standingTag
+          groundTag
           createdAt
           updatedAt
         }
@@ -62,6 +66,8 @@ export const onDeleteStation = /* GraphQL */ `
           train_date
           train_time
           stationID
+          standingTag
+          groundTag
           createdAt
           updatedAt
         }
@@ -78,6 +84,8 @@ export const onCreateScheduledTrain = /* GraphQL */ `
       train_date
       train_time
       stationID
+      standingTag
+      groundTag
       createdAt
       updatedAt
       scheduledActivities {
@@ -106,6 +114,8 @@ export const onUpdateScheduledTrain = /* GraphQL */ `
       train_date
       train_time
       stationID
+      standingTag
+      groundTag
       createdAt
       updatedAt
       scheduledActivities {
@@ -134,6 +144,8 @@ export const onDeleteScheduledTrain = /* GraphQL */ `
       train_date
       train_time
       stationID
+      standingTag
+      groundTag
       createdAt
       updatedAt
       scheduledActivities {
@@ -173,6 +185,8 @@ export const onCreateScheduledActivity = /* GraphQL */ `
         train_date
         train_time
         stationID
+        standingTag
+        groundTag
         createdAt
         updatedAt
         scheduledActivities {
@@ -201,6 +215,8 @@ export const onUpdateScheduledActivity = /* GraphQL */ `
         train_date
         train_time
         stationID
+        standingTag
+        groundTag
         createdAt
         updatedAt
         scheduledActivities {
@@ -229,6 +245,8 @@ export const onDeleteScheduledActivity = /* GraphQL */ `
         train_date
         train_time
         stationID
+        standingTag
+        groundTag
         createdAt
         updatedAt
         scheduledActivities {
