@@ -29,6 +29,8 @@ type ScheduledTrain
   train_date: String
   train_time: String
   stationID: ID,
+  standingTag: String,
+  groundTag: String,
   scheduledActivities: [ScheduledActivity] @connection(name: "byScheduledTrain", fields: ["id"])
 }
 

@@ -146,7 +146,7 @@ export const trainSlice = createSlice({
         state.youTubeResources.push(newYTR);
       })
       .addCase(callDeleteYouTubeResource.fulfilled, (state, action) => {
-        const deletedYTR = action.payload.payload.deleteYouTubeResource;
+        const deletedYTR = action.payload.data.deleteYouTubeResource;
         const index = state.youTubeResources.findIndex(
           (ytr) => ytr.id === deletedYTR.id
         );
@@ -311,11 +311,16 @@ export const trainSlice = createSlice({
       })
       .addCase(callDeleteLongMessage.fulfilled, (state, action) => {
         const deletedLongMessageData = action.payload.data.deleteLongMessage;
+        console.log('delete id');
+        console.log(deletedLongMessageData.id);
         const index = state.longMessages.findIndex(
           (s) => s.id === deletedLongMessageData.id
         );
+        console.log('delete index');
+        console.log(index);
         if (index !== -1) {
-          state.stations = state.longMessages.reduce((acc, s) => {
+          console.log('going to delete');
+          state.longMessages = state.longMessages.reduce((acc, s) => {
             if (s.id !== deletedLongMessageData.id) {
               acc.push(s);
             }

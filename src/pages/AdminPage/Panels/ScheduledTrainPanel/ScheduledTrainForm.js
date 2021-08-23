@@ -32,6 +32,10 @@ function ScheduledTrainForm(props) {
   );
   const [dateValue, setDateValue] = useState(currentDatum.train_time);
   const [timeValue, setTimeValue] = useState(currentDatum.train_time);
+  const [groundTagValue, setGroundTagValue] = useState(currentDatum.groundTag);
+  const [standingTagValue, setStandingTagValue] = useState(
+    currentDatum.standingTag
+  );
   const [descriptionValue, setDescriptionValue] = useState(
     currentDatum.description
   );
@@ -52,6 +56,14 @@ function ScheduledTrainForm(props) {
     setDescriptionValue(event.target.value);
   }
 
+  function handleGroundTagChange(event) {
+    setGroundTagValue(event.target.value);
+  }
+
+  function handleStandingTagChange(event) {
+    setStandingTagValue(event.target.value);
+  }
+
   function handleStationSelect(item) {
     setStationOption(item);
   }
@@ -70,6 +82,8 @@ function ScheduledTrainForm(props) {
       train_date: dateValue,
       train_time: timeValue,
       stationID: stationOption.value,
+      standingTag: standingTagValue,
+      groundTag: groundTagValue,
       id: currentDatum.id
     };
     const scheduledTrainValidation = scheduledTrainValidator(
@@ -87,6 +101,8 @@ function ScheduledTrainForm(props) {
       description: descriptionValue,
       train_date: dateValue,
       train_time: timeValue,
+      standingTag: standingTagValue,
+      groundTag: groundTagValue,
       stationID: stationOption.value
     };
     const scheduledTrainValidation = scheduledTrainValidator(newScheduledTrain);
@@ -125,6 +141,16 @@ function ScheduledTrainForm(props) {
               options={stations.map((s) => createOption(s, 'name'))}
               value={stationOption}
               onChange={handleStationSelect}
+            />
+            <AdminInput
+              label="standing tag"
+              value={standingTagValue}
+              onChange={handleStandingTagChange}
+            />
+            <AdminInput
+              label="ground tag"
+              value={groundTagValue}
+              onChange={handleGroundTagChange}
             />
           </div>
           <AdminSubmitButtonBar
