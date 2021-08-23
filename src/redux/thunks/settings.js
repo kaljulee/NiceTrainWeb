@@ -6,7 +6,7 @@ import {
   updateSetting,
   deleteSetting
 } from '../../graphql/mutations';
-import { apiKey } from '../../constants';
+import { apiKey, SETTING_TYPE } from '../../constants';
 
 export const callListSettings = createAsyncThunk('settings/fetch', async () => {
   console.log('calling list settings');
@@ -20,9 +20,26 @@ export const callListSettings = createAsyncThunk('settings/fetch', async () => {
 export const callCreateSetting = createAsyncThunk(
   'settings/create',
   async (data) => {
-    // const newSetting = { name: 'faker setting', abbrev: 'FAKR' };
     const response = await API.graphql(
       graphqlOperation(createSetting, { input: data })
+    );
+    return response.data;
+  }
+);
+
+export const callSetLongMessage = createAsyncThunk(
+  'settings/updateLongMessage',
+  async (data) => {
+    const updatedSettingData = {
+      settingType: SETTING_TYPE.ACTIVE_LONG_MESSAGE
+    };
+    Object.keys(data).forEach((k) => {
+      if (data[k].length > 0) {
+        updatedSettingData[k] = data[k];
+      }
+    });
+    const response = await API.graphql(
+      graphqlOperation(updateSetting, { input: updatedSettingData })
     );
     return response.data;
   }
