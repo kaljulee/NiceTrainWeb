@@ -538,3 +538,33 @@ export const onDeleteColor = /* GraphQL */ `
     }
   }
 `;
+export const onCreateSetting = /* GraphQL */ `
+  subscription OnCreateSetting {
+    onCreateSetting {
+      name
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateSetting = /* GraphQL */ `
+  subscription OnUpdateSetting {
+    onUpdateSetting {
+      name
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteSetting = /* GraphQL */ `
+  subscription OnDeleteSetting {
+    onDeleteSetting {
+      name
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;

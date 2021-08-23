@@ -140,6 +140,20 @@ type Color
   contrast: String!
 }
 
+type Setting
+@model
+@key(fields: ["name"])
+@auth(
+  rules:[
+    {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
+    { allow: public, operations: [read] }
+  ]
+)
+{
+  name: String!
+  value: String
+}
+
 #type ExtraTable
 #@model
 #@auth(

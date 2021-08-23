@@ -366,3 +366,38 @@ export const listColors = /* GraphQL */ `
     }
   }
 `;
+export const getSetting = /* GraphQL */ `
+  query GetSetting($name: String!) {
+    getSetting(name: $name) {
+      name
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listSettings = /* GraphQL */ `
+  query ListSettings(
+    $name: String
+    $filter: ModelSettingFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listSettings(
+      name: $name
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        name
+        value
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

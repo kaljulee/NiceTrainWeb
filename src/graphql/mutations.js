@@ -610,3 +610,42 @@ export const deleteColor = /* GraphQL */ `
     }
   }
 `;
+export const createSetting = /* GraphQL */ `
+  mutation CreateSetting(
+    $input: CreateSettingInput!
+    $condition: ModelSettingConditionInput
+  ) {
+    createSetting(input: $input, condition: $condition) {
+      name
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateSetting = /* GraphQL */ `
+  mutation UpdateSetting(
+    $input: UpdateSettingInput!
+    $condition: ModelSettingConditionInput
+  ) {
+    updateSetting(input: $input, condition: $condition) {
+      name
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteSetting = /* GraphQL */ `
+  mutation DeleteSetting(
+    $input: DeleteSettingInput!
+    $condition: ModelSettingConditionInput
+  ) {
+    deleteSetting(input: $input, condition: $condition) {
+      name
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
