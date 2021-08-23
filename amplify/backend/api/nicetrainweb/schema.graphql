@@ -142,7 +142,7 @@ type Color
 
 type Setting
 @model
-@key(fields: ["name"])
+@key(fields: ["settingType"])
 @auth(
   rules:[
     {allow: groups, groups: ["ntadmin"], operations: [read, create, update, delete]},
@@ -150,8 +150,12 @@ type Setting
   ]
 )
 {
-  name: String!
+  settingType: SettingType!
   value: String
+}
+
+enum SettingType {
+  ACTIVE_LONG_MESSAGE
 }
 
 #type ExtraTable
