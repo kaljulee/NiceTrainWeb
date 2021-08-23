@@ -2,11 +2,11 @@ import React from 'react';
 import { Breakpoint } from 'react-socks';
 import { connect, useSelector } from 'react-redux';
 import ScheduleBoard from '../../components/ScheduleBoard';
-import data from '../../data';
 import ScheduleHeader from '../../components/ScheduleHeader';
 import colors from '../../styles/colors';
 import ScheduleInfo from '../../components/ScheduleInfo';
 import NiceTrainPage from '../NiceTrainPage';
+import { boardTrainInformation } from '../../redux/selectors';
 
 function SchedulePage() {
   const sectionStyles = {
@@ -19,8 +19,7 @@ function SchedulePage() {
     display: 'flex'
   };
 
-  const stations = useSelector((state) => state.train.stations);
-
+  const data = useSelector(boardTrainInformation);
   return (
     <NiceTrainPage>
       <div

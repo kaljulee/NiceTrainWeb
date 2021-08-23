@@ -18,6 +18,7 @@ export const onCreateStation = /* GraphQL */ `
           stationID
           standingTag
           groundTag
+          status
           createdAt
           updatedAt
         }
@@ -43,6 +44,7 @@ export const onUpdateStation = /* GraphQL */ `
           stationID
           standingTag
           groundTag
+          status
           createdAt
           updatedAt
         }
@@ -68,6 +70,7 @@ export const onDeleteStation = /* GraphQL */ `
           stationID
           standingTag
           groundTag
+          status
           createdAt
           updatedAt
         }
@@ -86,6 +89,7 @@ export const onCreateScheduledTrain = /* GraphQL */ `
       stationID
       standingTag
       groundTag
+      status
       createdAt
       updatedAt
       scheduledActivities {
@@ -116,6 +120,7 @@ export const onUpdateScheduledTrain = /* GraphQL */ `
       stationID
       standingTag
       groundTag
+      status
       createdAt
       updatedAt
       scheduledActivities {
@@ -146,6 +151,7 @@ export const onDeleteScheduledTrain = /* GraphQL */ `
       stationID
       standingTag
       groundTag
+      status
       createdAt
       updatedAt
       scheduledActivities {
@@ -187,6 +193,7 @@ export const onCreateScheduledActivity = /* GraphQL */ `
         stationID
         standingTag
         groundTag
+        status
         createdAt
         updatedAt
         scheduledActivities {
@@ -217,6 +224,7 @@ export const onUpdateScheduledActivity = /* GraphQL */ `
         stationID
         standingTag
         groundTag
+        status
         createdAt
         updatedAt
         scheduledActivities {
@@ -247,6 +255,7 @@ export const onDeleteScheduledActivity = /* GraphQL */ `
         stationID
         standingTag
         groundTag
+        status
         createdAt
         updatedAt
         scheduledActivities {

@@ -11,7 +11,6 @@ export const settingsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(callListSettings.fulfilled, (state, action) => {
-        console.log('action recd by calllistsettings');
         const { items } = action.payload.listSettings;
         // eslint-disable-next-line no-return-assign
         items.forEach((i) => (state[i.settingType] = i.value));

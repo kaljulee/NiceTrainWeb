@@ -8,29 +8,29 @@ import breakpoints from '../../styles/breakpoints';
 import InfoButton from '../InfoButton';
 
 function ScheduleBoard(props) {
-  const data = useMemo(() => props.data.events, []);
+  const data = useMemo(() => props.data, [props.data]);
   const width = useCurrentWidth();
   const columns = useMemo(() => {
     const colInfo = [
       { Header: 'Date', accessor: 'date' },
-      { Header: 'Start', accessor: 'start' }
+      { Header: 'Start', accessor: 'time' }
     ];
-    if (width >= breakpoints.medium) {
-      colInfo.push({ Header: 'End', accessor: 'end' });
-    }
+    // if (width >= breakpoints.medium) {
+    //   colInfo.push({ Header: 'End', accessor: 'end' });
+    // }
     colInfo.push({ Header: 'Station', accessor: 'station' });
     if (width >= breakpoints.medium) {
-      colInfo.push({ Header: 'Stand', accessor: 'standing' });
-      colInfo.push({ Header: 'Ground', accessor: 'ground' });
+      colInfo.push({ Header: 'Stand', accessor: 'standingTag' });
+      colInfo.push({ Header: 'Ground', accessor: 'groundTag' });
     }
     colInfo.push({ Header: 'Status', accessor: 'status' });
-    colInfo.push({ Header: 'Data', accessor: 'data' });
+    colInfo.push({ Header: 'Details', accessor: 'details' });
 
     return colInfo;
   }, [width]);
 
   function renderHeader(column) {
-    if (column.Header === 'Data') {
+    if (column.Header === 'Details') {
       return <div />;
     }
     return column.render('Header');
@@ -58,7 +58,7 @@ function ScheduleBoard(props) {
       case 'End':
       case 'Station':
         return <FlipRow message={cell.value} />;
-      case 'Data':
+      case 'Details':
         return <InfoButton />;
       case 'Status':
         return (
@@ -92,7 +92,7 @@ function ScheduleBoard(props) {
               <th
                 {...column.getHeaderProps({
                   style: {
-                    width: column.Header === 'Data' ? '1vh' : undefined,
+                    width: column.Header === 'Details' ? '1vh' : undefined,
                     color: colors.boardLettering,
                     fontFamily: 'helvetica',
                     textAlign: 'left',

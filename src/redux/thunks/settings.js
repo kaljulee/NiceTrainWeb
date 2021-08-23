@@ -9,7 +9,6 @@ import {
 import { apiKey, SETTING_TYPE } from '../../constants';
 
 export const callListSettings = createAsyncThunk('settings/fetch', async () => {
-  console.log('calling list settings');
   const response = await API.graphql({
     query: listSettings,
     authMode: apiKey
