@@ -14,6 +14,7 @@ import ScheduledTrainPanel from './Panels/ScheduledTrainPanel';
 import FormatPanel from './Panels/FormatPanel';
 import { NTPage, NTSection } from '../../components/layoutComponents';
 import { TabContainer } from '../../components/styledComponents';
+import LongMessagePanel from './Panels/LongMessagePanel';
 
 function AdminPage(props) {
   const [authState, setAuthState] = useState();
@@ -63,7 +64,7 @@ function AdminPage(props) {
                 <ScheduledTrainPanel />
               </TabPanel>
               <TabPanel>
-                <h2>info message panel</h2>
+                <LongMessagePanel />
               </TabPanel>
             </Tabs>
           </TabContainer>
