@@ -10,6 +10,7 @@ export const settingsSlice = createSlice({
     extraReducers: (builder) => {
       builder
         .addCase(callListSettings.fulfilled, (state, action) => {
+          console.log('action recd by calllistsettings');
           console.log(action);
         })
         .addDefaultCase((state, action) => {});

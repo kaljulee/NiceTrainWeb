@@ -24,10 +24,12 @@ import { NTTitle } from '../../../../components/styledComponents';
 function ScheduledTrainForm(props) {
   const { title, currentDatum, youTubeResources } = props;
   const dispatch = useDispatch();
-  const stations = useSelector((state) => state.stations);
-  const activities = useSelector((state) => state.activities);
-  const formats = useSelector((state) => state.formats);
-  const scheduledActivities = useSelector((state) => state.scheduledActivities);
+  const stations = useSelector((state) => state.train.stations);
+  const activities = useSelector((state) => state.train.activities);
+  const formats = useSelector((state) => state.train.formats);
+  const scheduledActivities = useSelector(
+    (state) => state.train.scheduledActivities
+  );
   const [dateValue, setDateValue] = useState(currentDatum.train_time);
   const [timeValue, setTimeValue] = useState(currentDatum.train_time);
   const [descriptionValue, setDescriptionValue] = useState(

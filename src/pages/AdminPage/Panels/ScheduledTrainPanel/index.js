@@ -10,9 +10,9 @@ import { callGetScheduledActivitiesByTrain } from '../../../../redux/thunks/sche
 function ScheduledTrainPanel(props) {
   const title = 'ScheduledTrain';
   const dispatch = useDispatch();
-  const listData = useSelector((state) => state.scheduledTrains);
+  const listData = useSelector((state) => state.train.scheduledTrains);
   const allScheduledActivities = useSelector(
-    (state) => state.scheduledActivities
+    (state) => state.train.scheduledActivities
   );
   const listFields = ['description', 'train_date', 'train_time'];
   const [isPanelOpen, setIsPanelOpen] = useState(false);

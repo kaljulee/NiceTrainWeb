@@ -49,6 +49,8 @@ function LongMessageForm(props) {
   }
 
   function handleDelete() {
+    console.log('trying to delete');
+    console.log(`id is ${currentDatum.id}`);
     dispatch(callDeleteLongMessage({ id: currentDatum.id }));
   }
   return (

@@ -5,7 +5,7 @@ import FormatForm from './FormatForm';
 
 function FormatPanel(props) {
   const title = 'Format';
-  const listData = useSelector((state) => state.formats);
+  const listData = useSelector((state) => state.train.formats);
   const listFields = ['name'];
   const [currentDatum, setCurrentDatum] = useState();
   function onDatumClick(id) {
