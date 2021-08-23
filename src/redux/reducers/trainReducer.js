@@ -54,7 +54,7 @@ const initialState = {
   formats: [],
   scheduledTrains: [],
   scheduledActivities: {},
-  longMessages: []
+  longMessages: undefined
 };
 
 function findIndexByID(items, id) {
@@ -290,10 +290,14 @@ export const trainSlice = createSlice({
       })
       // long message calls
       .addCase(callListLongMessages.fulfilled, (state, action) => {
-        state.stations = action.payload.listLongMessages.items;
+        state.longMessages = action.payload.listLongMessages.items;
       })
       .addCase(callCreateLongMessage.fulfilled, (state, action) => {
         const newLongMessage = action.payload.createLongMessage;
+        if (!state.longMessages) {
+          console.err('something went wrong, no long messages present');
+          state.longMessages = [];
+        }
         state.longMessages.push(newLongMessage);
       })
       .addCase(callUpdateLongMessage.fulfilled, (state, action) => {
