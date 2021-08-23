@@ -616,7 +616,7 @@ export const createSetting = /* GraphQL */ `
     $condition: ModelSettingConditionInput
   ) {
     createSetting(input: $input, condition: $condition) {
-      name
+      settingType
       value
       createdAt
       updatedAt
@@ -629,7 +629,7 @@ export const updateSetting = /* GraphQL */ `
     $condition: ModelSettingConditionInput
   ) {
     updateSetting(input: $input, condition: $condition) {
-      name
+      settingType
       value
       createdAt
       updatedAt
@@ -642,7 +642,7 @@ export const deleteSetting = /* GraphQL */ `
     $condition: ModelSettingConditionInput
   ) {
     deleteSetting(input: $input, condition: $condition) {
-      name
+      settingType
       value
       createdAt
       updatedAt

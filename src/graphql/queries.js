@@ -367,9 +367,9 @@ export const listColors = /* GraphQL */ `
   }
 `;
 export const getSetting = /* GraphQL */ `
-  query GetSetting($name: String!) {
-    getSetting(name: $name) {
-      name
+  query GetSetting($settingType: SettingType!) {
+    getSetting(settingType: $settingType) {
+      settingType
       value
       createdAt
       updatedAt
@@ -378,21 +378,21 @@ export const getSetting = /* GraphQL */ `
 `;
 export const listSettings = /* GraphQL */ `
   query ListSettings(
-    $name: String
+    $settingType: SettingType
     $filter: ModelSettingFilterInput
     $limit: Int
     $nextToken: String
     $sortDirection: ModelSortDirection
   ) {
     listSettings(
-      name: $name
+      settingType: $settingType
       filter: $filter
       limit: $limit
       nextToken: $nextToken
       sortDirection: $sortDirection
     ) {
       items {
-        name
+        settingType
         value
         createdAt
         updatedAt

@@ -541,7 +541,7 @@ export const onDeleteColor = /* GraphQL */ `
 export const onCreateSetting = /* GraphQL */ `
   subscription OnCreateSetting {
     onCreateSetting {
-      name
+      settingType
       value
       createdAt
       updatedAt
@@ -551,7 +551,7 @@ export const onCreateSetting = /* GraphQL */ `
 export const onUpdateSetting = /* GraphQL */ `
   subscription OnUpdateSetting {
     onUpdateSetting {
-      name
+      settingType
       value
       createdAt
       updatedAt
@@ -561,7 +561,7 @@ export const onUpdateSetting = /* GraphQL */ `
 export const onDeleteSetting = /* GraphQL */ `
   subscription OnDeleteSetting {
     onDeleteSetting {
-      name
+      settingType
       value
       createdAt
       updatedAt
