@@ -4,19 +4,16 @@ import {
   NTList,
   NTListItem,
   NTListItemField,
-  NTSubTitle,
-  NTTitle
+  NTSubTitle
 } from '../../../../components/styledComponents';
 import { NTBox } from '../../../../components/layoutComponents';
 
 // todo this needs to handle fields that are IDs,
 // todo needs a way to get the relevant info about related data
 function AdminList(props) {
-  const { title, data, fields, onDatumClick } = props;
-  const [activeDatumID, setActiveDatumID] = useState();
+  const { title, data, fields, onDatumClick, activeID } = props;
 
   function handleDatumClick(id) {
-    setActiveDatumID(id);
     onDatumClick(id);
   }
 
@@ -36,7 +33,7 @@ function AdminList(props) {
                   onKeyDown={() => handleDatumClick(data[index].id)}
                   role="button"
                   tabIndex={0}
-                  $isActive={activeDatumID === data[index].id}
+                  $isActive={activeID === data[index].id}
                 >
                   {data[index][field]}
                 </NTListItemField>

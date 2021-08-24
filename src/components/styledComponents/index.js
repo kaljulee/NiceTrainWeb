@@ -143,6 +143,9 @@ export const NTButton = styled.button`
   border: none;
   width: 100px;
   height: 30px;
+  :disabled {
+    opacity: 0.3;
+  }
 `;
 
 export const NTSaveButton = styled(NTButton)`

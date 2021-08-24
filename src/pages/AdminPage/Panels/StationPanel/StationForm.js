@@ -14,10 +14,9 @@ import {
   NTColumn,
   NTSection
 } from '../../../../components/layoutComponents';
-import { NTLabel } from '../../../../components/styledComponents';
 
 function StationForm(props) {
-  const { title, currentDatum } = props;
+  const { title, currentDatum, clearCurrentDatum } = props;
   const dispatch = useDispatch();
   const [nameValue, setNameValue] = useState(currentDatum.name);
   const [abbrevValue, setAbbrevValue] = useState(currentDatum.abbrev);
@@ -57,10 +56,12 @@ function StationForm(props) {
       return;
     }
     dispatch(callCreateStation(newStation));
+    clearCurrentDatum();
   }
 
   function handleDelete() {
     dispatch(callDeleteStation({ id: currentDatum.id }));
+    clearCurrentDatum();
   }
   return (
     <NTBox style={{ display: 'flex' }}>
@@ -78,9 +79,11 @@ function StationForm(props) {
           />
         </NTColumn>
         <AdminSubmitButtonBar
+          hasCurrentDatum={!!currentDatum.id}
           handleCreate={handleCreate}
           handleUpdate={handleUpdate}
           handleDelete={handleDelete}
+          clearCurrentDatum={clearCurrentDatum}
         />
       </NTSection>
       <Toaster />
