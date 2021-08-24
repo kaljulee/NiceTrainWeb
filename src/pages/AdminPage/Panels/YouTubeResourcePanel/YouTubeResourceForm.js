@@ -9,6 +9,7 @@ import {
 import { youTubeResourceValidator } from '../../../../redux/validators';
 import AdminInput from '../../components/AdminInput';
 import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
+import { NTBox, NTColumn } from '../../../../components/layoutComponents';
 
 function YouTubeResourceForm(props) {
   const { title, currentDatum } = props;
@@ -70,9 +71,8 @@ function YouTubeResourceForm(props) {
     dispatch(callDeleteYouTubeResource({ id: currentDatum.id }));
   }
   return (
-    <div style={{ height: '100%', width: '100%' }}>
-      <h2 style={{ color: 'goldenrod' }}>{`Edit ${title}`}</h2>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <NTBox>
+      <NTColumn>
         <div
           style={{
             height: '100%',
@@ -101,9 +101,9 @@ function YouTubeResourceForm(props) {
           handleUpdate={handleUpdate}
           handleDelete={handleDelete}
         />
-      </div>
+      </NTColumn>
       <Toaster />
-    </div>
+    </NTBox>
   );
 }
 

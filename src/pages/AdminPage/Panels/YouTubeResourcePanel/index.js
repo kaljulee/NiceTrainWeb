@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import AdminList from '../../components/AdminList';
 import YouTubeResourceForm from './YouTubeResourceForm';
+import { NTColumn, NTPanel } from '../../../../components/layoutComponents';
 
 function YouTubeResourcePanel(props) {
   const title = 'YouTube Resource';
@@ -12,8 +13,8 @@ function YouTubeResourcePanel(props) {
     setCurrentDatum(listData.find((datum) => datum.id === id));
   }
   return (
-    <div style={{ height: '100%' }}>
-      <div style={{ display: 'flex' }}>
+    <NTPanel>
+      <NTColumn>
         <div
           style={{
             display: 'flex',
@@ -30,19 +31,11 @@ function YouTubeResourcePanel(props) {
             onDatumClick={onDatumClick}
           />
         </div>
-        <div
-          style={{
-            flex: 5,
-            display: 'flex',
-            flexDirection: 'column',
-            marginLeft: '2vw',
-            marginRight: '2vw'
-          }}
-        >
-          <YouTubeResourceForm title={title} currentDatum={currentDatum} />
-        </div>
-      </div>
-    </div>
+      </NTColumn>
+      <NTColumn>
+        <YouTubeResourceForm title={title} currentDatum={currentDatum} />
+      </NTColumn>
+    </NTPanel>
   );
 }
 
