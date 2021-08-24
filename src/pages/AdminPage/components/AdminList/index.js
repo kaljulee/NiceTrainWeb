@@ -4,9 +4,10 @@ import {
   NTList,
   NTListItem,
   NTListItemField,
+  NTSubTitle,
   NTTitle
-} from '../../../components/styledComponents';
-import { NTBox } from '../../../components/layoutComponents';
+} from '../../../../components/styledComponents';
+import { NTBox } from '../../../../components/layoutComponents';
 
 // todo this needs to handle fields that are IDs,
 // todo needs a way to get the relevant info about related data
@@ -21,7 +22,7 @@ function AdminList(props) {
 
   return (
     <NTBox>
-      <NTTitle>{`${title}s`}</NTTitle>
+      {title && <NTSubTitle>{`${title}`}</NTSubTitle>}
       <NTList style={{ maxHeight: '60vh', overflow: 'auto' }}>
         <ReactList
           type="uniform"

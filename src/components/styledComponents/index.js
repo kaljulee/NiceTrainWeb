@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import { mq } from '../../styles/breakpoints';
 
 // export const AdminStyle = `
 //   color: ${(props) => props.theme.onBackground};
@@ -119,13 +120,13 @@ export const NTSubTitle = styled.h3`
 
 export const NTLabel = styled.h4`
   color: ${(p) => p.theme.accent};
-  margin: 5px 0 5px 0;
+  ${true && 'margin: 5px 0 5px 0;'}
 `;
 
 export const NTInput = styled.input`
   height: 30px;
   margin-bottom: 10;
-  background: ${(p) => p.theme.primarySurface};
+  background: ${(p) => p.theme.secondarySurface};
   color: ${(p) => p.theme.onPrimarySurface};
   border: 1px solid ${(p) => p.theme.secondarySurface};
 `;
@@ -201,12 +202,16 @@ export const TabContainer = styled.div`
 
   .react-tabs__tab {
     display: inline-block;
-    border: 1px solid transparent;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     border-bottom: none;
     bottom: -1px;
     position: relative;
     list-style: none;
-    padding: 6px 12px;
+    min-width: 5vw;
+    ${mq({
+      padding: ['2px 4px', '2px 4px', '6px 12px', '6px 12px', '6px 12px']
+    })};
     cursor: pointer;
   }
 

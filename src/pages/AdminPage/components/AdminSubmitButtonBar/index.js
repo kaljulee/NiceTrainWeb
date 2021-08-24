@@ -1,10 +1,10 @@
 import React from 'react';
-import { NTRow } from '../../../components/layoutComponents';
+import { NTRow } from '../../../../components/layoutComponents';
 import {
   NTNewButton,
   NTSaveButton,
   NTDeleteButton
-} from '../../../components/styledComponents';
+} from '../../../../components/styledComponents';
 
 function AdminSubmitButtonBar(props) {
   const { handleCreate, handleDelete, handleUpdate } = props;

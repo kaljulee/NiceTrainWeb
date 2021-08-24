@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import AdminList from '../../AdminList';
+import AdminList from '../../components/AdminList';
 import ActivityForm from './ActivityForm';
 
 function ActivityPanel(props) {

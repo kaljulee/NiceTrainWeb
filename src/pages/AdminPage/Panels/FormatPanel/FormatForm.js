@@ -7,8 +7,8 @@ import {
   callUpdateFormat
 } from '../../../../redux/thunks/format';
 import { formatValidator } from '../../../../redux/validators';
-import AdminInput from '../../AdminInput';
-import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
+import AdminInput from '../../components/AdminInput';
+import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
 
 function FormatForm(props) {
   const { title, currentDatum } = props;

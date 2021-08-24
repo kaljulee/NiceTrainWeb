@@ -11,11 +11,11 @@ export const activeMessage = createSelector(
   activeMessageSelector,
   longMessageSelector,
   (settings, messages) => {
-    const message = messages
-      ? messages.find(
-          (m) => m.id === settings[SETTING_TYPE.ACTIVE_LONG_MESSAGE]
-        )
-      : { text: '' };
+    const messageID = settings[SETTING_TYPE.ACTIVE_LONG_MESSAGE];
+    const message =
+      messages && messageID
+        ? messages.find((m) => m.id === messageID)
+        : { text: '' };
     return message.text;
   }
 );

@@ -7,8 +7,8 @@ import {
   callUpdateLongMessage
 } from '../../../../redux/thunks/longMessage';
 import { longMessageValidator } from '../../../../redux/validators';
-import AdminInput from '../../AdminInput';
-import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
+import AdminInput from '../../components/AdminInput';
+import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
 import { NTTitle } from '../../../../components/styledComponents';
 
