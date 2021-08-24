@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NTTitle } from '../../../../components/styledComponents';
 import {
-  NTBox,
   NTColumn,
+  NTPanel,
   NTRow,
   NTSection
 } from '../../../../components/layoutComponents';
@@ -66,9 +65,8 @@ function LongMessagePanel() {
     setCurrentDatum(listData.find((datum) => datum.id === id));
   }
   return (
-    <NTBox>
+    <NTPanel>
       <NTColumn>
-        <NTTitle>{title}</NTTitle>
         <NTRow>
           <NTSection>
             <AdminList
@@ -80,6 +78,8 @@ function LongMessagePanel() {
           </NTSection>
           <LongMessageForm title={title} currentDatum={currentDatum} />
         </NTRow>
+      </NTColumn>
+      <NTColumn>
         <NTRow>
           <AdminSelect
             label="Select Active Message"
@@ -91,7 +91,7 @@ function LongMessagePanel() {
           />
         </NTRow>
       </NTColumn>
-    </NTBox>
+    </NTPanel>
   );
 }
 
