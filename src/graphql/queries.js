@@ -71,6 +71,7 @@ export const getScheduledTrain = /* GraphQL */ `
           order
           color
           duration
+          youTubeResourceTimeStamp
           createdAt
           updatedAt
         }
@@ -116,6 +117,7 @@ export const getScheduledActivity = /* GraphQL */ `
       order
       color
       duration
+      youTubeResourceTimeStamp
       createdAt
       updatedAt
       scheduledTrain {
@@ -156,6 +158,7 @@ export const listScheduledActivities = /* GraphQL */ `
         order
         color
         duration
+        youTubeResourceTimeStamp
         createdAt
         updatedAt
         scheduledTrain {
@@ -193,6 +196,7 @@ export const getFormat = /* GraphQL */ `
           order
           color
           duration
+          youTubeResourceTimeStamp
           createdAt
           updatedAt
         }
@@ -242,6 +246,7 @@ export const getActivity = /* GraphQL */ `
           order
           color
           duration
+          youTubeResourceTimeStamp
           createdAt
           updatedAt
         }

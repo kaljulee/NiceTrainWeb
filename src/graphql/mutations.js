@@ -114,6 +114,7 @@ export const createScheduledTrain = /* GraphQL */ `
           order
           color
           duration
+          youTubeResourceTimeStamp
           createdAt
           updatedAt
         }
@@ -148,6 +149,7 @@ export const updateScheduledTrain = /* GraphQL */ `
           order
           color
           duration
+          youTubeResourceTimeStamp
           createdAt
           updatedAt
         }
@@ -182,6 +184,7 @@ export const deleteScheduledTrain = /* GraphQL */ `
           order
           color
           duration
+          youTubeResourceTimeStamp
           createdAt
           updatedAt
         }
@@ -204,6 +207,7 @@ export const createScheduledActivity = /* GraphQL */ `
       order
       color
       duration
+      youTubeResourceTimeStamp
       createdAt
       updatedAt
       scheduledTrain {
@@ -238,6 +242,7 @@ export const updateScheduledActivity = /* GraphQL */ `
       order
       color
       duration
+      youTubeResourceTimeStamp
       createdAt
       updatedAt
       scheduledTrain {
@@ -272,6 +277,7 @@ export const deleteScheduledActivity = /* GraphQL */ `
       order
       color
       duration
+      youTubeResourceTimeStamp
       createdAt
       updatedAt
       scheduledTrain {
@@ -313,6 +319,7 @@ export const createFormat = /* GraphQL */ `
           order
           color
           duration
+          youTubeResourceTimeStamp
           createdAt
           updatedAt
         }
@@ -342,6 +349,7 @@ export const updateFormat = /* GraphQL */ `
           order
           color
           duration
+          youTubeResourceTimeStamp
           createdAt
           updatedAt
         }
@@ -371,6 +379,7 @@ export const deleteFormat = /* GraphQL */ `
           order
           color
           duration
+          youTubeResourceTimeStamp
           createdAt
           updatedAt
         }
@@ -402,6 +411,7 @@ export const createActivity = /* GraphQL */ `
           order
           color
           duration
+          youTubeResourceTimeStamp
           createdAt
           updatedAt
         }
@@ -433,6 +443,7 @@ export const updateActivity = /* GraphQL */ `
           order
           color
           duration
+          youTubeResourceTimeStamp
           createdAt
           updatedAt
         }
@@ -464,6 +475,7 @@ export const deleteActivity = /* GraphQL */ `
           order
           color
           duration
+          youTubeResourceTimeStamp
           createdAt
           updatedAt
         }
