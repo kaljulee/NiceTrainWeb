@@ -19,7 +19,7 @@ import {
   NTColumn,
   NTRow
 } from '../../../../components/layoutComponents';
-import { NTTitle } from '../../../../components/styledComponents';
+import { NTLabel } from '../../../../components/styledComponents';
 
 function ScheduledTrainForm(props) {
   const { title, currentDatum, youTubeResources } = props;
@@ -131,52 +131,50 @@ function ScheduledTrainForm(props) {
 
   return (
     <NTBox>
-      <NTTitle>{`Edit ${title}`}</NTTitle>
       <NTRow>
         <NTColumn>
-          <div
-            style={{
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column'
-            }}
-          >
-            <AdminDatePicker value={dateValue} onChange={handleDateChange} />
-            <AdminTimePicker value={timeValue} onChange={handleTimeChange} />
-            <AdminInput
-              label="status"
-              value={statusValue}
-              onChange={handleStatusChange}
-            />
-            <AdminInput
-              label="description"
-              value={descriptionValue}
-              onChange={handleDescriptionChange}
-            />
-            <AdminSelect
-              label="station"
-              options={stations.map((s) => createOption(s, 'name'))}
-              value={stationOption}
-              onChange={handleStationSelect}
-            />
-            <AdminInput
-              label="standing tag"
-              value={standingTagValue}
-              onChange={handleStandingTagChange}
-            />
-            <AdminInput
-              label="ground tag"
-              value={groundTagValue}
-              onChange={handleGroundTagChange}
-            />
-          </div>
+          <NTRow style={{ justifyContent: 'space-around' }}>
+            <NTColumn>
+              <NTLabel>date</NTLabel>
+              <AdminDatePicker value={dateValue} onChange={handleDateChange} />
+            </NTColumn>
+            <NTColumn>
+              <NTLabel>time</NTLabel>
+              <AdminTimePicker value={timeValue} onChange={handleTimeChange} />
+            </NTColumn>
+          </NTRow>
+          <AdminInput
+            label="status"
+            value={statusValue}
+            onChange={handleStatusChange}
+          />
+          <AdminInput
+            label="description"
+            value={descriptionValue}
+            onChange={handleDescriptionChange}
+          />
+          <AdminSelect
+            label="station"
+            options={stations.map((s) => createOption(s, 'name'))}
+            value={stationOption}
+            onChange={handleStationSelect}
+          />
+          <AdminInput
+            label="standing tag"
+            value={standingTagValue}
+            onChange={handleStandingTagChange}
+          />
+          <AdminInput
+            label="ground tag"
+            value={groundTagValue}
+            onChange={handleGroundTagChange}
+          />
           <AdminSubmitButtonBar
             handleCreate={handleCreate}
             handleUpdate={handleUpdate}
             handleDelete={handleDelete}
           />
         </NTColumn>
-        <NTColumn />
       </NTRow>
       <Toaster />
     </NTBox>

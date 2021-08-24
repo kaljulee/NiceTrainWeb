@@ -13,8 +13,7 @@ function AdminDatePicker(props) {
   const { value, onChange } = props;
   const dateValue = value ? new Date(value) : undefined;
   return (
-    <NTBox style={{ width: '100%', height: '100%' }}>
-      <NTSubTitle>date</NTSubTitle>
+    <NTBox>
       <NTDatePicker>
         <DatePicker
           value={dateValue}

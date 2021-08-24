@@ -4,8 +4,12 @@ import toast, { Toaster } from 'react-hot-toast';
 import AdminList from '../../components/AdminList';
 import ScheduledTrainForm from './ScheduledTrainForm';
 import ScheduledActivityPanel from '../ScheduledActivityPanel';
-import AdminDnD from '../../components/AdminDnD';
 import { callGetScheduledActivitiesByTrain } from '../../../../redux/thunks/scheduledActivity';
+import {
+  NTColumn,
+  NTPanel,
+  NTRow
+} from '../../../../components/layoutComponents';
 
 function ScheduledTrainPanel(props) {
   const title = 'ScheduledTrain';
@@ -47,59 +51,41 @@ function ScheduledTrainPanel(props) {
     }
   }
   return (
-    <div style={{ height: '100%' }}>
-      <button type="button" onClick={handlePanelToggle}>
-        edit activities
-      </button>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div
-          style={{
-            display: 'flex',
-            flex: 4,
-            flexDirection: 'column',
-            marginRight: '2vw',
-            marginLeft: '2vw'
-          }}
-        >
+    <NTPanel style={{ flexDirection: 'column' }}>
+      <NTRow>
+        <AdminList
+          title={title}
+          data={listData}
+          fields={listFields}
+          onDatumClick={onDatumClick}
+        />
+      </NTRow>
+      <NTPanel>
+        <ScheduledTrainForm title={title} currentDatum={currentDatum} />
+        <NTColumn>
           <AdminList
-            title={title}
-            data={listData}
-            fields={listFields}
-            onDatumClick={onDatumClick}
+            title="Activity"
+            data={scheduledActivities}
+            fields={['name']}
+            onDatumClick={() => {}}
           />
-        </div>
-        <div
-          style={{
-            flex: 5,
-            display: 'flex',
-            flexDirection: 'column',
-            marginLeft: '2vw',
-            marginRight: '2vw'
+          <button type="button" onClick={handlePanelToggle}>
+            edit activities
+          </button>
+        </NTColumn>
+      </NTPanel>
+      <NTRow>
+        <ScheduledActivityPanel
+          isOpen={isPanelOpen}
+          scheduledActivities={scheduledActivities}
+          scheduledTrainID={currentDatum ? currentDatum.id : undefined}
+          requestClose={() => {
+            setIsPanelOpen(false);
           }}
-        >
-          <div style={{ display: 'flex', height: '100%' }}>
-            <ScheduledTrainForm title={title} currentDatum={currentDatum} />
-            <div style={{ width: '100%' }}>
-              <AdminList
-                title="Activity"
-                data={scheduledActivities}
-                fields={['name']}
-                onDatumClick={() => {}}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <ScheduledActivityPanel
-        isOpen={isPanelOpen}
-        scheduledActivities={scheduledActivities}
-        scheduledTrainID={currentDatum ? currentDatum.id : undefined}
-        requestClose={() => {
-          setIsPanelOpen(false);
-        }}
-      />
+        />
+      </NTRow>
       <Toaster />
-    </div>
+    </NTPanel>
   );
 }
 

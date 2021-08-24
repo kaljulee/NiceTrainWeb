@@ -9,6 +9,7 @@ import {
 import { formatValidator } from '../../../../redux/validators';
 import AdminInput from '../../components/AdminInput';
 import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
+import { NTBox, NTColumn } from '../../../../components/layoutComponents';
 
 function FormatForm(props) {
   const { title, currentDatum } = props;
@@ -52,30 +53,21 @@ function FormatForm(props) {
     dispatch(callDeleteFormat({ id: currentDatum.id }));
   }
   return (
-    <div style={{ height: '100%', width: '100%' }}>
-      <h2 style={{ color: 'goldenrod' }}>{`Edit ${title}`}</h2>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div
-          style={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          <AdminInput
-            label="name"
-            value={nameValue}
-            onChange={handleNameChange}
-          />
-        </div>
+    <NTBox>
+      <NTColumn>
+        <AdminInput
+          label="name"
+          value={nameValue}
+          onChange={handleNameChange}
+        />
         <AdminSubmitButtonBar
           handleCreate={handleCreate}
           handleUpdate={handleUpdate}
           handleDelete={handleDelete}
         />
-      </div>
+      </NTColumn>
       <Toaster />
-    </div>
+    </NTBox>
   );
 }
 

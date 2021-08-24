@@ -10,7 +10,6 @@ import { longMessageValidator } from '../../../../redux/validators';
 import AdminInput from '../../components/AdminInput';
 import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
-import { NTTitle } from '../../../../components/styledComponents';
 
 function LongMessageForm(props) {
   const { title, currentDatum } = props;
@@ -54,16 +53,13 @@ function LongMessageForm(props) {
     dispatch(callDeleteLongMessage({ id: currentDatum.id }));
   }
   return (
-    <NTBox style={{ display: 'flex' }}>
+    <NTBox>
       <NTColumn>
-        <NTTitle>{`Edit ${title}`}</NTTitle>
-        <NTColumn>
-          <AdminInput
-            label="text"
-            value={textValue}
-            onChange={handleTextChange}
-          />
-        </NTColumn>
+        <AdminInput
+          label="text"
+          value={textValue}
+          onChange={handleTextChange}
+        />
         <AdminSubmitButtonBar
           handleCreate={handleCreate}
           handleUpdate={handleUpdate}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Select from 'react-select';
 import toast, { Toaster } from 'react-hot-toast';
 import {
   callCreateActivity,
@@ -12,6 +11,7 @@ import AdminInput from '../../components/AdminInput';
 import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
 import { createOption, getCurrentOption } from '../../../../utils';
 import AdminSelect from '../../components/AdminSelect';
+import { NTBox, NTColumn } from '../../../../components/layoutComponents';
 
 function ActivityForm(props) {
   const { title, currentDatum, youTubeResources } = props;
@@ -88,43 +88,34 @@ function ActivityForm(props) {
   }
 
   return (
-    <div style={{ height: '100%', width: '100%' }}>
-      <h2 style={{ color: 'goldenrod' }}>{`Edit ${title}`}</h2>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div
-          style={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          <AdminInput
-            label="name"
-            value={nameValue}
-            onChange={handleNameChange}
-          />
-          <AdminInput
-            label="description"
-            value={descriptionValue}
-            onChange={handleDescriptionChange}
-          />
-          <AdminSelect
-            label="youTube resource"
-            options={youTubeResources.map((ytr) =>
-              createOption(ytr, 'description')
-            )}
-            value={ytrOption}
-            onChange={handleYTRSelect}
-          />
-        </div>
+    <NTBox>
+      <NTColumn>
+        <AdminInput
+          label="name"
+          value={nameValue}
+          onChange={handleNameChange}
+        />
+        <AdminInput
+          label="description"
+          value={descriptionValue}
+          onChange={handleDescriptionChange}
+        />
+        <AdminSelect
+          label="youTube resource"
+          options={youTubeResources.map((ytr) =>
+            createOption(ytr, 'description')
+          )}
+          value={ytrOption}
+          onChange={handleYTRSelect}
+        />
         <AdminSubmitButtonBar
           handleCreate={handleCreate}
           handleUpdate={handleUpdate}
           handleDelete={handleDelete}
         />
-      </div>
+      </NTColumn>
       <Toaster />
-    </div>
+    </NTBox>
   );
 }
 

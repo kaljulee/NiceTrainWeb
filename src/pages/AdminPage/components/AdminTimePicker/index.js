@@ -6,8 +6,7 @@ import { NTBox } from '../../../../components/layoutComponents';
 function AdminTimePicker(props) {
   const { value, onChange } = props;
   return (
-    <NTBox style={{ width: '100%', height: '100%' }}>
-      <NTTitle>time</NTTitle>
+    <NTBox>
       <NTTimePicker>
         <TimePicker value={value} onChange={onChange} locale="sv-sv" />
       </NTTimePicker>
