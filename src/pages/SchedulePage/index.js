@@ -6,7 +6,7 @@ import ScheduleHeader from '../../components/ScheduleHeader';
 import colors from '../../styles/colors';
 import ScheduleInfo from '../../components/ScheduleInfo';
 import NiceTrainPage from '../NiceTrainPage';
-import { boardTrainInformation } from '../../redux/selectors';
+import { activeMessage, boardTrainInformation } from '../../redux/selectors';
 
 function SchedulePage() {
   const sectionStyles = {
@@ -20,6 +20,7 @@ function SchedulePage() {
   };
 
   const data = useSelector(boardTrainInformation);
+  const message = useSelector(activeMessage);
   return (
     <NiceTrainPage>
       <div
@@ -74,7 +75,7 @@ function SchedulePage() {
               justifyContent: 'center'
             }}
           >
-            <ScheduleInfo />
+            <ScheduleInfo messageArray={[message]} />
           </div>
         </Breakpoint>
       </div>
