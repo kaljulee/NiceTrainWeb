@@ -8,6 +8,7 @@ import {
   NTRow,
   NTSection
 } from '../../../../components/layoutComponents';
+import { NTLabel } from '../../../../components/styledComponents';
 
 function StationPanel() {
   const title = 'Station';
@@ -26,8 +27,8 @@ function StationPanel() {
           }}
         >
           <NTSection>
+            <NTLabel>Stations</NTLabel>
             <AdminList
-              title={title}
               data={listData}
               fields={listFields}
               onDatumClick={onDatumClick}
