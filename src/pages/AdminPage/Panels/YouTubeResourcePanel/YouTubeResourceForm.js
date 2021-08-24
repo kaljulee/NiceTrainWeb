@@ -12,7 +12,7 @@ import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
 
 function YouTubeResourceForm(props) {
-  const { title, currentDatum } = props;
+  const { title, currentDatum, clearCurrentDatum } = props;
   const dispatch = useDispatch();
   const [descriptionValue, setDescriptionValue] = useState(
     currentDatum.description
@@ -65,21 +65,17 @@ function YouTubeResourceForm(props) {
       return;
     }
     dispatch(callCreateYouTubeResource(newYTR));
+    clearCurrentDatum();
   }
 
   function handleDelete() {
     dispatch(callDeleteYouTubeResource({ id: currentDatum.id }));
+    clearCurrentDatum();
   }
   return (
     <NTBox>
       <NTColumn>
-        <div
-          style={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
+        <NTColumn>
           <AdminInput
             label="description"
             value={descriptionValue}
@@ -95,11 +91,13 @@ function YouTubeResourceForm(props) {
             value={linkValue}
             onChange={handleLinkChange}
           />
-        </div>
+        </NTColumn>
         <AdminSubmitButtonBar
           handleCreate={handleCreate}
           handleUpdate={handleUpdate}
           handleDelete={handleDelete}
+          hasCurrentDatum={!!currentDatum.id}
+          clearCurrentDatum={clearCurrentDatum}
         />
       </NTColumn>
       <Toaster />
