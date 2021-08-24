@@ -12,7 +12,7 @@ import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
 
 function FormatForm(props) {
-  const { title, currentDatum } = props;
+  const { title, currentDatum, clearCurrentDatum } = props;
   const dispatch = useDispatch();
   const [nameValue, setNameValue] = useState(currentDatum.name);
 
@@ -47,10 +47,12 @@ function FormatForm(props) {
       return;
     }
     dispatch(callCreateFormat(newFormat));
+    clearCurrentDatum();
   }
 
   function handleDelete() {
     dispatch(callDeleteFormat({ id: currentDatum.id }));
+    clearCurrentDatum();
   }
   return (
     <NTBox>
@@ -61,6 +63,8 @@ function FormatForm(props) {
           onChange={handleNameChange}
         />
         <AdminSubmitButtonBar
+          hasCurrentDatum={!!currentDatum.id}
+          clearCurrentDatum={clearCurrentDatum}
           handleCreate={handleCreate}
           handleUpdate={handleUpdate}
           handleDelete={handleDelete}
