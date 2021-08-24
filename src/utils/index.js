@@ -50,3 +50,7 @@ export function secondsToHMS(time) {
 export function sortByOrder(array) {
   array.sort((a, b) => (a.order > b.order ? 1 : -1));
 }
+
+export function checkZero(num) {
+  return `${num.length > 1 ? '' : '0'}${num}`;
+}
