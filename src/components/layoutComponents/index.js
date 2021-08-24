@@ -1,4 +1,9 @@
+/** @jsxImportSource @emotion/react */
+
 import styled from '@emotion/styled';
+// import { jsx } from '@emotion/react';
+
+import { mq } from '../../styles/breakpoints';
 
 export const NTBox = styled.div({
   width: '100%',
@@ -28,6 +33,11 @@ export const NTColumn = styled(NTBox)`
   flex-direction: column;
   width: 100%;
   height: 100%;
+`;
+
+export const NTPanel = styled(NTBox)`
+  display: flex;
+  ${mq({ flexDirection: ['column', 'column', 'row', 'row', 'row'] })};
 `;
 
 export const ToggleMenu = styled.div`

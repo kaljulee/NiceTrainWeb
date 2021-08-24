@@ -5,6 +5,7 @@ import StationForm from './StationForm';
 import {
   NTBox,
   NTColumn,
+  NTPanel,
   NTRow,
   NTSection
 } from '../../../../components/layoutComponents';
@@ -19,33 +20,31 @@ function StationPanel() {
     setCurrentDatum(listData.find((datum) => datum.id === id));
   }
   return (
-    <NTBox>
-      <NTRow>
-        <NTColumn
-          style={{
-            flex: 4
-          }}
-        >
-          <NTSection>
-            <NTLabel>Stations</NTLabel>
-            <AdminList
-              data={listData}
-              fields={listFields}
-              onDatumClick={onDatumClick}
-            />
-          </NTSection>
-        </NTColumn>
-        <NTColumn
-          style={{
-            flex: 5
-          }}
-        >
-          <NTSection>
-            <StationForm title={title} currentDatum={currentDatum} />
-          </NTSection>
-        </NTColumn>
-      </NTRow>
-    </NTBox>
+    <NTPanel>
+      <NTColumn
+        style={{
+          flex: 4
+        }}
+      >
+        <NTSection>
+          <NTLabel>Stations</NTLabel>
+          <AdminList
+            data={listData}
+            fields={listFields}
+            onDatumClick={onDatumClick}
+          />
+        </NTSection>
+      </NTColumn>
+      <NTColumn
+        style={{
+          flex: 5
+        }}
+      >
+        <NTSection>
+          <StationForm title={title} currentDatum={currentDatum} />
+        </NTSection>
+      </NTColumn>
+    </NTPanel>
   );
 }
 
