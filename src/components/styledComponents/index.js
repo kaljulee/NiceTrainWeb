@@ -119,13 +119,13 @@ export const NTSubTitle = styled.h3`
 
 export const NTLabel = styled.h4`
   color: ${(p) => p.theme.accent};
-  ${false && 'margin: 5px 0 5px 0;'}
+  ${true && 'margin: 5px 0 5px 0;'}
 `;
 
 export const NTInput = styled.input`
   height: 30px;
   margin-bottom: 10;
-  background: ${(p) => p.theme.primarySurface};
+  background: ${(p) => p.theme.secondarySurface};
   color: ${(p) => p.theme.onPrimarySurface};
   border: 1px solid ${(p) => p.theme.secondarySurface};
 `;

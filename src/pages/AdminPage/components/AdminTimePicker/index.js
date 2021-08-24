@@ -1,7 +1,7 @@
 import React from 'react';
 import TimePicker from 'react-time-picker';
-import { NTTitle, NTTimePicker } from '../../../components/styledComponents';
-import { NTBox } from '../../../components/layoutComponents';
+import { NTTitle, NTTimePicker } from '../../../../components/styledComponents';
+import { NTBox } from '../../../../components/layoutComponents';
 
 function AdminTimePicker(props) {
   const { value, onChange } = props;

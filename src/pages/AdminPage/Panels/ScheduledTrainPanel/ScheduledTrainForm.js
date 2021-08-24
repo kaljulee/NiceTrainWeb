@@ -8,12 +8,12 @@ import {
   callUpdateScheduledTrain
 } from '../../../../redux/thunks/scheduledTrain';
 import { scheduledTrainValidator } from '../../../../redux/validators';
-import AdminInput from '../../AdminInput';
-import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
+import AdminInput from '../../components/AdminInput';
+import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
 import { createOption, getCurrentOption } from '../../../../utils';
-import AdminSelect from '../../AdminSelect';
-import AdminDatePicker from '../../AdminDatePicker';
-import AdminTimePicker from '../../AdminTimePicker';
+import AdminSelect from '../../components/AdminSelect';
+import AdminDatePicker from '../../components/AdminDatePicker';
+import AdminTimePicker from '../../components/AdminTimePicker';
 import {
   NTBox,
   NTColumn,

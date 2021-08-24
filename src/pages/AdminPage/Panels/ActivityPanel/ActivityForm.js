@@ -8,10 +8,10 @@ import {
   callUpdateActivity
 } from '../../../../redux/thunks/activity';
 import { activityValidator } from '../../../../redux/validators';
-import AdminInput from '../../AdminInput';
-import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
+import AdminInput from '../../components/AdminInput';
+import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
 import { createOption, getCurrentOption } from '../../../../utils';
-import AdminSelect from '../../AdminSelect';
+import AdminSelect from '../../components/AdminSelect';
 
 function ActivityForm(props) {
   const { title, currentDatum, youTubeResources } = props;

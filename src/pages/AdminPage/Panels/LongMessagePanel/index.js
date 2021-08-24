@@ -7,9 +7,9 @@ import {
   NTRow,
   NTSection
 } from '../../../../components/layoutComponents';
-import AdminList from '../../AdminList';
+import AdminList from '../../components/AdminList';
 import LongMessageForm from './LongMessageForm';
-import AdminSelect from '../../AdminSelect';
+import AdminSelect from '../../components/AdminSelect';
 import { callListLongMessages } from '../../../../redux/thunks/longMessage';
 import { createOption, getCurrentOption } from '../../../../utils';
 import { SETTING_TYPE } from '../../../../constants';

@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 import { Toaster, toast } from 'react-hot-toast';
 import { NTBox, NTRow } from '../../../../components/layoutComponents';
-import AdminSelect from '../../AdminSelect';
+import AdminSelect from '../../components/AdminSelect';
 import {
   createOption,
   getCurrentOption,
   hmsToSeconds,
   secondsToHMS
 } from '../../../../utils';
-import AdminDurationInput from '../../AdminDurationInput';
-import AdminInput from '../../AdminInput';
+import AdminDurationInput from '../../components/AdminDurationInput';
+import AdminInput from '../../components/AdminInput';
 import {
   callDeleteScheduledActivity,
   callUpdateScheduledActivity

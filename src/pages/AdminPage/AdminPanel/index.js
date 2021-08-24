@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import AdminList from '../AdminList';
-import AdminForm from '../AdminForm';
+import AdminList from '../components/AdminList';
+import AdminForm from '../components/AdminForm';
 
 function AdminPanel(props) {
   const { title, listData, listFields } = props;

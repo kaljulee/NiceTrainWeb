@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import AdminList from '../../AdminList';
+import AdminList from '../../components/AdminList';
 import FormatForm from './FormatForm';
 
 function FormatPanel(props) {

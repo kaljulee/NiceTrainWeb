@@ -7,8 +7,8 @@ import {
   callUpdateYouTubeResource
 } from '../../../../redux/thunks/youTubeResource';
 import { youTubeResourceValidator } from '../../../../redux/validators';
-import AdminInput from '../../AdminInput';
-import AdminSubmitButtonBar from '../../AdminSubmitButtonBar';
+import AdminInput from '../../components/AdminInput';
+import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
 
 function YouTubeResourceForm(props) {
   const { title, currentDatum } = props;

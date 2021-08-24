@@ -5,8 +5,8 @@ import {
   NTListItem,
   NTListItemField,
   NTTitle
-} from '../../../components/styledComponents';
-import { NTBox } from '../../../components/layoutComponents';
+} from '../../../../components/styledComponents';
+import { NTBox } from '../../../../components/layoutComponents';
 
 // todo this needs to handle fields that are IDs,
 // todo needs a way to get the relevant info about related data

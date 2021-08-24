@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import toast, { Toaster } from 'react-hot-toast';
-import AdminList from '../../AdminList';
+import AdminList from '../../components/AdminList';
 import ScheduledTrainForm from './ScheduledTrainForm';
 import ScheduledActivityPanel from '../ScheduledActivityPanel';
-import AdminDnD from '../../AdminDnD';
+import AdminDnD from '../../components/AdminDnD';
 import { callGetScheduledActivitiesByTrain } from '../../../../redux/thunks/scheduledActivity';
 
 function ScheduledTrainPanel(props) {

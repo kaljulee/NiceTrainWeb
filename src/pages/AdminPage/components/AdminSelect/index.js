@@ -1,8 +1,8 @@
 import React from 'react';
 import Select from 'react-select';
 import { useTheme } from '@emotion/react';
-import { NTColumn } from '../../../components/layoutComponents';
-import { NTLabel } from '../../../components/styledComponents';
+import { NTColumn } from '../../../../components/layoutComponents';
+import { NTLabel } from '../../../../components/styledComponents';
 
 function AdminSelect(props) {
   const { options, value, label, onChange } = props;
