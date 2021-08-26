@@ -14,7 +14,7 @@ const breakpoints = {
   xlarge: 1200
 };
 
-export const mq = facepaint(
+export const mq5 = facepaint(
   Object.values(breakpoints).map((bp) => {
     const mqString = `@media (min-width: ${bp}px)`;
     console.log(mqString);
