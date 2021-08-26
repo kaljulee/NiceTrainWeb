@@ -3,7 +3,7 @@
 import styled from '@emotion/styled';
 // import { jsx } from '@emotion/react';
 
-import { mq } from '../../styles/breakpoints';
+import { mq5 } from '../../styles/breakpoints';
 
 export const NTBox = styled.div({
   width: '100%',
@@ -37,12 +37,13 @@ export const NTColumn = styled(NTBox)`
 
 export const NTPanel = styled(NTBox)`
   display: flex;
-  ${mq({ flexDirection: ['column', 'column', 'row', 'row', 'row'] })};
+  ${mq5({ flexDirection: ['column', 'column', 'row', 'row', 'row'] })};
 `;
 
 export const ToggleMenu = styled.div`
   position: fixed;
   bottom: 0px;
+  left: 0px;
   max-height: ${(props) => (props.isOpen ? '100%' : '0')};
   width: 100%;
   background-color: pink;

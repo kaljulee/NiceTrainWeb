@@ -15,7 +15,8 @@ function AdminSelect(props) {
     }),
     singleValue: (provided) => ({
       background: theme.primarySurface,
-      color: theme.onPrimarySurface
+      color: theme.onPrimarySurface,
+      whiteSpace: 'nowrap'
     }),
     container: (provided) => ({
       ...provided,
@@ -46,7 +47,9 @@ function AdminSelect(props) {
     valueContainer: (provided) => ({
       ...provided,
       color: theme.onPrimarySurface,
-      backgroundColor: theme.primarySurface
+      backgroundColor: theme.primarySurface,
+      whiteSpace: 'nowrap',
+      height: '3vh'
     }),
     indicatorContainer: (provided) => ({
       ...provided,

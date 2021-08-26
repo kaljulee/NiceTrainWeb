@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { ThemeProvider } from '@emotion/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NTBox, ToggleMenu } from '../../../../components/layoutComponents';
+import {
+  NTBox,
+  NTRow,
+  ToggleMenu
+} from '../../../../components/layoutComponents';
 import { trainPamphletTheme } from '../../../../styles/colors';
 import TrainActivitiesEditor from './TrainActivitiesEditor';
 import { callCreateScheduledActivity } from '../../../../redux/thunks/scheduledActivity';
-import { scheduledTrainActivities } from '../../../../redux/selectors';
 
 const ThemedToggleMenu = styled(ToggleMenu)`
   background: ${(props) => props.theme.background};
@@ -34,15 +37,21 @@ function ScheduledActivityPanel(props) {
     <NTBox>
       <ThemeProvider theme={trainPamphletTheme}>
         <ThemedToggleMenu isOpen={isOpen}>
-          <div style={{ height: '50vh' }}>
-            <ThemedButton type="button" onClick={requestClose}>
-              close
-            </ThemedButton>
-            <ThemedButton onClick={handleAdd} type="button">
-              add new
-            </ThemedButton>
-            <TrainActivitiesEditor scheduledActivities={scheduledActivities} />
-          </div>
+          <NTBox style={{ height: '50vh' }}>
+            <NTRow>
+              <ThemedButton type="button" onClick={requestClose}>
+                close
+              </ThemedButton>
+              <ThemedButton onClick={handleAdd} type="button">
+                add new
+              </ThemedButton>
+            </NTRow>
+            <NTRow>
+              <TrainActivitiesEditor
+                scheduledActivities={scheduledActivities}
+              />
+            </NTRow>
+          </NTBox>
         </ThemedToggleMenu>
       </ThemeProvider>
     </NTBox>

@@ -21,16 +21,19 @@ import {
 import { NTButton, NTLabel } from '../../../../components/styledComponents';
 import AdminList from '../../components/AdminList';
 import ScheduledActivityPanel from '../ScheduledActivityPanel';
+import { callGetScheduledActivitiesByTrain } from '../../../../redux/thunks/scheduledActivity';
 
 function ScheduledTrainForm(props) {
-  const { title, currentDatum, youTubeResources, scheduledActivities } = props;
-  console.log('STF SA');
-  console.log(scheduledActivities);
+  // todo currentDatum and clearCurrentDatum comes from AdminPanel
+  const { title, currentDatum, youTubeResources, clearCurrentDatum } = props;
   const dispatch = useDispatch();
   const stations = useSelector((state) => state.train.stations);
   const activities = useSelector((state) => state.train.activities);
   const formats = useSelector((state) => state.train.formats);
-
+  const allSActivities = useSelector(
+    (state) => state.train.scheduledActivities
+  );
+  const [scheduledActivities, setScheduledActivities] = useState([]);
   const [isPanelOpen, _setIsPanelOpen] = useState(false);
   const [dateValue, setDateValue] = useState(currentDatum.train_time);
   const [timeValue, setTimeValue] = useState(currentDatum.train_time);
@@ -58,6 +61,15 @@ function ScheduledTrainForm(props) {
     setStatusValue(currentDatum.status);
     setDescriptionValue(currentDatum.description);
   }, [title, currentDatum]);
+
+  useEffect(() => {
+    const selectedActivities = allSActivities[currentDatum.id];
+    if (!selectedActivities) {
+      dispatch(callGetScheduledActivitiesByTrain(currentDatum.id));
+      return;
+    }
+    setScheduledActivities(selectedActivities);
+  }, [currentDatum, allSActivities]);
 
   function handleDescriptionChange(event) {
     setDescriptionValue(event.target.value);
@@ -125,14 +137,15 @@ function ScheduledTrainForm(props) {
       return;
     }
     dispatch(callCreateScheduledTrain(newScheduledTrain));
+    clearCurrentDatum();
   }
 
   function handleDelete() {
     dispatch(callDeleteScheduledTrain({ id: currentDatum.id }));
+    clearCurrentDatum();
   }
 
   function handlePanelToggle() {
-    console.log(currentDatum);
     if (!currentDatum || !currentDatum.id) {
       toast.error('No train selected');
       _setIsPanelOpen(false);
@@ -145,6 +158,8 @@ function ScheduledTrainForm(props) {
     _setIsPanelOpen(false);
   }
 
+  console.log('stations');
+  console.log(stations);
   return (
     <NTBox>
       <NTRow>
@@ -197,6 +212,8 @@ function ScheduledTrainForm(props) {
                 handleCreate={handleCreate}
                 handleUpdate={handleUpdate}
                 handleDelete={handleDelete}
+                hasCurrentDatum={!!currentDatum.id}
+                clearCurrentDatum={clearCurrentDatum}
               />
             </NTColumn>
           </NTRow>

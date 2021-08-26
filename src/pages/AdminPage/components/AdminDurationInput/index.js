@@ -1,14 +1,22 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { css, jsx } from '@emotion/react';
-import { NTRow } from '../../../../components/layoutComponents';
+import { NTBox, NTRow } from '../../../../components/layoutComponents';
 import AdminInput from '../AdminInput';
 
 function DurationInput(props) {
   return (
-    <div style={{ width: 80 }}>
-      <AdminInput {...props} />
-    </div>
+    <NTBox
+      style={{
+        paddingLeft: '2vw',
+        paddingRight: '2vw',
+        width: 'min-content'
+      }}
+    >
+      <AdminInput
+        {...props}
+        style={{ width: '8vw', justifyContent: 'flex-start' }}
+      />
+    </NTBox>
   );
 }
 
@@ -18,7 +26,7 @@ function AdminDurationInput(props) {
     onChange
   } = props;
   return (
-    <NTRow>
+    <NTRow style={{ justifyContent: 'space-around' }}>
       <DurationInput
         label="hour"
         value={h}
