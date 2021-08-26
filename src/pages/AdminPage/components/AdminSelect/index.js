@@ -48,8 +48,8 @@ function AdminSelect(props) {
       ...provided,
       color: theme.onPrimarySurface,
       backgroundColor: theme.primarySurface,
-      whiteSpace: 'nowrap',
-      height: '3vh'
+      whiteSpace: 'nowrap'
+      // height: '5vh'
     }),
     indicatorContainer: (provided) => ({
       ...provided,
