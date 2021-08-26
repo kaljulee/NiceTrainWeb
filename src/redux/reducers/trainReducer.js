@@ -115,17 +115,21 @@ export const trainSlice = createSlice({
         }
       })
       .addCase(callDeleteStation.fulfilled, (state, action) => {
-        const deletedStationData = action.payload.data.deleteStation;
-        const index = state.stations.findIndex(
-          (s) => s.id === deletedStationData.id
-        );
-        if (index !== -1) {
-          state.stations = state.stations.reduce((acc, s) => {
-            if (s.id !== deletedStationData.id) {
-              acc.push(s);
-            }
-            return acc;
-          }, []);
+        if (action.payload.data.deleteStation) {
+          const deletedStationData = action.payload.data.deleteStation;
+          const index = state.stations.findIndex(
+            (s) => s.id === deletedStationData.id
+          );
+          if (index !== -1) {
+            state.stations = state.stations.reduce((acc, s) => {
+              if (s.id !== deletedStationData.id) {
+                acc.push(s);
+              }
+              return acc;
+            }, []);
+          }
+        } else {
+          console.err('station delete resulted in null');
         }
       })
       // YTR calls

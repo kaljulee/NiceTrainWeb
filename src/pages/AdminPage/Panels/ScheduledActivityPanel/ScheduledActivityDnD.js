@@ -3,7 +3,11 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 import { Toaster, toast } from 'react-hot-toast';
-import { NTBox, NTRow } from '../../../../components/layoutComponents';
+import {
+  NTBox,
+  NTColumn,
+  NTRow
+} from '../../../../components/layoutComponents';
 import AdminSelect from '../../components/AdminSelect';
 import {
   createOption,
@@ -17,10 +21,15 @@ import {
   callDeleteScheduledActivity,
   callUpdateScheduledActivity
 } from '../../../../redux/thunks/scheduledActivity';
+import { mq5 } from '../../../../styles/breakpoints';
 
 const ActivityRow = styled(NTRow)`
   display: flex;
   justify-content: space-between;
+  border: 1px solid ${(p) => p.theme.onBackground};
+  max-width: 100%;
+  padding: 2px 0 2px 0;
+  ${mq5({ flexDirection: ['column', 'column', 'column', 'row', 'row'] })};
 `;
 
 const SaveButton = styled.button`
@@ -92,7 +101,10 @@ function DragItem(props) {
     <Draggable draggableId={activity.id} index={activity.order}>
       {(provided) => (
         <ActivityRow
-          style={{ justifyContent: 'space-between', padding: `2px 0 2px 0` }}
+          style={{
+            flexWrap: 'wrap',
+            maxWidth: '100%'
+          }}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
@@ -102,18 +114,20 @@ function DragItem(props) {
             value={nameValue}
             onChange={(event) => setNameValue(event.target.value)}
           />
-          <AdminSelect
-            label="Activity"
-            options={activtyOptions}
-            value={currentActivityOption}
-            onChange={setCurrentActivityOption}
-          />
-          <AdminSelect
-            label="Format"
-            options={formatOptions}
-            value={currentFormatOption}
-            onChange={setCurrentFormatOption}
-          />
+          <NTColumn style={{ justifyContent: 'flex-start' }}>
+            <AdminSelect
+              label="Activity"
+              options={activtyOptions}
+              value={currentActivityOption}
+              onChange={setCurrentActivityOption}
+            />
+            <AdminSelect
+              label="Format"
+              options={formatOptions}
+              value={currentFormatOption}
+              onChange={setCurrentFormatOption}
+            />
+          </NTColumn>
           <AdminDurationInput duration={hmsValue} onChange={onDurationChange} />
           <SaveButton type="submit" onClick={saveChanges}>
             save
@@ -156,7 +170,8 @@ function ScheduledActivityDnD(props) {
     const [removed] = spliced.splice(source.index, 1);
     spliced.splice(destination.index, 0, removed);
     spliced.forEach((sa, index) => {
-      dispatch(callUpdateScheduledActivity({ id: sa.id, order: index }));
+      const callData = { id: sa.id, order: index };
+      dispatch(callUpdateScheduledActivity(callData));
     });
   }
   return (

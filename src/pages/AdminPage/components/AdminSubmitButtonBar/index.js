@@ -7,14 +7,27 @@ import {
 } from '../../../../components/styledComponents';
 
 function AdminSubmitButtonBar(props) {
-  const { handleCreate, handleDelete, handleUpdate } = props;
+  const {
+    handleCreate,
+    handleDelete,
+    handleUpdate,
+    hasCurrentDatum,
+    clearCurrentDatum
+  } = props;
   return (
     <NTRow style={{ justifyContent: 'space-between' }}>
-      <NTSaveButton type="submit" onClick={handleUpdate}>
-        save
+      <NTSaveButton
+        disabled={!hasCurrentDatum}
+        type="submit"
+        onClick={handleUpdate}
+      >
+        modify
       </NTSaveButton>
-      <NTNewButton onClick={handleCreate} type="button">
-        new
+      <NTNewButton
+        onClick={hasCurrentDatum ? clearCurrentDatum : handleCreate}
+        type="button"
+      >
+        {hasCurrentDatum ? 'clear selected' : `save new`}
       </NTNewButton>
       <NTDeleteButton onClick={handleDelete} type="button">
         delete

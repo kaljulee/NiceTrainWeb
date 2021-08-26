@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { mq } from '../../styles/breakpoints';
+import { mq5 } from '../../styles/breakpoints';
 
 // export const AdminStyle = `
 //   color: ${(props) => props.theme.onBackground};
@@ -124,8 +124,8 @@ export const NTLabel = styled.h4`
 `;
 
 export const NTInput = styled.input`
-  height: 30px;
   margin-bottom: 10;
+  height: 4vh;
   background: ${(p) => p.theme.secondarySurface};
   color: ${(p) => p.theme.onPrimarySurface};
   border: 1px solid ${(p) => p.theme.secondarySurface};
@@ -143,6 +143,9 @@ export const NTButton = styled.button`
   border: none;
   width: 100px;
   height: 30px;
+  :disabled {
+    opacity: 0.3;
+  }
 `;
 
 export const NTSaveButton = styled(NTButton)`
@@ -209,7 +212,7 @@ export const TabContainer = styled.div`
     position: relative;
     list-style: none;
     min-width: 5vw;
-    ${mq({
+    ${mq5({
       padding: ['2px 4px', '2px 4px', '6px 12px', '6px 12px', '6px 12px']
     })};
     cursor: pointer;

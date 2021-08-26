@@ -10,14 +10,15 @@ const NTInputColumn = styled(NTColumn)`
 `;
 
 function AdminInput(props) {
-  const { label, value, onChange, type = 'text' } = props;
+  const { label, value, onChange, type = 'text', style } = props;
   return (
-    <NTInputColumn>
+    <NTInputColumn style={{ ...style }}>
       <NTLabel>{label}</NTLabel>
       <NTInput
         type={type}
         value={value || value === 0 ? value : ''}
         onChange={onChange}
+        style={style}
       />
     </NTInputColumn>
   );

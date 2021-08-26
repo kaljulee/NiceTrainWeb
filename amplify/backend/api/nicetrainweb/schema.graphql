@@ -55,6 +55,7 @@ type ScheduledActivity
   order: Int!
   color: String
   duration: Int
+  youTubeResourceTimeStamp: String
   scheduledTrain: ScheduledTrain! @connection(fields: ["scheduledTrainID"])
 }
 
