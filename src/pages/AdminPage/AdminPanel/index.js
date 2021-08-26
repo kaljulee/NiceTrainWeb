@@ -4,7 +4,7 @@ import { NTLabel } from '../../../components/styledComponents';
 import AdminList from '../components/AdminList';
 
 function AdminPanel(props) {
-  const { title, listData, listFields } = props;
+  const { title, listData, listFields, enforceDirection } = props;
   const [currentDatum, setCurrentDatum] = useState();
 
   function onDatumClick(id) {
@@ -28,7 +28,7 @@ function AdminPanel(props) {
   }, [currentDatum, setCurrentDatum]);
 
   return (
-    <NTPanel>
+    <NTPanel style={{ flexDirection: enforceDirection }}>
       <NTColumn>
         <NTLabel>{title}</NTLabel>
         <AdminList
