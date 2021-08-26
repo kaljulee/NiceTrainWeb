@@ -31,7 +31,7 @@ function ScheduledTrainForm(props) {
   const activities = useSelector((state) => state.train.activities);
   const formats = useSelector((state) => state.train.formats);
 
-  const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [isPanelOpen, _setIsPanelOpen] = useState(false);
   const [dateValue, setDateValue] = useState(currentDatum.train_time);
   const [timeValue, setTimeValue] = useState(currentDatum.train_time);
   const [groundTagValue, setGroundTagValue] = useState(currentDatum.groundTag);
@@ -132,13 +132,17 @@ function ScheduledTrainForm(props) {
   }
 
   function handlePanelToggle() {
-    if (!isPanelOpen) {
-      if (!currentDatum) {
-        toast.error('No train selected');
-        return;
-      }
+    console.log(currentDatum);
+    if (!currentDatum || !currentDatum.id) {
+      toast.error('No train selected');
+      _setIsPanelOpen(false);
+      return;
     }
-    setIsPanelOpen(!isPanelOpen);
+    _setIsPanelOpen(!isPanelOpen);
+  }
+
+  function closePanel() {
+    _setIsPanelOpen(false);
   }
 
   return (
@@ -211,7 +215,7 @@ function ScheduledTrainForm(props) {
         isOpen={isPanelOpen}
         scheduledTrainID={currentDatum ? currentDatum.id : undefined}
         requestClose={() => {
-          setIsPanelOpen(false);
+          closePanel();
         }}
         scheduledActivities={scheduledActivities}
       />
