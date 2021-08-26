@@ -12,7 +12,7 @@ import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
 
 function LongMessageForm(props) {
-  const { title, currentDatum } = props;
+  const { title, currentDatum, clearCurrentDatum } = props;
   const dispatch = useDispatch();
   const [textValue, setTextValue] = useState(currentDatum.text);
 
@@ -45,15 +45,17 @@ function LongMessageForm(props) {
       return;
     }
     dispatch(callCreateLongMessage(newLongMessage));
+    clearCurrentDatum();
   }
 
   function handleDelete() {
     console.log('trying to delete');
     console.log(`id is ${currentDatum.id}`);
     dispatch(callDeleteLongMessage({ id: currentDatum.id }));
+    clearCurrentDatum();
   }
   return (
-    <NTBox>
+    <NTBox style={{ marginBottom: '5vh' }}>
       <NTColumn>
         <AdminInput
           label="text"
@@ -64,6 +66,8 @@ function LongMessageForm(props) {
           handleCreate={handleCreate}
           handleUpdate={handleUpdate}
           handleDelete={handleDelete}
+          hasCurrentDatum={!!currentDatum.id}
+          clearCurrentDatum={clearCurrentDatum}
         />
       </NTColumn>
       <Toaster />

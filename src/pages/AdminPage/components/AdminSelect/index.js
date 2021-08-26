@@ -5,7 +5,7 @@ import { NTColumn } from '../../../../components/layoutComponents';
 import { NTLabel } from '../../../../components/styledComponents';
 
 function AdminSelect(props) {
-  const { options, value, label, onChange } = props;
+  const { options, value, label, onChange, shouldWrap } = props;
   const theme = useTheme();
   const customStyles = {
     option: (provided) => ({
@@ -15,8 +15,8 @@ function AdminSelect(props) {
     }),
     singleValue: (provided) => ({
       background: theme.primarySurface,
-      color: theme.onPrimarySurface,
-      whiteSpace: 'nowrap'
+      color: theme.onPrimarySurface
+      // whiteSpace: 'nowrap'
     }),
     container: (provided) => ({
       ...provided,
@@ -47,9 +47,9 @@ function AdminSelect(props) {
     valueContainer: (provided) => ({
       ...provided,
       color: theme.onPrimarySurface,
-      backgroundColor: theme.primarySurface,
-      whiteSpace: 'nowrap',
-      height: '3vh'
+      backgroundColor: theme.primarySurface
+      // whiteSpace: 'nowrap'
+      // height: '5vh'
     }),
     indicatorContainer: (provided) => ({
       ...provided,

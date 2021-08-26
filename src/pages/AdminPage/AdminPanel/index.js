@@ -20,19 +20,34 @@ function AdminPanel(props) {
     onCurrentDatumChange(id);
   }
 
+  function updateChildrenWithProps(children) {
+    const childrenArray = React.Children.toArray(children);
+    return React.Children.map(childrenArray, (c) => {
+      if (React.isValidElement(c)) {
+        return React.cloneElement(c, {
+          currentDatum,
+          clearCurrentDatum: () => setCurrentDatum()
+        });
+      }
+      return c;
+    });
+  }
+
   const [childrenWithProps, setChildrenWithProps] = useState(
-    React.cloneElement(props.children, {
-      currentDatum,
-      clearCurrentDatum: () => setCurrentDatum()
-    })
+    updateChildrenWithProps(props.children)
+    // React.cloneElement(props.children, {
+    //   currentDatum,
+    //   clearCurrentDatum: () => setCurrentDatum()
+    // })
   );
 
   useEffect(() => {
     setChildrenWithProps(
-      React.cloneElement(props.children, {
-        currentDatum,
-        clearCurrentDatum: () => setCurrentDatum()
-      })
+      updateChildrenWithProps(props.children)
+      // React.cloneElement(props.children, {
+      //   currentDatum,
+      //   clearCurrentDatum: () => setCurrentDatum()
+      // })
     );
   }, [currentDatum, setCurrentDatum]);
 

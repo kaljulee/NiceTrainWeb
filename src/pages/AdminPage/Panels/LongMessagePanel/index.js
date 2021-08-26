@@ -6,9 +6,6 @@ import {
   NTRow,
   NTSection
 } from '../../../../components/layoutComponents';
-import AdminList from '../../components/AdminList';
-import LongMessageForm from './LongMessageForm';
-import AdminSelect from '../../components/AdminSelect';
 import { callListLongMessages } from '../../../../redux/thunks/longMessage';
 import { createOption, getCurrentOption } from '../../../../utils';
 import { SETTING_TYPE } from '../../../../constants';
@@ -16,6 +13,9 @@ import {
   callCreateSetting,
   callSetLongMessage
 } from '../../../../redux/thunks/settings';
+import AdminPanel from '../../AdminPanel';
+import LongMessageForm from './LongMessageForm';
+import AdminSelect from '../../components/AdminSelect';
 
 function LongMessagePanel() {
   const title = 'Long Message';
@@ -29,8 +29,6 @@ function LongMessagePanel() {
   const [activeMessageOption, setActiveMessageOption] = useState(
     getCurrentOption(listData, activeMessageID, 'text')
   );
-
-  const [currentDatum, setCurrentDatum] = useState();
 
   useEffect(() => {
     if (!listData) {
@@ -61,37 +59,21 @@ function LongMessagePanel() {
     setActiveMessageOption(option);
   }
 
-  function onDatumClick(id) {
-    setCurrentDatum(listData.find((datum) => datum.id === id));
-  }
   return (
-    <NTPanel>
-      <NTColumn>
-        <NTRow>
-          <NTSection>
-            <AdminList
-              title={title}
-              data={listData}
-              fields={listFields}
-              onDatumClick={onDatumClick}
-            />
-          </NTSection>
-          <LongMessageForm title={title} currentDatum={currentDatum} />
-        </NTRow>
-      </NTColumn>
-      <NTColumn>
-        <NTRow>
-          <AdminSelect
-            label="Select Active Message"
-            options={
-              listData ? listData.map((m) => createOption(m, 'text')) : []
-            }
-            value={activeMessageOption}
-            onChange={onActiveMessageChange}
-          />
-        </NTRow>
-      </NTColumn>
-    </NTPanel>
+    <AdminPanel
+      title="Board Message"
+      listData={listData}
+      listFields={listFields}
+      enforceDirection="column"
+    >
+      <LongMessageForm title={title} />
+      <AdminSelect
+        label="Select Active Message"
+        options={listData ? listData.map((m) => createOption(m, 'text')) : []}
+        value={activeMessageOption}
+        onChange={onActiveMessageChange}
+      />
+    </AdminPanel>
   );
 }
 
