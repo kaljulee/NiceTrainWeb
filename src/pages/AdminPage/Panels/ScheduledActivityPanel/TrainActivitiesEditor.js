@@ -21,4 +21,6 @@ function TrainActivitiesEditor(props) {
   );
 }
 
+TrainActivitiesEditor.defaultProps = { scheduledActivities: [] };
+
 export default TrainActivitiesEditor;

@@ -6,6 +6,7 @@ const trainSelector = (state) => state.train.scheduledTrains;
 const stationSelector = (state) => state.train.stations;
 const activeMessageSelector = (state) => state.settings;
 const longMessageSelector = (state) => state.train.longMessages;
+const scheduledActivitySelector = (state) => state.train.scheduledActivities;
 
 export const activeMessage = createSelector(
   activeMessageSelector,
@@ -47,4 +48,9 @@ export const boardTrainInformation = createSelector(
       };
       return formattedTrain;
     })
+);
+
+export const scheduledTrainActivities = createSelector(
+  scheduledActivitySelector,
+  (sActivities) => sActivities
 );

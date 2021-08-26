@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Select from 'react-select';
 import toast, { Toaster } from 'react-hot-toast';
 import {
   callCreateScheduledTrain,
@@ -19,17 +18,20 @@ import {
   NTColumn,
   NTRow
 } from '../../../../components/layoutComponents';
-import { NTLabel } from '../../../../components/styledComponents';
+import { NTButton, NTLabel } from '../../../../components/styledComponents';
+import AdminList from '../../components/AdminList';
+import ScheduledActivityPanel from '../ScheduledActivityPanel';
 
 function ScheduledTrainForm(props) {
-  const { title, currentDatum, youTubeResources } = props;
+  const { title, currentDatum, youTubeResources, scheduledActivities } = props;
+  console.log('STF SA');
+  console.log(scheduledActivities);
   const dispatch = useDispatch();
   const stations = useSelector((state) => state.train.stations);
   const activities = useSelector((state) => state.train.activities);
   const formats = useSelector((state) => state.train.formats);
-  const scheduledActivities = useSelector(
-    (state) => state.train.scheduledActivities
-  );
+
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [dateValue, setDateValue] = useState(currentDatum.train_time);
   const [timeValue, setTimeValue] = useState(currentDatum.train_time);
   const [groundTagValue, setGroundTagValue] = useState(currentDatum.groundTag);
@@ -129,53 +131,90 @@ function ScheduledTrainForm(props) {
     dispatch(callDeleteScheduledTrain({ id: currentDatum.id }));
   }
 
+  function handlePanelToggle() {
+    if (!isPanelOpen) {
+      if (!currentDatum) {
+        toast.error('No train selected');
+        return;
+      }
+    }
+    setIsPanelOpen(!isPanelOpen);
+  }
+
   return (
     <NTBox>
       <NTRow>
         <NTColumn>
-          <NTRow style={{ justifyContent: 'space-around' }}>
+          <NTRow>
             <NTColumn>
-              <NTLabel>date</NTLabel>
-              <AdminDatePicker value={dateValue} onChange={handleDateChange} />
-            </NTColumn>
-            <NTColumn>
-              <NTLabel>time</NTLabel>
-              <AdminTimePicker value={timeValue} onChange={handleTimeChange} />
+              <NTRow style={{ justifyContent: 'space-around' }}>
+                <NTColumn>
+                  <NTLabel>date</NTLabel>
+                  <AdminDatePicker
+                    value={dateValue}
+                    onChange={handleDateChange}
+                  />
+                </NTColumn>
+                <NTColumn>
+                  <NTLabel>time</NTLabel>
+                  <AdminTimePicker
+                    value={timeValue}
+                    onChange={handleTimeChange}
+                  />
+                </NTColumn>
+              </NTRow>
+              <AdminInput
+                label="status"
+                value={statusValue}
+                onChange={handleStatusChange}
+              />
+              <AdminInput
+                label="description"
+                value={descriptionValue}
+                onChange={handleDescriptionChange}
+              />
+              <AdminSelect
+                label="station"
+                options={stations.map((s) => createOption(s, 'name'))}
+                value={stationOption}
+                onChange={handleStationSelect}
+              />
+              <AdminInput
+                label="standing tag"
+                value={standingTagValue}
+                onChange={handleStandingTagChange}
+              />
+              <AdminInput
+                label="ground tag"
+                value={groundTagValue}
+                onChange={handleGroundTagChange}
+              />
+              <AdminSubmitButtonBar
+                handleCreate={handleCreate}
+                handleUpdate={handleUpdate}
+                handleDelete={handleDelete}
+              />
             </NTColumn>
           </NTRow>
-          <AdminInput
-            label="status"
-            value={statusValue}
-            onChange={handleStatusChange}
+        </NTColumn>
+        <NTColumn>
+          <AdminList
+            title="Activities"
+            data={scheduledActivities}
+            fields={['name']}
+            onDatumClick={() => {}}
           />
-          <AdminInput
-            label="description"
-            value={descriptionValue}
-            onChange={handleDescriptionChange}
-          />
-          <AdminSelect
-            label="station"
-            options={stations.map((s) => createOption(s, 'name'))}
-            value={stationOption}
-            onChange={handleStationSelect}
-          />
-          <AdminInput
-            label="standing tag"
-            value={standingTagValue}
-            onChange={handleStandingTagChange}
-          />
-          <AdminInput
-            label="ground tag"
-            value={groundTagValue}
-            onChange={handleGroundTagChange}
-          />
-          <AdminSubmitButtonBar
-            handleCreate={handleCreate}
-            handleUpdate={handleUpdate}
-            handleDelete={handleDelete}
-          />
+          <NTButton onClick={handlePanelToggle}>edit activities</NTButton>
         </NTColumn>
       </NTRow>
+      <ScheduledActivityPanel
+        isOpen={isPanelOpen}
+        scheduledTrainID={currentDatum ? currentDatum.id : undefined}
+        requestClose={() => {
+          setIsPanelOpen(false);
+        }}
+        scheduledActivities={scheduledActivities}
+      />
       <Toaster />
     </NTBox>
   );

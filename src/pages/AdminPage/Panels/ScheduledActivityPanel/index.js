@@ -6,6 +6,7 @@ import { NTBox, ToggleMenu } from '../../../../components/layoutComponents';
 import { trainPamphletTheme } from '../../../../styles/colors';
 import TrainActivitiesEditor from './TrainActivitiesEditor';
 import { callCreateScheduledActivity } from '../../../../redux/thunks/scheduledActivity';
+import { scheduledTrainActivities } from '../../../../redux/selectors';
 
 const ThemedToggleMenu = styled(ToggleMenu)`
   background: ${(props) => props.theme.background};

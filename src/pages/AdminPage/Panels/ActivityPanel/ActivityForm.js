@@ -14,7 +14,7 @@ import AdminSelect from '../../components/AdminSelect';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
 
 function ActivityForm(props) {
-  const { title, currentDatum, youTubeResources } = props;
+  const { title, currentDatum, youTubeResources, clearCurrentDatum } = props;
   const dispatch = useDispatch();
   const [nameValue, setNameValue] = useState(currentDatum.name);
   const [descriptionValue, setDescriptionValue] = useState(
@@ -81,10 +81,12 @@ function ActivityForm(props) {
       return;
     }
     dispatch(callCreateActivity(newActivity));
+    clearCurrentDatum();
   }
 
   function handleDelete() {
     dispatch(callDeleteActivity({ id: currentDatum.id }));
+    clearCurrentDatum();
   }
 
   return (
@@ -109,6 +111,8 @@ function ActivityForm(props) {
           onChange={handleYTRSelect}
         />
         <AdminSubmitButtonBar
+          hasCurrentDatum={!!currentDatum.id}
+          clearCurrentDatum={clearCurrentDatum}
           handleCreate={handleCreate}
           handleUpdate={handleUpdate}
           handleDelete={handleDelete}

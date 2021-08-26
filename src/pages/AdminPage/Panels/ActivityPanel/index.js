@@ -1,36 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import AdminList from '../../components/AdminList';
 import ActivityForm from './ActivityForm';
-import { NTColumn, NTPanel } from '../../../../components/layoutComponents';
+import AdminPanel from '../../AdminPanel';
 
-function ActivityPanel(props) {
+function ActivityPanel() {
   const title = 'Activity';
   const listData = useSelector((state) => state.train.activities);
   const availableYTRs = useSelector((state) => state.train.youTubeResources);
   const listFields = ['name'];
-  const [currentDatum, setCurrentDatum] = useState();
-  function onDatumClick(id) {
-    setCurrentDatum(listData.find((datum) => datum.id === id));
-  }
   return (
-    <NTPanel>
-      <NTColumn>
-        <AdminList
-          title={title}
-          data={listData}
-          fields={listFields}
-          onDatumClick={onDatumClick}
-        />
-      </NTColumn>
-      <NTColumn>
-        <ActivityForm
-          title={title}
-          currentDatum={currentDatum}
-          youTubeResources={availableYTRs}
-        />
-      </NTColumn>
-    </NTPanel>
+    <AdminPanel title="Activities" listData={listData} listFields={listFields}>
+      <ActivityForm title={title} youTubeResources={availableYTRs} />
+    </AdminPanel>
   );
 }
 
