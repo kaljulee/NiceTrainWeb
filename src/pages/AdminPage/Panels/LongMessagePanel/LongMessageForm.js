@@ -55,7 +55,7 @@ function LongMessageForm(props) {
     clearCurrentDatum();
   }
   return (
-    <NTBox>
+    <NTBox style={{ marginBottom: '5vh' }}>
       <NTColumn>
         <AdminInput
           label="text"

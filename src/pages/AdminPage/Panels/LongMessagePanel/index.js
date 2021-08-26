@@ -64,6 +64,7 @@ function LongMessagePanel() {
       title="Board Message"
       listData={listData}
       listFields={listFields}
+      enforceDirection="column"
     >
       <LongMessageForm title={title} />
       <AdminSelect
