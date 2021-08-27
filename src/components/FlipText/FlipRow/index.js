@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import flipConstants from '../flipConstants';
 
 function convertStringToFlip(message, rowLength) {
@@ -49,46 +50,52 @@ export function FlipRow(props) {
   );
 }
 
+const FlipBoxContainer = styled.div`
+  height: ${(p) => p.$height}px;
+  width: ${(p) => p.$width}px;
+`;
+
+const FlipLine = styled.div`
+  position: relative;
+  background: ${(p) => p.theme.background};
+  height: 1px;
+  width: ${(p) => p.$width}px;
+  top: ${(p) => p.$top}px;
+`;
+
+const FlipBackdrop = styled.div`
+  background: ${(p) => p.theme.secondarySurface};
+  width: 100%;
+  border: 2px solid ${(p) => p.theme.background};
+  text-align: center;
+  top: 2px;
+  height: 100%;
+  box-sizing: border-box;
+`;
+
+const FlipText = styled.span`
+  text-justify: center;
+  text-align: center;
+  font-size: 20px;
+  color: ${(p) => p.theme.onSecondarySurface};
+  position: relative;
+  display: inline-block;
+`;
+
 // single letter in flip box
 function FlipBox(props) {
   const { value } = props;
   const flipBoxWidth = flipConstants.width;
   return (
-    <div style={{ height: flipConstants.height, width: flipBoxWidth }}>
-      <div
-        style={{
-          backgroundColor: 'blue',
-          width: '100%',
-          border: `2px solid ${'black'}`,
-          textAlign: 'center',
-          top: 2,
-          height: '100%',
-          boxSizing: 'border-box'
-        }}
-      >
-        <span
-          style={{
-            textJustify: 'center',
-            textAlign: 'center',
-            fontSize: 20,
-            color: 'orange',
-            position: 'relative',
-            display: 'inline-block'
-          }}
-        >
-          {value}
-        </span>
-      </div>
-      <div
-        style={{
-          position: 'relative',
-          backgroundColor: 'purple',
-          height: 1,
-          width: flipBoxWidth,
-          top: Math.ceil(flipConstants.height / -2) + 1
-        }}
+    <FlipBoxContainer $height={flipConstants.height} $width={flipBoxWidth}>
+      <FlipBackdrop>
+        <FlipText>{value}</FlipText>
+      </FlipBackdrop>
+      <FlipLine
+        $width={flipBoxWidth}
+        $top={Math.ceil(flipConstants.height / -2) + 1}
       />
-    </div>
+    </FlipBoxContainer>
   );
 }
 
