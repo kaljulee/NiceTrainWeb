@@ -2,10 +2,30 @@ import React, { useMemo } from 'react';
 import { useTable } from 'react-table';
 import { useCurrentWidth } from 'react-socks';
 import { useTheme } from '@emotion/react';
+import styled from '@emotion/styled';
 import { FlipRow } from '../../../../../components/FlipText/FlipRow';
 import LongFlip from '../../../../../components/FlipText/LongFlip';
-import breakpoints from '../../../../../styles/breakpoints';
+import breakpoints, { mq5 } from '../../../../../styles/breakpoints';
 import InfoButton from '../../../../../components/InfoButton';
+
+const ScheduleTable = styled.table`
+  width: 100%;
+  background: ${(p) => p.theme.background};
+  padding: 1vh 1vw 1vh 1vw;
+`;
+
+const ScheduleHeaders = styled.thead`
+  margin-bottom: 30px;
+`;
+
+const ScheduleHeader = styled.th`
+  color: ${(p) => p.theme.onBackground};
+  font-family: helvetica;
+  text-align: left;
+  padding-top: 10;
+  font-weight: thin;
+  ${mq5({ fontSize: [12, 12, 12, 18, 18] })}
+`;
 
 function BoardSchedule(props) {
   const data = useMemo(() => props.data, [props.data]);
@@ -78,19 +98,12 @@ function BoardSchedule(props) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
   return (
-    <table
-      {...getTableProps()}
-      style={{
-        width: '100%',
-        backgroundColor: theme.background,
-        padding: '1vh 1vw 1vh 1vw'
-      }}
-    >
-      <thead style={{ marginBottom: 30 }}>
+    <ScheduleTable {...getTableProps()}>
+      <ScheduleHeaders>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th
+              <ScheduleHeader
                 {...column.getHeaderProps({
                   style: {
                     width: column.Header === 'Details' ? '1vh' : undefined,
@@ -104,11 +117,11 @@ function BoardSchedule(props) {
                 })}
               >
                 {renderHeader(column)}
-              </th>
+              </ScheduleHeader>
             ))}
           </tr>
         ))}
-      </thead>
+      </ScheduleHeaders>
       <tbody {...getTableProps()} style={{ height: '100%', width: '100%' }}>
         {rows.map((row) => {
           prepareRow(row);
@@ -136,7 +149,7 @@ function BoardSchedule(props) {
           );
         })}
       </tbody>
-    </table>
+    </ScheduleTable>
   );
 }
 
