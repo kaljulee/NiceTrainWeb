@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { FlipRow } from '../../../../../components/FlipText/FlipRow';
 import LongFlip from '../../../../../components/FlipText/LongFlip';
 import breakpoints, { mq5 } from '../../../../../styles/breakpoints';
-import InfoButton from '../../../../../components/InfoButton';
+import InfoButton from '../InfoButton';
 
 const ScheduleTable = styled.table`
   width: 100%;

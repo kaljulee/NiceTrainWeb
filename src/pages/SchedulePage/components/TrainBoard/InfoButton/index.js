@@ -1,15 +1,17 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons/faQuestionCircle';
+import { useTheme } from '@emotion/react';
 
-function InfoButton(props) {
+function InfoButton() {
+  const theme = useTheme();
   return (
     <div>
       <FontAwesomeIcon
         icon={faQuestionCircle}
         style={{
           display: 'flex',
-          color: 'purple',
+          color: theme.accent,
           width: '2vh',
           height: '2vh'
         }}
