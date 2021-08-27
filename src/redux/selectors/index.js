@@ -32,13 +32,15 @@ export const boardTrainInformation = createSelector(
         standingTag,
         status,
         train_time,
-        train_date
+        train_date,
+        id
       } = train;
       const station = stations.find((s) => s.id === stationID);
       const time = train_time.replace(/[:]/g, '');
       const dates = train_date.split('-');
       const date = `${checkZero(dates[2])}${checkZero(dates[1])}`;
       const formattedTrain = {
+        id,
         date,
         time,
         station: station ? station.abbrev : 'NONE',

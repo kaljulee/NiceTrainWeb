@@ -1,5 +1,5 @@
 import { Breakpoint } from 'react-socks';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 import BoardHeader from './BoardHeader';
@@ -10,6 +10,7 @@ import {
   activeMessage,
   boardTrainInformation
 } from '../../../../redux/selectors';
+import TrainDetails from '../TrainDetails';
 
 const BoardWrapper = styled(NTColumn)`
   background: ${(p) => p.theme.primarySurface};
@@ -31,6 +32,15 @@ const BoardSection = styled.div`
 function TrainBoard() {
   const data = useSelector(boardTrainInformation);
   const message = useSelector(activeMessage);
+  const [trainID, setTrainID] = useState(false);
+
+  function clearTrainID() {
+    setTrainID(false);
+  }
+
+  function handleSetTrainID(id) {
+    setTrainID(id);
+  }
 
   return (
     <BoardWrapper>
@@ -44,11 +54,12 @@ function TrainBoard() {
           alignItems: 'flex-start'
         }}
       >
-        <BoardSchedule data={data} />
+        <BoardSchedule data={data} setTrainID={handleSetTrainID} />
       </BoardSection>
       <BoardSection $flex={4}>
         <BoardInfo message={message} />
       </BoardSection>
+      <TrainDetails trainID={trainID} clearTrainID={clearTrainID} />
     </BoardWrapper>
   );
 }

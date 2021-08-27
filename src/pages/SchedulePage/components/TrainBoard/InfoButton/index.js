@@ -2,11 +2,18 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons/faQuestionCircle';
 import { useTheme } from '@emotion/react';
+import styled from '@emotion/styled';
 
-function InfoButton() {
+const StyledButton = styled.button`
+  background: ${(p) => p.theme.background};
+  border: none;
+`;
+
+function InfoButton(props) {
+  const { onClick } = props;
   const theme = useTheme();
   return (
-    <div>
+    <StyledButton onClick={onClick} type="button">
       <FontAwesomeIcon
         icon={faQuestionCircle}
         style={{
@@ -16,7 +23,7 @@ function InfoButton() {
           height: '2vh'
         }}
       />
-    </div>
+    </StyledButton>
   );
 }
 

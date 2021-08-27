@@ -28,6 +28,7 @@ const ScheduleHeader = styled.th`
 `;
 
 function BoardSchedule(props) {
+  const { setTrainID } = props;
   const data = useMemo(() => props.data, [props.data]);
   const width = useCurrentWidth();
   const columns = useMemo(() => {
@@ -35,16 +36,13 @@ function BoardSchedule(props) {
       { Header: 'Date', accessor: 'date' },
       { Header: 'Start', accessor: 'time' }
     ];
-    // if (width >= breakpoints.medium) {
-    //   colInfo.push({ Header: 'End', accessor: 'end' });
-    // }
     colInfo.push({ Header: 'Station', accessor: 'station' });
     if (width >= breakpoints.medium) {
       colInfo.push({ Header: 'Stand', accessor: 'standingTag' });
       colInfo.push({ Header: 'Ground', accessor: 'groundTag' });
     }
     colInfo.push({ Header: 'Status', accessor: 'status' });
-    colInfo.push({ Header: 'Details', accessor: 'details' });
+    colInfo.push({ Header: 'Details', accessor: 'id' });
 
     return colInfo;
   }, [width]);
@@ -80,7 +78,7 @@ function BoardSchedule(props) {
       case 'Station':
         return <FlipRow message={cell.value} />;
       case 'Details':
-        return <InfoButton />;
+        return <InfoButton onClick={() => setTrainID(cell.value)} />;
       case 'Status':
         return (
           <LongFlip
