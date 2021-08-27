@@ -46,8 +46,8 @@ function TrainBoard() {
       >
         <BoardSchedule data={data} />
       </BoardSection>
-      <BoardSection $flex={6}>
-        <BoardInfo messageArray={[message]} />
+      <BoardSection $flex={4}>
+        <BoardInfo message={message} />
       </BoardSection>
     </BoardWrapper>
   );
