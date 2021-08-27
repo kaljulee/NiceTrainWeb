@@ -1,7 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useCurrentWidth } from 'react-socks';
+import styled from '@emotion/styled';
 import { FlipRow } from '../../../../../components/FlipText/FlipRow';
 import flipConstants from '../../../../../components/FlipText/flipConstants';
+
+const InfoContainer = styled.div`
+  background: ${(p) => p.theme.background};
+  width: 100%;
+  padding: 1vh 1vw 1vh 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  align-self: center;
+`;
 
 function getWindowDimensions() {
   // eslint-disable-next-line no-undef
@@ -35,11 +48,40 @@ function calculateCharacterCount(width) {
   return Math.floor(width / flipConstants.width) - 2;
 }
 
+function createMessageArray(words, rowSize, minRowCount) {
+  let row = 0;
+  const messageArray = words.reduce((acc, w) => {
+    // if there is no current line and max line cont has not been hit
+    if (
+      !acc[row] // && row < rowCount
+    ) {
+      acc.push(w);
+      return acc;
+    }
+    if (
+      acc[row].length + w.length + 1 <
+      rowSize
+      // || row >= rowCount - 1
+    ) {
+      acc[row] = `${acc[row]} ${w}`;
+      return acc;
+    }
+    row += 1;
+    acc.push(w);
+    return acc;
+  }, []);
+  while (messageArray.length < minRowCount) {
+    messageArray.push('');
+  }
+  return messageArray;
+}
+
 function BoardInfo(props) {
-  const { messageArray } = props;
+  const { message } = props;
   const [characterCount, setCharacterCount] = useState(
     calculateCharacterCount(0)
   );
+  const [messageArray, setMessageArray] = useState([message]);
   const width = useCurrentWidth();
   const { height: dimH, width: dimW } = useWindowDimensions();
 
@@ -48,26 +90,23 @@ function BoardInfo(props) {
   useEffect(() => {
     setCharacterCount(calculateCharacterCount(width) - 4);
   }, [width, dimW, dimH]);
+  useEffect(() => {
+    const words = message.split(' ');
+    const newMessageArray = createMessageArray(words, characterCount, 4);
+    setMessageArray(newMessageArray);
+  }, [characterCount, message]);
   return (
-    <div
-      style={{
-        backgroundColor: 'orange',
-        width: '100%',
-        padding: '1vh 1vw 1vh 1vw',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center'
-      }}
-    >
-      <FlipRow message={messageArray[0]} rowLength={characterCount} />
-      <FlipRow message={messageArray[1]} rowLength={characterCount} />
-      <FlipRow message={messageArray[2]} rowLength={characterCount} />
-    </div>
+    <InfoContainer>
+      {messageArray.map((m, i) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <FlipRow key={`${i}_info_row`} message={m} rowLength={characterCount} />
+      ))}
+    </InfoContainer>
   );
 }
 
 BoardInfo.defaultProps = {
-  messageArray: ['Default Message 1', 'Default Message 2', 'Default Message 3']
+  message: 'Default Message'
 };
 
 export default BoardInfo;
