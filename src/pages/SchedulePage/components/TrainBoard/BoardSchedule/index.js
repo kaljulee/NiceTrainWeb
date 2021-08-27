@@ -61,11 +61,11 @@ function BoardSchedule(props) {
   function getStatusTextColor(status) {
     switch (status) {
       case 'ON TIME':
-        return 'purple';
+        return theme.success;
       case 'UNSURE':
-        return 'purple';
+        return theme.warning;
       case 'CANCELED':
-        return 'purple';
+        return theme.error;
       default:
         return undefined;
     }
