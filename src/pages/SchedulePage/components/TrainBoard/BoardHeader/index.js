@@ -1,7 +1,5 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-import { useCurrentWidth } from 'react-socks';
-import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import nt_long_logo from '../../../../../assets/svg/nt_long_logo.svg';
 import { mq5 } from '../../../../../styles/breakpoints';
@@ -41,10 +39,7 @@ const HeaderText = styled.div`
     ${mq5({ fontSize: [20, 30, 40, 50, 50] })}
 `;
 
-// todo use css for styles
-function BoardHeader(props) {
-  const width = useCurrentWidth();
-  const theme = useTheme();
+function BoardHeader() {
   return (
     <BoardHeaderWrapper>
       <HeaderLogo src={nt_long_logo} />
