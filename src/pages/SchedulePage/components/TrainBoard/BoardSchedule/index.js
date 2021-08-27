@@ -1,13 +1,33 @@
 import React, { useMemo } from 'react';
 import { useTable } from 'react-table';
 import { useCurrentWidth } from 'react-socks';
-import colors from '../../styles/colors';
-import { FlipRow } from '../FlipText/FlipRow';
-import LongFlip from '../FlipText/LongFlip';
-import breakpoints from '../../styles/breakpoints';
+import { useTheme } from '@emotion/react';
+import styled from '@emotion/styled';
+import { FlipRow } from '../../../../../components/FlipText/FlipRow';
+import LongFlip from '../../../../../components/FlipText/LongFlip';
+import breakpoints, { mq5 } from '../../../../../styles/breakpoints';
 import InfoButton from '../InfoButton';
 
-function ScheduleBoard(props) {
+const ScheduleTable = styled.table`
+  width: 100%;
+  background: ${(p) => p.theme.background};
+  padding: 1vh 1vw 1vh 1vw;
+`;
+
+const ScheduleHeaders = styled.thead`
+  margin-bottom: 30px;
+`;
+
+const ScheduleHeader = styled.th`
+  color: ${(p) => p.theme.onBackground};
+  font-family: helvetica;
+  text-align: left;
+  padding-top: 10;
+  font-weight: thin;
+  ${mq5({ fontSize: [12, 12, 12, 18, 18] })}
+`;
+
+function BoardSchedule(props) {
   const data = useMemo(() => props.data, [props.data]);
   const width = useCurrentWidth();
   const columns = useMemo(() => {
@@ -28,6 +48,7 @@ function ScheduleBoard(props) {
 
     return colInfo;
   }, [width]);
+  const theme = useTheme();
 
   function renderHeader(column) {
     if (column.Header === 'Details') {
@@ -40,11 +61,11 @@ function ScheduleBoard(props) {
   function getStatusTextColor(status) {
     switch (status) {
       case 'ON TIME':
-        return colors.boardGood;
+        return theme.success;
       case 'UNSURE':
-        return colors.boardMaybe;
+        return theme.warning;
       case 'CANCELED':
-        return colors.boardBad;
+        return theme.error;
       default:
         return undefined;
     }
@@ -77,23 +98,16 @@ function ScheduleBoard(props) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
   return (
-    <table
-      {...getTableProps()}
-      style={{
-        width: '100%',
-        backgroundColor: colors.boardComponent,
-        padding: '1vh 1vw 1vh 1vw'
-      }}
-    >
-      <thead style={{ marginBottom: 30 }}>
+    <ScheduleTable {...getTableProps()}>
+      <ScheduleHeaders>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th
+              <ScheduleHeader
                 {...column.getHeaderProps({
                   style: {
                     width: column.Header === 'Details' ? '1vh' : undefined,
-                    color: colors.boardLettering,
+                    color: theme.onBackground,
                     fontFamily: 'helvetica',
                     textAlign: 'left',
                     paddingTop: 10,
@@ -103,11 +117,11 @@ function ScheduleBoard(props) {
                 })}
               >
                 {renderHeader(column)}
-              </th>
+              </ScheduleHeader>
             ))}
           </tr>
         ))}
-      </thead>
+      </ScheduleHeaders>
       <tbody {...getTableProps()} style={{ height: '100%', width: '100%' }}>
         {rows.map((row) => {
           prepareRow(row);
@@ -135,8 +149,8 @@ function ScheduleBoard(props) {
           );
         })}
       </tbody>
-    </table>
+    </ScheduleTable>
   );
 }
 
-export default ScheduleBoard;
+export default BoardSchedule;

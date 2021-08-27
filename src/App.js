@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import SchedulePage from './pages/SchedulePage';
-import colors, { niceTrainTheme } from './styles/colors';
+import { niceTrainTheme } from './styles/colors';
 import { settableBreakpoints } from './styles/breakpoints';
 import { store } from './redux/store';
 import AdminPage from './pages/AdminPage';
@@ -30,8 +30,7 @@ function App() {
             height: '100%',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: colors.boardBack
+            alignItems: 'center'
           }}
         >
           <Router>
