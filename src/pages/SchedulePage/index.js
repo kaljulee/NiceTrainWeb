@@ -1,12 +1,14 @@
 import React from 'react';
 import { Breakpoint } from 'react-socks';
 import { connect, useSelector } from 'react-redux';
-import ScheduleBoard from '../../components/ScheduleBoard';
-import ScheduleHeader from '../../components/ScheduleHeader';
+import styled from '@emotion/styled';
 import colors from '../../styles/colors';
-import ScheduleInfo from '../../components/ScheduleInfo';
 import NiceTrainPage from '../NiceTrainPage';
 import { activeMessage, boardTrainInformation } from '../../redux/selectors';
+import { NTColumn } from '../../components/layoutComponents';
+import BoardInfo from './components/BoardInfo';
+import BoardSchedule from './components/BoardSchedule';
+import BoardHeader from './components/BoardHeader';
 
 function SchedulePage() {
   const sectionStyles = {
@@ -21,20 +23,35 @@ function SchedulePage() {
 
   const data = useSelector(boardTrainInformation);
   const message = useSelector(activeMessage);
+
+  // style={{
+  //     display: 'flex',
+  //         height: '100%',
+  //         minHeight: '100vh',
+  //         flexDirection: 'column',
+  //         alignItems: 'center',
+  //         alignSelf: 'center',
+  //         width: '100%',
+  //         paddingLeft: '1vw',
+  //         paddingRight: '1vw',
+  //         boxSizing: 'border-box',
+  //         backgroundColor: colors.boardBack
+  // }}
+
   return (
     <NiceTrainPage>
-      <div
+      <NTColumn
         style={{
-          display: 'flex',
-          height: '100%',
-          minHeight: '100vh',
-          flexDirection: 'column',
-          alignItems: 'center',
-          alignSelf: 'center',
-          width: '100%',
-          paddingLeft: '1vw',
-          paddingRight: '1vw',
-          boxSizing: 'border-box',
+          //     display: 'flex',
+          //         height: '100%',
+          //         minHeight: '100vh',
+          //         flexDirection: 'column',
+          //         alignItems: 'center',
+          //         alignSelf: 'center',
+          //         width: '100%',
+          //         paddingLeft: '1vw',
+          //         paddingRight: '1vw',
+          //         boxSizing: 'border-box',
           backgroundColor: colors.boardBack
         }}
       >
@@ -45,7 +62,7 @@ function SchedulePage() {
             flex: 1
           }}
         >
-          <ScheduleHeader />
+          <BoardHeader />
         </div>
         <div
           style={{
@@ -55,7 +72,7 @@ function SchedulePage() {
             flex: 10
           }}
         >
-          <ScheduleBoard data={data} />
+          <BoardSchedule data={data} />
         </div>
         <Breakpoint
           xsmall
@@ -75,10 +92,10 @@ function SchedulePage() {
               justifyContent: 'center'
             }}
           >
-            <ScheduleInfo messageArray={[message]} />
+            <BoardInfo messageArray={[message]} />
           </div>
         </Breakpoint>
-      </div>
+      </NTColumn>
     </NiceTrainPage>
   );
 }

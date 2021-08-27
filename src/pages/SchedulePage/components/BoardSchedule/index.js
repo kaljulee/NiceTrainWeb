@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import { useTable } from 'react-table';
 import { useCurrentWidth } from 'react-socks';
-import colors from '../../styles/colors';
-import { FlipRow } from '../FlipText/FlipRow';
-import LongFlip from '../FlipText/LongFlip';
-import breakpoints from '../../styles/breakpoints';
-import InfoButton from '../InfoButton';
+import colors from '../../../../styles/colors';
+import { FlipRow } from '../../../../components/FlipText/FlipRow';
+import LongFlip from '../../../../components/FlipText/LongFlip';
+import breakpoints from '../../../../styles/breakpoints';
+import InfoButton from '../../../../components/InfoButton';
 
-function ScheduleBoard(props) {
+function BoardSchedule(props) {
   const data = useMemo(() => props.data, [props.data]);
   const width = useCurrentWidth();
   const columns = useMemo(() => {
@@ -139,4 +139,4 @@ function ScheduleBoard(props) {
   );
 }
 
-export default ScheduleBoard;
+export default BoardSchedule;

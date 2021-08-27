@@ -1,12 +1,12 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
 import { useCurrentWidth } from 'react-socks';
-import nt_long_logo from '../../assets/svg/nt_long_logo.svg';
-import colors from '../../styles/colors';
-import breakpoints from '../../styles/breakpoints';
+import nt_long_logo from '../../../../assets/svg/nt_long_logo.svg';
+import colors from '../../../../styles/colors';
+import breakpoints from '../../../../styles/breakpoints';
 
 // todo use css for styles
-function ScheduleHeader(props) {
+function BoardHeader(props) {
   const width = useCurrentWidth();
   return (
     <div
@@ -58,4 +58,4 @@ function ScheduleHeader(props) {
   );
 }
 
-export default ScheduleHeader;
+export default BoardHeader;

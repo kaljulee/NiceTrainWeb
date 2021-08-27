@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useCurrentWidth } from 'react-socks';
-import colors from '../../styles/colors';
-import { FlipRow } from '../FlipText/FlipRow';
-import flipConstants from '../FlipText/flipConstants';
+import colors from '../../../../styles/colors';
+import { FlipRow } from '../../../../components/FlipText/FlipRow';
+import flipConstants from '../../../../components/FlipText/flipConstants';
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -33,7 +33,7 @@ function calculateCharacterCount(width) {
   return Math.floor(width / flipConstants.width) - 2;
 }
 
-function ScheduleInfo(props) {
+function BoardInfo(props) {
   const { messageArray } = props;
   const [characterCount, setCharacterCount] = useState(
     calculateCharacterCount(0)
@@ -64,8 +64,8 @@ function ScheduleInfo(props) {
   );
 }
 
-ScheduleInfo.defaultProps = {
+BoardInfo.defaultProps = {
   messageArray: ['Default Message 1', 'Default Message 2', 'Default Message 3']
 };
 
-export default ScheduleInfo;
+export default BoardInfo;
