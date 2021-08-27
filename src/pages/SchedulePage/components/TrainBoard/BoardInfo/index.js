@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useCurrentWidth } from 'react-socks';
-import colors from '../../../../styles/colors';
-import { FlipRow } from '../../../../components/FlipText/FlipRow';
-import flipConstants from '../../../../components/FlipText/flipConstants';
+import { FlipRow } from '../../../../../components/FlipText/FlipRow';
+import flipConstants from '../../../../../components/FlipText/flipConstants';
 
 function getWindowDimensions() {
+  // eslint-disable-next-line no-undef
   const { innerWidth: width, innerHeight: height } = window;
   return {
     width,
@@ -22,7 +22,9 @@ function useWindowDimensions() {
       setWindowDimensions(getWindowDimensions());
     }
 
+    // eslint-disable-next-line no-undef
     window.addEventListener('resize', handleResize);
+    // eslint-disable-next-line no-undef
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -49,7 +51,7 @@ function BoardInfo(props) {
   return (
     <div
       style={{
-        backgroundColor: colors.boardComponent,
+        backgroundColor: 'orange',
         width: '100%',
         padding: '1vh 1vw 1vh 1vw',
         display: 'flex',

@@ -3,11 +3,10 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import colors from '../../styles/colors';
 
 const baseStyle = {
   padding: 10,
-  color: colors.logoYellow,
+  color: 'pink',
   textDecoration: 'none',
   fontFamily: 'helvetica',
   letterSpacing: 5,

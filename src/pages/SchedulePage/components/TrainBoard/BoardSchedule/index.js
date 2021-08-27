@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
 import { useTable } from 'react-table';
 import { useCurrentWidth } from 'react-socks';
-import colors from '../../../../styles/colors';
-import { FlipRow } from '../../../../components/FlipText/FlipRow';
-import LongFlip from '../../../../components/FlipText/LongFlip';
-import breakpoints from '../../../../styles/breakpoints';
-import InfoButton from '../../../../components/InfoButton';
+import { useTheme } from '@emotion/react';
+import { FlipRow } from '../../../../../components/FlipText/FlipRow';
+import LongFlip from '../../../../../components/FlipText/LongFlip';
+import breakpoints from '../../../../../styles/breakpoints';
+import InfoButton from '../../../../../components/InfoButton';
 
 function BoardSchedule(props) {
   const data = useMemo(() => props.data, [props.data]);
@@ -28,6 +28,7 @@ function BoardSchedule(props) {
 
     return colInfo;
   }, [width]);
+  const theme = useTheme();
 
   function renderHeader(column) {
     if (column.Header === 'Details') {
@@ -40,11 +41,11 @@ function BoardSchedule(props) {
   function getStatusTextColor(status) {
     switch (status) {
       case 'ON TIME':
-        return colors.boardGood;
+        return 'purple';
       case 'UNSURE':
-        return colors.boardMaybe;
+        return 'purple';
       case 'CANCELED':
-        return colors.boardBad;
+        return 'purple';
       default:
         return undefined;
     }
@@ -81,7 +82,7 @@ function BoardSchedule(props) {
       {...getTableProps()}
       style={{
         width: '100%',
-        backgroundColor: colors.boardComponent,
+        backgroundColor: theme.background,
         padding: '1vh 1vw 1vh 1vw'
       }}
     >
@@ -93,7 +94,7 @@ function BoardSchedule(props) {
                 {...column.getHeaderProps({
                   style: {
                     width: column.Header === 'Details' ? '1vh' : undefined,
-                    color: colors.boardLettering,
+                    color: theme.onBackground,
                     fontFamily: 'helvetica',
                     textAlign: 'left',
                     paddingTop: 10,

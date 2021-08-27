@@ -1,6 +1,5 @@
 import React from 'react';
 import { useCurrentWidth } from 'react-socks';
-import colors from '../../../styles/colors';
 import flipConstants from '../flipConstants';
 import breakpoints from '../../../styles/breakpoints';
 
@@ -12,7 +11,7 @@ function LongFlip(props) {
       style={{
         height: flipConstants.height,
         width: '90%',
-        backgroundColor: colors.flipBack,
+        backgroundColor: 'yellow',
         fontSize: width >= breakpoints.xlarge ? 16 : 12,
         display: 'flex',
         alignItems: 'center',

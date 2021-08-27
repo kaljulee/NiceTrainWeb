@@ -1,19 +1,20 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
 import { useCurrentWidth } from 'react-socks';
-import nt_long_logo from '../../../../assets/svg/nt_long_logo.svg';
-import colors from '../../../../styles/colors';
-import breakpoints from '../../../../styles/breakpoints';
+import { useTheme } from '@emotion/react';
+import nt_long_logo from '../../../../../assets/svg/nt_long_logo.svg';
+import breakpoints from '../../../../../styles/breakpoints';
 
 // todo use css for styles
 function BoardHeader(props) {
   const width = useCurrentWidth();
+  const theme = useTheme();
   return (
     <div
       style={{
         display: 'flex',
         justifyContent: 'flex-start',
-        backgroundColor: colors.boardBack,
+        backgroundColor: theme.background,
         height: '100%',
         width: '100%'
       }}
@@ -23,14 +24,14 @@ function BoardHeader(props) {
         style={{
           display: 'flex',
           justifyContent: 'center',
-          backgroundColor: colors.boardComponent,
+          backgroundColor: 'orange',
           flex: 2,
           minWidth: '7vh'
         }}
       />
       <div
         style={{
-          backgroundColor: colors.boardComponent,
+          backgroundColor: 'blue',
           marginLeft: '1vh',
           display: 'flex',
           justifyContent: 'flex-start',
@@ -41,7 +42,7 @@ function BoardHeader(props) {
         <span
           style={{
             display: 'inline-block',
-            color: colors.boardLettering,
+            color: theme.onBackground,
             fontSize: width >= breakpoints.large ? 50 : 25,
             fontFamily: 'times new roman',
             letterSpacing: 6,

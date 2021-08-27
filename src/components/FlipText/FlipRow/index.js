@@ -1,5 +1,4 @@
 import React from 'react';
-import colors from '../../../styles/colors';
 import flipConstants from '../flipConstants';
 
 function convertStringToFlip(message, rowLength) {
@@ -58,7 +57,7 @@ function FlipBox(props) {
     <div style={{ height: flipConstants.height, width: flipBoxWidth }}>
       <div
         style={{
-          backgroundColor: colors.flipBack,
+          backgroundColor: 'blue',
           width: '100%',
           border: `2px solid ${'black'}`,
           textAlign: 'center',
@@ -72,7 +71,7 @@ function FlipBox(props) {
             textJustify: 'center',
             textAlign: 'center',
             fontSize: 20,
-            color: colors.boardLettering,
+            color: 'orange',
             position: 'relative',
             display: 'inline-block'
           }}
@@ -83,7 +82,7 @@ function FlipBox(props) {
       <div
         style={{
           position: 'relative',
-          backgroundColor: colors.boardComponent,
+          backgroundColor: 'purple',
           height: 1,
           width: flipBoxWidth,
           top: Math.ceil(flipConstants.height / -2) + 1

@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons/faQuestionCircle';
-import colors from '../../styles/colors';
 
 function InfoButton(props) {
   return (
@@ -10,7 +9,7 @@ function InfoButton(props) {
         icon={faQuestionCircle}
         style={{
           display: 'flex',
-          color: colors.logoYellow,
+          color: 'purple',
           width: '2vh',
           height: '2vh'
         }}

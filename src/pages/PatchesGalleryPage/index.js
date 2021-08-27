@@ -1,6 +1,5 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-import colors from '../../styles/colors';
 import nt_120mm_horizontal from '../../assets/raster/nt_120mm_horizontal.jpg';
 import bridge_and_shrimp from '../../assets/raster/bridge_and_shrimp.png';
 import night_train from '../../assets/raster/night_train.jpg';
@@ -13,7 +12,7 @@ function PatchItemRaster(props) {
   return (
     <div
       style={{
-        backgroundColor: colors.boardBack,
+        backgroundColor: 'pink',
         display: 'flex',
         flexDirection: 'column',
         marginBottom: '2vh',
@@ -29,7 +28,7 @@ function PatchItemRaster(props) {
         style={{
           display: 'inline-block',
           alignSelf: 'start',
-          color: colors.logoYellow,
+          color: 'blue',
           backgroundColor: 'black',
           fontFamily: 'helvetica',
           paddingLeft: '1vw',
@@ -38,7 +37,7 @@ function PatchItemRaster(props) {
           paddingBottom: '0.5vh',
           marginBottom: '2vh',
           opacity: 0.6,
-          border: `1px solid ${colors.logoYellow}`,
+          border: `1px solid ${'green'}`,
           letterSpacing: 2
         }}
       >
@@ -66,7 +65,7 @@ function PatchItemSVG(props) {
       <span
         style={{
           display: 'inline-block',
-          color: colors.logoYellow,
+          color: 'orange',
           fontFamily: 'helvetica',
           paddingLeft: '1vw',
           paddingRight: '1vw',
@@ -74,7 +73,7 @@ function PatchItemSVG(props) {
           paddingBottom: '0.5vh',
           marginBottom: '1vh',
           opacity: 0.6,
-          border: `1px solid ${colors.logoYellow}`,
+          border: `1px solid ${'blue'}`,
           letterSpacing: 2
         }}
       >
