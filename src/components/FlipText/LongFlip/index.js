@@ -15,7 +15,7 @@ const LongFlipWrapper = styled.div`
   padding-right: 15px;
   ${mq5({ fontSize: [12, 12, 12, 16, 16] })}
   span {
-    letter-spacing: 2;
+    letter-spacing: 2px;
     font-family: helvetica;
     display: inline-block;
     color: ${(p) => p.$color};

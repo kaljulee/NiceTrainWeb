@@ -31,7 +31,7 @@ const HeaderText = styled.div`
     background: ${(p) => p.theme.background};
     color: ${(p) => p.theme.onBackground};
     font-family: times new roman;
-    letter-spacing: 6;
+    letter-spacing: 6px;
     font-weight: bold;
     padding-left: 2vh;
      padding-top: 1vh;

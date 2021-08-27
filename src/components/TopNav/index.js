@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import styled from '@emotion/styled';
 
 const baseStyle = {
   padding: 10,
@@ -14,14 +15,34 @@ const baseStyle = {
   opacity: 0.3
 };
 
+const NTNavLink = styled(NavLink)`
+  padding: 1vh 2vh 1vh 2vh;
+  color: ${(p) => p.theme.accent};
+  text-decoration: none;
+  font-family: helvetica;
+  letter-spacing: 5px;
+  font-size: x-small;
+  opacity: 0.3;
+`;
+
+const NTLinkRow = styled.div`
+  position: absolute;
+  height: 5vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
 function NTLink(props) {
   const activeStyle = {
     opacity: 0.7
   };
-  return <NavLink {...props} style={baseStyle} activeStyle={activeStyle} />;
+  return <NTNavLink {...props} activeStyle={activeStyle} />;
 }
 
-function TopNav(props) {
+function TopNav() {
   const dispatch = useDispatch();
   const [authState, setAuthState] = useState();
   const [user, setUser] = useState();
@@ -34,16 +55,7 @@ function TopNav(props) {
     []
   );
   return (
-    <div
-      style={{
-        position: 'absolute',
-        height: '5vh',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
-      }}
-    >
+    <NTLinkRow>
       <NTLink to="/schedule">SCHEDULE</NTLink>
       <NTLink to="/patches">PATCHES</NTLink>
       <NTLink to="/admin">ADMIN</NTLink>
@@ -60,7 +72,7 @@ function TopNav(props) {
           <AmplifySignOut />
         </div>
       )}
-    </div>
+    </NTLinkRow>
   );
 }
 
