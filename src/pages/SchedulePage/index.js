@@ -20,20 +20,6 @@ const ScheduledPageWrapper = styled.div`
 `;
 
 function SchedulePage() {
-  // style={{
-  //     display: 'flex',
-  //         height: '100%',
-  //         minHeight: '100vh',
-  //         flexDirection: 'column',
-  //         alignItems: 'center',
-  //         alignSelf: 'center',
-  //         width: '100%',
-  //         paddingLeft: '1vw',
-  //         paddingRight: '1vw',
-  //         boxSizing: 'border-box',
-  //         backgroundColor: colors.boardBack
-  // }}
-
   return (
     <ScheduledPageWrapper>
       <TrainBoard />
