@@ -32,14 +32,15 @@ const DetailsHeader = styled(NTRow)`
     color: ${(p) => p.theme.onPrimarySurface};
     ${mq5({ fontSize: [24, 24, 30, 30, 35] })}
   }
+  flex: 1;
 `;
 
 const Map = styled(NTColumn)`
-  flex: ${(p) => p.$flex};
+  flex: 4;
 `;
 
 const Display = styled(NTRow)`
-  flex: ${(p) => p.$flex};
+  flex: 5;
   width: 100%;
 `;
 
@@ -83,21 +84,21 @@ function TrainDetails(props) {
     <ThemeProvider theme={trainPamphletTheme}>
       <TrainDetailsToggle isOpen={!!trainID}>
         <NTColumn style={{ height: '80vh' }}>
-          <DetailsHeader $flex={1}>
+          <DetailsHeader>
             <DateTimeInfo>
               <span>{trainDate}</span>
               <span>{train && train.train_time}</span>
             </DateTimeInfo>
             <NTButton onClick={clearTrainID}>close</NTButton>
           </DetailsHeader>
-          <Map $flex={3}>
+          <Map>
             <DetailsMap
               activeActivityID={activeActivity ? activeActivity.id : false}
               activities={activities}
               onActivityClick={onActivityClick}
             />
           </Map>
-          <Display $flex={4}>
+          <Display>
             <DetailsDisplay activity={activeActivity} />
           </Display>
         </NTColumn>

@@ -13,7 +13,7 @@ const MapWrapper = styled.div`
   box-sizing: border-box;
   margin-top: auto;
   margin-bottom: auto;
-  margin: 10%;
+  margin: auto 10%;
 `;
 
 const MapLine = styled.div`

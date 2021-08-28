@@ -12,27 +12,20 @@ const DisplayWrapper = styled(NTRow)`
 
 const DisplayColumn = styled(NTColumn)`
   width: 100%;
+  flex: ${(p) => p.$flex};
 `;
 
 function DetailsDisplay(props) {
   const { activity } = props;
-  console.table(activity);
-  // let renderArray = [];
-  // if (activity) {
-  //   const keys = Object.keys(activity);
-  //   // renderArray = Object.keys(activity).map((k) => <div>{activity[k]}</div>);
-  //   // console.log('render array');
-  //   // console.log(renderArray);
-  // }
   return (
     <DisplayWrapper>
-      <DisplayColumn>
+      <DisplayColumn $flex={1}>
         <StaticInfo />
       </DisplayColumn>
-      <DisplayColumn>
+      <DisplayColumn $flex={2}>
         <ActivityInfo activity={activity} />
       </DisplayColumn>
-      <DisplayColumn>
+      <DisplayColumn $flex={2}>
         <YTRLinks activity={activity} />
       </DisplayColumn>
     </DisplayWrapper>
@@ -40,9 +33,3 @@ function DetailsDisplay(props) {
 }
 
 export default DetailsDisplay;
-
-// Object.keys(activity).map((k) => (
-//     <NTRow>
-//         <div>{k}</div>
-//         <div>{activity[k]}</div>
-//     </NTRow>
