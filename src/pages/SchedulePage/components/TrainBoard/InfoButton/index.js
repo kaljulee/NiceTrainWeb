@@ -19,8 +19,8 @@ function InfoButton(props) {
         style={{
           display: 'flex',
           color: theme.accent,
-          width: '2vh',
-          height: '2vh'
+          width: '3vh',
+          height: '3vh'
         }}
       />
     </StyledButton>

@@ -1,31 +1,94 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/styled';
 import { connect, useDispatch } from 'react-redux';
+import { DateTime } from 'luxon';
 import { trainPamphletTheme } from '../../../../styles/colors';
-import { NTBox, ToggleMenu } from '../../../../components/layoutComponents';
+import {
+  NTColumn,
+  NTRow,
+  ToggleMenu
+} from '../../../../components/layoutComponents';
 import { NTButton } from '../../../../components/styledComponents';
 import { callGetScheduledActivitiesByTrain } from '../../../../redux/thunks/scheduledActivity';
+import { mq5 } from '../../../../styles/breakpoints';
+import DetailsMap from './DetailsMap';
 
 const TrainDetailsToggle = styled(ToggleMenu)`
   background: ${(p) => p.theme.background};
 `;
 
+const DetailsHeader = styled(NTRow)`
+  background: ${(p) => p.theme.primarySurface};
+  flex: ${(p) => p.$flex};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1vw;
+  span {
+    font-size: 40px;
+    font-weight: bold;
+    color: ${(p) => p.theme.onPrimarySurface};
+    ${mq5({ fontSize: [24, 24, 30, 30, 35] })}
+  }
+`;
+
+const MapSection = styled(NTColumn)`
+  flex: ${(p) => p.$flex};
+`;
+
+const DisplaySection = styled(NTRow)`
+  flex: ${(p) => p.$flex};
+  border: 1px solid yellow;
+`;
+
+function getTrainDate(train) {
+  if (!train.train_date) {
+    return '';
+  }
+  const date = DateTime.fromFormat(train.train_date, 'yyyy-MM-dd');
+  return date.toLocaleString({
+    ...DateTime.DATE_SHORT,
+    weekday: 'long'
+  });
+}
+
 function TrainDetails(props) {
   const { trainID, clearTrainID, train, activities, station } = props;
   const dispatch = useDispatch();
+  const [trainDate, setTrainDate] = useState();
+  const [activeActivity, setActiveActivity] = useState();
   useEffect(() => {
+    if (train) {
+      setTrainDate(getTrainDate(train));
+    }
     if (!activities && !!trainID) {
-      console.log('fetching activities');
       dispatch(callGetScheduledActivitiesByTrain(trainID));
     }
   }, [trainID]);
+
+  function onActivityClick(id) {
+    setActiveActivity(id);
+  }
+
   return (
     <ThemeProvider theme={trainPamphletTheme}>
       <TrainDetailsToggle isOpen={!!trainID}>
-        <NTBox style={{ height: '75vh' }}>
-          <NTButton onClick={clearTrainID}>close</NTButton>
-        </NTBox>
+        <NTColumn style={{ height: '80vh' }}>
+          <DetailsHeader $flex={1}>
+            <span>{trainDate}</span>
+            <NTButton onClick={clearTrainID}>close</NTButton>
+          </DetailsHeader>
+          <MapSection $flex={3}>
+            <DetailsMap
+              activities={activities}
+              onActivityClick={onActivityClick}
+            />
+          </MapSection>
+          <DisplaySection activeActivity={activeActivity} $flex={4}>
+            display goes here
+          </DisplaySection>
+        </NTColumn>
       </TrainDetailsToggle>
     </ThemeProvider>
   );
