@@ -5,34 +5,35 @@ import YTRLinks from '../components/YTRLinks';
 import StaticInfo from '../components/StaticInfo';
 import ActivityInfo from '../components/ActivityInfo';
 
-const DisplayWrapper = styled.div`
+const DisplayWrapper = styled(NTRow)`
   box-sizing: border-box;
+  width: 100%;
 `;
 
 const DisplayColumn = styled(NTColumn)`
-  border: 1px solid ${(p) => p.theme.primarySurface};
+  width: 100%;
 `;
 
 function DetailsDisplay(props) {
   const { activity } = props;
   console.table(activity);
   // let renderArray = [];
-  if (activity) {
-    const keys = Object.keys(activity);
-    // renderArray = Object.keys(activity).map((k) => <div>{activity[k]}</div>);
-    // console.log('render array');
-    // console.log(renderArray);
-  }
+  // if (activity) {
+  //   const keys = Object.keys(activity);
+  //   // renderArray = Object.keys(activity).map((k) => <div>{activity[k]}</div>);
+  //   // console.log('render array');
+  //   // console.log(renderArray);
+  // }
   return (
     <DisplayWrapper>
       <DisplayColumn>
         <StaticInfo />
       </DisplayColumn>
       <DisplayColumn>
-        <ActivityInfo />
+        <ActivityInfo activity={activity} />
       </DisplayColumn>
       <DisplayColumn>
-        <YTRLinks />
+        <YTRLinks activity={activity} />
       </DisplayColumn>
     </DisplayWrapper>
   );

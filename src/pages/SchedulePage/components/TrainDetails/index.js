@@ -34,13 +34,13 @@ const DetailsHeader = styled(NTRow)`
   }
 `;
 
-const MapSection = styled(NTColumn)`
+const Map = styled(NTColumn)`
   flex: ${(p) => p.$flex};
 `;
 
-const DisplaySection = styled(NTRow)`
+const Display = styled(NTRow)`
   flex: ${(p) => p.$flex};
-  border: 1px solid ${(p) => p.theme.primarySurface};
+  width: 100%;
 `;
 
 const DateTimeInfo = styled.div`
@@ -90,16 +90,16 @@ function TrainDetails(props) {
             </DateTimeInfo>
             <NTButton onClick={clearTrainID}>close</NTButton>
           </DetailsHeader>
-          <MapSection $flex={3}>
+          <Map $flex={3}>
             <DetailsMap
               activeActivityID={activeActivity ? activeActivity.id : false}
               activities={activities}
               onActivityClick={onActivityClick}
             />
-          </MapSection>
-          <DisplaySection $flex={4}>
+          </Map>
+          <Display $flex={4}>
             <DetailsDisplay activity={activeActivity} />
-          </DisplaySection>
+          </Display>
         </NTColumn>
       </TrainDetailsToggle>
     </ThemeProvider>
