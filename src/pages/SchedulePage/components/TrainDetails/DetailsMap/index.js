@@ -22,10 +22,13 @@ const MapLine = styled.div`
   border: 0.2vh solid ${(p) => p.theme.primarySurface};
 `;
 
-const RotatedButton = styled.button`
-  color: ${(p) => p.theme.onBackground};
-  background: ${(p) => p.theme.background};
+const RotatedText = styled.div`
+  color: ${(p) =>
+    p.$isActive ? p.theme.onPrimarySurface : p.theme.onBackground};
+  background: ${(p) =>
+    p.$isActive ? p.theme.primarySurface : p.theme.background};
   font-family: helvetica;
+  padding: 0.3vh 2vh;
   display: inline-block;
   font-weight: bold;
   border: none;
@@ -37,24 +40,45 @@ const RotatedButton = styled.button`
 function ActivityTick(props) {
   const {
     activity: { id, name },
-    onActivityClick
+    onActivityClick,
+    activeActivityID
   } = props;
   const theme = useTheme();
   if (!name || name.length === 0) {
     return <div />;
   }
+
+  function handleOnClick() {
+    onActivityClick(id);
+  }
+
+  const onKeyPress = (e) => {
+    const enterOrSpace =
+      e.key === 'Enter' ||
+      e.key === ' ' ||
+      e.key === 'Spacebar' ||
+      e.which === 13 ||
+      e.which === 32;
+    if (enterOrSpace) {
+      e.preventDefault();
+      handleOnClick();
+    }
+  };
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', margin: '0 5px' }}>
-      <RotatedButton type="button" onClick={() => onActivityClick(id)}>
-        {name}
-      </RotatedButton>
+    <div
+      onKeyPress={onKeyPress}
+      role="button"
+      tabIndex={0}
+      onClick={handleOnClick}
+      style={{ display: 'flex', flexDirection: 'column', margin: '0 5px' }}
+    >
+      <RotatedText $isActive={activeActivityID === id}>{name}</RotatedText>
       <FontAwesomeIcon
         icon={faCircle}
         style={{
           height: dotSize,
           width: dotSize,
-          // top: dotDrop,
-          // position: 'relative',
           color: theme.onPrimarySurface
         }}
       />
@@ -63,10 +87,7 @@ function ActivityTick(props) {
 }
 
 function DetailsMap(props) {
-  const { activities, onActivityClick } = props;
-  console.log('dm acts');
-  console.table(activities);
-  console.log('...');
+  const { activities, onActivityClick, activeActivityID } = props;
   return (
     <MapWrapper>
       <NTRow style={{ padding: '0 2vw', position: 'relative', top: dotDrop }}>
@@ -74,6 +95,7 @@ function DetailsMap(props) {
           <ActivityTick
             key={a.id}
             activity={a}
+            activeActivityID={activeActivityID}
             onActivityClick={onActivityClick}
           />
         ))}

@@ -13,6 +13,7 @@ import { NTButton } from '../../../../components/styledComponents';
 import { callGetScheduledActivitiesByTrain } from '../../../../redux/thunks/scheduledActivity';
 import { mq5 } from '../../../../styles/breakpoints';
 import DetailsMap from './DetailsMap';
+import DetailsDisplay from './DetailsDisplay';
 
 const TrainDetailsToggle = styled(ToggleMenu)`
   background: ${(p) => p.theme.background};
@@ -39,7 +40,12 @@ const MapSection = styled(NTColumn)`
 
 const DisplaySection = styled(NTRow)`
   flex: ${(p) => p.$flex};
-  border: 1px solid yellow;
+  border: 1px solid ${(p) => p.theme.primarySurface};
+`;
+
+const DateTimeInfo = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 function getTrainDate(train) {
@@ -68,7 +74,9 @@ function TrainDetails(props) {
   }, [trainID]);
 
   function onActivityClick(id) {
-    setActiveActivity(id);
+    if (activities) {
+      setActiveActivity(activities.find((a) => a.id === id));
+    }
   }
 
   return (
@@ -76,17 +84,21 @@ function TrainDetails(props) {
       <TrainDetailsToggle isOpen={!!trainID}>
         <NTColumn style={{ height: '80vh' }}>
           <DetailsHeader $flex={1}>
-            <span>{trainDate}</span>
+            <DateTimeInfo>
+              <span>{trainDate}</span>
+              <span>{train && train.train_time}</span>
+            </DateTimeInfo>
             <NTButton onClick={clearTrainID}>close</NTButton>
           </DetailsHeader>
           <MapSection $flex={3}>
             <DetailsMap
+              activeActivityID={activeActivity ? activeActivity.id : false}
               activities={activities}
               onActivityClick={onActivityClick}
             />
           </MapSection>
-          <DisplaySection activeActivity={activeActivity} $flex={4}>
-            display goes here
+          <DisplaySection $flex={4}>
+            <DetailsDisplay activity={activeActivity} />
           </DisplaySection>
         </NTColumn>
       </TrainDetailsToggle>
