@@ -158,8 +158,6 @@ function ScheduledTrainForm(props) {
     _setIsPanelOpen(false);
   }
 
-  console.log('stations');
-  console.log(stations);
   return (
     <NTBox>
       <NTRow>
@@ -219,13 +217,18 @@ function ScheduledTrainForm(props) {
           </NTRow>
         </NTColumn>
         <NTColumn>
+          <NTButton
+            style={{ alignSelf: 'flex-end' }}
+            onClick={handlePanelToggle}
+          >
+            edit activities
+          </NTButton>
           <AdminList
             title="Activities"
             data={scheduledActivities}
             fields={['name']}
             onDatumClick={() => {}}
           />
-          <NTButton onClick={handlePanelToggle}>edit activities</NTButton>
         </NTColumn>
       </NTRow>
       <ScheduledActivityPanel
