@@ -126,7 +126,7 @@ export const NTLabel = styled.h4`
 export const NTInput = styled.input`
   margin-bottom: 10;
   height: 4vh;
-  background: ${(p) => p.theme.secondarySurface};
+  background: ${(p) => p.theme.primarySurface};
   color: ${(p) => p.theme.onPrimarySurface};
   border: 1px solid ${(p) => p.theme.secondarySurface};
 `;
