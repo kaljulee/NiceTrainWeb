@@ -11,6 +11,8 @@ import { trainPamphletTheme } from '../../../../styles/colors';
 import TrainActivitiesEditor from './TrainActivitiesEditor';
 import { callCreateScheduledActivity } from '../../../../redux/thunks/scheduledActivity';
 
+const panelHeight = '70vh';
+
 const ThemedToggleMenu = styled(ToggleMenu)`
   background: ${(props) => props.theme.background};
 `;
@@ -37,7 +39,7 @@ function ScheduledActivityPanel(props) {
     <NTBox>
       <ThemeProvider theme={trainPamphletTheme}>
         <ThemedToggleMenu isOpen={isOpen}>
-          <NTBox style={{ height: '50vh' }}>
+          <NTBox style={{ height: panelHeight }}>
             <NTRow>
               <ThemedButton type="button" onClick={requestClose}>
                 close
@@ -48,6 +50,7 @@ function ScheduledActivityPanel(props) {
             </NTRow>
             <NTRow>
               <TrainActivitiesEditor
+                panelHeight={panelHeight}
                 scheduledActivities={scheduledActivities}
               />
             </NTRow>

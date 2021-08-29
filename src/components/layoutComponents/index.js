@@ -33,6 +33,7 @@ export const NTColumn = styled(NTBox)`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  flex: ${(p) => p.$flex};
 `;
 
 export const NTPanel = styled(NTBox)`

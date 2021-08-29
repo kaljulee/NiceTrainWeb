@@ -5,9 +5,9 @@ import { NTColumn } from '../../../../components/layoutComponents';
 import { NTLabel } from '../../../../components/styledComponents';
 
 function AdminSelect(props) {
-  const { options, value, label, onChange, shouldWrap } = props;
+  const { options, value, label, onChange, shouldWrap, customStyles } = props;
   const theme = useTheme();
-  const customStyles = {
+  const adminStyles = {
     option: (provided) => ({
       ...provided,
       color: theme.onPrimarySurface,
@@ -64,9 +64,9 @@ function AdminSelect(props) {
   };
   return (
     <NTColumn>
-      <NTLabel>{label}</NTLabel>
+      {label && <NTLabel>{label}</NTLabel>}
       <Select
-        styles={customStyles}
+        styles={customStyles || adminStyles}
         options={options}
         value={value}
         onChange={onChange}

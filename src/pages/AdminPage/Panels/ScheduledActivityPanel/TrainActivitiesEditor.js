@@ -8,7 +8,7 @@ const ActivityFieldTabs = styled(NTBox)`
 `;
 
 function TrainActivitiesEditor(props) {
-  const { scheduledActivities } = props;
+  const { scheduledActivities, panelHeight } = props;
   return (
     <NTRow
       style={{
@@ -17,8 +17,13 @@ function TrainActivitiesEditor(props) {
         width: '100%'
       }}
     >
-      <ScheduledActivityDnD scheduledActivities={scheduledActivities} />
-      <div style={{}}>
+      <div style={{ display: 'flex', flex: 5 }}>
+        <ScheduledActivityDnD
+          panelHeight={panelHeight}
+          scheduledActivities={scheduledActivities}
+        />
+      </div>
+      <div style={{ display: 'flex', flex: 2 }}>
         <ActivityFieldTabs />
       </div>
     </NTRow>
@@ -26,5 +31,7 @@ function TrainActivitiesEditor(props) {
 }
 
 TrainActivitiesEditor.defaultProps = { scheduledActivities: [] };
+
+TrainActivitiesEditor.defaultProps = { panelHeight: '30vh' };
 
 export default TrainActivitiesEditor;
