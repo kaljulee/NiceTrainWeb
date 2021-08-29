@@ -3,6 +3,7 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 import { Toaster, toast } from 'react-hot-toast';
+import { useTheme } from '@emotion/react';
 import {
   NTBox,
   NTColumn,
@@ -16,20 +17,80 @@ import {
   secondsToHMS
 } from '../../../../utils';
 import AdminDurationInput from '../../components/AdminDurationInput';
-import AdminInput from '../../components/AdminInput';
 import {
   callDeleteScheduledActivity,
   callUpdateScheduledActivity
 } from '../../../../redux/thunks/scheduledActivity';
 import { mq5 } from '../../../../styles/breakpoints';
+import {
+  PamphletDurationInput,
+  PamphletInput,
+  PamphletLabel
+} from '../../../../components/styledComponents/trainPamphlet';
+
+function customStyler(theme) {
+  return {
+    option: (provided) => ({
+      ...provided,
+      color: theme.onBackground,
+      backgroundColor: theme.background
+    }),
+    singleValue: (provided) => ({
+      background: theme.background,
+      color: theme.onBackground
+      // whiteSpace: 'nowrap'
+    }),
+    container: (provided) => ({
+      ...provided,
+      color: theme.onBackground,
+      backgroundColor: theme.background,
+      width: 'inherit'
+    }),
+    input: (provided) => ({
+      ...provided,
+      color: theme.onBackground,
+      backgroundColor: theme.background,
+      display: 'none'
+    }),
+    control: (provided, selectState) => ({
+      ...provided,
+      color: theme.onBackground,
+      boxShadow: 0,
+      backgroundColor: theme.background,
+      border: selectState.isFocused ? '' : 'none',
+      borderColor: selectState.isFocused ? theme.accent : 'none', // theme.secondarySurface,
+      '&:hover': {
+        borderColor: theme.accent
+      }
+    }),
+    indicatorSelector: (provided) => ({
+      ...provided,
+      color: theme.onBackground
+    }),
+    valueContainer: (provided) => ({
+      ...provided,
+      color: theme.onBackground,
+      backgroundColor: theme.background
+    }),
+    indicatorContainer: (provided) => ({
+      ...provided,
+      color: theme.onBackground,
+      backgroundColor: theme.background
+    }),
+    menu: (provided) => ({
+      ...provided,
+      color: theme.onBackground,
+      backgroundColor: theme.background
+    })
+  };
+}
 
 const ActivityRow = styled(NTRow)`
   display: flex;
   justify-content: space-between;
-  border: 1px solid ${(p) => p.theme.onBackground};
   max-width: 100%;
-  padding: 2px 0 2px 0;
-  ${mq5({ flexDirection: ['column', 'column', 'column', 'row', 'row'] })};
+  padding: 2px 0 5px 0;
+  ${mq5({ flexDirection: ['column', 'column', 'row', 'row', 'row'] })};
 `;
 
 const SaveButton = styled.button`
@@ -40,7 +101,7 @@ const SaveButton = styled.button`
 
 const DeleteButton = styled(SaveButton)`
   background: ${(props) => props.theme.onPrimarySurface};
-  color: ${(props) => props.theme.pirmarySurface};
+  color: ${(props) => props.theme.primarySurface};
 `;
 
 function DragItem(props) {
@@ -60,6 +121,9 @@ function DragItem(props) {
   );
   const [nameValue, setNameValue] = useState(activity.name);
   const dispatch = useDispatch();
+
+  const theme = useTheme();
+  const customStyles = customStyler(theme);
 
   function onDurationChange(arg) {
     let goodInput = true;
@@ -92,49 +156,58 @@ function DragItem(props) {
   function deleteScheduledActivity() {
     dispatch(callDeleteScheduledActivity({ id: activity.id }));
   }
-
-  const activtyOptions = possibleActivities.map((a) =>
-    createOption(a, 'description')
-  );
+  console.table(possibleActivities);
+  const activtyOptions = possibleActivities.map((a) => createOption(a, 'name'));
+  console.log(activtyOptions);
   const formatOptions = possibleFormats.map((f) => createOption(f, 'name'));
   return (
     <Draggable draggableId={activity.id} index={activity.order}>
       {(provided) => (
         <ActivityRow
-          style={{
-            flexWrap: 'wrap',
-            maxWidth: '100%'
-          }}
+          style={{}}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <AdminInput
-            label="name"
-            value={nameValue}
-            onChange={(event) => setNameValue(event.target.value)}
-          />
-          <NTColumn style={{ justifyContent: 'flex-start' }}>
+          <NTColumn $flex={2}>
+            <PamphletLabel>Name</PamphletLabel>
+            <PamphletInput
+              value={nameValue}
+              onChange={(event) => setNameValue(event.target.value)}
+            />
+          </NTColumn>
+          <NTColumn $flex={3} style={{ justifyContent: 'flex-start' }}>
+            <PamphletLabel>Activity</PamphletLabel>
             <AdminSelect
-              label="Activity"
+              customStyles={customStyles}
               options={activtyOptions}
               value={currentActivityOption}
               onChange={setCurrentActivityOption}
             />
+          </NTColumn>
+          <NTColumn $flex={3}>
+            <PamphletLabel>Format</PamphletLabel>
             <AdminSelect
-              label="Format"
+              customStyles={customStyles}
               options={formatOptions}
               value={currentFormatOption}
               onChange={setCurrentFormatOption}
             />
           </NTColumn>
-          <AdminDurationInput duration={hmsValue} onChange={onDurationChange} />
-          <SaveButton type="submit" onClick={saveChanges}>
-            save
-          </SaveButton>
-          <DeleteButton type="submit" onClick={deleteScheduledActivity}>
-            delete
-          </DeleteButton>
+          <NTColumn $flex={1}>
+            <PamphletDurationInput
+              duration={hmsValue}
+              onChange={onDurationChange}
+            />
+          </NTColumn>
+          <NTColumn $flex={1} style={{ justifyContent: 'space-around' }}>
+            <SaveButton type="submit" onClick={saveChanges}>
+              save
+            </SaveButton>
+            <DeleteButton type="submit" onClick={deleteScheduledActivity}>
+              delete
+            </DeleteButton>
+          </NTColumn>
         </ActivityRow>
       )}
     </Draggable>
@@ -146,7 +219,11 @@ function DragList(props) {
   return (
     <Droppable droppableId="droppable">
       {(provided) => (
-        <div ref={provided.innerRef} {...provided.droppableProps}>
+        <div
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+          style={{ height: '70vh', overflow: 'scroll' }}
+        >
           {scheduledActivities.map((activity) => (
             <DragItem key={activity.id} activity={activity} />
           ))}
