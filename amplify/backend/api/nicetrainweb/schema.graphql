@@ -162,6 +162,12 @@ enum SettingType {
   ACTIVE_LONG_MESSAGE
 }
 
+enum TrainStatus {
+  ON_TIME,
+  DELAYED,
+  COMPLETE,
+  MAYBE
+}
 #type ExtraTable
 #@model
 #@auth(
