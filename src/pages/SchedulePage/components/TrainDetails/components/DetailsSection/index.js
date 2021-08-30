@@ -3,9 +3,7 @@ import styled from '@emotion/styled';
 import { NTBox } from '../../../../../../components/layoutComponents';
 import { PamphletLabel } from '../../../../../../components/styledComponents/trainPamphlet';
 
-const SectionBody = styled(NTBox)`
-  padding: 0 1vw;
-`;
+const SectionBody = styled(NTBox)``;
 
 const SectionHeader = styled.div`
   padding-left: 1vw;

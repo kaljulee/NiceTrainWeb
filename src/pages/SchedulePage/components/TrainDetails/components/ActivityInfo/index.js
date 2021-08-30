@@ -3,21 +3,13 @@ import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import DetailsSection from '../DetailsSection';
 import {
-  PamphletLabel,
+  InfoColumn,
+  InfoRow,
+  NoInfoPlaceholder,
   PamphletSubLabel
 } from '../../../../../../components/styledComponents/trainPamphlet';
 import { secondsToDisplay } from '../../../../../../utils';
 import { NTColumn, NTRow } from '../../../../../../components/layoutComponents';
-
-const NoActivityMessage = styled.div`
-  font-size: 18px;
-  color: ${(p) => p.theme.primarySurface};
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-`;
 
 /// //////////////////////////////////////////
 // todo create Pamphlet category, same level as admin/schedule/patch gallery
@@ -38,27 +30,20 @@ function ActivityInfo(props) {
   return (
     <DetailsSection title="Activity">
       {activity ? (
-        <NTColumn
-          style={{
-            alignItems: 'center',
-            justifyContent: 'space-around'
-          }}
-        >
-          <NTColumn>
-            <PamphletSubLabel>Name</PamphletSubLabel>
-            <span>{name}</span>
-          </NTColumn>
-          <NTColumn>
-            <PamphletSubLabel>Format</PamphletSubLabel>
-            <span>{format}</span>
-          </NTColumn>
-          <NTColumn>
-            <PamphletSubLabel>Duration</PamphletSubLabel>
-            <span>{durationString}</span>
-          </NTColumn>
+        <NTColumn style={{}}>
+          <InfoRow>
+            <InfoColumn>
+              <PamphletSubLabel>Format</PamphletSubLabel>
+              <span>{format}</span>
+            </InfoColumn>
+            <InfoColumn>
+              <PamphletSubLabel>Duration</PamphletSubLabel>
+              <span style={{ textAlign: 'center' }}>{durationString}</span>
+            </InfoColumn>
+          </InfoRow>
         </NTColumn>
       ) : (
-        <NoActivityMessage>Pick an Activity from the map</NoActivityMessage>
+        <NoInfoPlaceholder>Pick an Activity from the map</NoInfoPlaceholder>
       )}
     </DetailsSection>
   );
