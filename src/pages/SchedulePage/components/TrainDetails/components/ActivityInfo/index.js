@@ -13,6 +13,12 @@ const NoActivityMessage = styled.div`
   height: 100%;
 `;
 
+/// //////////////////////////////////////////
+// todo create Pamphlet category, same level as admin/schedule/patch gallery
+// todo also need to fix mobile acitivity editing
+// todo clear train schedule pamphlet data on close
+/// //////////////////////////////////////////
+
 function ActivityInfo(props) {
   const { activity, format, baseActivity, duration, name } = props;
   return (
