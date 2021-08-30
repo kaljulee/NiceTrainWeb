@@ -10,6 +10,21 @@ const lineHeight = '3vh';
 const dotSize = '3vh';
 const dotDrop = '3.1vh';
 
+const TickWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  margin: 0 5px;
+  position: absolute;
+  bottom: 0;
+  border: none;
+  outline: none;
+  & hover: {
+    border: none;
+    outline: none;
+  }
+`;
+
 const MapWrapper = styled.div`
   box-sizing: border-box;
   margin-top: auto;
@@ -69,19 +84,13 @@ function ActivityTick(props) {
   };
 
   return (
-    <div
+    <TickWrapper
       onKeyPress={onKeyPress}
       role="button"
       tabIndex={0}
       onClick={handleOnClick}
       style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        flexDirection: 'column',
-        margin: '0 5px',
-        position: 'absolute',
-        left: `${standOff}%`,
-        bottom: 0
+        left: `${standOff}%`
       }}
     >
       <RotatedText $isActive={activeActivityID === id}>{name}</RotatedText>
@@ -93,7 +102,7 @@ function ActivityTick(props) {
           color: theme.onPrimarySurface
         }}
       />
-    </div>
+    </TickWrapper>
   );
 }
 
