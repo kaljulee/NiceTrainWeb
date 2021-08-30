@@ -33,15 +33,11 @@ export const callUpdateScheduledTrain = createAsyncThunk(
   'scheduledTrains/update',
   async (data) => {
     const updatedScheduledTrainData = {};
-    console.log('data in thunk');
-    console.log(data);
     Object.keys(data).forEach((k) => {
       if (data[k].length > 0) {
         updatedScheduledTrainData[k] = data[k];
       }
     });
-    console.log('data passed as input');
-    console.log(updatedScheduledTrainData);
     const response = await API.graphql(
       graphqlOperation(updateScheduledTrain, {
         input: updatedScheduledTrainData

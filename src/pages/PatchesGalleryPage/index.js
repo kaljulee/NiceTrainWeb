@@ -1,5 +1,6 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
+import { useTheme } from '@emotion/react';
 import nt_120mm_horizontal from '../../assets/raster/nt_120mm_horizontal.jpg';
 import bridge_and_shrimp from '../../assets/raster/bridge_and_shrimp.png';
 import night_train from '../../assets/raster/night_train.jpg';
@@ -9,10 +10,11 @@ import other_train_bridge_and_shrimp from '../../assets/raster/other_train_bridg
 
 function PatchItemRaster(props) {
   const { title, rasterSource } = props;
+  const theme = useTheme();
   return (
     <div
       style={{
-        backgroundColor: 'pink',
+        backgroundColor: theme.primarySurface,
         display: 'flex',
         flexDirection: 'column',
         marginBottom: '2vh',
@@ -28,16 +30,15 @@ function PatchItemRaster(props) {
         style={{
           display: 'inline-block',
           alignSelf: 'start',
-          color: 'blue',
-          backgroundColor: 'black',
+          color: theme.accent,
+          backgroundColor: theme.secondarySurface,
           fontFamily: 'helvetica',
           paddingLeft: '1vw',
           paddingRight: '1vw',
           paddingTop: '0.5vh',
           paddingBottom: '0.5vh',
           marginBottom: '2vh',
-          opacity: 0.6,
-          border: `1px solid ${'green'}`,
+          opacity: 1,
           letterSpacing: 2
         }}
       >
