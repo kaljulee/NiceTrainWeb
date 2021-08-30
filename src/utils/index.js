@@ -63,3 +63,10 @@ export function sortByOrder(array) {
 export function checkZero(num) {
   return `${num.length > 1 ? '' : '0'}${num}`;
 }
+
+export function percentStandOff(count) {
+  if (!count) {
+    return 0;
+  }
+  return Math.floor(100 / count);
+}
