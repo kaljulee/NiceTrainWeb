@@ -156,9 +156,7 @@ function DragItem(props) {
   function deleteScheduledActivity() {
     dispatch(callDeleteScheduledActivity({ id: activity.id }));
   }
-  console.table(possibleActivities);
   const activtyOptions = possibleActivities.map((a) => createOption(a, 'name'));
-  console.log(activtyOptions);
   const formatOptions = possibleFormats.map((f) => createOption(f, 'name'));
   return (
     <Draggable draggableId={activity.id} index={activity.order}>

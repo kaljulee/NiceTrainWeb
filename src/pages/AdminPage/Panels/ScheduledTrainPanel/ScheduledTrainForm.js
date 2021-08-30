@@ -24,6 +24,7 @@ import AdminList from '../../components/AdminList';
 import ScheduledActivityPanel from '../ScheduledActivityPanel';
 import { callGetScheduledActivitiesByTrain } from '../../../../redux/thunks/scheduledActivity';
 import { mq5 } from '../../../../styles/breakpoints';
+import { STATUS_OPTIONS } from '../../../../constants';
 
 const ListColumn = styled(NTColumn)`
   ${mq5({ display: ['none', 'none', 'none', 'flex', 'flex'] })}
@@ -50,7 +51,9 @@ function ScheduledTrainForm(props) {
   const [descriptionValue, setDescriptionValue] = useState(
     currentDatum.description
   );
-  const [statusValue, setStatusValue] = useState(currentDatum.status);
+  const [statusOption, setStatusOption] = useState(
+    STATUS_OPTIONS.find((s) => s.value === currentDatum.status)
+  );
   const [stationOption, setStationOption] = useState(
     createOption(stations[0], 'name')
   );
@@ -64,7 +67,9 @@ function ScheduledTrainForm(props) {
     setTimeValue(currentDatum.train_time);
     setStandingTagValue(currentDatum.standingTag);
     setGroundTagValue(currentDatum.groundTag);
-    setStatusValue(currentDatum.status);
+    setStatusOption(
+      STATUS_OPTIONS.find((o) => o.value === currentDatum.status)
+    );
     setDescriptionValue(currentDatum.description);
   }, [title, currentDatum]);
 
@@ -89,8 +94,8 @@ function ScheduledTrainForm(props) {
     setStandingTagValue(event.target.value);
   }
 
-  function handleStatusChange(event) {
-    setStatusValue(event.target.value);
+  function handleStatusSelect(item) {
+    setStatusOption(item);
   }
 
   function handleStationSelect(item) {
@@ -113,7 +118,7 @@ function ScheduledTrainForm(props) {
       stationID: stationOption.value,
       standingTag: standingTagValue,
       groundTag: groundTagValue,
-      status: statusValue,
+      status: statusOption.value,
       id: currentDatum.id
     };
     const scheduledTrainValidation = scheduledTrainValidator(
@@ -123,7 +128,6 @@ function ScheduledTrainForm(props) {
       toast.error(scheduledTrainValidation.error);
       return;
     }
-    console.log('dispatching st update');
     dispatch(callUpdateScheduledTrain(updatedScheduledTrain));
   }
 
@@ -134,7 +138,7 @@ function ScheduledTrainForm(props) {
       train_time: timeValue,
       standingTag: standingTagValue,
       groundTag: groundTagValue,
-      status: statusValue,
+      status: statusOption.value,
       stationID: stationOption.value
     };
     const scheduledTrainValidation = scheduledTrainValidator(newScheduledTrain);
@@ -194,10 +198,11 @@ function ScheduledTrainForm(props) {
                   />
                 </NTColumn>
               </NTRow>
-              <AdminInput
+              <AdminSelect
                 label="status"
-                value={statusValue}
-                onChange={handleStatusChange}
+                value={statusOption}
+                onChange={handleStatusSelect}
+                options={STATUS_OPTIONS}
               />
               <AdminInput
                 label="description"

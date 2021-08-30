@@ -30,15 +30,15 @@ function PatchItemRaster(props) {
         style={{
           display: 'inline-block',
           alignSelf: 'start',
-          color: theme.secondarySurface,
-          backgroundColor: theme.onSecondarySurface,
+          color: theme.accent,
+          backgroundColor: theme.secondarySurface,
           fontFamily: 'helvetica',
           paddingLeft: '1vw',
           paddingRight: '1vw',
           paddingTop: '0.5vh',
           paddingBottom: '0.5vh',
           marginBottom: '2vh',
-          opacity: 0.9,
+          opacity: 1,
           letterSpacing: 2
         }}
       >

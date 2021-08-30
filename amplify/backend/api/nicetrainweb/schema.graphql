@@ -166,7 +166,8 @@ enum TrainStatus {
   ON_TIME,
   DELAYED,
   COMPLETE,
-  MAYBE
+  MAYBE,
+  CANCELED
 }
 #type ExtraTable
 #@model

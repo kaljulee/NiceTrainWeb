@@ -7,6 +7,7 @@ import { FlipRow } from '../../../../../components/FlipText/FlipRow';
 import LongFlip from '../../../../../components/FlipText/LongFlip';
 import breakpoints, { mq5 } from '../../../../../styles/breakpoints';
 import InfoButton from '../InfoButton';
+import { STATUS_OPTIONS } from '../../../../../constants';
 
 const ScheduleTable = styled.table`
   width: 100%;
@@ -56,6 +57,8 @@ function BoardSchedule(props) {
   }
 
   // todo enum the status options
+  // todo this is super sketch code, these
+  // todo values also exist in constants file
   function getStatusTextColor(status) {
     switch (status) {
       case 'ON TIME':
@@ -64,6 +67,8 @@ function BoardSchedule(props) {
         return theme.warning;
       case 'CANCELED':
         return theme.error;
+      case 'COMPLETE':
+        return theme.background;
       default:
         return undefined;
     }
