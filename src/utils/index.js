@@ -49,6 +49,13 @@ export function secondsToHMS(time) {
   return { h, m, s };
 }
 
+export function secondsToDisplay(seconds) {
+  const hmsObject = secondsToHMS(seconds);
+  return `${hmsObject.h || '00'} : ${hmsObject.m || '00'} : ${
+    hmsObject.s || '00'
+  }`;
+}
+
 export function sortByOrder(array) {
   array.sort((a, b) => (a.order > b.order ? 1 : -1));
 }

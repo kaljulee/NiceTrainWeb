@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { NTBox } from '../../../../../../components/layoutComponents';
+import { PamphletLabel } from '../../../../../../components/styledComponents/trainPamphlet';
 
 const SectionBody = styled(NTBox)`
   padding: 0 1vw;
@@ -20,9 +21,9 @@ function DetailsSection(props) {
   const { title } = props;
   return (
     <SectionWrapper>
-      <SectionHeader>
+      <PamphletLabel>
         <span>{title}</span>
-      </SectionHeader>
+      </PamphletLabel>
       <SectionBody>{props.children}</SectionBody>
     </SectionWrapper>
   );

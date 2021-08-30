@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import DetailsSection from '../DetailsSection';
+import {
+  PamphletLabel,
+  PamphletSubLabel
+} from '../../../../../../components/styledComponents/trainPamphlet';
+import { secondsToDisplay } from '../../../../../../utils';
+import { NTColumn, NTRow } from '../../../../../../components/layoutComponents';
 
 const NoActivityMessage = styled.div`
   font-size: 18px;
@@ -21,14 +27,36 @@ const NoActivityMessage = styled.div`
 
 function ActivityInfo(props) {
   const { activity, format, baseActivity, duration, name } = props;
+  const [durationString, setDurationString] = useState(
+    secondsToDisplay(duration)
+  );
+
+  useEffect(() => {
+    setDurationString(secondsToDisplay(duration));
+  }, [duration]);
+
   return (
     <DetailsSection title="Activity">
       {activity ? (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span>{name}</span>
-          <span>{format}</span>
-          <span>{duration}</span>
-        </div>
+        <NTColumn
+          style={{
+            alignItems: 'center',
+            justifyContent: 'space-around'
+          }}
+        >
+          <NTColumn>
+            <PamphletSubLabel>Name</PamphletSubLabel>
+            <span>{name}</span>
+          </NTColumn>
+          <NTColumn>
+            <PamphletSubLabel>Format</PamphletSubLabel>
+            <span>{format}</span>
+          </NTColumn>
+          <NTColumn>
+            <PamphletSubLabel>Duration</PamphletSubLabel>
+            <span>{durationString}</span>
+          </NTColumn>
+        </NTColumn>
       ) : (
         <NoActivityMessage>Pick an Activity from the map</NoActivityMessage>
       )}

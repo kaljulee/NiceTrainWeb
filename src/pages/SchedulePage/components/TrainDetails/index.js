@@ -74,6 +74,11 @@ function TrainDetails(props) {
     }
   }, [trainID]);
 
+  function handleClose() {
+    setActiveActivity();
+    clearTrainID();
+  }
+
   function onActivityClick(id) {
     if (activities) {
       setActiveActivity(activities.find((a) => a.id === id));
@@ -89,7 +94,7 @@ function TrainDetails(props) {
               <span>{trainDate}</span>
               <span>{train && train.train_time}</span>
             </DateTimeInfo>
-            <NTButton onClick={clearTrainID}>close</NTButton>
+            <NTButton onClick={handleClose}>close</NTButton>
           </DetailsHeader>
           <Map>
             <DetailsMap

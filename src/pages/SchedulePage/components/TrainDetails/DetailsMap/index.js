@@ -34,7 +34,9 @@ const RotatedText = styled.div`
   border: none;
   font-size: 2vh;
   transform-origin: top left;
-  transform: rotate(-45deg);
+  overflow: hidden;
+  transform: rotate(-35deg);
+  width: max-content;
 `;
 
 function ActivityTick(props) {
