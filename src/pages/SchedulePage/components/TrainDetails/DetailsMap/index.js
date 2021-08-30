@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
 import { useTheme } from '@emotion/react';
 import { NTRow } from '../../../../../components/layoutComponents';
+import { percentStandOff } from '../../../../../utils';
 
 const lineHeight = '3vh';
 const dotSize = '3vh';
@@ -28,20 +29,22 @@ const RotatedText = styled.div`
   background: ${(p) =>
     p.$isActive ? p.theme.primarySurface : p.theme.background};
   font-family: helvetica;
-  padding: 0.3vh 2vh;
+  padding: 0.3vh 0vh;
   display: inline-block;
   font-weight: bold;
   border: none;
   font-size: 2vh;
   transform-origin: top left;
-  transform: rotate(-45deg);
+  overflow: hidden;
+  transform: rotate(-35deg);
 `;
 
 function ActivityTick(props) {
   const {
     activity: { id, name },
     onActivityClick,
-    activeActivityID
+    activeActivityID,
+    standOff
   } = props;
   const theme = useTheme();
   if (!name || name.length === 0) {
@@ -71,7 +74,15 @@ function ActivityTick(props) {
       role="button"
       tabIndex={0}
       onClick={handleOnClick}
-      style={{ display: 'flex', flexDirection: 'column', margin: '0 5px' }}
+      style={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        flexDirection: 'column',
+        margin: '0 5px',
+        position: 'absolute',
+        left: `${standOff}%`,
+        bottom: 0
+      }}
     >
       <RotatedText $isActive={activeActivityID === id}>{name}</RotatedText>
       <FontAwesomeIcon
@@ -88,15 +99,20 @@ function ActivityTick(props) {
 
 function DetailsMap(props) {
   const { activities, onActivityClick, activeActivityID } = props;
+  const [standOff, setStandOff] = useState(percentStandOff(activities.length));
+  useEffect(() => {
+    setStandOff(percentStandOff(activities.length));
+  }, [activities]);
   return (
     <MapWrapper>
       <NTRow style={{ padding: '0 2vw', position: 'relative', top: dotDrop }}>
-        {activities.map((a) => (
+        {activities.map((a, i) => (
           <ActivityTick
             key={a.id}
             activity={a}
             activeActivityID={activeActivityID}
             onActivityClick={onActivityClick}
+            standOff={i * standOff}
           />
         ))}
       </NTRow>

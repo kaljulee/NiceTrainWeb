@@ -1,30 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import DetailsSection from '../DetailsSection';
+import {
+  InfoColumn,
+  InfoRow,
+  NoInfoPlaceholder,
+  PamphletSubLabel
+} from '../../../../../../components/styledComponents/trainPamphlet';
+import { secondsToDisplay } from '../../../../../../utils';
+import { NTColumn, NTRow } from '../../../../../../components/layoutComponents';
 
-const NoActivityMessage = styled.div`
-  font-size: 18px;
-  color: ${(p) => p.theme.primarySurface};
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-`;
+/// //////////////////////////////////////////
+// todo create Pamphlet category, same level as admin/schedule/patch gallery
+// todo also need to fix mobile acitivity editing
+// todo clear train schedule pamphlet data on close
+/// //////////////////////////////////////////
 
 function ActivityInfo(props) {
   const { activity, format, baseActivity, duration, name } = props;
+  const [durationString, setDurationString] = useState(
+    secondsToDisplay(duration)
+  );
+
+  useEffect(() => {
+    setDurationString(secondsToDisplay(duration));
+  }, [duration]);
+
   return (
     <DetailsSection title="Activity">
       {activity ? (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span>{name}</span>
-          <span>{format}</span>
-          <span>{duration}</span>
-        </div>
+        <NTColumn style={{}}>
+          <InfoRow>
+            <InfoColumn>
+              <PamphletSubLabel>Format</PamphletSubLabel>
+              <span>{format}</span>
+            </InfoColumn>
+            <InfoColumn>
+              <PamphletSubLabel>Duration</PamphletSubLabel>
+              <span style={{ textAlign: 'center' }}>{durationString}</span>
+            </InfoColumn>
+          </InfoRow>
+        </NTColumn>
       ) : (
-        <NoActivityMessage>Pick an Activity from the map</NoActivityMessage>
+        <NoInfoPlaceholder>Pick an Activity from the map</NoInfoPlaceholder>
       )}
     </DetailsSection>
   );

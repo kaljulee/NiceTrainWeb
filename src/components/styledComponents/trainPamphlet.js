@@ -4,9 +4,38 @@ import styled from '@emotion/styled';
 import { NTBox, NTColumn, NTRow } from '../layoutComponents';
 import { NTLabel, NTInput } from '.';
 
+// todo significant technical debt here,
+//  need to organize train pamphlet components and styles
 const NTInputColumn = styled(NTColumn)`
   justify-content: space-around;
   padding: 5px 0 5px 0;
+`;
+
+export const InfoRow = styled(NTRow)`
+  width: 100%;
+`;
+
+export const InfoColumn = styled(NTColumn)`
+  font-family: helvetica;
+  font-size: 3vw;
+  text-align: center;
+  a {
+    color: ${(p) => p.theme.primarySurface};
+  }
+  span {
+    text-align: center;
+    color: ${(p) => p.theme.primarySurface};
+  }
+`;
+
+export const NoInfoPlaceholder = styled.div`
+  font-size: 18px;
+  color: ${(p) => p.theme.primarySurface};
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 `;
 
 export const PamphletLabel = styled(NTLabel)`

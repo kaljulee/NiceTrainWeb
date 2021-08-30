@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import toast, { Toaster } from 'react-hot-toast';
+import styled from '@emotion/styled';
 import {
   callCreateScheduledTrain,
   callDeleteScheduledTrain,
@@ -22,6 +23,11 @@ import { NTButton, NTLabel } from '../../../../components/styledComponents';
 import AdminList from '../../components/AdminList';
 import ScheduledActivityPanel from '../ScheduledActivityPanel';
 import { callGetScheduledActivitiesByTrain } from '../../../../redux/thunks/scheduledActivity';
+import { mq5 } from '../../../../styles/breakpoints';
+
+const ListColumn = styled(NTColumn)`
+  ${mq5({ display: ['none', 'none', 'none', 'flex', 'flex'] })}
+`;
 
 function ScheduledTrainForm(props) {
   // todo currentDatum and clearCurrentDatum comes from AdminPanel
@@ -163,6 +169,14 @@ function ScheduledTrainForm(props) {
       <NTRow>
         <NTColumn>
           <NTRow>
+            <NTButton
+              style={{ alignSelf: 'flex-end' }}
+              onClick={handlePanelToggle}
+            >
+              edit activities
+            </NTButton>
+          </NTRow>
+          <NTRow>
             <NTColumn>
               <NTRow style={{ justifyContent: 'space-around' }}>
                 <NTColumn>
@@ -216,20 +230,14 @@ function ScheduledTrainForm(props) {
             </NTColumn>
           </NTRow>
         </NTColumn>
-        <NTColumn>
-          <NTButton
-            style={{ alignSelf: 'flex-end' }}
-            onClick={handlePanelToggle}
-          >
-            edit activities
-          </NTButton>
+        <ListColumn>
           <AdminList
             title="Activities"
             data={scheduledActivities}
             fields={['name']}
             onDatumClick={() => {}}
           />
-        </NTColumn>
+        </ListColumn>
       </NTRow>
       <ScheduledActivityPanel
         isOpen={isPanelOpen}

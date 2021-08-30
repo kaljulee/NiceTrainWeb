@@ -19,9 +19,6 @@ function DetailsDisplay(props) {
   const { activity } = props;
   return (
     <DisplayWrapper>
-      <DisplayColumn $flex={1}>
-        <StaticInfo />
-      </DisplayColumn>
       <DisplayColumn $flex={2}>
         <ActivityInfo activity={activity} />
       </DisplayColumn>
