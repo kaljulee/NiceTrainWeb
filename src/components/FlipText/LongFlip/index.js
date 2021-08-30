@@ -11,9 +11,11 @@ const LongFlipWrapper = styled.div`
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding-left: 15px;
-  padding-right: 15px;
-  ${mq5({ fontSize: [12, 12, 12, 16, 16] })}
+  ${mq5({
+    fontSize: [8, 12, 12, 16, 16],
+    paddingLeft: [5, 10, 15, 15, 15],
+    paddingRight: [5, 10, 15, 15, 15]
+  })}
   span {
     letter-spacing: 2px;
     font-family: helvetica;
