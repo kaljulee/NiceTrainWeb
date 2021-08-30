@@ -187,7 +187,7 @@ export const trainSlice = createSlice({
       // scheduled train calls
       .addCase(callListScheduledTrains.fulfilled, (state, action) => {
         state.scheduledTrains = action.payload.listScheduledTrains.items.sort(
-          (a, b) => a.train_date.localeCompare(b.train_date)
+          (a, b) => b.train_date.localeCompare(a.train_date)
         );
       })
       .addCase(callCreateScheduledTrain.fulfilled, (state, action) => {
