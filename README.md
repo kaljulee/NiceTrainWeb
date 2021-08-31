@@ -1,5 +1,7 @@
 ## Nice Train Website
 
+www.nice-train.com
+
 #### A website for our BJJ club, Nice Train.  
 
 I wanted an easy way to plan, communicate, and get feedback about the training schedule at our club.  
