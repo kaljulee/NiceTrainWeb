@@ -7,8 +7,8 @@ import {
   callUpdateLongMessage
 } from '../../../../redux/thunks/longMessage';
 import { longMessageValidator } from '../../../../redux/validators';
-import AdminInput from '../../components/AdminInput';
-import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
+import AdminInput from '../../../../components/Admin/AdminInput';
+import AdminSubmitButtonBar from '../../../../components/Admin/AdminSubmitButtonBar';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
 
 function LongMessageForm(props) {

@@ -8,20 +8,20 @@ import {
   callUpdateScheduledTrain
 } from '../../../../redux/thunks/scheduledTrain';
 import { scheduledTrainValidator } from '../../../../redux/validators';
-import AdminInput from '../../components/AdminInput';
-import AdminSubmitButtonBar from '../../components/AdminSubmitButtonBar';
+import AdminInput from '../../../../components/Admin/AdminInput';
+import AdminSubmitButtonBar from '../../../../components/Admin/AdminSubmitButtonBar';
 import { createOption, getCurrentOption } from '../../../../utils';
-import AdminSelect from '../../components/AdminSelect';
-import AdminDatePicker from '../../components/AdminDatePicker';
-import AdminTimePicker from '../../components/AdminTimePicker';
+import AdminSelect from '../../../../components/Admin/AdminSelect';
+import AdminDatePicker from '../../../../components/Admin/AdminDatePicker';
+import AdminTimePicker from '../../../../components/Admin/AdminTimePicker';
 import {
   NTBox,
   NTColumn,
   NTRow
 } from '../../../../components/layoutComponents';
 import { NTButton, NTLabel } from '../../../../components/styledComponents';
-import AdminList from '../../components/AdminList';
-import ScheduledActivityPanel from '../ScheduledActivityPanel';
+import AdminList from '../../../../components/Admin/AdminList';
+import ScheduledActivityPanel from '../../../../components/TrainPamphlet/ScheduledActivityEditorPamphlet';
 import { callGetScheduledActivitiesByTrain } from '../../../../redux/thunks/scheduledActivity';
 import { mq5 } from '../../../../styles/breakpoints';
 import { STATUS_OPTIONS } from '../../../../constants';
@@ -32,11 +32,11 @@ const ListColumn = styled(NTColumn)`
 
 function ScheduledTrainForm(props) {
   // todo currentDatum and clearCurrentDatum comes from AdminPanel
-  const { title, currentDatum, youTubeResources, clearCurrentDatum } = props;
+  const { title, currentDatum, clearCurrentDatum } = props;
   const dispatch = useDispatch();
   const stations = useSelector((state) => state.train.stations);
-  const activities = useSelector((state) => state.train.activities);
-  const formats = useSelector((state) => state.train.formats);
+  // const activities = useSelector((state) => state.train.activities);
+  // const formats = useSelector((state) => state.train.formats);
   const allSActivities = useSelector(
     (state) => state.train.scheduledActivities
   );

@@ -1,7 +1,7 @@
 import React from 'react';
-import NiceTrainPage from '../NiceTrainPage';
+import NiceTrainPage from '../../components/NiceTrainPage';
 
-function PatchDetailsPage(props) {
+function PatchDetailsPage() {
   return <NiceTrainPage />;
 }
 
