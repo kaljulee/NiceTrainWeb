@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import YouTubeResourceForm from './YouTubeResourceForm';
-import AdminPanel from '../../AdminPanel';
+import AdminPanel from '../../../../components/Admin/AdminPanel';
 
 function YouTubeResourcePanel() {
   const title = 'YouTube Resource';

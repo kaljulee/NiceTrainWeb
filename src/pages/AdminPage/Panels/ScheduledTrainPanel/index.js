@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ScheduledTrainForm from './ScheduledTrainForm';
-import AdminPanel from '../../AdminPanel';
+import AdminPanel from '../../../../components/Admin/AdminPanel';
 
 function ScheduledTrainPanel() {
   const title = 'ScheduledTrain';

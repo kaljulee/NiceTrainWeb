@@ -43,7 +43,6 @@ function NTLink(props) {
 }
 
 function TopNav() {
-  const dispatch = useDispatch();
   const [authState, setAuthState] = useState();
   const [user, setUser] = useState();
   useEffect(

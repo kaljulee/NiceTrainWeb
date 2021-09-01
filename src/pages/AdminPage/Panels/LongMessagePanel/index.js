@@ -13,9 +13,9 @@ import {
   callCreateSetting,
   callSetLongMessage
 } from '../../../../redux/thunks/settings';
-import AdminPanel from '../../AdminPanel';
+import AdminPanel from '../../../../components/Admin/AdminPanel';
 import LongMessageForm from './LongMessageForm';
-import AdminSelect from '../../components/AdminSelect';
+import AdminSelect from '../../../../components/Admin/AdminSelect';
 
 function LongMessagePanel() {
   const title = 'Long Message';

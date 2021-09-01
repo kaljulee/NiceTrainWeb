@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import StationForm from './StationForm';
-import AdminPanel from '../../AdminPanel';
+import AdminPanel from '../../../../components/Admin/AdminPanel';
 
 function StationPanel() {
   const title = 'Station';
