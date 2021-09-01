@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  NTColumn,
-  NTPanel,
-  NTRow,
-  NTSection
-} from '../../../../components/layoutComponents';
 import { callListLongMessages } from '../../../../redux/thunks/longMessage';
 import { createOption, getCurrentOption } from '../../../../utils';
 import { SETTING_TYPE } from '../../../../constants';
@@ -35,10 +29,6 @@ function LongMessagePanel() {
       dispatch(callListLongMessages());
     }
   }, []);
-
-  // useEffect(() => {
-  //   // setActiveMessage(getCurrentOption(listData, currentDatum.id, 'text'));
-  // }, [currentDatum]);
 
   useEffect(() => {
     const currentOption = getCurrentOption(listData, activeMessageID, 'text');

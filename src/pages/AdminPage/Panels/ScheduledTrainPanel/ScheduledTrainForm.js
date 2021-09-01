@@ -32,11 +32,11 @@ const ListColumn = styled(NTColumn)`
 
 function ScheduledTrainForm(props) {
   // todo currentDatum and clearCurrentDatum comes from AdminPanel
-  const { title, currentDatum, youTubeResources, clearCurrentDatum } = props;
+  const { title, currentDatum, clearCurrentDatum } = props;
   const dispatch = useDispatch();
   const stations = useSelector((state) => state.train.stations);
-  const activities = useSelector((state) => state.train.activities);
-  const formats = useSelector((state) => state.train.formats);
+  // const activities = useSelector((state) => state.train.activities);
+  // const formats = useSelector((state) => state.train.formats);
   const allSActivities = useSelector(
     (state) => state.train.scheduledActivities
   );

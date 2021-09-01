@@ -1,6 +1,6 @@
 import React from 'react';
 import TimePicker from 'react-time-picker';
-import { NTTitle, NTTimePicker } from '../../styledComponents';
+import { NTTimePicker } from '../../styledComponents';
 import { NTBox } from '../../layoutComponents';
 
 function AdminTimePicker(props) {

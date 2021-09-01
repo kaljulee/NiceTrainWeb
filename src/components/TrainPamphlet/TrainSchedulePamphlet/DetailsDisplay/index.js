@@ -2,7 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { NTColumn, NTRow } from '../../../layoutComponents';
 import YTRLinks from '../components/YTRLinks';
-import StaticInfo from '../components/StaticInfo';
 import ActivityInfo from '../components/ActivityInfo';
 
 const DisplayWrapper = styled(NTRow)`

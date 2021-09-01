@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-// import '../../styles/css/custom-react-tabs.css';
 import {
   AmplifyAuthenticator,
   AmplifyAuthContainer,
@@ -16,7 +15,7 @@ import { NTPage, NTSection } from '../../components/layoutComponents';
 import { TabContainer } from '../../components/styledComponents';
 import LongMessagePanel from './Panels/LongMessagePanel';
 
-function AdminPage(props) {
+function AdminPage() {
   const [authState, setAuthState] = useState();
   const [user, setUser] = useState();
   useEffect(

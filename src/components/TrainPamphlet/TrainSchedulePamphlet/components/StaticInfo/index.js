@@ -2,7 +2,7 @@ import React from 'react';
 import DetailsSection from '../DetailsSection';
 import { NTColumn } from '../../../../layoutComponents';
 
-function StaticInfo(props) {
+function StaticInfo() {
   return (
     <NTColumn>
       <DetailsSection title="Station">info about the station</DetailsSection>
@@ -12,7 +12,5 @@ function StaticInfo(props) {
     </NTColumn>
   );
 }
-
-// StaticInfo.defaultProps = { activity: {} };
 
 export default StaticInfo;

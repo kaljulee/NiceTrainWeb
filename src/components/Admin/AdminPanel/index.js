@@ -35,20 +35,10 @@ function AdminPanel(props) {
 
   const [childrenWithProps, setChildrenWithProps] = useState(
     updateChildrenWithProps(props.children)
-    // React.cloneElement(props.children, {
-    //   currentDatum,
-    //   clearCurrentDatum: () => setCurrentDatum()
-    // })
   );
 
   useEffect(() => {
-    setChildrenWithProps(
-      updateChildrenWithProps(props.children)
-      // React.cloneElement(props.children, {
-      //   currentDatum,
-      //   clearCurrentDatum: () => setCurrentDatum()
-      // })
-    );
+    setChildrenWithProps(updateChildrenWithProps(props.children));
   }, [currentDatum, setCurrentDatum]);
 
   return (

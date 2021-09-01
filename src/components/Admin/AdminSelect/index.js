@@ -7,6 +7,7 @@ import { NTLabel } from '../../styledComponents';
 function AdminSelect(props) {
   const { options, value, label, onChange, shouldWrap, customStyles } = props;
   const theme = useTheme();
+  // todo these styles should be moved to the styles folder
   const adminStyles = {
     option: (provided) => ({
       ...provided,
@@ -16,7 +17,6 @@ function AdminSelect(props) {
     singleValue: (provided) => ({
       background: theme.primarySurface,
       color: theme.onPrimarySurface
-      // whiteSpace: 'nowrap'
     }),
     container: (provided) => ({
       ...provided,
@@ -48,8 +48,6 @@ function AdminSelect(props) {
       ...provided,
       color: theme.onPrimarySurface,
       backgroundColor: theme.primarySurface
-      // whiteSpace: 'nowrap'
-      // height: '5vh'
     }),
     indicatorContainer: (provided) => ({
       ...provided,

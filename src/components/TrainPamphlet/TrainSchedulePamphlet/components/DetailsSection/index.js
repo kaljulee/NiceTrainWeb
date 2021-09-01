@@ -5,12 +5,6 @@ import { PamphletLabel } from '../../../trainPamphlet';
 
 const SectionBody = styled(NTBox)``;
 
-const SectionHeader = styled.div`
-  padding-left: 1vw;
-  background: ${(p) => p.theme.primarySurface};
-  color: ${(p) => p.theme.onPrimarySurface};
-`;
-
 const SectionWrapper = styled(NTBox)`
   border: 1px solid ${(p) => p.theme.primarySurface};
 `;

@@ -12,7 +12,6 @@ import {
   hmsToSeconds,
   secondsToHMS
 } from '../../../utils';
-import AdminDurationInput from '../../Admin/AdminDurationInput';
 import {
   callDeleteScheduledActivity,
   callUpdateScheduledActivity

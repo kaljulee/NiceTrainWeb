@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import FormatForm from './FormatForm';
 import AdminPanel from '../../../../components/Admin/AdminPanel';
 
-function FormatPanel(props) {
+function FormatPanel() {
   const title = 'Format';
   const listData = useSelector((state) => state.train.formats);
   const listFields = ['name'];

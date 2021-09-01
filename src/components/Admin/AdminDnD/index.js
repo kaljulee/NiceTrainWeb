@@ -2,7 +2,6 @@ import React from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import styled from '@emotion/styled';
 import { NTBox } from '../../layoutComponents';
-import { NTTitle } from '../../styledComponents';
 
 const ListItem = styled.div({
   backgroundColor: 'rgba(0,0,0,0.5)',

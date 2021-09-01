@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import styled from '@emotion/styled';
 import DetailsSection from '../DetailsSection';
 import {
   InfoColumn,
@@ -9,13 +8,7 @@ import {
   PamphletSubLabel
 } from '../../../trainPamphlet';
 import { secondsToDisplay } from '../../../../../utils';
-import { NTColumn, NTRow } from '../../../../layoutComponents';
-
-/// //////////////////////////////////////////
-// todo create Pamphlet category, same level as admin/schedule/patch gallery
-// todo also need to fix mobile acitivity editing
-// todo clear train schedule pamphlet data on close
-/// //////////////////////////////////////////
+import { NTColumn } from '../../../../layoutComponents';
 
 function ActivityInfo(props) {
   const { activity, format, baseActivity, duration, name } = props;

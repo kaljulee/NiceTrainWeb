@@ -4,8 +4,6 @@ import styled from '@emotion/styled';
 import { NTBox, NTColumn, NTRow } from '../layoutComponents';
 import { NTLabel, NTInput } from '../styledComponents';
 
-// todo significant technical debt here,
-//  need to organize train pamphlet components and styles
 const NTInputColumn = styled(NTColumn)`
   justify-content: space-around;
   padding: 5px 0 5px 0;
