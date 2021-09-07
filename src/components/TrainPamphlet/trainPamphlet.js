@@ -50,10 +50,11 @@ export const PamphletSubLabel = styled(PamphletLabel)`
 `;
 
 export function PamphletInput(props) {
-  const { value, onChange, type = 'text', style } = props;
+  const { value, onChange, type = 'text', style, onFocus } = props;
   const theme = useTheme();
   return (
     <NTInput
+      onFocus={onFocus}
       type={type}
       value={value || value === 0 ? value : ''}
       onChange={onChange}
@@ -72,47 +73,34 @@ PamphletInput.defaultProps = {
   value: ''
 };
 
-function DurationInput(props) {
+export function PamphletDurationInput(props) {
   return (
-    <NTBox style={{}}>
-      <PamphletInput {...props} style={{ textAlign: 'center' }} />
+    <NTBox>
+      <PamphletInput
+        {...props}
+        style={{
+          textAlign: 'center',
+          padding: 0,
+          height: '10vh',
+          fontSize: '8vh'
+        }}
+      />
     </NTBox>
   );
 }
 
-export function PamphletDurationInput(props) {
-  const {
-    duration: { h, m, s },
-    onChange
-  } = props;
+export function PamphletDurationButton(props) {
+  const { onClick } = props;
   return (
-    <NTColumn style={{ justifyContent: 'flex-start' }}>
-      <PamphletLabel>Duration</PamphletLabel>
-      <NTRow style={{ justifyContent: 'space-around' }}>
-        <NTColumn>
-          <PamphletSubLabel>h</PamphletSubLabel>
-          <DurationInput
-            value={h}
-            onChange={(event) => onChange({ h: event.target.value })}
-          />
-        </NTColumn>
-        <NTColumn>
-          <PamphletSubLabel>m</PamphletSubLabel>
-          <DurationInput
-            value={m}
-            onChange={(event) => onChange({ m: event.target.value })}
-          />
-        </NTColumn>
-        <NTColumn>
-          <PamphletSubLabel>s</PamphletSubLabel>
-          <DurationInput
-            value={s}
-            onChange={(event) => onChange({ s: event.target.value })}
-          />
-        </NTColumn>
-      </NTRow>
-    </NTColumn>
+    <button onClick={onClick} type="button">
+      {props.children}
+    </button>
   );
 }
 
-PamphletDurationInput.defaultProps = { duration: { h: 0, m: 0, s: 0 } };
+export const PamphletButton = styled.button`
+  color: ${(p) => p.theme.onPrimarySurface};
+  background: ${(p) => p.theme.primarySurface};
+  height: 5vh;
+  border: 1px solid ${(p) => p.theme.background};
+`;

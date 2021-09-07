@@ -49,11 +49,23 @@ export function secondsToHMS(time) {
   return { h, m, s };
 }
 
+export function hmsFieldToDisplay(field) {
+  if (!field) {
+    return '00';
+  }
+  const stringField = field.toString();
+  return `${stringField.length < 2 ? '0' : ''}${field}`;
+}
+
+export function hmsToDisplay(hmsObject) {
+  return `${hmsFieldToDisplay(hmsObject.h)} : ${hmsFieldToDisplay(
+    hmsObject.m
+  )} : ${hmsFieldToDisplay(hmsObject.s)}`;
+}
+
 export function secondsToDisplay(seconds) {
   const hmsObject = secondsToHMS(seconds);
-  return `${hmsObject.h || '00'} : ${hmsObject.m || '00'} : ${
-    hmsObject.s || '00'
-  }`;
+  return hmsToDisplay(hmsObject);
 }
 
 export function sortByOrder(array) {
@@ -70,3 +82,9 @@ export function percentStandOff(count) {
   }
   return Math.floor(100 / count);
 }
+
+export const HMS_ZERO = {
+  h: 0,
+  m: 0,
+  s: 0
+};

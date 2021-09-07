@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
@@ -9,6 +9,7 @@ import AdminSelect from '../../Admin/AdminSelect';
 import {
   createOption,
   getCurrentOption,
+  hmsToDisplay,
   hmsToSeconds,
   secondsToHMS
 } from '../../../utils';
@@ -18,10 +19,11 @@ import {
 } from '../../../redux/thunks/scheduledActivity';
 import { mq5 } from '../../../styles/breakpoints';
 import {
-  PamphletDurationInput,
+  PamphletDurationButton,
   PamphletInput,
   PamphletLabel
 } from '../trainPamphlet';
+import DurationModal from '../DurationModal';
 
 function customStyler(theme) {
   return {
@@ -100,7 +102,7 @@ const DeleteButton = styled(SaveButton)`
 `;
 
 function DragItem(props) {
-  const { activity } = props;
+  const { activity, openDurationModal, closeDurationModal } = props;
   const possibleActivities = useSelector((state) => state.train.activities);
   const possibleFormats = useSelector((state) => state.train.formats);
   const [currentActivityOption, setCurrentActivityOption] = useState(
@@ -115,6 +117,16 @@ function DragItem(props) {
       : secondsToHMS(activity.duration)
   );
   const [nameValue, setNameValue] = useState(activity.name);
+
+  useEffect(() => {
+    setHMSValue(
+      Number.isNaN(activity.duration)
+        ? { h: 0, m: 0, s: 0 }
+        : secondsToHMS(activity.duration)
+    );
+    setNameValue(activity.name);
+  }, [activity]);
+
   const dispatch = useDispatch();
 
   const theme = useTheme();
@@ -157,7 +169,6 @@ function DragItem(props) {
     <Draggable draggableId={activity.id} index={activity.order}>
       {(provided) => (
         <ActivityRow
-          style={{}}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
@@ -187,11 +198,13 @@ function DragItem(props) {
               onChange={setCurrentFormatOption}
             />
           </NTColumn>
-          <NTColumn $flex={1}>
-            <PamphletDurationInput
-              duration={hmsValue}
-              onChange={onDurationChange}
-            />
+          <NTColumn $flex={2}>
+            <PamphletLabel>Duration</PamphletLabel>
+            <PamphletDurationButton
+              onClick={() => openDurationModal(activity.id)}
+            >
+              {hmsToDisplay(hmsValue)}
+            </PamphletDurationButton>
           </NTColumn>
           <NTColumn $flex={1} style={{ justifyContent: 'space-around' }}>
             <SaveButton type="submit" onClick={saveChanges}>
@@ -208,7 +221,7 @@ function DragItem(props) {
 }
 
 function DragList(props) {
-  const { scheduledActivities } = props;
+  const { scheduledActivities, openDurationModal, closeDurationModal } = props;
   return (
     <Droppable droppableId="droppable">
       {(provided) => (
@@ -218,7 +231,12 @@ function DragList(props) {
           style={{ height: '70vh', overflow: 'scroll' }}
         >
           {scheduledActivities.map((activity) => (
-            <DragItem key={activity.id} activity={activity} />
+            <DragItem
+              key={activity.id}
+              activity={activity}
+              closeDurationModal={closeDurationModal}
+              openDurationModal={openDurationModal}
+            />
           ))}
           {provided.placeholder}
         </div>
@@ -230,6 +248,24 @@ function DragList(props) {
 function ScheduledActivityDnD(props) {
   const { scheduledActivities } = props;
   const dispatch = useDispatch();
+
+  const [activeActivity, setActiveActivity] = useState(undefined);
+
+  function openDurationModal(id) {
+    setActiveActivity(scheduledActivities.find((s) => s.id === id));
+  }
+
+  function closeDurationModal(id, newHMS) {
+    const newDuration = hmsToSeconds(newHMS);
+    if (!newDuration) {
+      toast.error('activity must have a duration');
+    } else {
+      const activityUpdate = { id, duration: hmsToSeconds(newHMS) };
+      dispatch(callUpdateScheduledActivity(activityUpdate));
+    }
+    setActiveActivity(undefined);
+  }
+
   function onDragEnd(result) {
     const { destination, source } = result;
     if (!destination || destination.index === source.index) {
@@ -244,12 +280,18 @@ function ScheduledActivityDnD(props) {
       dispatch(callUpdateScheduledActivity(callData));
     });
   }
+
   return (
     <NTBox>
       <DragDropContext onDragEnd={onDragEnd}>
-        <DragList scheduledActivities={scheduledActivities} />
+        <DragList
+          scheduledActivities={scheduledActivities}
+          openDurationModal={openDurationModal}
+          closeDurationModal={closeDurationModal}
+        />
       </DragDropContext>
       <Toaster />
+      <DurationModal activity={activeActivity} onClose={closeDurationModal} />
     </NTBox>
   );
 }
