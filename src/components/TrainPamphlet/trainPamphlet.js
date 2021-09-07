@@ -4,6 +4,17 @@ import styled from '@emotion/styled';
 import { NTBox, NTColumn, NTRow } from '../layoutComponents';
 import { NTLabel, NTInput } from '../styledComponents';
 
+export const SaveButton = styled.button`
+  background: ${(props) => props.theme.primarySurface};
+  color: ${(props) => props.theme.onPrimarySurface};
+  height: 100%;
+`;
+
+export const DeleteButton = styled(SaveButton)`
+  background: ${(props) => props.theme.onPrimarySurface};
+  color: ${(props) => props.theme.primarySurface};
+`;
+
 const NTInputColumn = styled(NTColumn)`
   justify-content: space-around;
   padding: 5px 0 5px 0;

@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from '@emotion/styled';
-import { Toaster, toast } from 'react-hot-toast';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '@emotion/react';
-import { NTBox, NTColumn, NTRow } from '../../layoutComponents';
-import AdminSelect from '../../Admin/AdminSelect';
+import { Draggable } from 'react-beautiful-dnd';
+import styled from '@emotion/styled';
 import {
   createOption,
   getCurrentOption,
@@ -17,13 +14,16 @@ import {
   callDeleteScheduledActivity,
   callUpdateScheduledActivity
 } from '../../../redux/thunks/scheduledActivity';
-import { mq5 } from '../../../styles/breakpoints';
+import { NTColumn, NTRow } from '../../layoutComponents';
 import {
   PamphletDurationButton,
   PamphletInput,
-  PamphletLabel
+  PamphletLabel,
+  SaveButton,
+  DeleteButton
 } from '../trainPamphlet';
-import DurationModal from '../DurationModal';
+import AdminSelect from '../../Admin/AdminSelect';
+import { mq5 } from '../../../styles/breakpoints';
 
 function customStyler(theme) {
   return {
@@ -90,17 +90,6 @@ const ActivityRow = styled(NTRow)`
   ${mq5({ flexDirection: ['column', 'column', 'row', 'row', 'row'] })};
 `;
 
-const SaveButton = styled.button`
-  background: ${(props) => props.theme.primarySurface};
-  color: ${(props) => props.theme.onPrimarySurface};
-  height: 100%;
-`;
-
-const DeleteButton = styled(SaveButton)`
-  background: ${(props) => props.theme.onPrimarySurface};
-  color: ${(props) => props.theme.primarySurface};
-`;
-
 function DragItem(props) {
   const { activity, openDurationModal, closeDurationModal } = props;
   const possibleActivities = useSelector((state) => state.train.activities);
@@ -131,19 +120,6 @@ function DragItem(props) {
 
   const theme = useTheme();
   const customStyles = customStyler(theme);
-
-  function onDurationChange(arg) {
-    let goodInput = true;
-    Object.keys(arg).forEach((k) => {
-      if (isNaN(arg[k])) {
-        goodInput = false;
-        toast.error('must be a number');
-      }
-    });
-    if (goodInput) {
-      setHMSValue({ ...hmsValue, ...arg });
-    }
-  }
 
   function saveChanges() {
     const sActivityUpdate = {
@@ -220,80 +196,4 @@ function DragItem(props) {
   );
 }
 
-function DragList(props) {
-  const { scheduledActivities, openDurationModal, closeDurationModal } = props;
-  return (
-    <Droppable droppableId="droppable">
-      {(provided) => (
-        <div
-          ref={provided.innerRef}
-          {...provided.droppableProps}
-          style={{ height: '70vh', overflow: 'scroll' }}
-        >
-          {scheduledActivities.map((activity) => (
-            <DragItem
-              key={activity.id}
-              activity={activity}
-              closeDurationModal={closeDurationModal}
-              openDurationModal={openDurationModal}
-            />
-          ))}
-          {provided.placeholder}
-        </div>
-      )}
-    </Droppable>
-  );
-}
-
-function ScheduledActivityDnD(props) {
-  const { scheduledActivities } = props;
-  const dispatch = useDispatch();
-
-  const [activeActivity, setActiveActivity] = useState(undefined);
-
-  function openDurationModal(id) {
-    setActiveActivity(scheduledActivities.find((s) => s.id === id));
-  }
-
-  function closeDurationModal(id, newHMS) {
-    const newDuration = hmsToSeconds(newHMS);
-    if (!newDuration) {
-      toast.error('activity must have a duration');
-    } else {
-      const activityUpdate = { id, duration: hmsToSeconds(newHMS) };
-      dispatch(callUpdateScheduledActivity(activityUpdate));
-    }
-    setActiveActivity(undefined);
-  }
-
-  function onDragEnd(result) {
-    const { destination, source } = result;
-    if (!destination || destination.index === source.index) {
-      return;
-    }
-    // todo find a less hackish way to push order changes
-    const spliced = Array.from(scheduledActivities);
-    const [removed] = spliced.splice(source.index, 1);
-    spliced.splice(destination.index, 0, removed);
-    spliced.forEach((sa, index) => {
-      const callData = { id: sa.id, order: index };
-      dispatch(callUpdateScheduledActivity(callData));
-    });
-  }
-
-  return (
-    <NTBox>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <DragList
-          scheduledActivities={scheduledActivities}
-          openDurationModal={openDurationModal}
-          closeDurationModal={closeDurationModal}
-        />
-      </DragDropContext>
-      <Toaster />
-      <DurationModal activity={activeActivity} onClose={closeDurationModal} />
-    </NTBox>
-  );
-}
-
-export default ScheduledActivityDnD;
+export default DragItem;
