@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { NTBox, NTRow } from '../../layoutComponents';
-import Index from '../ScheduledActivityDnD';
+import ScheduledActivityDnD from '../ScheduledActivityDnD';
 
 const ActivityFieldTabs = styled(NTBox)`
   background: green;
@@ -18,14 +18,16 @@ function TrainActivitiesEditor(props) {
       }}
     >
       <div style={{ display: 'flex', flex: 5 }}>
-        <Index
+        <ScheduledActivityDnD
           panelHeight={panelHeight}
           scheduledActivities={scheduledActivities}
         />
       </div>
-      <div style={{ display: 'flex', flex: 2 }}>
-        <ActivityFieldTabs />
-      </div>
+      {false && (
+        <div style={{ display: 'flex', flex: 2 }}>
+          <ActivityFieldTabs />
+        </div>
+      )}
     </NTRow>
   );
 }
