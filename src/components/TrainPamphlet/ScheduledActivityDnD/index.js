@@ -44,10 +44,15 @@ function ScheduledActivityDnD(props) {
     });
   }
 
+  function errorToast(message) {
+    toast.error(message);
+  }
+
   return (
     <NTBox>
       <DragDropContext onDragEnd={onDragEnd}>
         <DragList
+          errorToast={errorToast}
           scheduledActivities={scheduledActivities}
           openDurationModal={openDurationModal}
           closeDurationModal={closeDurationModal}

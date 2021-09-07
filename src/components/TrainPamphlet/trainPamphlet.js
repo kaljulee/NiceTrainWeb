@@ -61,10 +61,11 @@ export const PamphletSubLabel = styled(PamphletLabel)`
 `;
 
 export function PamphletInput(props) {
-  const { value, onChange, type = 'text', style, onFocus } = props;
+  const { onBlur, value, onChange, type = 'text', style, onFocus } = props;
   const theme = useTheme();
   return (
     <NTInput
+      onBlur={onBlur}
       onFocus={onFocus}
       type={type}
       value={value || value === 0 ? value : ''}

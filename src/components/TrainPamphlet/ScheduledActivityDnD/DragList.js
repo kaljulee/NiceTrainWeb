@@ -3,7 +3,12 @@ import React from 'react';
 import DragItem from './DragItem';
 
 function DragList(props) {
-  const { scheduledActivities, openDurationModal, closeDurationModal } = props;
+  const {
+    scheduledActivities,
+    openDurationModal,
+    closeDurationModal,
+    errorToast
+  } = props;
   return (
     <Droppable droppableId="droppable">
       {(provided) => (
@@ -14,6 +19,7 @@ function DragList(props) {
         >
           {scheduledActivities.map((activity) => (
             <DragItem
+              errorToast={errorToast}
               key={activity.id}
               activity={activity}
               closeDurationModal={closeDurationModal}

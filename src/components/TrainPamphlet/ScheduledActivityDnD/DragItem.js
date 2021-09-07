@@ -19,11 +19,11 @@ import {
   PamphletDurationButton,
   PamphletInput,
   PamphletLabel,
-  SaveButton,
   DeleteButton
 } from '../trainPamphlet';
 import AdminSelect from '../../Admin/AdminSelect';
 import { mq5 } from '../../../styles/breakpoints';
+import { stringIsOk } from '../../../redux/validators';
 
 function customStyler(theme) {
   return {
@@ -91,9 +91,14 @@ const ActivityRow = styled(NTRow)`
 `;
 
 function DragItem(props) {
-  const { activity, openDurationModal, closeDurationModal } = props;
+  const { errorToast, activity, openDurationModal } = props;
   const possibleActivities = useSelector((state) => state.train.activities);
   const possibleFormats = useSelector((state) => state.train.formats);
+
+  const dispatch = useDispatch();
+  const theme = useTheme();
+  const customStyles = customStyler(theme);
+
   const [currentActivityOption, setCurrentActivityOption] = useState(
     getCurrentOption(possibleActivities, activity.activityID, 'description')
   );
@@ -116,10 +121,21 @@ function DragItem(props) {
     setNameValue(activity.name);
   }, [activity]);
 
-  const dispatch = useDispatch();
+  function saveName() {
+    if (!stringIsOk(nameValue)) {
+      errorToast('bad name');
+      return;
+    }
+    dispatch(callUpdateScheduledActivity({ id: activity.id, name: nameValue }));
+  }
 
-  const theme = useTheme();
-  const customStyles = customStyler(theme);
+  function saveActivity(newActivity) {
+    errorToast(newActivity);
+  }
+
+  function saveFormat(newFormat) {
+    errorToast(newFormat);
+  }
 
   function saveChanges() {
     const sActivityUpdate = {
@@ -152,6 +168,7 @@ function DragItem(props) {
           <NTColumn $flex={2}>
             <PamphletLabel>Name</PamphletLabel>
             <PamphletInput
+              onBlur={saveName}
               value={nameValue}
               onChange={(event) => setNameValue(event.target.value)}
             />
@@ -162,7 +179,7 @@ function DragItem(props) {
               customStyles={customStyles}
               options={activtyOptions}
               value={currentActivityOption}
-              onChange={setCurrentActivityOption}
+              onChange={saveActivity}
             />
           </NTColumn>
           <NTColumn $flex={3}>
@@ -171,7 +188,7 @@ function DragItem(props) {
               customStyles={customStyles}
               options={formatOptions}
               value={currentFormatOption}
-              onChange={setCurrentFormatOption}
+              onChange={saveFormat}
             />
           </NTColumn>
           <NTColumn $flex={2}>
@@ -183,9 +200,6 @@ function DragItem(props) {
             </PamphletDurationButton>
           </NTColumn>
           <NTColumn $flex={1} style={{ justifyContent: 'space-around' }}>
-            <SaveButton type="submit" onClick={saveChanges}>
-              save
-            </SaveButton>
             <DeleteButton type="submit" onClick={deleteScheduledActivity}>
               delete
             </DeleteButton>
