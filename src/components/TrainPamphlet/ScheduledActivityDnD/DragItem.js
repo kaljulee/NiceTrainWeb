@@ -137,12 +137,17 @@ function DragItem(props) {
       return;
     }
     setCurrentActivityOption(newActivity);
-    dispatch(
-      callUpdateScheduledActivity({
-        id: activity.id,
-        activityID: newActivity.value
-      })
-    );
+    const updateObject = {
+      id: activity.id,
+      activityID: newActivity.value
+    };
+    if (!nameValue) {
+      const selectedActivity = possibleActivities.find(
+        (a) => a.id === newActivity.value
+      );
+      updateObject.name = selectedActivity.name;
+    }
+    dispatch(callUpdateScheduledActivity(updateObject));
   }
 
   function saveFormat(newFormat) {
