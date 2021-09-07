@@ -157,21 +157,6 @@ function DragItem(props) {
     );
   }
 
-  function saveChanges() {
-    const sActivityUpdate = {
-      id: activity.id,
-      name: nameValue,
-      duration: hmsToSeconds(hmsValue)
-    };
-    if (currentActivityOption && currentActivityOption.value) {
-      sActivityUpdate.activityID = currentActivityOption.value;
-    }
-    if (currentFormatOption && currentFormatOption.value) {
-      sActivityUpdate.formatID = currentFormatOption.value;
-    }
-    dispatch(callUpdateScheduledActivity(sActivityUpdate));
-  }
-
   function deleteScheduledActivity() {
     dispatch(callDeleteScheduledActivity({ id: activity.id }));
   }
