@@ -1,4 +1,4 @@
-function stringIsOk(value) {
+export function stringIsOk(value) {
   return !!value && value.length > 0;
 }
 

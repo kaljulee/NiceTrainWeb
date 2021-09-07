@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from '@emotion/styled';
-import { Toaster, toast } from 'react-hot-toast';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '@emotion/react';
-import { NTBox, NTColumn, NTRow } from '../../layoutComponents';
-import AdminSelect from '../../Admin/AdminSelect';
+import { Draggable } from 'react-beautiful-dnd';
+import styled from '@emotion/styled';
 import {
   createOption,
   getCurrentOption,
@@ -17,13 +14,16 @@ import {
   callDeleteScheduledActivity,
   callUpdateScheduledActivity
 } from '../../../redux/thunks/scheduledActivity';
-import { mq5 } from '../../../styles/breakpoints';
+import { NTColumn, NTRow } from '../../layoutComponents';
 import {
   PamphletDurationButton,
   PamphletInput,
-  PamphletLabel
+  PamphletLabel,
+  DeleteButton
 } from '../trainPamphlet';
-import DurationModal from '../DurationModal';
+import AdminSelect from '../../Admin/AdminSelect';
+import { mq5 } from '../../../styles/breakpoints';
+import { stringIsOk } from '../../../redux/validators';
 
 function customStyler(theme) {
   return {
@@ -90,23 +90,17 @@ const ActivityRow = styled(NTRow)`
   ${mq5({ flexDirection: ['column', 'column', 'row', 'row', 'row'] })};
 `;
 
-const SaveButton = styled.button`
-  background: ${(props) => props.theme.primarySurface};
-  color: ${(props) => props.theme.onPrimarySurface};
-  height: 100%;
-`;
-
-const DeleteButton = styled(SaveButton)`
-  background: ${(props) => props.theme.onPrimarySurface};
-  color: ${(props) => props.theme.primarySurface};
-`;
-
 function DragItem(props) {
-  const { activity, openDurationModal, closeDurationModal } = props;
+  const { errorToast, activity, openDurationModal } = props;
   const possibleActivities = useSelector((state) => state.train.activities);
   const possibleFormats = useSelector((state) => state.train.formats);
+
+  const dispatch = useDispatch();
+  const theme = useTheme();
+  const customStyles = customStyler(theme);
+
   const [currentActivityOption, setCurrentActivityOption] = useState(
-    getCurrentOption(possibleActivities, activity.activityID, 'description')
+    getCurrentOption(possibleActivities, activity.activityID, 'name')
   );
   const [currentFormatOption, setCurrentFormatOption] = useState(
     getCurrentOption(possibleFormats, activity.formatID, 'name')
@@ -127,37 +121,40 @@ function DragItem(props) {
     setNameValue(activity.name);
   }, [activity]);
 
-  const dispatch = useDispatch();
-
-  const theme = useTheme();
-  const customStyles = customStyler(theme);
-
-  function onDurationChange(arg) {
-    let goodInput = true;
-    Object.keys(arg).forEach((k) => {
-      if (isNaN(arg[k])) {
-        goodInput = false;
-        toast.error('must be a number');
-      }
-    });
-    if (goodInput) {
-      setHMSValue({ ...hmsValue, ...arg });
+  function saveName() {
+    if (!stringIsOk(nameValue)) {
+      errorToast('bad name');
+      return;
     }
+    dispatch(callUpdateScheduledActivity({ id: activity.id, name: nameValue }));
   }
 
-  function saveChanges() {
-    const sActivityUpdate = {
-      id: activity.id,
-      name: nameValue,
-      duration: hmsToSeconds(hmsValue)
-    };
-    if (currentActivityOption && currentActivityOption.value) {
-      sActivityUpdate.activityID = currentActivityOption.value;
+  function saveActivity(newActivity) {
+    if (!newActivity.value) {
+      errorToast('bad activity- no value');
+      return;
     }
-    if (currentFormatOption && currentFormatOption.value) {
-      sActivityUpdate.formatID = currentFormatOption.value;
+    setCurrentActivityOption(newActivity);
+    dispatch(
+      callUpdateScheduledActivity({
+        id: activity.id,
+        activityID: newActivity.value
+      })
+    );
+  }
+
+  function saveFormat(newFormat) {
+    if (!newFormat.value) {
+      errorToast('bad format- no value');
+      return;
     }
-    dispatch(callUpdateScheduledActivity(sActivityUpdate));
+    setCurrentFormatOption(newFormat);
+    dispatch(
+      callUpdateScheduledActivity({
+        id: activity.id,
+        formatID: newFormat.value
+      })
+    );
   }
 
   function deleteScheduledActivity() {
@@ -176,6 +173,7 @@ function DragItem(props) {
           <NTColumn $flex={2}>
             <PamphletLabel>Name</PamphletLabel>
             <PamphletInput
+              onBlur={saveName}
               value={nameValue}
               onChange={(event) => setNameValue(event.target.value)}
             />
@@ -186,7 +184,7 @@ function DragItem(props) {
               customStyles={customStyles}
               options={activtyOptions}
               value={currentActivityOption}
-              onChange={setCurrentActivityOption}
+              onChange={saveActivity}
             />
           </NTColumn>
           <NTColumn $flex={3}>
@@ -195,7 +193,7 @@ function DragItem(props) {
               customStyles={customStyles}
               options={formatOptions}
               value={currentFormatOption}
-              onChange={setCurrentFormatOption}
+              onChange={saveFormat}
             />
           </NTColumn>
           <NTColumn $flex={2}>
@@ -207,9 +205,6 @@ function DragItem(props) {
             </PamphletDurationButton>
           </NTColumn>
           <NTColumn $flex={1} style={{ justifyContent: 'space-around' }}>
-            <SaveButton type="submit" onClick={saveChanges}>
-              save
-            </SaveButton>
             <DeleteButton type="submit" onClick={deleteScheduledActivity}>
               delete
             </DeleteButton>
@@ -220,80 +215,4 @@ function DragItem(props) {
   );
 }
 
-function DragList(props) {
-  const { scheduledActivities, openDurationModal, closeDurationModal } = props;
-  return (
-    <Droppable droppableId="droppable">
-      {(provided) => (
-        <div
-          ref={provided.innerRef}
-          {...provided.droppableProps}
-          style={{ height: '70vh', overflow: 'scroll' }}
-        >
-          {scheduledActivities.map((activity) => (
-            <DragItem
-              key={activity.id}
-              activity={activity}
-              closeDurationModal={closeDurationModal}
-              openDurationModal={openDurationModal}
-            />
-          ))}
-          {provided.placeholder}
-        </div>
-      )}
-    </Droppable>
-  );
-}
-
-function ScheduledActivityDnD(props) {
-  const { scheduledActivities } = props;
-  const dispatch = useDispatch();
-
-  const [activeActivity, setActiveActivity] = useState(undefined);
-
-  function openDurationModal(id) {
-    setActiveActivity(scheduledActivities.find((s) => s.id === id));
-  }
-
-  function closeDurationModal(id, newHMS) {
-    const newDuration = hmsToSeconds(newHMS);
-    if (!newDuration) {
-      toast.error('activity must have a duration');
-    } else {
-      const activityUpdate = { id, duration: hmsToSeconds(newHMS) };
-      dispatch(callUpdateScheduledActivity(activityUpdate));
-    }
-    setActiveActivity(undefined);
-  }
-
-  function onDragEnd(result) {
-    const { destination, source } = result;
-    if (!destination || destination.index === source.index) {
-      return;
-    }
-    // todo find a less hackish way to push order changes
-    const spliced = Array.from(scheduledActivities);
-    const [removed] = spliced.splice(source.index, 1);
-    spliced.splice(destination.index, 0, removed);
-    spliced.forEach((sa, index) => {
-      const callData = { id: sa.id, order: index };
-      dispatch(callUpdateScheduledActivity(callData));
-    });
-  }
-
-  return (
-    <NTBox>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <DragList
-          scheduledActivities={scheduledActivities}
-          openDurationModal={openDurationModal}
-          closeDurationModal={closeDurationModal}
-        />
-      </DragDropContext>
-      <Toaster />
-      <DurationModal activity={activeActivity} onClose={closeDurationModal} />
-    </NTBox>
-  );
-}
-
-export default ScheduledActivityDnD;
+export default DragItem;
