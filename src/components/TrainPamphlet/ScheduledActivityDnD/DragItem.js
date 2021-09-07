@@ -177,9 +177,10 @@ function DragItem(props) {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <NTColumn $flex={2}>
+          <NTColumn style={{ height: 'auto' }} $flex={2}>
             <PamphletLabel>Name</PamphletLabel>
             <PamphletInput
+              style={{ height: '100%' }}
               onBlur={saveName}
               value={nameValue}
               onChange={(event) => setNameValue(event.target.value)}
@@ -203,7 +204,7 @@ function DragItem(props) {
               onChange={saveFormat}
             />
           </NTColumn>
-          <NTColumn $flex={2}>
+          <NTColumn style={{ height: 'auto' }} $flex={2}>
             <PamphletLabel>Duration</PamphletLabel>
             <PamphletDurationButton
               onClick={() => openDurationModal(activity.id)}
@@ -211,8 +212,15 @@ function DragItem(props) {
               {hmsToDisplay(hmsValue)}
             </PamphletDurationButton>
           </NTColumn>
-          <NTColumn $flex={1} style={{ justifyContent: 'space-around' }}>
-            <DeleteButton type="submit" onClick={deleteScheduledActivity}>
+          <NTColumn
+            $flex={1}
+            style={{ height: 'auto', justifyContent: 'space-around' }}
+          >
+            <DeleteButton
+              style={{ height: '100%' }}
+              type="submit"
+              onClick={deleteScheduledActivity}
+            >
               delete
             </DeleteButton>
           </NTColumn>
