@@ -86,7 +86,9 @@ const ActivityRow = styled(NTRow)`
   display: flex;
   justify-content: space-between;
   max-width: 100%;
-  padding: 2px 0 5px 0;
+  padding: 0px 0 5px 0;
+  margin: 10px 0;
+  border: 5px single ${(p) => p.theme.primarySurface};
   ${mq5({ flexDirection: ['column', 'column', 'row', 'row', 'row'] })};
 `;
 

@@ -13,6 +13,7 @@ export const SaveButton = styled.button`
 export const DeleteButton = styled(SaveButton)`
   background: ${(props) => props.theme.onPrimarySurface};
   color: ${(props) => props.theme.primarySurface};
+  height: 5vh;
 `;
 
 const NTInputColumn = styled(NTColumn)`
