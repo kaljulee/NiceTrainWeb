@@ -100,7 +100,7 @@ function DragItem(props) {
   const customStyles = customStyler(theme);
 
   const [currentActivityOption, setCurrentActivityOption] = useState(
-    getCurrentOption(possibleActivities, activity.activityID, 'description')
+    getCurrentOption(possibleActivities, activity.activityID, 'name')
   );
   const [currentFormatOption, setCurrentFormatOption] = useState(
     getCurrentOption(possibleFormats, activity.formatID, 'name')
@@ -130,7 +130,17 @@ function DragItem(props) {
   }
 
   function saveActivity(newActivity) {
-    errorToast(newActivity);
+    if (!newActivity.value) {
+      errorToast('bad activity- no value');
+      return;
+    }
+    setCurrentActivityOption(newActivity);
+    dispatch(
+      callUpdateScheduledActivity({
+        id: activity.id,
+        activityID: newActivity.value
+      })
+    );
   }
 
   function saveFormat(newFormat) {
