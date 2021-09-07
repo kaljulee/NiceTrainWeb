@@ -105,7 +105,7 @@ export function PamphletDurationInput(props) {
 export function PamphletDurationButton(props) {
   const { onClick } = props;
   return (
-    <button onClick={onClick} type="button">
+    <button style={{ height: '100%' }} onClick={onClick} type="button">
       {props.children}
     </button>
   );
