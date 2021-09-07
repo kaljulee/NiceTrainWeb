@@ -144,7 +144,17 @@ function DragItem(props) {
   }
 
   function saveFormat(newFormat) {
-    errorToast(newFormat);
+    if (!newFormat.value) {
+      errorToast('bad format- no value');
+      return;
+    }
+    setCurrentFormatOption(newFormat);
+    dispatch(
+      callUpdateScheduledActivity({
+        id: activity.id,
+        formatID: newFormat.value
+      })
+    );
   }
 
   function saveChanges() {
