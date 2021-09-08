@@ -47,7 +47,8 @@ function TrainBoard() {
         $flex={10}
         style={{
           justifyContent: 'flex-start',
-          alignItems: 'flex-start'
+          alignItems: 'flex-start',
+          overflowY: 'scroll'
         }}
       >
         <BoardSchedule data={data} setTrainID={handleSetTrainID} />
