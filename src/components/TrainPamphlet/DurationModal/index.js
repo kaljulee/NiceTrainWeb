@@ -48,44 +48,48 @@ function DurationModal(props) {
 
   return (
     <Modal isOpen={!!activity.id} ariaHideApp={false} style={modalStyle}>
-      <NTColumn>
-        <PamphletLabel>Duration</PamphletLabel>
-        <NTRow style={{ justifyContent: 'space-around' }}>
-          <NTColumn>
-            <PamphletSubLabel>h</PamphletSubLabel>
-            <PamphletDurationInput
-              value={hms.h}
-              onChange={(event) => onChange({ h: event.target.value })}
-              onFocus={() => {
-                onChange({ h: '' });
-              }}
-            />
-          </NTColumn>
-          <NTColumn>
-            <PamphletSubLabel>m</PamphletSubLabel>
-            <PamphletDurationInput
-              value={hms.m}
-              onChange={(event) => onChange({ m: event.target.value })}
-              onFocus={() => {
-                onChange({ m: '' });
-              }}
-            />
-          </NTColumn>
-          <NTColumn>
-            <PamphletSubLabel>s</PamphletSubLabel>
-            <PamphletDurationInput
-              value={hms.s}
-              onChange={(event) => onChange({ s: event.target.value })}
-              onFocus={() => {
-                onChange({ s: '' });
-              }}
-            />
-          </NTColumn>
-        </NTRow>
-      </NTColumn>
-      <NTColumn>
-        <PamphletButton onClick={saveAndClose}>save and close</PamphletButton>
-      </NTColumn>
+      <NTRow>
+        <NTColumn>
+          <PamphletLabel>Duration</PamphletLabel>
+          <NTRow style={{ justifyContent: 'space-around' }}>
+            <NTColumn>
+              <PamphletSubLabel>h</PamphletSubLabel>
+              <PamphletDurationInput
+                value={hms.h}
+                onChange={(event) => onChange({ h: event.target.value })}
+                onFocus={() => {
+                  onChange({ h: '' });
+                }}
+              />
+            </NTColumn>
+            <NTColumn>
+              <PamphletSubLabel>m</PamphletSubLabel>
+              <PamphletDurationInput
+                value={hms.m}
+                onChange={(event) => onChange({ m: event.target.value })}
+                onFocus={() => {
+                  onChange({ m: '' });
+                }}
+              />
+            </NTColumn>
+            <NTColumn>
+              <PamphletSubLabel>s</PamphletSubLabel>
+              <PamphletDurationInput
+                value={hms.s}
+                onChange={(event) => onChange({ s: event.target.value })}
+                onFocus={() => {
+                  onChange({ s: '' });
+                }}
+              />
+            </NTColumn>
+          </NTRow>
+        </NTColumn>
+      </NTRow>
+      <NTRow>
+        <NTColumn>
+          <PamphletButton onClick={saveAndClose}>save and close</PamphletButton>
+        </NTColumn>
+      </NTRow>
     </Modal>
   );
 }
