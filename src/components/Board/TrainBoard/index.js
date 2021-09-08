@@ -25,6 +25,19 @@ const BoardSection = styled.div`
   flex: ${(p) => p.$flex};
 `;
 
+const ScheduleSection = styled(BoardSection)`
+  ::-webkit-scrollbar {
+    background-color: ${(p) => p.theme.background};
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: ${(p) => p.theme.background};
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${(p) => p.theme.secondarySurface};
+  }
+`;
+
 function TrainBoard() {
   const data = useSelector(boardTrainInformation);
   const message = useSelector(activeMessage);
@@ -43,7 +56,7 @@ function TrainBoard() {
       <BoardSection $flex={1}>
         <BoardHeader />
       </BoardSection>
-      <BoardSection
+      <ScheduleSection
         $flex={10}
         style={{
           justifyContent: 'flex-start',
@@ -52,7 +65,7 @@ function TrainBoard() {
         }}
       >
         <BoardSchedule data={data} setTrainID={handleSetTrainID} />
-      </BoardSection>
+      </ScheduleSection>
       <BoardSection $flex={4}>
         <BoardInfo message={message} />
       </BoardSection>
