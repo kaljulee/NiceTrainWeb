@@ -92,7 +92,7 @@ export const HMS_ZERO = {
 };
 
 export function getLoginStatus(user, authState) {
-  if (!user) {
+  if (!user || !user.signInUserSession) {
     return USER_STATES.UNAUTH;
   }
   const groups = user.signInUserSession.accessToken.payload['cognito:groups'];
