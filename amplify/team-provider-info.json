@@ -16,5 +16,23 @@
         "nicetrainweb58d515ea": {}
       }
     }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nicetrainweb-dev-125411-authRole",
+      "UnauthRoleArn": "arn:aws:iam::620260802344:role/amplify-nicetrainweb-dev-125411-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::620260802344:role/amplify-nicetrainweb-dev-125411-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-nicetrainweb-dev-125411-deployment",
+      "UnauthRoleName": "amplify-nicetrainweb-dev-125411-unauthRole",
+      "StackName": "amplify-nicetrainweb-dev-125411",
+      "StackId": "arn:aws:cloudformation:us-east-1:620260802344:stack/amplify-nicetrainweb-dev-125411/956dec00-118e-11ec-bb59-0e5e10b6c293",
+      "AmplifyAppId": "dnodsa1pfs3qf"
+    },
+    "categories": {
+      "auth": {
+        "nicetrainweb58d515ea": {}
+      }
+    }
   }
 }
