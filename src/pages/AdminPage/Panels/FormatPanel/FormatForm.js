@@ -10,6 +10,7 @@ import { formatValidator } from '../../../../redux/validators';
 import AdminInput from '../../../../components/Admin/AdminInput';
 import AdminSubmitButtonBar from '../../../../components/Admin/AdminSubmitButtonBar';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
+import { adminUpdator } from '../../../../redux/thunks';
 
 function FormatForm(props) {
   const { title, currentDatum, clearCurrentDatum } = props;
@@ -24,17 +25,24 @@ function FormatForm(props) {
     setNameValue(event.target.value);
   }
 
-  function handleUpdate() {
-    const updatedFormat = {
-      name: nameValue,
-      id: currentDatum.id
-    };
-    const formatValidation = formatValidator(updatedFormat);
-    if (!formatValidation.isOk) {
-      toast.error(formatValidation.error);
-      return;
-    }
-    dispatch(callUpdateFormat(updatedFormat));
+  function saveInput(newData) {
+    adminUpdator(
+      newData,
+      currentDatum.id,
+      (d) => dispatch(callUpdateFormat(d)),
+      formatValidator,
+      (m) => toast.error(m)
+    );
+    // const updatedFormat = {
+    //   name: nameValue,
+    //   id: currentDatum.id
+    // };
+    // const formatValidation = formatValidator(updatedFormat);
+    // if (!formatValidation.isOk) {
+    //   toast.error(formatValidation.error);
+    //   return;
+    // }
+    // dispatch(callUpdateFormat(updatedFormat));
   }
 
   function handleCreate() {
@@ -61,12 +69,12 @@ function FormatForm(props) {
           label="name"
           value={nameValue}
           onChange={handleNameChange}
+          onBlur={() => saveInput({ name: nameValue })}
         />
         <AdminSubmitButtonBar
           hasCurrentDatum={!!currentDatum.id}
           clearCurrentDatum={clearCurrentDatum}
           handleCreate={handleCreate}
-          handleUpdate={handleUpdate}
           handleDelete={handleDelete}
         />
       </NTColumn>

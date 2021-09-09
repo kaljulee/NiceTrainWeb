@@ -56,7 +56,7 @@ export function formatValidator(data) {
   if (!data) {
     return { isOk: false, error: 'no data' };
   }
-  if (!stringIsOk(data.name)) {
+  if (data.name !== undefined && !stringIsOk(data.name)) {
     return { isOk: false, error: 'bad name' };
   }
   return { isOk: true };

@@ -19,3 +19,12 @@ export function adminUpdator(
     updateFunction(outData);
   }
 }
+
+// export function adminDeletor(
+//     id,
+//     deleteFunction,
+//     validator,
+//     errorPublisher
+// ) {
+//
+// }
