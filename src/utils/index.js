@@ -1,3 +1,5 @@
+import { USER_STATES } from '../constants';
+
 export function createOption(item, labelField) {
   return { label: item[labelField], value: item.id };
 }
@@ -88,3 +90,17 @@ export const HMS_ZERO = {
   m: 0,
   s: 0
 };
+
+export function getLoginStatus(user, authState) {
+  if (!user) {
+    return USER_STATES.UNAUTH;
+  }
+  const groups = user.signInUserSession.accessToken.payload['cognito:groups'];
+  if (!groups) {
+    return USER_STATES.GUEST;
+  }
+  if (groups.findIndex((d) => d === 'ntadmin') !== -1) {
+    return USER_STATES.ADMIN;
+  }
+  return USER_STATES.GUEST;
+}

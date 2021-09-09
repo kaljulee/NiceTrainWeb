@@ -19,3 +19,9 @@ export const STATUS_OPTIONS = [
   { value: 'CANCELED', label: 'CANCELED' },
   { value: 'MAYBE', label: 'MAYBE' }
 ];
+
+export const USER_STATES = {
+  UNAUTH: 'UNAUTH',
+  GUEST: 'GUEST',
+  ADMIN: 'ADMIN'
+};
