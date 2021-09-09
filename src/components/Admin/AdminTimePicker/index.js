@@ -4,10 +4,10 @@ import { NTTimePicker } from '../../styledComponents';
 import { NTBox } from '../../layoutComponents';
 
 function AdminTimePicker(props) {
-  const { value, onChange } = props;
+  const { value, onChange, onBlur } = props;
   return (
     <NTBox>
-      <NTTimePicker>
+      <NTTimePicker onBlur={onBlur}>
         <TimePicker value={value} onChange={onChange} locale="sv-sv" />
       </NTTimePicker>
     </NTBox>

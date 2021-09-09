@@ -25,6 +25,7 @@ import ScheduledActivityPanel from '../../../../components/TrainPamphlet/Schedul
 import { callGetScheduledActivitiesByTrain } from '../../../../redux/thunks/scheduledActivity';
 import { mq5 } from '../../../../styles/breakpoints';
 import { STATUS_OPTIONS } from '../../../../constants';
+import { adminUpdator } from '../../../../redux/thunks';
 
 const ListColumn = styled(NTColumn)`
   ${mq5({ display: ['none', 'none', 'none', 'flex', 'flex'] })}
@@ -82,6 +83,34 @@ function ScheduledTrainForm(props) {
     setScheduledActivities(selectedActivities);
   }, [currentDatum, allSActivities]);
 
+  function saveInput(newData) {
+    adminUpdator(
+      newData,
+      currentDatum.id,
+      (d) => dispatch(callUpdateScheduledTrain(d)),
+      scheduledTrainValidator,
+      (m) => toast.error(m)
+    );
+    // const updatedScheduledTrain = {
+    //   description: descriptionValue,
+    //   train_date: dateValue,
+    //   train_time: timeValue,
+    //   stationID: stationOption.value,
+    //   standingTag: standingTagValue,
+    //   groundTag: groundTagValue,
+    //   status: statusOption.value,
+    //   id: currentDatum.id
+    // };
+    // const scheduledTrainValidation = scheduledTrainValidator(
+    //   updatedScheduledTrain
+    // );
+    // if (!scheduledTrainValidation.isOk) {
+    //   toast.error(scheduledTrainValidation.error);
+    //   return;
+    // }
+    // dispatch(callUpdateScheduledTrain(updatedScheduledTrain));
+  }
+
   function handleDescriptionChange(event) {
     setDescriptionValue(event.target.value);
   }
@@ -96,10 +125,12 @@ function ScheduledTrainForm(props) {
 
   function handleStatusSelect(item) {
     setStatusOption(item);
+    saveInput({ status: item.value });
   }
 
   function handleStationSelect(item) {
     setStationOption(item);
+    saveInput({ stationID: item.value });
   }
 
   function handleDateChange(event) {
@@ -108,27 +139,6 @@ function ScheduledTrainForm(props) {
 
   function handleTimeChange(event) {
     setTimeValue(event);
-  }
-
-  function handleUpdate() {
-    const updatedScheduledTrain = {
-      description: descriptionValue,
-      train_date: dateValue,
-      train_time: timeValue,
-      stationID: stationOption.value,
-      standingTag: standingTagValue,
-      groundTag: groundTagValue,
-      status: statusOption.value,
-      id: currentDatum.id
-    };
-    const scheduledTrainValidation = scheduledTrainValidator(
-      updatedScheduledTrain
-    );
-    if (!scheduledTrainValidation.isOk) {
-      toast.error(scheduledTrainValidation.error);
-      return;
-    }
-    dispatch(callUpdateScheduledTrain(updatedScheduledTrain));
   }
 
   function handleCreate() {
@@ -186,6 +196,9 @@ function ScheduledTrainForm(props) {
                 <NTColumn>
                   <NTLabel>date</NTLabel>
                   <AdminDatePicker
+                    onBlur={() => {
+                      saveInput({ train_date: dateValue });
+                    }}
                     value={dateValue}
                     onChange={handleDateChange}
                   />
@@ -193,6 +206,9 @@ function ScheduledTrainForm(props) {
                 <NTColumn>
                   <NTLabel>time</NTLabel>
                   <AdminTimePicker
+                    onBlur={() => {
+                      saveInput({ train_time: timeValue });
+                    }}
                     value={timeValue}
                     onChange={handleTimeChange}
                   />
@@ -208,6 +224,9 @@ function ScheduledTrainForm(props) {
                 label="description"
                 value={descriptionValue}
                 onChange={handleDescriptionChange}
+                onBlur={() => {
+                  saveInput({ description: descriptionValue });
+                }}
               />
               <AdminSelect
                 label="station"
@@ -219,15 +238,20 @@ function ScheduledTrainForm(props) {
                 label="standing tag"
                 value={standingTagValue}
                 onChange={handleStandingTagChange}
+                onBlur={() => {
+                  saveInput({ standingTag: standingTagValue });
+                }}
               />
               <AdminInput
                 label="ground tag"
                 value={groundTagValue}
                 onChange={handleGroundTagChange}
+                onBlur={() => {
+                  saveInput({ groundTag: groundTagValue });
+                }}
               />
               <AdminSubmitButtonBar
                 handleCreate={handleCreate}
-                handleUpdate={handleUpdate}
                 handleDelete={handleDelete}
                 hasCurrentDatum={!!currentDatum.id}
                 clearCurrentDatum={clearCurrentDatum}
