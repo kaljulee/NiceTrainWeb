@@ -7,11 +7,11 @@ import { NTDatePicker } from '../../styledComponents';
 import { NTBox } from '../../layoutComponents';
 
 function AdminDatePicker(props) {
-  const { value, onChange } = props;
+  const { value, onChange, onBlur } = props;
   const dateValue = value ? new Date(value) : undefined;
   return (
     <NTBox>
-      <NTDatePicker>
+      <NTDatePicker onBlur={onBlur}>
         <DatePicker
           value={dateValue}
           onChange={(d) => onChange(formatDate(d))}
