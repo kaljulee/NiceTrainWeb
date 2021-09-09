@@ -195,7 +195,10 @@ export const trainSlice = createSlice({
       })
       .addCase(callUpdateScheduledTrain.fulfilled, (state, action) => {
         const updatedScheduledTrain = action.payload.updateScheduledTrain;
-        const index = findIndexByID(state.activities, updatedScheduledTrain.id);
+        const index = findIndexByID(
+          state.scheduledTrains,
+          updatedScheduledTrain.id
+        );
         if (index !== -1) {
           state.scheduledTrains[index] = updatedScheduledTrain;
         }
