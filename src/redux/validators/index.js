@@ -7,14 +7,15 @@ export function stationValidator(data) {
     return { isOk: false, error: 'no data' };
   }
   const { name, abbrev } = data;
-  if (!stringIsOk(name)) {
+  if (name !== undefined && !stringIsOk(name)) {
     return { isOk: false, error: 'bad name' };
   }
 
-  if (!abbrev || abbrev.length !== 4) {
+  const output = { isOk: true };
+  if (abbrev !== undefined && (!abbrev || abbrev.length !== 4)) {
     return { isOk: false, error: 'bad abbrev' };
   }
-  return { isOk: true };
+  return output;
 }
 
 export function youTubeResourceValidator(data) {
