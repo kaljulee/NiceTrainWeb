@@ -66,7 +66,7 @@ export function longMessageValidator(data) {
   if (!data) {
     return { isOk: false, error: 'no data' };
   }
-  if (!stringIsOk(data.text)) {
+  if (data.text !== undefined && !stringIsOk(data.text)) {
     return { isOk: false, error: 'bad text' };
   }
   return { isOk: true };
