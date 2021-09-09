@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import styled from '@emotion/styled';
-
-const baseStyle = {
-  padding: 10,
-  color: 'pink',
-  textDecoration: 'none',
-  fontFamily: 'helvetica',
-  letterSpacing: 5,
-  fontSize: 'x-small',
-  opacity: 0.3
-};
+import { useTheme } from '@emotion/react';
+import { getLoginStatus } from '../../utils';
+import { USER_STATES } from '../../constants';
 
 const NTNavLink = styled(NavLink)`
-  padding: 1vh 2vh 1vh 2vh;
+  padding: 0 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: ${(p) => p.theme.accent};
   text-decoration: none;
+  background: ${(p) => p.color};
   font-family: helvetica;
   letter-spacing: 5px;
   font-size: x-small;
+  height: 5vh;
   opacity: 0.3;
 `;
 
@@ -35,6 +32,22 @@ const NTLinkRow = styled.div`
   align-items: center;
 `;
 
+const SignOutWrapper = styled.div`
+  opacity: 0.6;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  --amplify-primary-color: ${(p) => p.color};
+  --padding: 0;
+  amplify-sign-out {
+    padding: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+`;
+
 function NTLink(props) {
   const activeStyle = {
     opacity: 0.7
@@ -45,6 +58,10 @@ function NTLink(props) {
 function TopNav() {
   const [authState, setAuthState] = useState();
   const [user, setUser] = useState();
+  const [loginStatus, setLoginStatus] = useState(
+    getLoginStatus(user, authState)
+  );
+  const theme = useTheme();
   useEffect(
     () =>
       onAuthUIStateChange((nextAuthState, authData) => {
@@ -53,23 +70,25 @@ function TopNav() {
       }),
     []
   );
+
+  useEffect(() => {
+    setLoginStatus(getLoginStatus(user, authState));
+  }, [user, authState]);
+
   return (
     <NTLinkRow>
       <NTLink to="/schedule">SCHEDULE</NTLink>
       <NTLink to="/patches">PATCHES</NTLink>
-      <NTLink to="/admin">ADMIN</NTLink>
+      <NTLink
+        to="/admin"
+        color={loginStatus === USER_STATES.GUEST ? theme.error : undefined}
+      >
+        {loginStatus === USER_STATES.GUEST ? 'GUEST' : 'ADMIN'}
+      </NTLink>
       {authState === AuthState.SignedIn && user && (
-        <div
-          style={{
-            opacity: 0.6,
-            height: '80%',
-            overflow: 'hidden',
-            display: 'flex',
-            alignItems: 'center'
-          }}
-        >
+        <SignOutWrapper>
           <AmplifySignOut />
-        </div>
+        </SignOutWrapper>
       )}
     </NTLinkRow>
   );

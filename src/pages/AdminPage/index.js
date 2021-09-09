@@ -3,7 +3,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import {
   AmplifyAuthenticator,
   AmplifyAuthContainer,
-  AmplifySignIn
+  AmplifySignIn,
+  AmplifySignUp
 } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import StationPanel from './Panels/StationPanel';
@@ -71,10 +72,14 @@ function AdminPage() {
       ) : (
         <AmplifyAuthContainer>
           <AmplifyAuthenticator>
-            <AmplifySignIn
-              hideSignUp
-              slot="sign-in"
-              headerText="Nice Train Admin"
+            <AmplifySignIn slot="sign-in" headerText="Nice Train Admin" />
+            <AmplifySignUp
+              slot="sign-up"
+              formFields={[
+                { type: 'username' },
+                { type: 'password' },
+                { type: 'email' }
+              ]}
             />
           </AmplifyAuthenticator>
         </AmplifyAuthContainer>
