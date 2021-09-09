@@ -10,6 +10,7 @@ import { youTubeResourceValidator } from '../../../../redux/validators';
 import AdminInput from '../../../../components/Admin/AdminInput';
 import AdminSubmitButtonBar from '../../../../components/Admin/AdminSubmitButtonBar';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
+import { adminUpdator } from '../../../../redux/thunks';
 
 function YouTubeResourceForm(props) {
   const { title, currentDatum, clearCurrentDatum } = props;
@@ -38,20 +39,15 @@ function YouTubeResourceForm(props) {
     setAuthorValue(event.target.value);
   }
 
+  // todo is this really better?
   function saveInput(newData) {
-    const updatedYTR = {
-      ...newData,
-      id: currentDatum.id
-    };
-
-    const ytrValidation = youTubeResourceValidator(updatedYTR);
-    if (!ytrValidation.isOk) {
-      toast.error(ytrValidation.error);
-      return;
-    }
-    if (updatedYTR.id) {
-      dispatch(callUpdateYouTubeResource(updatedYTR));
-    }
+    adminUpdator(
+      newData,
+      currentDatum.id,
+      (d) => dispatch(callUpdateYouTubeResource(d)),
+      youTubeResourceValidator,
+      (m) => toast.error(m)
+    );
   }
 
   function handleCreate() {
