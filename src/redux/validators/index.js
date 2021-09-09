@@ -1,5 +1,5 @@
 export function stringIsOk(value) {
-  return !!value && value.length > 0;
+  return value !== undefined && !!value && value.length > 0;
 }
 
 export function stationValidator(data) {
@@ -43,10 +43,10 @@ export function scheduledTrainValidator(data) {
   if (!data) {
     return { isOk: false, error: 'no data' };
   }
-  if (!stringIsOk(data.description)) {
+  if (data.description !== undefined && !stringIsOk(data.description)) {
     return { isOk: false, error: 'bad description' };
   }
-  if (!stringIsOk(data.stationID)) {
+  if (data.stationID !== undefined && !stringIsOk(data.stationID)) {
     return { isOk: false, error: 'bad station' };
   }
   return { isOk: true };
