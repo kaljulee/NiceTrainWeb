@@ -12,6 +12,7 @@ import AdminSubmitButtonBar from '../../../../components/Admin/AdminSubmitButton
 import { createOption, getCurrentOption } from '../../../../utils';
 import AdminSelect from '../../../../components/Admin/AdminSelect';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
+import { adminUpdator } from '../../../../redux/thunks';
 
 function ActivityForm(props) {
   const { title, currentDatum, youTubeResources, clearCurrentDatum } = props;
@@ -42,31 +43,44 @@ function ActivityForm(props) {
 
   function handleNameChange(event) {
     setNameValue(event.target.value);
+    console.table(currentDatum);
   }
 
   function handleDescriptionChange(event) {
     setDescriptionValue(event.target.value);
+    console.table(currentDatum);
+  }
+
+  // todo thinking about unifying admin updates, but it would take so many
+  // todo functions, is it worth it?
+  function saveInput(newData) {
+    adminUpdator(
+      newData,
+      currentDatum.id,
+      (d) => dispatch(callUpdateActivity(d)),
+      activityValidator,
+      (m) => toast.error(m)
+    );
+    // const updatedActivity = {
+    //   ...newData,
+    //   id: currentDatum.id
+    // };
+    // // if (ytrOption) {
+    // //   updatedActivity.youTubeResourceID = ytrOption.value;
+    // // }
+    // const activityValidation = activityValidator(updatedActivity);
+    // if (!activityValidation.isOk) {
+    //   toast.error(activityValidation.error);
+    //   return;
+    // }
+    // if (updatedActivity.id) {
+    //   dispatch(callUpdateActivity(updatedActivity));
+    // }
   }
 
   function handleYTRSelect(item) {
     setYTROption(item);
-  }
-
-  function handleUpdate() {
-    const updatedActivity = {
-      name: nameValue,
-      description: descriptionValue,
-      id: currentDatum.id
-    };
-    if (ytrOption) {
-      updatedActivity.youTubeResourceID = ytrOption.value;
-    }
-    const activityValidation = activityValidator(updatedActivity);
-    if (!activityValidation.isOk) {
-      toast.error(activityValidation.error);
-      return;
-    }
-    dispatch(callUpdateActivity(updatedActivity));
+    saveInput({ youTubeResourceID: item.value });
   }
 
   function handleCreate() {
@@ -96,11 +110,13 @@ function ActivityForm(props) {
           label="name"
           value={nameValue}
           onChange={handleNameChange}
+          onBlur={() => saveInput({ name: nameValue })}
         />
         <AdminInput
           label="description"
           value={descriptionValue}
           onChange={handleDescriptionChange}
+          onBlur={() => saveInput({ description: descriptionValue })}
         />
         <AdminSelect
           label="youTube resource"
@@ -114,7 +130,6 @@ function ActivityForm(props) {
           hasCurrentDatum={!!currentDatum.id}
           clearCurrentDatum={clearCurrentDatum}
           handleCreate={handleCreate}
-          handleUpdate={handleUpdate}
           handleDelete={handleDelete}
         />
       </NTColumn>

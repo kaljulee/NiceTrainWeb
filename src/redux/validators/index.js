@@ -7,14 +7,15 @@ export function stationValidator(data) {
     return { isOk: false, error: 'no data' };
   }
   const { name, abbrev } = data;
-  if (!stringIsOk(name)) {
+  if (name !== undefined && !stringIsOk(name)) {
     return { isOk: false, error: 'bad name' };
   }
 
-  if (!abbrev || abbrev.length !== 4) {
+  const output = { isOk: true };
+  if (abbrev !== undefined && (!abbrev || abbrev.length !== 4)) {
     return { isOk: false, error: 'bad abbrev' };
   }
-  return { isOk: true };
+  return output;
 }
 
 export function youTubeResourceValidator(data) {
@@ -22,10 +23,10 @@ export function youTubeResourceValidator(data) {
     return { isOk: false, error: 'no data' };
   }
   const { description, link } = data;
-  if (!stringIsOk(description)) {
+  if (description !== undefined && !stringIsOk(description)) {
     return { isOk: false, error: 'bad description' };
   }
-  if (!stringIsOk(link)) {
+  if (link !== undefined && !stringIsOk(link)) {
     return { isOk: false, error: 'bad link' };
   }
   return { isOk: true };
@@ -55,7 +56,7 @@ export function formatValidator(data) {
   if (!data) {
     return { isOk: false, error: 'no data' };
   }
-  if (!stringIsOk(data.name)) {
+  if (data.name !== undefined && !stringIsOk(data.name)) {
     return { isOk: false, error: 'bad name' };
   }
   return { isOk: true };
@@ -65,7 +66,7 @@ export function longMessageValidator(data) {
   if (!data) {
     return { isOk: false, error: 'no data' };
   }
-  if (!stringIsOk(data.text)) {
+  if (data.text !== undefined && !stringIsOk(data.text)) {
     return { isOk: false, error: 'bad text' };
   }
   return { isOk: true };

@@ -14,6 +14,7 @@ import {
   NTColumn,
   NTSection
 } from '../../../../components/layoutComponents';
+import { adminUpdator } from '../../../../redux/thunks';
 
 function StationForm(props) {
   const { title, currentDatum, clearCurrentDatum } = props;
@@ -34,7 +35,14 @@ function StationForm(props) {
     setAbbrevValue(event.target.value);
   }
 
-  function handleUpdate() {
+  function saveInput(newData) {
+    adminUpdator(
+      newData,
+      currentDatum.id,
+      (d) => dispatch(callUpdateStation(d)),
+      stationValidator,
+      (m) => toast.error(m)
+    );
     const updatedStation = {
       name: nameValue,
       abbrev: abbrevValue,
@@ -51,8 +59,10 @@ function StationForm(props) {
   function handleCreate() {
     const newStation = { name: nameValue, abbrev: abbrevValue };
     const stationValidation = stationValidator(newStation);
-    if (!stationValidation.isOk) {
+    if (stationValidation.error) {
       toast.error(stationValidation.error);
+    }
+    if (!stationValidation.isOk) {
       return;
     }
     dispatch(callCreateStation(newStation));
@@ -71,17 +81,22 @@ function StationForm(props) {
             label="name"
             value={nameValue}
             onChange={handleNameChange}
+            onBlur={() => {
+              saveInput({ name: nameValue });
+            }}
           />
           <AdminInput
             label="abbrev"
             value={abbrevValue}
             onChange={handleAbbrevChange}
+            onBlur={() => {
+              saveInput({ abbrev: abbrevValue });
+            }}
           />
         </NTColumn>
         <AdminSubmitButtonBar
           hasCurrentDatum={!!currentDatum.id}
           handleCreate={handleCreate}
-          handleUpdate={handleUpdate}
           handleDelete={handleDelete}
           clearCurrentDatum={clearCurrentDatum}
         />

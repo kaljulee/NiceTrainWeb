@@ -10,6 +10,7 @@ import { longMessageValidator } from '../../../../redux/validators';
 import AdminInput from '../../../../components/Admin/AdminInput';
 import AdminSubmitButtonBar from '../../../../components/Admin/AdminSubmitButtonBar';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
+import { adminUpdator } from '../../../../redux/thunks';
 
 function LongMessageForm(props) {
   const { title, currentDatum, clearCurrentDatum } = props;
@@ -24,17 +25,24 @@ function LongMessageForm(props) {
     setTextValue(event.target.value);
   }
 
-  function handleUpdate() {
-    const updatedLongMessage = {
-      text: textValue,
-      id: currentDatum.id
-    };
-    const longMessageValidation = longMessageValidator(updatedLongMessage);
-    if (!longMessageValidation.isOk) {
-      toast.error(longMessageValidation.error);
-      return;
-    }
-    dispatch(callUpdateLongMessage(updatedLongMessage));
+  function saveInput(newData) {
+    adminUpdator(
+      newData,
+      currentDatum.id,
+      (d) => dispatch(callUpdateLongMessage(d)),
+      longMessageValidator,
+      (m) => toast.error(m)
+    );
+    // const updatedLongMessage = {
+    //   text: textValue,
+    //   id: currentDatum.id
+    // };
+    // const longMessageValidation = longMessageValidator(updatedLongMessage);
+    // if (!longMessageValidation.isOk) {
+    //   toast.error(longMessageValidation.error);
+    //   return;
+    // }
+    // dispatch(callUpdateLongMessage(updatedLongMessage));
   }
 
   function handleCreate() {
@@ -59,10 +67,12 @@ function LongMessageForm(props) {
           label="text"
           value={textValue}
           onChange={handleTextChange}
+          onBlur={() => {
+            saveInput({ text: textValue });
+          }}
         />
         <AdminSubmitButtonBar
           handleCreate={handleCreate}
-          handleUpdate={handleUpdate}
           handleDelete={handleDelete}
           hasCurrentDatum={!!currentDatum.id}
           clearCurrentDatum={clearCurrentDatum}

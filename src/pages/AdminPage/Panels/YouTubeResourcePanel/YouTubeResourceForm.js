@@ -10,6 +10,7 @@ import { youTubeResourceValidator } from '../../../../redux/validators';
 import AdminInput from '../../../../components/Admin/AdminInput';
 import AdminSubmitButtonBar from '../../../../components/Admin/AdminSubmitButtonBar';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
+import { adminUpdator } from '../../../../redux/thunks';
 
 function YouTubeResourceForm(props) {
   const { title, currentDatum, clearCurrentDatum } = props;
@@ -38,19 +39,15 @@ function YouTubeResourceForm(props) {
     setAuthorValue(event.target.value);
   }
 
-  function handleUpdate() {
-    const updatedYTR = {
-      description: descriptionValue,
-      link: linkValue,
-      author: authorValue,
-      id: currentDatum.id
-    };
-    const ytrValidation = youTubeResourceValidator(updatedYTR);
-    if (!ytrValidation.isOk) {
-      toast.error(ytrValidation.error);
-      return;
-    }
-    dispatch(callUpdateYouTubeResource(updatedYTR));
+  // todo is this really better?
+  function saveInput(newData) {
+    adminUpdator(
+      newData,
+      currentDatum.id,
+      (d) => dispatch(callUpdateYouTubeResource(d)),
+      youTubeResourceValidator,
+      (m) => toast.error(m)
+    );
   }
 
   function handleCreate() {
@@ -80,21 +77,29 @@ function YouTubeResourceForm(props) {
             label="description"
             value={descriptionValue}
             onChange={handleDescriptionChange}
+            onBlur={() => {
+              saveInput({ description: descriptionValue });
+            }}
           />
           <AdminInput
             label="author"
             value={authorValue}
             onChange={handleAuthorChange}
+            onBlur={() => {
+              saveInput({ author: authorValue });
+            }}
           />
           <AdminInput
             label="link"
             value={linkValue}
             onChange={handleLinkChange}
+            onBlur={() => {
+              saveInput({ link: linkValue });
+            }}
           />
         </NTColumn>
         <AdminSubmitButtonBar
           handleCreate={handleCreate}
-          handleUpdate={handleUpdate}
           handleDelete={handleDelete}
           hasCurrentDatum={!!currentDatum.id}
           clearCurrentDatum={clearCurrentDatum}
