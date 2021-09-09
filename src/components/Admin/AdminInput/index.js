@@ -10,7 +10,7 @@ const NTInputColumn = styled(NTColumn)`
 `;
 
 function AdminInput(props) {
-  const { label, value, onChange, type = 'text', style } = props;
+  const { label, value, onChange, type = 'text', style, onBlur } = props;
   return (
     <NTInputColumn style={{ ...style }}>
       <NTLabel>{label}</NTLabel>
@@ -19,6 +19,7 @@ function AdminInput(props) {
         value={value || value === 0 ? value : ''}
         onChange={onChange}
         style={style}
+        onBlur={onBlur}
       />
     </NTInputColumn>
   );

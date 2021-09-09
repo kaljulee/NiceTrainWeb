@@ -42,14 +42,17 @@ function ActivityForm(props) {
 
   function handleNameChange(event) {
     setNameValue(event.target.value);
+    console.table(currentDatum);
   }
 
   function handleDescriptionChange(event) {
     setDescriptionValue(event.target.value);
+    console.table(currentDatum);
   }
 
   function handleYTRSelect(item) {
     setYTROption(item);
+    console.table(currentDatum);
   }
 
   function handleUpdate() {
@@ -114,7 +117,6 @@ function ActivityForm(props) {
           hasCurrentDatum={!!currentDatum.id}
           clearCurrentDatum={clearCurrentDatum}
           handleCreate={handleCreate}
-          handleUpdate={handleUpdate}
           handleDelete={handleDelete}
         />
       </NTColumn>

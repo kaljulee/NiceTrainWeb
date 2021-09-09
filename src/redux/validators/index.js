@@ -22,10 +22,10 @@ export function youTubeResourceValidator(data) {
     return { isOk: false, error: 'no data' };
   }
   const { description, link } = data;
-  if (!stringIsOk(description)) {
+  if (description !== undefined && !stringIsOk(description)) {
     return { isOk: false, error: 'bad description' };
   }
-  if (!stringIsOk(link)) {
+  if (link !== undefined && !stringIsOk(link)) {
     return { isOk: false, error: 'bad link' };
   }
   return { isOk: true };

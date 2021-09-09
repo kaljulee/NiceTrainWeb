@@ -42,7 +42,6 @@ function DurationModal(props) {
   }
 
   function saveAndClose() {
-    console.log('would save');
     onClose(activity.id, hms);
   }
 

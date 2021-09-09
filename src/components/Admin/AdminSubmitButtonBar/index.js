@@ -16,13 +16,6 @@ function AdminSubmitButtonBar(props) {
   } = props;
   return (
     <NTRow style={{ justifyContent: 'space-between' }}>
-      <NTSaveButton
-        disabled={!hasCurrentDatum}
-        type="submit"
-        onClick={handleUpdate}
-      >
-        modify
-      </NTSaveButton>
       <NTNewButton
         onClick={hasCurrentDatum ? clearCurrentDatum : handleCreate}
         type="button"
