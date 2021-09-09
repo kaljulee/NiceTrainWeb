@@ -51,11 +51,6 @@ function ActivityForm(props) {
     console.table(currentDatum);
   }
 
-  function handleYTRSelect(item) {
-    setYTROption(item);
-    console.table(currentDatum);
-  }
-
   // todo thinking about unifying admin updates, but it would take so many
   // todo functions, is it worth it?
   function saveInput(newData) {
@@ -81,6 +76,11 @@ function ActivityForm(props) {
     // if (updatedActivity.id) {
     //   dispatch(callUpdateActivity(updatedActivity));
     // }
+  }
+
+  function handleYTRSelect(item) {
+    setYTROption(item);
+    saveInput({ youTubeResourceID: item.value });
   }
 
   function handleCreate() {
