@@ -43,12 +43,10 @@ function ActivityForm(props) {
 
   function handleNameChange(event) {
     setNameValue(event.target.value);
-    console.table(currentDatum);
   }
 
   function handleDescriptionChange(event) {
     setDescriptionValue(event.target.value);
-    console.table(currentDatum);
   }
 
   // todo thinking about unifying admin updates, but it would take so many
