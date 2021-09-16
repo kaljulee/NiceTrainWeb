@@ -7,6 +7,7 @@ import {
   deleteActivity
 } from '../../graphql/mutations';
 import { apiKey } from '../../constants';
+import { containsChanges } from '../validators';
 
 export const callListActivities = createAsyncThunk(
   'activities/fetch',
@@ -31,17 +32,21 @@ export const callCreateActivity = createAsyncThunk(
 
 export const callUpdateActivity = createAsyncThunk(
   'activities/update',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
     const updatedActivityData = {};
+    const original = getState().train.activities.find((a) => a.id === data.id);
     Object.keys(data).forEach((k) => {
       if (data[k].length > 0) {
         updatedActivityData[k] = data[k];
       }
     });
-    const response = await API.graphql(
-      graphqlOperation(updateActivity, { input: updatedActivityData })
-    );
-    return response.data;
+    if (containsChanges(updatedActivityData, original)) {
+      const response = await API.graphql(
+        graphqlOperation(updateActivity, { input: updatedActivityData })
+      );
+      return response.data;
+    }
+    return rejectWithValue();
   }
 );
 
