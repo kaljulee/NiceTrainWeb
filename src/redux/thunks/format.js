@@ -7,6 +7,7 @@ import {
   deleteFormat
 } from '../../graphql/mutations';
 import { apiKey } from '../../constants';
+import { containsChanges } from '../validators';
 
 export const callListFormats = createAsyncThunk('formats/fetch', async () => {
   const response = await API.graphql({
@@ -28,19 +29,23 @@ export const callCreateFormat = createAsyncThunk(
 
 export const callUpdateFormat = createAsyncThunk(
   'formats/update',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
     const updatedFormatData = {};
+    const original = getState().train.formats.find((f) => f.id === data.id);
     Object.keys(data).forEach((k) => {
       if (data[k].length > 0) {
         updatedFormatData[k] = data[k];
       }
     });
-    const response = await API.graphql(
-      graphqlOperation(updateFormat, {
-        input: updatedFormatData
-      })
-    );
-    return response.data;
+    if (containsChanges(updatedFormatData, original)) {
+      const response = await API.graphql(
+        graphqlOperation(updateFormat, {
+          input: updatedFormatData
+        })
+      );
+      return response.data;
+    }
+    return rejectWithValue();
   }
 );
 
