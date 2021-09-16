@@ -7,6 +7,7 @@ import {
   deleteYouTubeResource,
   updateYouTubeResource
 } from '../../graphql/mutations';
+import { containsChanges } from '../validators';
 
 export const callListYouTubeResources = createAsyncThunk(
   'ytr/fetch',
@@ -31,17 +32,23 @@ export const callCreateYouTubeResource = createAsyncThunk(
 
 export const callUpdateYouTubeResource = createAsyncThunk(
   'ytr/update',
-  async (data) => {
-    const updatedYTRData = { author: 'noooo' };
+  async (data, { getState, rejectWithValue }) => {
+    const updatedYTRData = {};
+    const original = getState().train.youTubeResources.find(
+      (ytr) => ytr.id === data.id
+    );
     Object.keys(data).forEach((k) => {
       if (data[k].length > 0) {
         updatedYTRData[k] = data[k];
       }
     });
-    const response = await API.graphql(
-      graphqlOperation(updateYouTubeResource, { input: updatedYTRData })
-    );
-    return response.data;
+    if (containsChanges(updatedYTRData, original)) {
+      const response = await API.graphql(
+        graphqlOperation(updateYouTubeResource, { input: updatedYTRData })
+      );
+      return response.data;
+    }
+    return rejectWithValue();
   }
 );
 
