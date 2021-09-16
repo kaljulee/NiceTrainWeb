@@ -35,7 +35,7 @@ export const niceTrainTheme = {
   onSecondarySurface: '#ffffff',
   accent: '#ffcc00',
   onAccent: '#000000',
-  success: 'green',
+  success: '#42f54e',
   error: 'red',
   warning: 'orange',
   onSuccess: '#ffffff',
