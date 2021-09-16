@@ -7,6 +7,7 @@ import {
   deleteLongMessage
 } from '../../graphql/mutations';
 import { apiKey } from '../../constants';
+import { containsChanges } from '../validators';
 
 export const callListLongMessages = createAsyncThunk(
   'longMessages/fetch',
@@ -31,17 +32,23 @@ export const callCreateLongMessage = createAsyncThunk(
 
 export const callUpdateLongMessage = createAsyncThunk(
   'longMessages/update',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
     const updatedLongMessageData = {};
+    const original = getState().train.longMessages.find(
+      (m) => m.id === data.id
+    );
     Object.keys(data).forEach((k) => {
       if (data[k].length > 0) {
         updatedLongMessageData[k] = data[k];
       }
     });
-    const response = await API.graphql(
-      graphqlOperation(updateLongMessage, { input: updatedLongMessageData })
-    );
-    return response.data;
+    if (containsChanges(updatedLongMessageData, original)) {
+      const response = await API.graphql(
+        graphqlOperation(updateLongMessage, { input: updatedLongMessageData })
+      );
+      return response.data;
+    }
+    return rejectWithValue();
   }
 );
 
