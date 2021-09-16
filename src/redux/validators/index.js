@@ -71,3 +71,13 @@ export function longMessageValidator(data) {
   }
   return { isOk: true };
 }
+
+export function containsChanges(update, original) {
+  let changed = false;
+  Object.keys(update).forEach((k) => {
+    if (update[k] !== undefined && update[k] !== original[k]) {
+      changed = true;
+    }
+  });
+  return changed;
+}

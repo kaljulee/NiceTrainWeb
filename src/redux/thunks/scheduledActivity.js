@@ -7,6 +7,8 @@ import {
   deleteScheduledActivity
 } from '../../graphql/mutations';
 import { apiKey } from '../../constants';
+import { containsChanges } from '../validators';
+import { flattenScheduledActivites } from '../../utils';
 
 export const callListScheduledActivities = createAsyncThunk(
   'scheduledActivities/fetch',
@@ -46,13 +48,20 @@ export const callCreateScheduledActivity = createAsyncThunk(
 
 export const callUpdateScheduledActivity = createAsyncThunk(
   'scheduledActivities/update',
-  async (data) => {
-    const response = await API.graphql(
-      graphqlOperation(updateScheduledActivity, {
-        input: data
-      })
-    );
-    return response.data;
+  async (data, { getState, rejectWithValue }) => {
+    const state = getState();
+    const original = flattenScheduledActivites(
+      state.train.scheduledActivities
+    ).find((sa) => sa.id === data.id);
+    if (containsChanges(data, original)) {
+      const response = await API.graphql(
+        graphqlOperation(updateScheduledActivity, {
+          input: data
+        })
+      );
+      return response.data;
+    }
+    return rejectWithValue();
   }
 );
 

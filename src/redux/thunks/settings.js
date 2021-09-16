@@ -44,6 +44,7 @@ export const callSetLongMessage = createAsyncThunk(
   }
 );
 
+// todo when this gets used, add in containsChanges code
 export const callUpdateSetting = createAsyncThunk(
   'settings/update',
   async (data) => {

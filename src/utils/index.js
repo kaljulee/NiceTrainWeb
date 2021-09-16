@@ -104,3 +104,8 @@ export function getLoginStatus(user, authState) {
   }
   return USER_STATES.GUEST;
 }
+
+export function flattenScheduledActivites(sActivities) {
+  const keys = Object.keys(sActivities);
+  return keys.reduce((acc, k) => acc.concat(sActivities[k]), []);
+}
