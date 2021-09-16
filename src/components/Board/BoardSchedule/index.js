@@ -63,7 +63,7 @@ function BoardSchedule(props) {
     switch (status) {
       case 'ON TIME':
         return theme.success;
-      case 'UNSURE':
+      case 'DELAYED':
         return theme.warning;
       case 'CANCELED':
         return theme.error;
