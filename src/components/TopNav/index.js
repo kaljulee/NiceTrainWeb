@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AmplifySignOut } from '@aws-amplify/ui-react';
-import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
-import { getLoginStatus } from '../../utils';
+import { connect } from 'react-redux';
+import { calculateLoginStatus } from '../../utils';
 import { USER_STATES } from '../../constants';
+import { setLoginStatus } from '../../redux/reducers/settingsReducer';
 
 const NTNavLink = styled(NavLink)`
   padding: 0 2vh;
@@ -55,25 +57,14 @@ function NTLink(props) {
   return <NTNavLink {...props} activeStyle={activeStyle} />;
 }
 
-function TopNav() {
-  const [authState, setAuthState] = useState();
-  const [user, setUser] = useState();
-  const [loginStatus, setLoginStatus] = useState(
-    getLoginStatus(user, authState)
-  );
+function TopNav(props) {
+  const { loginStatus } = props;
   const theme = useTheme();
-  useEffect(
-    () =>
-      onAuthUIStateChange((nextAuthState, authData) => {
-        setAuthState(nextAuthState);
-        setUser(authData);
-      }),
-    []
-  );
-
   useEffect(() => {
-    setLoginStatus(getLoginStatus(user, authState));
-  }, [user, authState]);
+    onAuthUIStateChange((nextAuthState, authData) => {
+      setLoginStatus(calculateLoginStatus(authData, nextAuthState));
+    });
+  }, []);
 
   return (
     <NTLinkRow>
@@ -85,7 +76,7 @@ function TopNav() {
       >
         {loginStatus === USER_STATES.GUEST ? 'GUEST' : 'ADMIN'}
       </NTLink>
-      {authState === AuthState.SignedIn && user && (
+      {loginStatus !== USER_STATES.UNAUTH && (
         <SignOutWrapper>
           <AmplifySignOut />
         </SignOutWrapper>
@@ -94,4 +85,8 @@ function TopNav() {
   );
 }
 
-export default TopNav;
+const mapStateToProps = (state) => ({
+  loginStatus: state.settings.loginStatus
+});
+
+export default connect(mapStateToProps)(TopNav);

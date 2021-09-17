@@ -7,7 +7,7 @@ import {
   deleteYouTubeResource,
   updateYouTubeResource
 } from '../../graphql/mutations';
-import { containsChanges } from '../validators';
+import { allowAPICall, containsChanges } from '../validators';
 
 export const callListYouTubeResources = createAsyncThunk(
   'ytr/fetch',
@@ -22,7 +22,10 @@ export const callListYouTubeResources = createAsyncThunk(
 
 export const callCreateYouTubeResource = createAsyncThunk(
   'ytr/create',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const response = await API.graphql(
       graphqlOperation(createYouTubeResource, { input: data })
     );
@@ -33,6 +36,9 @@ export const callCreateYouTubeResource = createAsyncThunk(
 export const callUpdateYouTubeResource = createAsyncThunk(
   'ytr/update',
   async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const updatedYTRData = {};
     const original = getState().train.youTubeResources.find(
       (ytr) => ytr.id === data.id
@@ -54,7 +60,10 @@ export const callUpdateYouTubeResource = createAsyncThunk(
 
 export const callDeleteYouTubeResource = createAsyncThunk(
   'ytr/delete',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const response = await API.graphql(
       graphqlOperation(deleteYouTubeResource, { input: data })
     );

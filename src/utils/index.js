@@ -91,7 +91,7 @@ export const HMS_ZERO = {
   s: 0
 };
 
-export function getLoginStatus(user, authState) {
+export function calculateLoginStatus(user, authState) {
   if (!user || !user.signInUserSession) {
     return USER_STATES.UNAUTH;
   }
