@@ -7,7 +7,7 @@ import {
   deleteLongMessage
 } from '../../graphql/mutations';
 import { apiKey } from '../../constants';
-import { containsChanges } from '../validators';
+import { allowAPICall, containsChanges } from '../validators';
 
 export const callListLongMessages = createAsyncThunk(
   'longMessages/fetch',
@@ -22,7 +22,10 @@ export const callListLongMessages = createAsyncThunk(
 
 export const callCreateLongMessage = createAsyncThunk(
   'longMessages/create',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const response = await API.graphql(
       graphqlOperation(createLongMessage, { input: data })
     );
@@ -33,6 +36,9 @@ export const callCreateLongMessage = createAsyncThunk(
 export const callUpdateLongMessage = createAsyncThunk(
   'longMessages/update',
   async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const updatedLongMessageData = {};
     const original = getState().train.longMessages.find(
       (m) => m.id === data.id
@@ -54,7 +60,10 @@ export const callUpdateLongMessage = createAsyncThunk(
 
 export const callDeleteLongMessage = createAsyncThunk(
   'longMessages/delete',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const response = await API.graphql(
       graphqlOperation(deleteLongMessage, { input: data })
     );
