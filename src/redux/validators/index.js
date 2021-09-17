@@ -1,3 +1,5 @@
+import { USER_STATES } from '../../constants';
+
 export function stringIsOk(value) {
   return value !== undefined && !!value && value.length > 0;
 }
@@ -80,4 +82,8 @@ export function containsChanges(update, original) {
     }
   });
   return changed;
+}
+
+export function allowAPICall(state) {
+  return state.settings.loginStatus === USER_STATES.ADMIN;
 }
