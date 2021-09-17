@@ -7,7 +7,7 @@ import {
   deleteStation
 } from '../../graphql/mutations';
 import { apiKey } from '../../constants';
-import { containsChanges } from '../validators';
+import { allowAPICall, containsChanges } from '../validators';
 
 export const callListStations = createAsyncThunk('stations/fetch', async () => {
   const response = await API.graphql({
@@ -19,8 +19,11 @@ export const callListStations = createAsyncThunk('stations/fetch', async () => {
 
 export const callCreateStation = createAsyncThunk(
   'stations/create',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
     // const newStation = { name: 'faker station', abbrev: 'FAKR' };
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const response = await API.graphql(
       graphqlOperation(createStation, { input: data })
     );
@@ -31,6 +34,9 @@ export const callCreateStation = createAsyncThunk(
 export const callUpdateStation = createAsyncThunk(
   'stations/update',
   async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const updatedStationData = {};
     const original = getState().train.stations.find((s) => s.id === data.id);
     Object.keys(data).forEach((k) => {
@@ -50,7 +56,10 @@ export const callUpdateStation = createAsyncThunk(
 
 export const callDeleteStation = createAsyncThunk(
   'stations/delete',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const response = await API.graphql(
       graphqlOperation(deleteStation, { input: data })
     );

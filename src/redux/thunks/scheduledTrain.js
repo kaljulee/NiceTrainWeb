@@ -7,7 +7,7 @@ import {
   deleteScheduledTrain
 } from '../../graphql/mutations';
 import { apiKey } from '../../constants';
-import { containsChanges } from '../validators';
+import { allowAPICall, containsChanges } from '../validators';
 
 export const callListScheduledTrains = createAsyncThunk(
   'scheduledTrains/fetch',
@@ -22,7 +22,10 @@ export const callListScheduledTrains = createAsyncThunk(
 
 export const callCreateScheduledTrain = createAsyncThunk(
   'scheduledTrains/create',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const response = await API.graphql(
       graphqlOperation(createScheduledTrain, { input: data })
     );
@@ -33,6 +36,9 @@ export const callCreateScheduledTrain = createAsyncThunk(
 export const callUpdateScheduledTrain = createAsyncThunk(
   'scheduledTrains/update',
   async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const updatedScheduledTrainData = {};
     const original = getState().train.scheduledTrains.find(
       (st) => st.id === data.id
@@ -56,7 +62,10 @@ export const callUpdateScheduledTrain = createAsyncThunk(
 
 export const callDeleteScheduledTrain = createAsyncThunk(
   'scheduledTrains/delete',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const response = await API.graphql(
       graphqlOperation(deleteScheduledTrain, { input: data })
     );
