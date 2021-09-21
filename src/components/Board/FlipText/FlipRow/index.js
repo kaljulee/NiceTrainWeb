@@ -63,23 +63,18 @@ const FlipLine = styled.div`
   top: ${(p) => p.$top}px;
 `;
 
-const FlipBackdrop = styled.div`
-  background: ${(p) => p.theme.secondarySurface};
-  width: 100%;
-  border: 2px solid ${(p) => p.theme.background};
-  text-align: center;
-  top: 2px;
-  height: 100%;
-  box-sizing: border-box;
-`;
+// const FlipBackdrop = styled.div``;
 
 const FlipText = styled.span`
-  text-justify: center;
   text-align: center;
   font-size: 20px;
   color: ${(p) => p.theme.onSecondarySurface};
+  background: ${(p) => p.theme.secondarySurface};
   position: relative;
   display: inline-block;
+  white-space: pre-wrap;
+  width: 100%;
+  border: 2px solid ${(p) => p.theme.background};
 `;
 
 // single letter in flip box
@@ -88,9 +83,7 @@ function FlipBox(props) {
   const flipBoxWidth = flipConstants.width;
   return (
     <FlipBoxContainer $height={flipConstants.height} $width={flipBoxWidth}>
-      <FlipBackdrop>
-        <FlipText>{value}</FlipText>
-      </FlipBackdrop>
+      <FlipText>{value}</FlipText>
       <FlipLine
         $width={flipBoxWidth}
         $top={Math.ceil(flipConstants.height / -2) + 1}
@@ -98,5 +91,7 @@ function FlipBox(props) {
     </FlipBoxContainer>
   );
 }
+
+FlipBox.defaultProps = { value: ` ` };
 
 export default FlipBox;
