@@ -53,13 +53,14 @@ export function FlipRow(props) {
 const FlipBoxContainer = styled.div`
   height: ${(p) => p.$height}px;
   width: ${(p) => p.$width}px;
+  box-sizing: border-box;
 `;
 
 const FlipLine = styled.div`
   position: relative;
   background: ${(p) => p.theme.background};
   height: 1px;
-  width: ${(p) => p.$width}px;
+  width: 100%;
   top: ${(p) => p.$top}px;
 `;
 
@@ -74,6 +75,7 @@ const FlipText = styled.span`
   display: inline-block;
   white-space: pre-wrap;
   width: 100%;
+  box-sizing: border-box;
   border: 2px solid ${(p) => p.theme.background};
 `;
 
