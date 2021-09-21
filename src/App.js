@@ -61,6 +61,14 @@ function App() {
               <Route exact path="/">
                 <Redirect to="/schedule" />
               </Route>
+              <Route
+                exact
+                path="/test"
+                component={() => {
+                  // eslint-disable-next-line no-undef
+                  window.location.href = `https://dev.dnodsa1pfs3qf.amplifyapp.com/schedule`;
+                }}
+              />
               <Route component={FourOhFourPage} />
             </Switch>
           </Router>

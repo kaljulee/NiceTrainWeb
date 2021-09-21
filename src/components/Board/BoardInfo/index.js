@@ -98,8 +98,12 @@ function BoardInfo(props) {
   return (
     <InfoContainer>
       {messageArray.map((m, i) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <FlipRow key={`${i}_info_row`} message={m} rowLength={characterCount} />
+        <FlipRow
+          // eslint-disable-next-line react/no-array-index-key
+          key={`${i}_info_row`}
+          message={m}
+          rowLength={characterCount}
+        />
       ))}
     </InfoContainer>
   );
