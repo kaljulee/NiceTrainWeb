@@ -66,7 +66,7 @@ function App() {
                 path="/test"
                 component={() => {
                   // eslint-disable-next-line no-undef
-                  window.location.href = `https://dev.dnodsa1pfs3qf.amplifyapp.com/schedule`;
+                  window.location.href = `https://dev.dnodsa1pfs3qf.amplifyapp.com`;
                 }}
               />
               <Route component={FourOhFourPage} />
