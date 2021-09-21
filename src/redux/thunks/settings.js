@@ -7,6 +7,7 @@ import {
   deleteSetting
 } from '../../graphql/mutations';
 import { apiKey, SETTING_TYPE } from '../../constants';
+import { allowAPICall } from '../validators';
 
 export const callListSettings = createAsyncThunk('settings/fetch', async () => {
   const response = await API.graphql({
@@ -18,7 +19,10 @@ export const callListSettings = createAsyncThunk('settings/fetch', async () => {
 
 export const callCreateSetting = createAsyncThunk(
   'settings/create',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const response = await API.graphql(
       graphqlOperation(createSetting, { input: data })
     );
@@ -28,7 +32,10 @@ export const callCreateSetting = createAsyncThunk(
 
 export const callSetLongMessage = createAsyncThunk(
   'settings/updateLongMessage',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const updatedSettingData = {
       settingType: SETTING_TYPE.ACTIVE_LONG_MESSAGE
     };
@@ -44,9 +51,13 @@ export const callSetLongMessage = createAsyncThunk(
   }
 );
 
+// todo when this gets used, add in containsChanges code
 export const callUpdateSetting = createAsyncThunk(
   'settings/update',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const updatedSettingData = {};
     Object.keys(data).forEach((k) => {
       if (data[k].length > 0) {
@@ -62,7 +73,10 @@ export const callUpdateSetting = createAsyncThunk(
 
 export const callDeleteSetting = createAsyncThunk(
   'settings/delete',
-  async (data) => {
+  async (data, { getState, rejectWithValue }) => {
+    if (!allowAPICall(getState())) {
+      return rejectWithValue();
+    }
     const response = await API.graphql(
       graphqlOperation(deleteSetting, { input: data })
     );

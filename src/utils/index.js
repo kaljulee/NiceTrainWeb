@@ -91,7 +91,7 @@ export const HMS_ZERO = {
   s: 0
 };
 
-export function getLoginStatus(user, authState) {
+export function calculateLoginStatus(user, authState) {
   if (!user || !user.signInUserSession) {
     return USER_STATES.UNAUTH;
   }
@@ -103,4 +103,9 @@ export function getLoginStatus(user, authState) {
     return USER_STATES.ADMIN;
   }
   return USER_STATES.GUEST;
+}
+
+export function flattenScheduledActivites(sActivities) {
+  const keys = Object.keys(sActivities);
+  return keys.reduce((acc, k) => acc.concat(sActivities[k]), []);
 }

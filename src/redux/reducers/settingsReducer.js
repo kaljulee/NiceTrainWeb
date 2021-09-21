@@ -1,13 +1,20 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { callListSettings } from '../thunks/settings';
+import { USER_STATES } from '../../constants';
 
-const initialState = {};
+const initialState = {
+  loginStatus: USER_STATES.UNAUTH
+};
 
 export const settingsSlice = createSlice({
   name: 'settings',
   initialState,
-  reducers: {},
+  reducers: {
+    setLoginStatus(state, action) {
+      state.loginStatus = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(callListSettings.fulfilled, (state, action) => {
@@ -19,4 +26,8 @@ export const settingsSlice = createSlice({
   }
 });
 
-export default settingsSlice.reducer;
+const { actions, reducer } = settingsSlice;
+
+export const { setLoginStatus } = actions;
+
+export default reducer;

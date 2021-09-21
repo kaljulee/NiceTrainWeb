@@ -1,3 +1,5 @@
+import { USER_STATES } from '../../constants';
+
 export function stringIsOk(value) {
   return value !== undefined && !!value && value.length > 0;
 }
@@ -70,4 +72,18 @@ export function longMessageValidator(data) {
     return { isOk: false, error: 'bad text' };
   }
   return { isOk: true };
+}
+
+export function containsChanges(update, original) {
+  let changed = false;
+  Object.keys(update).forEach((k) => {
+    if (update[k] !== undefined && update[k] !== original[k]) {
+      changed = true;
+    }
+  });
+  return changed;
+}
+
+export function allowAPICall(state) {
+  return state.settings.loginStatus === USER_STATES.ADMIN;
 }

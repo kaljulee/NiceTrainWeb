@@ -6,7 +6,8 @@ import {
   AmplifySignIn,
   AmplifySignUp
 } from '@aws-amplify/ui-react';
-import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import { onAuthUIStateChange } from '@aws-amplify/ui-components';
+import { connect, useDispatch } from 'react-redux';
 import StationPanel from './Panels/StationPanel';
 import YouTubeResourcePanel from './Panels/YouTubeResourcePanel';
 import ActivityPanel from './Panels/ActivityPanel';
@@ -15,22 +16,36 @@ import FormatPanel from './Panels/FormatPanel';
 import { NTPage, NTSection } from '../../components/layoutComponents';
 import { TabContainer } from '../../components/styledComponents';
 import LongMessagePanel from './Panels/LongMessagePanel';
+import { calculateLoginStatus } from '../../utils';
+import { setLoginStatus } from '../../redux/reducers/settingsReducer';
+import { USER_STATES } from '../../constants';
 
-function AdminPage() {
-  const [authState, setAuthState] = useState();
-  const [user, setUser] = useState();
-  useEffect(
-    () =>
-      onAuthUIStateChange((nextAuthState, authData) => {
-        setAuthState(nextAuthState);
-        setUser(authData);
-      }),
-    []
-  );
+function AdminPage(props) {
+  const { loginStatus } = props;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    onAuthUIStateChange((nextAuthState, authData) => {
+      dispatch(setLoginStatus(calculateLoginStatus(authData, nextAuthState)));
+    });
+  }, []);
 
   return (
     <NTPage>
-      {authState === AuthState.SignedIn && user ? (
+      {loginStatus === USER_STATES.UNAUTH ? (
+        <AmplifyAuthContainer>
+          <AmplifyAuthenticator>
+            <AmplifySignIn slot="sign-in" headerText="Nice Train Admin" />
+            <AmplifySignUp
+              slot="sign-up"
+              formFields={[
+                { type: 'username' },
+                { type: 'password' },
+                { type: 'email' }
+              ]}
+            />
+          </AmplifyAuthenticator>
+        </AmplifyAuthContainer>
+      ) : (
         <NTSection
           style={{
             height: '100%',
@@ -69,23 +84,13 @@ function AdminPage() {
             </Tabs>
           </TabContainer>
         </NTSection>
-      ) : (
-        <AmplifyAuthContainer>
-          <AmplifyAuthenticator>
-            <AmplifySignIn slot="sign-in" headerText="Nice Train Admin" />
-            <AmplifySignUp
-              slot="sign-up"
-              formFields={[
-                { type: 'username' },
-                { type: 'password' },
-                { type: 'email' }
-              ]}
-            />
-          </AmplifyAuthenticator>
-        </AmplifyAuthContainer>
       )}
     </NTPage>
   );
 }
 
-export default AdminPage;
+const mapStateToProps = (state) => ({
+  loginStatus: state.settings.loginStatus
+});
+
+export default connect(mapStateToProps)(AdminPage);
