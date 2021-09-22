@@ -12,7 +12,6 @@ import { STATUS_OPTIONS } from '../../../constants';
 const ScheduleTable = styled.table`
   width: 100%;
   background: ${(p) => p.theme.background};
-  padding: 1vh 1vw 1vh 1vw;
 `;
 
 const ScheduleHeaders = styled.thead`
@@ -74,6 +73,9 @@ function BoardSchedule(props) {
     }
   }
 
+  // todo need to get row to fit in window
+  // todo i want to keep the letters from getting too small, but
+  // todo maybe have them scale
   function renderCell(cell) {
     switch (cell.column.Header) {
       // intentional fallthrough
@@ -129,7 +131,7 @@ function BoardSchedule(props) {
         {rows.map((row) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()} style={{ width: 'fit-content' }}>
+            <tr {...row.getRowProps()} style={{ width: '100%' }}>
               {row.cells.map((cell) => (
                 <td
                   {...cell.getCellProps()}

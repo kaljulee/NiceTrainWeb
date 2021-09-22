@@ -7,6 +7,7 @@ import styled from '@emotion/styled';
 const StyledButton = styled.button`
   background: ${(p) => p.theme.background};
   border: none;
+  padding: 0;
 `;
 
 function InfoButton(props) {
@@ -19,8 +20,8 @@ function InfoButton(props) {
         style={{
           display: 'flex',
           color: theme.accent,
-          width: '2vh',
-          height: '2vh'
+          width: '1.75vh',
+          height: '1.75vh'
         }}
       />
     </StyledButton>
