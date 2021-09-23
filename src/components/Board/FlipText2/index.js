@@ -6,7 +6,8 @@ export const FlipLine = styled.div`
   background: ${(p) => p.theme.background};
   height: 1px;
   width: 100%;
-  top: ${Math.ceil(flipConstants.height / -2)}px;
+  top: ${(p) =>
+    (/\S/.test(p.value) ? -1 : 1) * Math.ceil(flipConstants.height / 2)}px;
   border-left: 1px solid ${(p) => p.theme.background};
   border-right: 1px solid ${(p) => p.theme.background};
 `;

@@ -11,9 +11,14 @@ const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   height: 100%;
   align-self: center;
+`;
+
+const InfoRow = styled.div`
+  border-top: 2px solid ${(p) => p.theme.background};
+  border-bottom: 2px solid ${(p) => p.theme.background};
 `;
 
 function getWindowDimensions() {
@@ -98,12 +103,14 @@ function BoardInfo(props) {
   return (
     <InfoContainer>
       {messageArray.map((m, i) => (
-        <FlipRow
-          // eslint-disable-next-line react/no-array-index-key
-          key={`${i}_info_row`}
-          message={m}
-          rowLength={characterCount}
-        />
+        <InfoRow>
+          <FlipRow
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${i}_info_row`}
+            message={m}
+            rowLength={characterCount}
+          />
+        </InfoRow>
       ))}
     </InfoContainer>
   );

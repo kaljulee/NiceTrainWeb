@@ -1,45 +1,31 @@
 import React from 'react';
-import { useCurrentWidth } from 'react-socks';
 import styled from '@emotion/styled';
-import flipConstants from '../flipConstants';
 import { mq5 } from '../../../../styles/breakpoints';
+import { FlipBackdrop, FlipBoxContainer, FlipText } from '../../FlipText2';
 
-const LongFlipWrapper = styled.div`
+const LongFlipBoxContainer = styled(FlipBoxContainer)`
   width: 90%;
-  background: ${(p) => p.theme.secondarySurface};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  ${mq5({
-    fontSize: [8, 12, 12, 16, 16],
-    paddingLeft: [5, 10, 15, 15, 15],
-    paddingRight: [5, 10, 15, 15, 15]
-  })}
-  span {
-    letter-spacing: 2px;
-    font-family: helvetica;
-    display: inline-block;
-    color: ${(p) => p.$color};
-    padding-top: 2px;
-    font-weight: bold;
-  }
 `;
 
-LongFlipWrapper.defaultProps = { $color: 'white' };
+const LongFlipBackdrop = styled(FlipBackdrop)`
+  width: 100%;
+`;
+
+const LongFlipText = styled(FlipText)`
+  color: ${(p) => p.$color};
+  font-weight: bold;
+`;
 
 function LongFlip(props) {
   const { message, textColor } = props;
-  const width = useCurrentWidth();
   return (
-    <LongFlipWrapper
-      style={{
-        height: flipConstants.height
-      }}
-      $color={textColor}
-    >
-      <span>{message ? message.toUpperCase() : ''}</span>
-    </LongFlipWrapper>
+    <LongFlipBoxContainer>
+      <LongFlipBackdrop>
+        <LongFlipText $color={textColor} style={{ fontSize: 10 }}>
+          {message ? message.toUpperCase() : ''}
+        </LongFlipText>
+      </LongFlipBackdrop>
+    </LongFlipBoxContainer>
   );
 }
 
