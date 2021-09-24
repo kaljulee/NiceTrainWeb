@@ -7,6 +7,7 @@ import styled from '@emotion/styled';
 const StyledButton = styled.button`
   background: ${(p) => p.theme.background};
   border: none;
+  padding: 0;
 `;
 
 function InfoButton(props) {

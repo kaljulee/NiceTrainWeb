@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled';
-import flipConstants from '../flipConstants';
+import { FlipBackdrop, FlipBoxContainer, FlipLine, FlipText } from '../index';
 
 function convertStringToFlip(message, rowLength) {
   const unlimitedLength = !rowLength;
@@ -42,7 +41,9 @@ export function FlipRow(props) {
   return (
     <div
       style={{
-        display: 'flex'
+        display: 'flex',
+        width: 'fit-content',
+        textAlign: 'center'
       }}
     >
       {convertStringToFlip(message, rowLength)}
@@ -50,48 +51,19 @@ export function FlipRow(props) {
   );
 }
 
-const FlipBoxContainer = styled.div`
-  height: ${(p) => p.$height}px;
-  width: ${(p) => p.$width}px;
-`;
-
-const FlipLine = styled.div`
-  position: relative;
-  background: ${(p) => p.theme.background};
-  height: 1px;
-  width: ${(p) => p.$width}px;
-  top: ${(p) => p.$top}px;
-`;
-
-// const FlipBackdrop = styled.div``;
-
-const FlipText = styled.span`
-  text-align: center;
-  font-size: 20px;
-  color: ${(p) => p.theme.onSecondarySurface};
-  background: ${(p) => p.theme.secondarySurface};
-  position: relative;
-  display: inline-block;
-  white-space: pre-wrap;
-  width: 100%;
-  border: 2px solid ${(p) => p.theme.background};
-`;
-
 // single letter in flip box
 function FlipBox(props) {
   const { value } = props;
-  const flipBoxWidth = flipConstants.width;
   return (
-    <FlipBoxContainer $height={flipConstants.height} $width={flipBoxWidth}>
-      <FlipText>{value}</FlipText>
-      <FlipLine
-        $width={flipBoxWidth}
-        $top={Math.ceil(flipConstants.height / -2) + 1}
-      />
+    <FlipBoxContainer>
+      <FlipBackdrop>
+        <FlipText>{value}</FlipText>
+        <FlipLine value={value} />
+      </FlipBackdrop>
     </FlipBoxContainer>
   );
 }
 
-FlipBox.defaultProps = { value: ` ` };
+FlipBox.defaultProps = { value: ' ' };
 
 export default FlipBox;
