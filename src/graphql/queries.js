@@ -234,6 +234,7 @@ export const getActivity = /* GraphQL */ `
       description
       colorID
       youTubeResourceID
+      youTubeTimeStamp
       createdAt
       updatedAt
       scheduledActivities {
@@ -268,6 +269,7 @@ export const listActivities = /* GraphQL */ `
         description
         colorID
         youTubeResourceID
+        youTubeTimeStamp
         createdAt
         updatedAt
         scheduledActivities {
@@ -294,6 +296,7 @@ export const getYouTubeResource = /* GraphQL */ `
           description
           colorID
           youTubeResourceID
+          youTubeTimeStamp
           createdAt
           updatedAt
         }

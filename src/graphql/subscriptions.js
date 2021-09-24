@@ -360,6 +360,7 @@ export const onCreateActivity = /* GraphQL */ `
       description
       colorID
       youTubeResourceID
+      youTubeTimeStamp
       createdAt
       updatedAt
       scheduledActivities {
@@ -389,6 +390,7 @@ export const onUpdateActivity = /* GraphQL */ `
       description
       colorID
       youTubeResourceID
+      youTubeTimeStamp
       createdAt
       updatedAt
       scheduledActivities {
@@ -418,6 +420,7 @@ export const onDeleteActivity = /* GraphQL */ `
       description
       colorID
       youTubeResourceID
+      youTubeTimeStamp
       createdAt
       updatedAt
       scheduledActivities {
@@ -455,6 +458,7 @@ export const onCreateYouTubeResource = /* GraphQL */ `
           description
           colorID
           youTubeResourceID
+          youTubeTimeStamp
           createdAt
           updatedAt
         }
@@ -479,6 +483,7 @@ export const onUpdateYouTubeResource = /* GraphQL */ `
           description
           colorID
           youTubeResourceID
+          youTubeTimeStamp
           createdAt
           updatedAt
         }
@@ -503,6 +508,7 @@ export const onDeleteYouTubeResource = /* GraphQL */ `
           description
           colorID
           youTubeResourceID
+          youTubeTimeStamp
           createdAt
           updatedAt
         }
