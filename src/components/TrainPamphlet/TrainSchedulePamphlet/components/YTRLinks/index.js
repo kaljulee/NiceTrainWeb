@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { connect } from 'react-redux';
-import YouTube from 'react-youtube';
+import styled from '@emotion/styled';
 import DetailsSection from '../DetailsSection';
-import {
-  InfoColumn,
-  NoInfoPlaceholder,
-  PamphletSubLabel
-} from '../../../trainPamphlet';
+import { InfoColumn, NoInfoPlaceholder } from '../../../trainPamphlet';
 import { videoIDRegex } from '../../../../../utils';
+import VideoPlayer from '../../../../VideoPlayer';
+import { mq5 } from '../../../../../styles/breakpoints';
+
+const columnPadding = [0, '1vw', '2vw', '2.5vw', '5vw'];
+
+const YTRColumn = styled(InfoColumn)`
+  ${mq5({ paddingLeft: columnPadding, paddingRight: columnPadding })}
+`;
 
 function YTRLinks(props) {
   const { activity, youTubeResources } = props;
@@ -15,12 +19,7 @@ function YTRLinks(props) {
     <DetailsSection title="Resources">
       {activity && youTubeResources[0] ? (
         <InfoColumn>
-          <PamphletSubLabel>YouTube Links</PamphletSubLabel>
-          <a href={youTubeResources[0].link}>
-            {`${youTubeResources[0].description} by ${youTubeResources[0].author}
-            `}
-          </a>
-          <YouTube videoId={youTubeResources[0].videoID} />
+          <VideoPlayer url={youTubeResources[0].link} />
         </InfoColumn>
       ) : (
         <NoInfoPlaceholder>No Resource Links Available</NoInfoPlaceholder>
