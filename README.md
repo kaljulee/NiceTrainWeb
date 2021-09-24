@@ -6,3 +6,5 @@ www.nice-train.com
 
 I wanted an easy way to plan, communicate, and get feedback about the training schedule at our club.
 Version 1 is up, with publicly visible schedule information and a private admin menus for updating the data.
+
+Curious what the plan going forward is?  [The Trello board is here](https://trello.com/b/WVydpImA/nice-train-website).
