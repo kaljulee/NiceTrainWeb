@@ -22,7 +22,7 @@ export const FlipBackdrop = styled.div`
   height: 100%;
   width: ${flipConstants.width}px;
   position: relative;
-  border: 1px solid ${(p) => p.theme.background};
+  border: ${flipConstants.border}px solid ${(p) => p.theme.background};
   background: ${(p) => p.theme.primarySurface};
   margin: auto;
 `;
