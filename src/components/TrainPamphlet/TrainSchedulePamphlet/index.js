@@ -28,15 +28,15 @@ const DetailsHeader = styled(NTRow)`
     color: ${(p) => p.theme.onPrimarySurface};
     ${mq5({ fontSize: [24, 24, 30, 30, 35] })}
   }
-  flex: 1;
+  height: 10%;
 `;
 
 const Map = styled(NTColumn)`
-  flex: 4;
+  height: 40%;
 `;
 
 const Display = styled(NTRow)`
-  flex: 5;
+  height: 50%;
   width: 100%;
 `;
 
@@ -84,7 +84,7 @@ function TrainDetails(props) {
   return (
     <ThemeProvider theme={trainPamphletTheme}>
       <TrainDetailsToggle isOpen={!!trainID}>
-        <NTColumn style={{ height: '80vh' }}>
+        <NTColumn style={{ height: '80vh', display: 'block' }}>
           <DetailsHeader>
             <DateTimeInfo>
               <span>{trainDate}</span>

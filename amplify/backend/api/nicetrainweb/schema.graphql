@@ -94,6 +94,7 @@ type Activity
   colorID: ID
   scheduledActivities: [ScheduledActivity] @connection(name: "byActivity", fields: ["id"])
   youTubeResourceID: ID
+  youTubeTimeStamp: String
 }
 
 # Activities have an optional primary YTR; might have an arbitrary number
