@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { connect } from 'react-redux';
+import styled from '@emotion/styled';
 import DetailsSection from '../DetailsSection';
-import {
-  InfoColumn,
-  NoInfoPlaceholder,
-  PamphletSubLabel
-} from '../../../trainPamphlet';
+import { InfoColumn, NoInfoPlaceholder } from '../../../trainPamphlet';
+import { videoIDRegex } from '../../../../../utils';
+import VideoPlayer from '../../../../VideoPlayer';
+import { mq5 } from '../../../../../styles/breakpoints';
+
+const columnPadding = [0, '1vw', '2vw', '2.5vw', '10vw'];
+
+const YTRColumn = styled(InfoColumn)`
+  ${mq5({ paddingLeft: columnPadding, paddingRight: columnPadding })}
+`;
 
 function YTRLinks(props) {
   const { activity, youTubeResources } = props;
   return (
     <DetailsSection title="Resources">
       {activity && youTubeResources[0] ? (
-        <InfoColumn>
-          <PamphletSubLabel>YouTube Links</PamphletSubLabel>
-          <a href={youTubeResources[0].link}>
-            {`${youTubeResources[0].description} by ${youTubeResources[0].author}
-            `}
-          </a>
-        </InfoColumn>
+        <YTRColumn>
+          <VideoPlayer url={youTubeResources[0].link} />
+        </YTRColumn>
       ) : (
         <NoInfoPlaceholder>No Resource Links Available</NoInfoPlaceholder>
       )}
@@ -41,10 +43,11 @@ const mapDispatchToProps = (state, props) => {
   if (!baseActivity || !baseActivity.youTubeResourceID) {
     return { youTubeResources: [] };
   }
+  const ytr = youTubeResources.find(
+    (y) => y.id === baseActivity.youTubeResourceID
+  );
   return {
-    youTubeResources: [
-      youTubeResources.find((y) => y.id === baseActivity.youTubeResourceID)
-    ]
+    youTubeResources: [{ ...ytr, videoID: videoIDRegex(ytr.link) }]
   };
 };
 
