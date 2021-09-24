@@ -8,7 +8,7 @@ const LongFlipBoxContainer = styled(FlipBoxContainer)`
 `;
 
 const LongFlipBackdrop = styled(FlipBackdrop)`
-  width: 80%;
+  width: 100%;
   margin-left: 0;
 `;
 
