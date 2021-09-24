@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import YouTube from 'react-youtube';
 import DetailsSection from '../DetailsSection';
 import {
   InfoColumn,
   NoInfoPlaceholder,
   PamphletSubLabel
 } from '../../../trainPamphlet';
+import { videoIDRegex } from '../../../../../utils';
 
 function YTRLinks(props) {
   const { activity, youTubeResources } = props;
@@ -18,6 +20,7 @@ function YTRLinks(props) {
             {`${youTubeResources[0].description} by ${youTubeResources[0].author}
             `}
           </a>
+          <YouTube videoId={youTubeResources[0].videoID} />
         </InfoColumn>
       ) : (
         <NoInfoPlaceholder>No Resource Links Available</NoInfoPlaceholder>
@@ -41,10 +44,11 @@ const mapDispatchToProps = (state, props) => {
   if (!baseActivity || !baseActivity.youTubeResourceID) {
     return { youTubeResources: [] };
   }
+  const ytr = youTubeResources.find(
+    (y) => y.id === baseActivity.youTubeResourceID
+  );
   return {
-    youTubeResources: [
-      youTubeResources.find((y) => y.id === baseActivity.youTubeResourceID)
-    ]
+    youTubeResources: [{ ...ytr, videoID: videoIDRegex(ytr.link) }]
   };
 };
 
