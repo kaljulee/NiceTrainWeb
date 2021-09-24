@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { mq5 } from '../../../../styles/breakpoints';
-import { FlipBackdrop, FlipBoxContainer, FlipText } from '../../FlipText2';
+import { FlipBackdrop, FlipBoxContainer, FlipText } from '../index';
 
 const LongFlipBoxContainer = styled(FlipBoxContainer)`
   width: 90%;

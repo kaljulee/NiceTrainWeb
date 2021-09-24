@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import flipConstants from '../FlipText/flipConstants';
+import flipConstants from './flipConstants';
 
 export const FlipLine = styled.div`
   position: relative;

@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  FlipBackdrop,
-  FlipBoxContainer,
-  FlipLine,
-  FlipText
-} from '../../FlipText2';
+import { FlipBackdrop, FlipBoxContainer, FlipLine, FlipText } from '../index';
 
 function convertStringToFlip(message, rowLength) {
   const unlimitedLength = !rowLength;
