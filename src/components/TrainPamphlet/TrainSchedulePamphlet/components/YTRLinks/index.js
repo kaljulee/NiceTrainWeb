@@ -7,7 +7,7 @@ import { videoIDRegex } from '../../../../../utils';
 import VideoPlayer from '../../../../VideoPlayer';
 import { mq5 } from '../../../../../styles/breakpoints';
 
-const columnPadding = [0, '1vw', '2vw', '2.5vw', '5vw'];
+const columnPadding = [0, '1vw', '2vw', '2.5vw', '10vw'];
 
 const YTRColumn = styled(InfoColumn)`
   ${mq5({ paddingLeft: columnPadding, paddingRight: columnPadding })}
@@ -18,9 +18,9 @@ function YTRLinks(props) {
   return (
     <DetailsSection title="Resources">
       {activity && youTubeResources[0] ? (
-        <InfoColumn>
+        <YTRColumn>
           <VideoPlayer url={youTubeResources[0].link} />
-        </InfoColumn>
+        </YTRColumn>
       ) : (
         <NoInfoPlaceholder>No Resource Links Available</NoInfoPlaceholder>
       )}
