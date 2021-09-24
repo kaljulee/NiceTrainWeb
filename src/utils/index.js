@@ -109,3 +109,14 @@ export function flattenScheduledActivites(sActivities) {
   const keys = Object.keys(sActivities);
   return keys.reduce((acc, k) => acc.concat(sActivities[k]), []);
 }
+
+export function videoIDRegex(url) {
+  const regExp =
+    // eslint-disable-next-line no-useless-escape
+    /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  if (match && match[2].length === 11) {
+    return match[2];
+  }
+  return undefined;
+}
