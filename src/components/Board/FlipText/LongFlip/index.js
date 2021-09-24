@@ -8,12 +8,14 @@ const LongFlipBoxContainer = styled(FlipBoxContainer)`
 `;
 
 const LongFlipBackdrop = styled(FlipBackdrop)`
-  width: 100%;
+  width: 80%;
+  margin-left: 0;
 `;
 
 const LongFlipText = styled(FlipText)`
   color: ${(p) => p.$color};
   font-weight: bold;
+  ${mq5({ fontSize: [8, 12, 12, 16, 16] })}
 `;
 
 function LongFlip(props) {
@@ -21,7 +23,7 @@ function LongFlip(props) {
   return (
     <LongFlipBoxContainer>
       <LongFlipBackdrop>
-        <LongFlipText $color={textColor} style={{ fontSize: 10 }}>
+        <LongFlipText $color={textColor}>
           {message ? message.toUpperCase() : ''}
         </LongFlipText>
       </LongFlipBackdrop>
