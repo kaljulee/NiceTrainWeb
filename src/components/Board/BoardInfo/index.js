@@ -50,7 +50,7 @@ function useWindowDimensions() {
 }
 
 function calculateCharacterCount(width) {
-  return Math.floor(width / flipConstants.width) - 2;
+  return Math.floor(width / (flipConstants.width + flipConstants.border * 2));
 }
 
 function createMessageArray(words, rowSize, minRowCount) {
