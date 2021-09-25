@@ -1,26 +1,23 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import styled from '@emotion/styled';
+import { SizeMe } from 'react-sizeme';
 import DetailsSection from '../DetailsSection';
 import { InfoColumn, NoInfoPlaceholder } from '../../../trainPamphlet';
 import { videoIDRegex } from '../../../../../utils';
 import VideoPlayer from '../../../../VideoPlayer';
-import { mq5 } from '../../../../../styles/breakpoints';
-
-const columnPadding = [0, '1vw', '2vw', '2.5vw', '5vw'];
-
-const YTRColumn = styled(InfoColumn)`
-  ${mq5({ paddingLeft: columnPadding, paddingRight: columnPadding })}
-`;
 
 function YTRLinks(props) {
   const { activity, youTubeResources } = props;
   return (
-    <DetailsSection title="Resources">
+    <DetailsSection>
       {activity && youTubeResources[0] ? (
-        <InfoColumn>
-          <VideoPlayer url={youTubeResources[0].link} />
-        </InfoColumn>
+        <SizeMe monitorHeight monitorWidth>
+          {({ size }) => (
+            <InfoColumn>
+              <VideoPlayer size={size} url={youTubeResources[0].link} />
+            </InfoColumn>
+          )}
+        </SizeMe>
       ) : (
         <NoInfoPlaceholder>No Resource Links Available</NoInfoPlaceholder>
       )}
