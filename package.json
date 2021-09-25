@@ -37,6 +37,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-select": "^4.3.1",
+    "react-sizeme": "^3.0.2",
     "react-socks": "^2.2.0",
     "react-svg": "^14.0.3",
     "react-table": "^7.7.0",
