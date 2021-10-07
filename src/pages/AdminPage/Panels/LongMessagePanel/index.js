@@ -54,7 +54,6 @@ function LongMessagePanel() {
       title="Board Message"
       listData={listData}
       listFields={listFields}
-      maxListHeight="20vh"
       enforceDirection="column"
     >
       <LongMessageForm title={title} />
