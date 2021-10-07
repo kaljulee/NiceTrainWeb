@@ -10,7 +10,11 @@ import {
 import { scheduledTrainValidator } from '../../../../redux/validators';
 import AdminInput from '../../../../components/Admin/AdminInput';
 import AdminSubmitButtonBar from '../../../../components/Admin/AdminSubmitButtonBar';
-import { createOption, getCurrentOption } from '../../../../utils';
+import {
+  createOption,
+  getCurrentOption,
+  mapToOptions
+} from '../../../../utils';
 import AdminSelect from '../../../../components/Admin/AdminSelect';
 import AdminDatePicker from '../../../../components/Admin/AdminDatePicker';
 import AdminTimePicker from '../../../../components/Admin/AdminTimePicker';
@@ -230,7 +234,7 @@ function ScheduledTrainForm(props) {
               />
               <AdminSelect
                 label="station"
-                options={stations.map((s) => createOption(s, 'name'))}
+                options={mapToOptions(stations, 'name')}
                 value={stationOption}
                 onChange={handleStationSelect}
               />

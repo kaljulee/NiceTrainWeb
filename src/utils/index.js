@@ -4,6 +4,16 @@ export function createOption(item, labelField) {
   return { label: item[labelField], value: item.id };
 }
 
+export function mapToOptions(items, labelField) {
+  // check if items list exists,
+  // if there are more than zero items,
+  // or the first item does not contain the field
+  if (!items || items.length < 1 || !items[0][labelField]) {
+    return [{ label: 'no options', value: -1 }];
+  }
+  return items.map((i) => createOption(i, labelField));
+}
+
 export function getCurrentOption(items = [], id, labelField) {
   const currentItem = items.find((item) => item.id === id);
   if (!currentItem) {
