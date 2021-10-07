@@ -1,4 +1,22 @@
 {
+  "gelya": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nicetrainweb-gelya-201501-authRole",
+      "UnauthRoleArn": "arn:aws:iam::620260802344:role/amplify-nicetrainweb-gelya-201501-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::620260802344:role/amplify-nicetrainweb-gelya-201501-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-nicetrainweb-gelya-201501-deployment",
+      "UnauthRoleName": "amplify-nicetrainweb-gelya-201501-unauthRole",
+      "StackName": "amplify-nicetrainweb-gelya-201501",
+      "StackId": "arn:aws:cloudformation:us-east-1:620260802344:stack/amplify-nicetrainweb-gelya-201501/9b2fd110-1b18-11ec-95ee-12d15228996b",
+      "AmplifyAppId": "dnodsa1pfs3qf"
+    },
+    "categories": {
+      "auth": {
+        "nicetrainweb58d515ea": {}
+      }
+    }
+  },
   "staging": {
     "awscloudformation": {
       "AuthRoleName": "amplify-amplifyefdd18cf68184-staging-121754-authRole",
