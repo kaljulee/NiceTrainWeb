@@ -13,8 +13,10 @@ export function adminUpdator(
   console.log('going to run validation');
   const ytrValidation = validator(outData);
   console.log('validated?');
-  console.log(ytrValidation);
+  console.log(ytrValidation.isOk);
   if (!ytrValidation.isOk) {
+    console.log('not ok');
+    console.log(ytrValidation.error);
     errorPublisher(ytrValidation.error);
     return;
   }
