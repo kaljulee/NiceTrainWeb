@@ -199,6 +199,8 @@ function ScheduledTrainForm(props) {
                   <NTLabel>date</NTLabel>
                   <AdminDatePicker
                     onBlur={() => {
+                      console.log('--- date picker blur');
+                      console.table(dateValue);
                       saveInput({ train_date: dateValue });
                     }}
                     value={dateValue}
