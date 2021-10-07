@@ -10,7 +10,8 @@ function AdminPanel(props) {
     listData,
     listFields,
     enforceDirection,
-    onCurrentDatumChange
+    onCurrentDatumChange,
+    maxListHeight
   } = props;
   const [currentDatum, setCurrentDatum] = useState();
 
@@ -46,6 +47,7 @@ function AdminPanel(props) {
       <NTColumn>
         <NTLabel>{title}</NTLabel>
         <AdminList
+          maxHeight={maxListHeight}
           data={listData}
           fields={listFields}
           activeID={currentDatum ? currentDatum.id : undefined}
