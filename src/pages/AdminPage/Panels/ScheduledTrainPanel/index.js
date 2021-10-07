@@ -15,6 +15,7 @@ function ScheduledTrainPanel() {
       listData={listData}
       listFields={listFields}
       enforceDirection="column"
+      maxListHeight="20vh"
     >
       <ScheduledTrainForm title={title} />
     </AdminPanel>
