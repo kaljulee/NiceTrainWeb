@@ -7,8 +7,14 @@ import { NTDatePicker } from '../../styledComponents';
 import { NTBox } from '../../layoutComponents';
 
 function AdminDatePicker(props) {
+  console.log('admindatepicker');
   const { value, onChange, onBlur } = props;
+  console.log('recd value');
+  console.log(value);
   const dateValue = value ? new Date(`${value}T00:00:00`) : undefined;
+  console.log('date value: ');
+  console.log(dateValue);
+  console.log('.....');
   return (
     <NTBox>
       <NTDatePicker onBlur={onBlur}>
