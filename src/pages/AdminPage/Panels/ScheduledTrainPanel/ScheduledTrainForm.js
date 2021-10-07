@@ -85,7 +85,8 @@ function ScheduledTrainForm(props) {
 
   function saveInput(newData) {
     console.log('new data being saved in saveInput');
-    console.table(newData);
+    console.log(newData);
+    console.log('....');
     adminUpdator(
       newData,
       currentDatum.id,
