@@ -11,7 +11,8 @@ import { NTBox } from '../../layoutComponents';
 // todo this needs to handle fields that are IDs,
 // todo needs a way to get the relevant info about related data
 function AdminList(props) {
-  const { title, data, fields, onDatumClick, activeID, maxHeight } = props;
+  const { title, data, fields, onDatumClick, activeID, maxHeight, minHeight } =
+    props;
 
   function handleDatumClick(id) {
     onDatumClick(id);
@@ -23,6 +24,7 @@ function AdminList(props) {
       <NTList
         style={{
           maxHeight,
+          minHeight,
           overflow: 'auto'
         }}
       >
@@ -53,6 +55,7 @@ function AdminList(props) {
 
 AdminList.defaultProps = {
   maxHeight: '60vh',
+  minHeight: '5vh',
   data: []
 };
 
