@@ -1,6 +1,7 @@
 import { USER_STATES } from '../constants';
 
 export function createOption(item, labelField) {
+  if (!item) return undefined;
   return { label: item[labelField], value: item.id };
 }
 
