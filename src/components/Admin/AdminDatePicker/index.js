@@ -21,6 +21,9 @@ function AdminDatePicker(props) {
     <NTBox>
       <NTDatePicker onBlur={onBlur}>
         <DatePicker
+          onBlur={() => {
+            console.log('bottom date picker blur');
+          }}
           onCalendarClose={console.log('cal closed')}
           value={dateValue}
           onChange={(d) => onChange(formatDate(d))}
