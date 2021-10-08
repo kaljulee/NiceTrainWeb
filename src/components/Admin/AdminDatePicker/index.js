@@ -13,10 +13,9 @@ function AdminDatePicker(props) {
   console.log(value);
   const dateValue = value ? new Date(`${value}T00:00:00`) : undefined;
   console.log('date value: ');
-  console.table(dateValue);
+  console.log(dateValue);
   // eslint-disable-next-line no-undef
-  console.log(`is mac? ${navigator.appVersion.indexOf('Mac')}` !== -1);
-
+  console.log(`is mac? ${navigator.appVersion.indexOf('Mac') !== -1}`);
   console.log('.....');
   return (
     <NTBox>

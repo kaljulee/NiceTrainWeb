@@ -16,7 +16,9 @@ export function adminUpdator(
   console.log(ytrValidation.isOk);
   console.log('outData');
   Object.keys(outData).forEach((k) => {
+    console.log('KEY');
     console.log(k);
+    console.log('VALUE');
     console.log(outData[k]);
   });
   console.log('oooooo');

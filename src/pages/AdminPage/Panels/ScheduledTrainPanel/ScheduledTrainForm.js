@@ -137,6 +137,8 @@ function ScheduledTrainForm(props) {
   }
 
   function handleDateChange(event) {
+    console.log('detected date change, setting date to');
+    console.log(event);
     setDateValue(event);
   }
 
