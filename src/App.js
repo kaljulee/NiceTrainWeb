@@ -45,7 +45,7 @@ function App() {
             alignItems: 'center'
           }}
         >
-          <Version>v1.4</Version>
+          <Version>v1.3</Version>
           <Router>
             <TopNav />
             <Switch>
