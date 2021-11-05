@@ -4,7 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import {
   callCreateYouTubeResource,
   callDeleteYouTubeResource,
-  callUpdateYouTubeResource
+  callUpdateYouTubeResource,
 } from '../../../../redux/thunks/youTubeResource';
 import { youTubeResourceValidator } from '../../../../redux/validators';
 import AdminInput from '../../../../components/Admin_Old/AdminInput';
@@ -54,7 +54,7 @@ function YouTubeResourceForm(props) {
     const newYTR = {
       description: descriptionValue,
       link: linkValue,
-      author: authorValue
+      author: authorValue,
     };
     const ytrValidation = youTubeResourceValidator(newYTR);
     if (!ytrValidation.isOk) {
@@ -74,7 +74,7 @@ function YouTubeResourceForm(props) {
       <NTColumn>
         <NTColumn>
           <AdminInput
-            label="description"
+            label='description'
             value={descriptionValue}
             onChange={handleDescriptionChange}
             onBlur={() => {
@@ -82,7 +82,7 @@ function YouTubeResourceForm(props) {
             }}
           />
           <AdminInput
-            label="author"
+            label='author'
             value={authorValue}
             onChange={handleAuthorChange}
             onBlur={() => {
@@ -90,7 +90,7 @@ function YouTubeResourceForm(props) {
             }}
           />
           <AdminInput
-            label="link"
+            label='link'
             value={linkValue}
             onChange={handleLinkChange}
             onBlur={() => {
@@ -111,7 +111,7 @@ function YouTubeResourceForm(props) {
 }
 
 YouTubeResourceForm.defaultProps = {
-  currentDatum: {}
+  currentDatum: {},
 };
 
 export default YouTubeResourceForm;

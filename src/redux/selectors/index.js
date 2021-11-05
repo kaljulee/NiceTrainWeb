@@ -33,7 +33,7 @@ export const boardTrainInformation = createSelector(
         status,
         train_time,
         train_date,
-        id
+        id,
       } = train;
       const station = stations.find((s) => s.id === stationID);
       const time = train_time.replace(/[:]/g, '');
@@ -46,7 +46,7 @@ export const boardTrainInformation = createSelector(
         station: station ? station.abbrev : 'NONE',
         status,
         groundTag,
-        standingTag
+        standingTag,
       };
       return formattedTrain;
     })

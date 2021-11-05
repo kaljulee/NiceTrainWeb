@@ -5,7 +5,7 @@ import {
   PamphletLabel,
   PamphletSubLabel,
   PamphletDurationInput,
-  PamphletButton
+  PamphletButton,
 } from '../trainPamphlet';
 import { NTColumn, NTRow } from '../../layoutComponents';
 import { secondsToHMS } from '../../../utils';
@@ -15,7 +15,7 @@ function DurationModal(props) {
   const theme = useTheme();
   const modalStyle = {
     overlay: {
-      background: `${theme.background}CC`
+      background: `${theme.background}CC`,
     },
     content: {
       border: `1px solid ${theme.primarySurface}`,
@@ -27,8 +27,8 @@ function DurationModal(props) {
       height: 'fit-content',
       width: '80vw',
       padding: 0,
-      overflow: 'hidden'
-    }
+      overflow: 'hidden',
+    },
   };
 
   const [hms, setHMS] = useState(secondsToHMS(activity.duration));

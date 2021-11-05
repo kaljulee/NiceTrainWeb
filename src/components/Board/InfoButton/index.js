@@ -14,14 +14,14 @@ function InfoButton(props) {
   const { onClick } = props;
   const theme = useTheme();
   return (
-    <StyledButton onClick={onClick} type="button">
+    <StyledButton onClick={onClick} type='button'>
       <FontAwesomeIcon
         icon={faQuestionCircle}
         style={{
           display: 'flex',
           color: theme.accent,
           width: '2vh',
-          height: '2vh'
+          height: '2vh',
         }}
       />
     </StyledButton>

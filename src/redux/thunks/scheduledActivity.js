@@ -4,7 +4,7 @@ import { listScheduledActivities } from '../../graphql/queries';
 import {
   createScheduledActivity,
   updateScheduledActivity,
-  deleteScheduledActivity
+  deleteScheduledActivity,
 } from '../../graphql/mutations';
 import { apiKey } from '../../constants';
 import { allowAPICall, containsChanges } from '../validators';
@@ -15,7 +15,7 @@ export const callListScheduledActivities = createAsyncThunk(
   async () => {
     const graphqlOptions = {
       query: listScheduledActivities,
-      authMode: apiKey
+      authMode: apiKey,
     };
     const response = await API.graphql(graphqlOptions);
     return response.data;
@@ -29,7 +29,7 @@ export const callGetScheduledActivitiesByTrain = createAsyncThunk(
     const graphqlOptions = {
       query: listScheduledActivities,
       authMode: apiKey,
-      variables: { filter }
+      variables: { filter },
     };
     const response = await API.graphql(graphqlOptions);
     return response.data;
@@ -62,7 +62,7 @@ export const callUpdateScheduledActivity = createAsyncThunk(
     if (containsChanges(data, original)) {
       const response = await API.graphql(
         graphqlOperation(updateScheduledActivity, {
-          input: data
+          input: data,
         })
       );
       return response.data;

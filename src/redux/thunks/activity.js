@@ -4,7 +4,7 @@ import { listActivities } from '../../graphql/queries';
 import {
   createActivity,
   updateActivity,
-  deleteActivity
+  deleteActivity,
 } from '../../graphql/mutations';
 import { apiKey } from '../../constants';
 import { allowAPICall, containsChanges } from '../validators';
@@ -14,7 +14,7 @@ export const callListActivities = createAsyncThunk(
   async () => {
     const response = await API.graphql({
       query: listActivities,
-      authMode: apiKey
+      authMode: apiKey,
     });
     return response.data;
   }

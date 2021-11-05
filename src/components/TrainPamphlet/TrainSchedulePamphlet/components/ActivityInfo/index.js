@@ -5,7 +5,7 @@ import {
   InfoColumn,
   InfoRow,
   NoInfoPlaceholder,
-  PamphletSubLabel
+  PamphletSubLabel,
 } from '../../../trainPamphlet';
 import { secondsToDisplay } from '../../../../../utils';
 import { NTColumn } from '../../../../layoutComponents';
@@ -21,7 +21,7 @@ function ActivityInfo(props) {
   }, [duration]);
 
   return (
-    <DetailsSection title="Activity">
+    <DetailsSection title='Activity'>
       {activity ? (
         <NTColumn style={{}}>
           <InfoRow>
@@ -45,7 +45,7 @@ function ActivityInfo(props) {
 const mapStateToProps = (state, props) => {
   const returnValue = {};
   const {
-    train: { formats, activities }
+    train: { formats, activities },
   } = state;
   const { activity } = props;
   if (!activity) {

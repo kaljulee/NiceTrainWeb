@@ -8,7 +8,7 @@ function StationPanel() {
   const listData = useSelector((state) => state.train.stations);
   const listFields = ['name', 'abbrev'];
   return (
-    <AdminPanel title="Stations" listData={listData} listFields={listFields}>
+    <AdminPanel title='Stations' listData={listData} listFields={listFields}>
       <StationForm title={title} />
     </AdminPanel>
   );

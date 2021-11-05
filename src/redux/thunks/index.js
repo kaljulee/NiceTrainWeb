@@ -7,7 +7,7 @@ export function adminUpdator(
 ) {
   const outData = {
     ...update,
-    id
+    id,
   };
 
   const ytrValidation = validator(outData);

@@ -6,7 +6,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
 } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -42,28 +42,28 @@ function App() {
             height: '100%',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           <Version>v1.3</Version>
           <Router>
             <TopNav />
             <Switch>
-              <Route path="/schedule">
+              <Route path='/schedule'>
                 <SchedulePage />
               </Route>
-              <Route exact path="/patches">
+              <Route exact path='/patches'>
                 <PatchesGalleryPage />
               </Route>
-              <Route exact path="/admin">
+              <Route exact path='/admin'>
                 <AdminPage />
               </Route>
-              <Route exact path="/">
-                <Redirect to="/schedule" />
+              <Route exact path='/'>
+                <Redirect to='/schedule' />
               </Route>
               <Route
                 exact
-                path="/test"
+                path='/test'
                 component={() => {
                   // eslint-disable-next-line no-undef
                   window.location.href = `https://dev.dnodsa1pfs3qf.amplifyapp.com`;

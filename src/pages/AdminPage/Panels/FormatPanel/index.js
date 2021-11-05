@@ -8,7 +8,7 @@ function FormatPanel() {
   const listData = useSelector((state) => state.train.formats);
   const listFields = ['name'];
   return (
-    <AdminPanel title="Formats" listData={listData} listFields={listFields}>
+    <AdminPanel title='Formats' listData={listData} listFields={listFields}>
       <FormatForm title={title} />
     </AdminPanel>
   );

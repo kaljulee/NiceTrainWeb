@@ -8,18 +8,18 @@ import {
   getCurrentOption,
   hmsToDisplay,
   hmsToSeconds,
-  secondsToHMS
+  secondsToHMS,
 } from '../../../utils';
 import {
   callDeleteScheduledActivity,
-  callUpdateScheduledActivity
+  callUpdateScheduledActivity,
 } from '../../../redux/thunks/scheduledActivity';
 import { NTColumn, NTRow } from '../../layoutComponents';
 import {
   PamphletDurationButton,
   PamphletInput,
   PamphletLabel,
-  DeleteButton
+  DeleteButton,
 } from '../trainPamphlet';
 import AdminSelect from '../../Admin_Old/AdminSelect';
 import { mq5 } from '../../../styles/breakpoints';
@@ -30,24 +30,24 @@ function customStyler(theme) {
     option: (provided) => ({
       ...provided,
       color: theme.onBackground,
-      backgroundColor: theme.background
+      backgroundColor: theme.background,
     }),
     singleValue: (provided) => ({
       background: theme.background,
-      color: theme.onBackground
+      color: theme.onBackground,
       // whiteSpace: 'nowrap'
     }),
     container: (provided) => ({
       ...provided,
       color: theme.onBackground,
       backgroundColor: theme.background,
-      width: 'inherit'
+      width: 'inherit',
     }),
     input: (provided) => ({
       ...provided,
       color: theme.onBackground,
       backgroundColor: theme.background,
-      display: 'none'
+      display: 'none',
     }),
     control: (provided, selectState) => ({
       ...provided,
@@ -57,28 +57,28 @@ function customStyler(theme) {
       border: selectState.isFocused ? '' : 'none',
       borderColor: selectState.isFocused ? theme.accent : 'none', // theme.secondarySurface,
       '&:hover': {
-        borderColor: theme.accent
-      }
+        borderColor: theme.accent,
+      },
     }),
     indicatorSelector: (provided) => ({
       ...provided,
-      color: theme.onBackground
+      color: theme.onBackground,
     }),
     valueContainer: (provided) => ({
       ...provided,
       color: theme.onBackground,
-      backgroundColor: theme.background
+      backgroundColor: theme.background,
     }),
     indicatorContainer: (provided) => ({
       ...provided,
       color: theme.onBackground,
-      backgroundColor: theme.background
+      backgroundColor: theme.background,
     }),
     menu: (provided) => ({
       ...provided,
       color: theme.onBackground,
-      backgroundColor: theme.background
-    })
+      backgroundColor: theme.background,
+    }),
   };
 }
 
@@ -139,7 +139,7 @@ function DragItem(props) {
     setCurrentActivityOption(newActivity);
     const updateObject = {
       id: activity.id,
-      activityID: newActivity.value
+      activityID: newActivity.value,
     };
     if (!nameValue) {
       const selectedActivity = possibleActivities.find(
@@ -159,7 +159,7 @@ function DragItem(props) {
     dispatch(
       callUpdateScheduledActivity({
         id: activity.id,
-        formatID: newFormat.value
+        formatID: newFormat.value,
       })
     );
   }
@@ -218,7 +218,7 @@ function DragItem(props) {
           >
             <DeleteButton
               style={{ height: '100%' }}
-              type="submit"
+              type='submit'
               onClick={deleteScheduledActivity}
             >
               delete

@@ -61,7 +61,7 @@ function TrainBoard() {
         style={{
           justifyContent: 'flex-start',
           alignItems: 'flex-start',
-          overflowY: 'scroll'
+          overflowY: 'scroll',
         }}
       >
         <BoardSchedule data={data} setTrainID={handleSetTrainID} />

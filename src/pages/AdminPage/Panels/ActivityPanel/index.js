@@ -9,7 +9,7 @@ function ActivityPanel() {
   const availableYTRs = useSelector((state) => state.train.youTubeResources);
   const listFields = ['name'];
   return (
-    <AdminPanel title="Activities" listData={listData} listFields={listFields}>
+    <AdminPanel title='Activities' listData={listData} listFields={listFields}>
       <ActivityForm title={title} youTubeResources={availableYTRs} />
     </AdminPanel>
   );

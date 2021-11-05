@@ -8,7 +8,7 @@ function NiceTrainPage(props) {
         height: '100%',
         width: '100%',
         paddingTop: '5vh',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
       }}
     >
       {props.children}

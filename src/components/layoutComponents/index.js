@@ -8,7 +8,7 @@ import { mq5 } from '../../styles/breakpoints';
 export const NTBox = styled.div({
   width: '100%',
   height: '100%',
-  boxSizing: 'border-box'
+  boxSizing: 'border-box',
 });
 
 export const NTPage = styled(NTBox)`
@@ -25,7 +25,7 @@ export const NTSection = styled(NTBox)`
 
 export const NTRow = styled.div({
   display: 'flex',
-  flexDirection: 'row'
+  flexDirection: 'row',
 });
 
 export const NTColumn = styled(NTBox)`

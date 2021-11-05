@@ -52,7 +52,7 @@ const SignOutWrapper = styled.div`
 
 function NTLink(props) {
   const activeStyle = {
-    opacity: 0.7
+    opacity: 0.7,
   };
   return <NTNavLink {...props} activeStyle={activeStyle} />;
 }
@@ -68,10 +68,10 @@ function TopNav(props) {
 
   return (
     <NTLinkRow>
-      <NTLink to="/schedule">SCHEDULE</NTLink>
-      <NTLink to="/patches">PATCHES</NTLink>
+      <NTLink to='/schedule'>SCHEDULE</NTLink>
+      <NTLink to='/patches'>PATCHES</NTLink>
       <NTLink
-        to="/admin"
+        to='/admin'
         color={loginStatus === USER_STATES.GUEST ? theme.error : undefined}
       >
         {loginStatus === USER_STATES.GUEST ? 'GUEST' : 'ADMIN'}
@@ -86,7 +86,7 @@ function TopNav(props) {
 }
 
 const mapStateToProps = (state) => ({
-  loginStatus: state.settings.loginStatus
+  loginStatus: state.settings.loginStatus,
 });
 
 export default connect(mapStateToProps)(TopNav);

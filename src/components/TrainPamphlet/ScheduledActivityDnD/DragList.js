@@ -8,11 +8,11 @@ function DragList(props) {
     scheduledActivities,
     openDurationModal,
     closeDurationModal,
-    errorToast
+    errorToast,
   } = props;
   const theme = useTheme();
   return (
-    <Droppable droppableId="droppable">
+    <Droppable droppableId='droppable'>
       {(provided) => (
         <div
           ref={provided.innerRef}
@@ -20,7 +20,7 @@ function DragList(props) {
           style={{
             height: '70vh',
             overflow: 'scroll',
-            background: `${theme.primarySurface}aa`
+            background: `${theme.primarySurface}aa`,
           }}
         >
           {scheduledActivities.map((activity) => (

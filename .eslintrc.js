@@ -4,7 +4,7 @@ module.exports = {
   plugins: ['prettier', 'react'],
   globals: {
     localStorage: true,
-    Blob: true
+    Blob: true,
   },
   rules: {
     'import/prefer-default-export': 'warn',
@@ -31,9 +31,10 @@ module.exports = {
         singleQuote: true,
         bracketSpacing: true,
         arrowParens: 'always',
-        trailingComma: 'none',
-        endOfLine: 'auto'
-      }
-    ]
-  }
+        trailingComma: 'es5',
+        endOfLine: 'auto',
+        jsxSingleQuote: true,
+      },
+    ],
+  },
 };

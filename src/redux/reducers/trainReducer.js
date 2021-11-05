@@ -4,44 +4,44 @@ import {
   callUpdateStation,
   callCreateStation,
   callListStations,
-  callDeleteStation
+  callDeleteStation,
 } from '../thunks/station';
 import {
   callCreateYouTubeResource,
   callDeleteYouTubeResource,
   callListYouTubeResources,
-  callUpdateYouTubeResource
+  callUpdateYouTubeResource,
 } from '../thunks/youTubeResource';
 import {
   callCreateActivity,
   callDeleteActivity,
   callUpdateActivity,
-  callListActivities
+  callListActivities,
 } from '../thunks/activity';
 import {
   callListScheduledTrains,
   callCreateScheduledTrain,
   callUpdateScheduledTrain,
-  callDeleteScheduledTrain
+  callDeleteScheduledTrain,
 } from '../thunks/scheduledTrain';
 import {
   callListFormats,
   callCreateFormat,
   callUpdateFormat,
-  callDeleteFormat
+  callDeleteFormat,
 } from '../thunks/format';
 import {
   callCreateScheduledActivity,
   callDeleteScheduledActivity,
   callGetScheduledActivitiesByTrain,
   callListScheduledActivities,
-  callUpdateScheduledActivity
+  callUpdateScheduledActivity,
 } from '../thunks/scheduledActivity';
 import {
   callListLongMessages,
   callCreateLongMessage,
   callDeleteLongMessage,
-  callUpdateLongMessage
+  callUpdateLongMessage,
 } from '../thunks/longMessage';
 import { sortByOrder } from '../../utils';
 
@@ -54,7 +54,7 @@ const initialState = {
   formats: [],
   scheduledTrains: [],
   scheduledActivities: {},
-  longMessages: undefined
+  longMessages: undefined,
 };
 
 function findIndexByID(items, id) {
@@ -93,7 +93,7 @@ export const trainSlice = createSlice({
     },
     youTubeResourcesReceived: (state) => {
       state.youTubeResourcesLoading = 'idle';
-    }
+    },
   },
   extraReducers: (builder) => {
     // station calls
@@ -255,8 +255,8 @@ export const trainSlice = createSlice({
         const {
           meta,
           payload: {
-            listScheduledActivities: { items }
-          }
+            listScheduledActivities: { items },
+          },
         } = action;
         const trainID = meta.arg;
         state.scheduledActivities[trainID] = items;
@@ -338,14 +338,14 @@ export const trainSlice = createSlice({
         }
       })
       .addDefaultCase((state, action) => {});
-  }
+  },
 });
 
 export const {
   stationsLoading,
   stationsReceived,
   youTubeResourcesLoading,
-  youTubeResourcesReceived
+  youTubeResourcesReceived,
 } = trainSlice.actions;
 
 export default trainSlice.reducer;

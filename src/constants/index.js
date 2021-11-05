@@ -1,7 +1,7 @@
 export const apiKey = 'API_KEY';
 
 export const SETTING_TYPE = {
-  ACTIVE_LONG_MESSAGE: 'ACTIVE_LONG_MESSAGE'
+  ACTIVE_LONG_MESSAGE: 'ACTIVE_LONG_MESSAGE',
 };
 
 export const TRAIN_STATUS = {
@@ -9,7 +9,7 @@ export const TRAIN_STATUS = {
   DELAYED: 'DELAYED',
   COMPLETE: 'COMPLETE',
   CANCELED: 'CANCELED',
-  MAYBE: 'MAYBE'
+  MAYBE: 'MAYBE',
 };
 
 export const STATUS_OPTIONS = [
@@ -17,11 +17,11 @@ export const STATUS_OPTIONS = [
   { value: 'DELAYED', label: 'DELAYED' },
   { value: 'COMPLETE', label: 'COMPLETE' },
   { value: 'CANCELED', label: 'CANCELED' },
-  { value: 'MAYBE', label: 'MAYBE' }
+  { value: 'MAYBE', label: 'MAYBE' },
 ];
 
 export const USER_STATES = {
   UNAUTH: 'UNAUTH',
   GUEST: 'GUEST',
-  ADMIN: 'ADMIN'
+  ADMIN: 'ADMIN',
 };

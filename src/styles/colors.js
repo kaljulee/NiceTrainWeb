@@ -23,7 +23,7 @@ export const trainPamphletTheme = {
   secondarySurface: pamphletSurface,
   onSecondarySurface: pamphletBackground,
   accent: pamphletSurface,
-  onAccent: pamphletBackground
+  onAccent: pamphletBackground,
 };
 
 export const niceTrainTheme = {
@@ -40,7 +40,7 @@ export const niceTrainTheme = {
   warning: 'orange',
   onSuccess: '#ffffff',
   onError: '#ffffff',
-  onWarning: '#000000'
+  onWarning: '#000000',
 };
 
 export const NightTrainTheme = {
@@ -51,5 +51,5 @@ export const NightTrainTheme = {
   onPrimarySurface: '#ffffff',
   onSecondarySurface: '#ffffff',
   accent: '#ffcc00',
-  onAccent: '#000000'
+  onAccent: '#000000',
 };

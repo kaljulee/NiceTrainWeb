@@ -4,7 +4,7 @@ import { listFormats } from '../../graphql/queries';
 import {
   createFormat,
   updateFormat,
-  deleteFormat
+  deleteFormat,
 } from '../../graphql/mutations';
 import { apiKey } from '../../constants';
 import { allowAPICall, containsChanges } from '../validators';
@@ -12,7 +12,7 @@ import { allowAPICall, containsChanges } from '../validators';
 export const callListFormats = createAsyncThunk('formats/fetch', async () => {
   const response = await API.graphql({
     query: listFormats,
-    authMode: apiKey
+    authMode: apiKey,
   });
   return response.data;
 });
@@ -46,7 +46,7 @@ export const callUpdateFormat = createAsyncThunk(
     if (containsChanges(updatedFormatData, original)) {
       const response = await API.graphql(
         graphqlOperation(updateFormat, {
-          input: updatedFormatData
+          input: updatedFormatData,
         })
       );
       return response.data;

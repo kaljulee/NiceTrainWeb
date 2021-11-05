@@ -95,18 +95,18 @@ function PatchItemRaster(props) {
 function PatchesGalleryPage() {
   return (
     <PatchPageContainer>
-      <PatchItemRaster title="Nice Train" rasterSource={nt_logo_square} />
+      <PatchItemRaster title='Nice Train' rasterSource={nt_logo_square} />
       <PatchItemRaster
-        title="Shrimp and Bridge"
+        title='Shrimp and Bridge'
         rasterSource={bridge_and_shrimp}
       />
       <PatchItemRaster
-        title="The Other Train"
+        title='The Other Train'
         rasterSource={other_train_bridge_and_shrimp}
       />
-      <PatchItemRaster title="Nice Train 2" rasterSource={nt_logo_landscape} />
-      <PatchItemRaster title="120mm BJJ" rasterSource={nt_120mm_horizontal} />
-      <PatchItemRaster title="Night Train" rasterSource={night_train} />
+      <PatchItemRaster title='Nice Train 2' rasterSource={nt_logo_landscape} />
+      <PatchItemRaster title='120mm BJJ' rasterSource={nt_120mm_horizontal} />
+      <PatchItemRaster title='Night Train' rasterSource={night_train} />
     </PatchPageContainer>
   );
 }

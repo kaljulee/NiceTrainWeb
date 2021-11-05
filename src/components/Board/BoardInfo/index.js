@@ -26,7 +26,7 @@ function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
   return {
     width,
-    height
+    height,
   };
 }
 
@@ -117,7 +117,7 @@ function BoardInfo(props) {
 }
 
 BoardInfo.defaultProps = {
-  message: 'Default Message'
+  message: 'Default Message',
 };
 
 export default BoardInfo;

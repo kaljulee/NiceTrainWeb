@@ -76,14 +76,14 @@ export function PamphletInput(props) {
         background: theme.background,
         border: 'none',
         width: 'inherit',
-        ...style
+        ...style,
       }}
     />
   );
 }
 
 PamphletInput.defaultProps = {
-  value: ''
+  value: '',
 };
 
 export function PamphletDurationInput(props) {
@@ -95,7 +95,7 @@ export function PamphletDurationInput(props) {
           textAlign: 'center',
           padding: 0,
           height: '10vh',
-          fontSize: '8vh'
+          fontSize: '8vh',
         }}
       />
     </NTBox>
@@ -105,7 +105,7 @@ export function PamphletDurationInput(props) {
 export function PamphletDurationButton(props) {
   const { onClick } = props;
   return (
-    <button style={{ height: '100%' }} onClick={onClick} type="button">
+    <button style={{ height: '100%' }} onClick={onClick} type='button'>
       {props.children}
     </button>
   );

@@ -14,7 +14,7 @@ function TrainActivitiesEditor(props) {
       style={{
         boxSizing: 'border-box',
         height: '100%',
-        width: '100%'
+        width: '100%',
       }}
     >
       <div style={{ display: 'flex', flex: 5 }}>

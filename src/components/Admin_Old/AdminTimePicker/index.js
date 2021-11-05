@@ -8,7 +8,7 @@ function AdminTimePicker(props) {
   return (
     <NTBox>
       <NTTimePicker onBlur={onBlur}>
-        <TimePicker value={value} onChange={onChange} locale="sv-sv" />
+        <TimePicker value={value} onChange={onChange} locale='sv-sv' />
       </NTTimePicker>
     </NTBox>
   );

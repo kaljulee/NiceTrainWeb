@@ -4,5 +4,5 @@ import settingsReducer from '../reducers/settingsReducer';
 
 // eslint-disable-next-line import/prefer-default-export
 export const store = configureStore({
-  reducer: { train: trainReducer, settings: settingsReducer }
+  reducer: { train: trainReducer, settings: settingsReducer },
 });

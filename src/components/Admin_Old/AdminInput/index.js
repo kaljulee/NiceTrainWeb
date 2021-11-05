@@ -26,7 +26,7 @@ function AdminInput(props) {
 }
 
 AdminInput.defaultProps = {
-  value: ''
+  value: '',
 };
 
 export default AdminInput;

@@ -4,7 +4,7 @@ import { listStations } from '../../graphql/queries';
 import {
   createStation,
   updateStation,
-  deleteStation
+  deleteStation,
 } from '../../graphql/mutations';
 import { apiKey } from '../../constants';
 import { allowAPICall, containsChanges } from '../validators';
@@ -12,7 +12,7 @@ import { allowAPICall, containsChanges } from '../validators';
 export const callListStations = createAsyncThunk('stations/fetch', async () => {
   const response = await API.graphql({
     query: listStations,
-    authMode: apiKey
+    authMode: apiKey,
   });
   return response.data;
 });

@@ -5,7 +5,7 @@ import { apiKey } from '../../constants';
 import {
   createYouTubeResource,
   deleteYouTubeResource,
-  updateYouTubeResource
+  updateYouTubeResource,
 } from '../../graphql/mutations';
 import { allowAPICall, containsChanges } from '../validators';
 
@@ -14,7 +14,7 @@ export const callListYouTubeResources = createAsyncThunk(
   async () => {
     const response = await API.graphql({
       query: listYouTubeResources,
-      authMode: apiKey
+      authMode: apiKey,
     });
     return response.data;
   }

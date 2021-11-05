@@ -11,11 +11,11 @@ function ScheduledTrainPanel() {
 
   return (
     <AdminPanel
-      title="Trains"
+      title='Trains'
       listData={listData}
       listFields={listFields}
-      enforceDirection="column"
-      maxListHeight="20vh"
+      enforceDirection='column'
+      maxListHeight='20vh'
     >
       <ScheduledTrainForm title={title} />
     </AdminPanel>

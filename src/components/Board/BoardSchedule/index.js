@@ -34,7 +34,7 @@ function BoardSchedule(props) {
   const columns = useMemo(() => {
     const colInfo = [
       { Header: 'Date', accessor: 'date' },
-      { Header: 'Start', accessor: 'time' }
+      { Header: 'Start', accessor: 'time' },
     ];
     colInfo.push({ Header: 'Station', accessor: 'station' });
     if (width >= breakpoints.medium) {
@@ -117,8 +117,8 @@ function BoardSchedule(props) {
                     textAlign: 'left',
                     paddingTop: 10,
                     fontSize: width >= breakpoints.large ? 18 : 12,
-                    fontWeight: 'thin'
-                  }
+                    fontWeight: 'thin',
+                  },
                 })}
               >
                 {renderHeader(column)}
@@ -136,14 +136,14 @@ function BoardSchedule(props) {
                 <td
                   {...cell.getCellProps()}
                   style={{
-                    height: '100%'
+                    height: '100%',
                   }}
                 >
                   <div
                     style={{
                       height: '100%',
                       textAlign: 'center',
-                      textJustify: 'center'
+                      textJustify: 'center',
                     }}
                   >
                     {renderCell(cell)}

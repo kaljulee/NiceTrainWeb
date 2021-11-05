@@ -12,7 +12,7 @@ function AdminPanel(props) {
     enforceDirection,
     onCurrentDatumChange,
     maxListHeight,
-    minListHeight
+    minListHeight,
   } = props;
   const [currentDatum, setCurrentDatum] = useState();
 
@@ -28,7 +28,7 @@ function AdminPanel(props) {
       if (React.isValidElement(c)) {
         return React.cloneElement(c, {
           currentDatum,
-          clearCurrentDatum: () => setCurrentDatum()
+          clearCurrentDatum: () => setCurrentDatum(),
         });
       }
       return c;
@@ -64,7 +64,7 @@ function AdminPanel(props) {
 AdminPanel.defaultProps = {
   maxListHeight: '20vh',
   minListHeight: '5vh',
-  onCurrentDatumChange: () => {}
+  onCurrentDatumChange: () => {},
 };
 
 export default AdminPanel;

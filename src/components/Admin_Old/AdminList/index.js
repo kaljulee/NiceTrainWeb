@@ -4,7 +4,7 @@ import {
   NTList,
   NTListItem,
   NTListItemField,
-  NTSubTitle
+  NTSubTitle,
 } from '../../styledComponents';
 import { NTBox } from '../../layoutComponents';
 
@@ -25,11 +25,11 @@ function AdminList(props) {
         style={{
           maxHeight,
           minHeight,
-          overflow: 'auto'
+          overflow: 'auto',
         }}
       >
         <ReactList
-          type="uniform"
+          type='uniform'
           length={data.length}
           itemRenderer={(index, key) => (
             <NTListItem key={key}>
@@ -38,7 +38,7 @@ function AdminList(props) {
                   key={`${index}${field}`}
                   onClick={() => handleDatumClick(data[index].id)}
                   onKeyDown={() => handleDatumClick(data[index].id)}
-                  role="button"
+                  role='button'
                   tabIndex={0}
                   $isActive={activeID === data[index].id}
                 >
@@ -56,7 +56,7 @@ function AdminList(props) {
 AdminList.defaultProps = {
   maxHeight: '60vh',
   minHeight: '5vh',
-  data: []
+  data: [],
 };
 
 export default AdminList;

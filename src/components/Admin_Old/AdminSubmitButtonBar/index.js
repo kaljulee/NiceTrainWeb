@@ -3,7 +3,7 @@ import { NTRow } from '../../layoutComponents';
 import {
   NTNewButton,
   NTSaveButton,
-  NTDeleteButton
+  NTDeleteButton,
 } from '../../styledComponents';
 
 function AdminSubmitButtonBar(props) {
@@ -12,17 +12,17 @@ function AdminSubmitButtonBar(props) {
     handleDelete,
     handleUpdate,
     hasCurrentDatum,
-    clearCurrentDatum
+    clearCurrentDatum,
   } = props;
   return (
     <NTRow style={{ justifyContent: 'space-between' }}>
       <NTNewButton
         onClick={hasCurrentDatum ? clearCurrentDatum : handleCreate}
-        type="button"
+        type='button'
       >
         {hasCurrentDatum ? 'clear selected' : `save new`}
       </NTNewButton>
-      <NTDeleteButton onClick={handleDelete} type="button">
+      <NTDeleteButton onClick={handleDelete} type='button'>
         delete
       </NTDeleteButton>
     </NTRow>

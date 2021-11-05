@@ -7,7 +7,7 @@ import { mq5 } from '../../styles/breakpoints';
 // `;
 export const adminStyles = (props) => ({
   color: props.theme.onBackground,
-  background: props.theme.background
+  background: props.theme.background,
 });
 
 export const NTDatePicker = styled.div`
@@ -213,7 +213,7 @@ export const TabContainer = styled.div`
     list-style: none;
     min-width: 5vw;
     ${mq5({
-      padding: ['2px 4px', '2px 4px', '6px 12px', '6px 12px', '6px 12px']
+      padding: ['2px 4px', '2px 4px', '6px 12px', '6px 12px', '6px 12px'],
     })};
     cursor: pointer;
   }

@@ -59,7 +59,7 @@ function ActivityTick(props) {
     activity: { id, name },
     onActivityClick,
     activeActivityID,
-    standOff
+    standOff,
   } = props;
   const theme = useTheme();
   if (!name || name.length === 0) {
@@ -86,11 +86,11 @@ function ActivityTick(props) {
   return (
     <TickWrapper
       onKeyPress={onKeyPress}
-      role="button"
+      role='button'
       tabIndex={0}
       onClick={handleOnClick}
       style={{
-        left: `${standOff}%`
+        left: `${standOff}%`,
       }}
     >
       <RotatedText $isActive={activeActivityID === id}>{name}</RotatedText>
@@ -99,7 +99,7 @@ function ActivityTick(props) {
         style={{
           height: dotSize,
           width: dotSize,
-          color: theme.onPrimarySurface
+          color: theme.onPrimarySurface,
         }}
       />
     </TickWrapper>

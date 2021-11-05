@@ -5,7 +5,7 @@ import { createOption, getCurrentOption } from '../../../../utils';
 import { SETTING_TYPE } from '../../../../constants';
 import {
   callCreateSetting,
-  callSetLongMessage
+  callSetLongMessage,
 } from '../../../../redux/thunks/settings';
 import AdminPanel from '../../../../components/Admin_Old/AdminPanel';
 import LongMessageForm from './LongMessageForm';
@@ -42,7 +42,7 @@ function LongMessagePanel() {
       dispatch(
         callCreateSetting({
           settingType: SETTING_TYPE.ACTIVE_LONG_MESSAGE,
-          value: option.value
+          value: option.value,
         })
       );
     }
@@ -51,14 +51,14 @@ function LongMessagePanel() {
 
   return (
     <AdminPanel
-      title="Board Message"
+      title='Board Message'
       listData={listData}
       listFields={listFields}
-      enforceDirection="column"
+      enforceDirection='column'
     >
       <LongMessageForm title={title} />
       <AdminSelect
-        label="Select Active Message"
+        label='Select Active Message'
         options={listData ? listData.map((m) => createOption(m, 'text')) : []}
         value={activeMessageOption}
         onChange={onActiveMessageChange}

@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import {
   callCreateScheduledTrain,
   callDeleteScheduledTrain,
-  callUpdateScheduledTrain
+  callUpdateScheduledTrain,
 } from '../../../../redux/thunks/scheduledTrain';
 import { scheduledTrainValidator } from '../../../../redux/validators';
 import AdminInput from '../../../../components/Admin_Old/AdminInput';
@@ -13,7 +13,7 @@ import AdminSubmitButtonBar from '../../../../components/Admin_Old/AdminSubmitBu
 import {
   createOption,
   getCurrentOption,
-  mapToOptions
+  mapToOptions,
 } from '../../../../utils';
 import AdminSelect from '../../../../components/Admin_Old/AdminSelect';
 import AdminDatePicker from '../../../../components/Admin_Old/AdminDatePicker';
@@ -21,7 +21,7 @@ import AdminTimePicker from '../../../../components/Admin_Old/AdminTimePicker';
 import {
   NTBox,
   NTColumn,
-  NTRow
+  NTRow,
 } from '../../../../components/layoutComponents';
 import { NTButton, NTLabel } from '../../../../components/styledComponents';
 import AdminList from '../../../../components/Admin_Old/AdminList';
@@ -153,7 +153,7 @@ function ScheduledTrainForm(props) {
       standingTag: standingTagValue,
       groundTag: groundTagValue,
       status: statusOption.value,
-      stationID: stationOption.value
+      stationID: stationOption.value,
     };
     const scheduledTrainValidation = scheduledTrainValidator(newScheduledTrain);
     if (!scheduledTrainValidation.isOk) {
@@ -219,13 +219,13 @@ function ScheduledTrainForm(props) {
                 </NTColumn>
               </NTRow>
               <AdminSelect
-                label="status"
+                label='status'
                 value={statusOption}
                 onChange={handleStatusSelect}
                 options={STATUS_OPTIONS}
               />
               <AdminInput
-                label="description"
+                label='description'
                 value={descriptionValue}
                 onChange={handleDescriptionChange}
                 onBlur={() => {
@@ -233,13 +233,13 @@ function ScheduledTrainForm(props) {
                 }}
               />
               <AdminSelect
-                label="station"
+                label='station'
                 options={mapToOptions(stations, 'name')}
                 value={stationOption}
                 onChange={handleStationSelect}
               />
               <AdminInput
-                label="standing tag"
+                label='standing tag'
                 value={standingTagValue}
                 onChange={handleStandingTagChange}
                 onBlur={() => {
@@ -247,7 +247,7 @@ function ScheduledTrainForm(props) {
                 }}
               />
               <AdminInput
-                label="ground tag"
+                label='ground tag'
                 value={groundTagValue}
                 onChange={handleGroundTagChange}
                 onBlur={() => {
@@ -265,7 +265,7 @@ function ScheduledTrainForm(props) {
         </NTColumn>
         <ListColumn>
           <AdminList
-            title="Activities"
+            title='Activities'
             data={scheduledActivities}
             fields={['name']}
             onDatumClick={() => {}}
@@ -286,7 +286,7 @@ function ScheduledTrainForm(props) {
 }
 
 ScheduledTrainForm.defaultProps = {
-  currentDatum: {}
+  currentDatum: {},
 };
 
 export default ScheduledTrainForm;

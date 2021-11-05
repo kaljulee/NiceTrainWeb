@@ -11,7 +11,7 @@ const breakpoints = {
   small: 576, // mobile devices (not sure which one's this big)
   medium: 768, // ipad, ipad pro, ipad mini, etc
   large: 992, // smaller laptops
-  xlarge: 1200
+  xlarge: 1200,
 };
 
 export const mq5 = facepaint(

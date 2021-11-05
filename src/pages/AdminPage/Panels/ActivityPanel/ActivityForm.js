@@ -4,7 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import {
   callCreateActivity,
   callDeleteActivity,
-  callUpdateActivity
+  callUpdateActivity,
 } from '../../../../redux/thunks/activity';
 import { activityValidator } from '../../../../redux/validators';
 import AdminInput from '../../../../components/Admin_Old/AdminInput';
@@ -85,7 +85,7 @@ function ActivityForm(props) {
     const newActivity = {
       name: nameValue,
       description: descriptionValue,
-      youTubeResourceID: ytrOption.value
+      youTubeResourceID: ytrOption.value,
     };
     const activityValidation = activityValidator(newActivity);
     if (!activityValidation.isOk) {
@@ -105,19 +105,19 @@ function ActivityForm(props) {
     <NTBox>
       <NTColumn>
         <AdminInput
-          label="name"
+          label='name'
           value={nameValue}
           onChange={handleNameChange}
           onBlur={() => saveInput({ name: nameValue })}
         />
         <AdminInput
-          label="description"
+          label='description'
           value={descriptionValue}
           onChange={handleDescriptionChange}
           onBlur={() => saveInput({ description: descriptionValue })}
         />
         <AdminSelect
-          label="youTube resource"
+          label='youTube resource'
           options={youTubeResources.map((ytr) =>
             createOption(ytr, 'description')
           )}
@@ -137,7 +137,7 @@ function ActivityForm(props) {
 }
 
 ActivityForm.defaultProps = {
-  currentDatum: {}
+  currentDatum: {},
 };
 
 export default ActivityForm;

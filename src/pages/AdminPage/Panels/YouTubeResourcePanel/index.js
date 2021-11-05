@@ -9,7 +9,7 @@ function YouTubeResourcePanel() {
   const listFields = ['description', 'author', 'link'];
   return (
     <AdminPanel
-      title="YouTube Resources"
+      title='YouTube Resources'
       listData={listData}
       listFields={listFields}
     >

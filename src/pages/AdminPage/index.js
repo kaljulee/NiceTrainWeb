@@ -4,7 +4,7 @@ import {
   AmplifyAuthenticator,
   AmplifyAuthContainer,
   AmplifySignIn,
-  AmplifySignUp
+  AmplifySignUp,
 } from '@aws-amplify/ui-react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { connect, useDispatch } from 'react-redux';
@@ -12,6 +12,7 @@ import StationPanel from './Panels/StationPanel';
 import YouTubeResourcePanel from './Panels/YouTubeResourcePanel';
 import ActivityPanel from './Panels/ActivityPanel';
 import ScheduledTrainPanel from './Panels/ScheduledTrainPanel';
+import PamphletAdmin from './PamphletAdmin';
 import FormatPanel from './Panels/FormatPanel';
 import { NTPage, NTSection } from '../../components/layoutComponents';
 import { TabContainer } from '../../components/styledComponents';
@@ -34,13 +35,13 @@ function AdminPage(props) {
       {loginStatus === USER_STATES.UNAUTH ? (
         <AmplifyAuthContainer>
           <AmplifyAuthenticator>
-            <AmplifySignIn slot="sign-in" headerText="Nice Train Admin" />
+            <AmplifySignIn slot='sign-in' headerText='Nice Train Admin' />
             <AmplifySignUp
-              slot="sign-up"
+              slot='sign-up'
               formFields={[
                 { type: 'username' },
                 { type: 'password' },
-                { type: 'email' }
+                { type: 'email' },
               ]}
             />
           </AmplifyAuthenticator>
@@ -50,7 +51,7 @@ function AdminPage(props) {
           style={{
             height: '100%',
             width: '90vw',
-            margin: 'auto'
+            margin: 'auto',
           }}
         >
           <TabContainer>
@@ -76,7 +77,7 @@ function AdminPage(props) {
                 <ActivityPanel />
               </TabPanel>
               <TabPanel>
-                <ScheduledTrainPanel />
+                <PamphletAdmin />
               </TabPanel>
               <TabPanel>
                 <LongMessagePanel />
@@ -90,7 +91,7 @@ function AdminPage(props) {
 }
 
 const mapStateToProps = (state) => ({
-  loginStatus: state.settings.loginStatus
+  loginStatus: state.settings.loginStatus,
 });
 
 export default connect(mapStateToProps)(AdminPage);

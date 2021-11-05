@@ -27,7 +27,7 @@ function YTRLinks(props) {
 
 const mapDispatchToProps = (state, props) => {
   const {
-    train: { youTubeResources, activities }
+    train: { youTubeResources, activities },
   } = state;
   const { activity } = props;
   if (!activity) {
@@ -44,7 +44,7 @@ const mapDispatchToProps = (state, props) => {
     (y) => y.id === baseActivity.youTubeResourceID
   );
   return {
-    youTubeResources: [{ ...ytr, videoID: videoIDRegex(ytr.link) }]
+    youTubeResources: [{ ...ytr, videoID: videoIDRegex(ytr.link) }],
   };
 };
 

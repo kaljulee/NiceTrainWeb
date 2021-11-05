@@ -27,7 +27,7 @@ function ScheduledActivityPanel(props) {
       callCreateScheduledActivity({
         scheduledTrainID,
         order: scheduledActivities.length,
-        duration: 0
+        duration: 0,
       })
     );
   }
@@ -37,10 +37,10 @@ function ScheduledActivityPanel(props) {
         <ThemedToggleMenu isOpen={isOpen}>
           <NTBox style={{ height: panelHeight }}>
             <NTRow>
-              <ThemedButton type="button" onClick={requestClose}>
+              <ThemedButton type='button' onClick={requestClose}>
                 close
               </ThemedButton>
-              <ThemedButton onClick={handleAdd} type="button">
+              <ThemedButton onClick={handleAdd} type='button'>
                 add new
               </ThemedButton>
             </NTRow>

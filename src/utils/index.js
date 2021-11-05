@@ -99,7 +99,7 @@ export function percentStandOff(count) {
 export const HMS_ZERO = {
   h: 0,
   m: 0,
-  s: 0
+  s: 0,
 };
 
 export function calculateLoginStatus(user, authState) {

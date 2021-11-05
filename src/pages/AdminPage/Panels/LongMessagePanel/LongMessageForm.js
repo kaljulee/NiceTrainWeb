@@ -4,7 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import {
   callCreateLongMessage,
   callDeleteLongMessage,
-  callUpdateLongMessage
+  callUpdateLongMessage,
 } from '../../../../redux/thunks/longMessage';
 import { longMessageValidator } from '../../../../redux/validators';
 import AdminInput from '../../../../components/Admin_Old/AdminInput';
@@ -64,7 +64,7 @@ function LongMessageForm(props) {
     <NTBox style={{ marginBottom: '5vh' }}>
       <NTColumn>
         <AdminInput
-          label="text"
+          label='text'
           value={textValue}
           onChange={handleTextChange}
           onBlur={() => {

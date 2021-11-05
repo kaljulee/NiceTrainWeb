@@ -5,7 +5,7 @@ import { NTBox } from '../../layoutComponents';
 
 const ListItem = styled.div({
   backgroundColor: 'rgba(0,0,0,0.5)',
-  color: 'white'
+  color: 'white',
 });
 
 const List = styled(NTBox)`
@@ -32,7 +32,7 @@ function DnDListItem(props) {
 function DnDList(props) {
   const { listData, labelField } = props;
   return (
-    <Droppable droppableId="droppable">
+    <Droppable droppableId='droppable'>
       {(provided, snapshot) => (
         <List ref={provided.innerRef} {...provided.droppableProps}>
           {listData.map((datum) => (
@@ -60,10 +60,10 @@ AdminDnD.defaultProps = {
   listData: [
     { label: 'ham', id: 1, order: 1 },
     { label: 'snax', id: 2, order: 2 },
-    { label: 'snakes', id: 3, order: 3 }
+    { label: 'snakes', id: 3, order: 3 },
   ],
   labelField: 'label',
-  title: 'Default Title'
+  title: 'Default Title',
 };
 
 export default AdminDnD;

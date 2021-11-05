@@ -12,21 +12,21 @@ function AdminSelect(props) {
     option: (provided) => ({
       ...provided,
       color: theme.onPrimarySurface,
-      backgroundColor: theme.primarySurface
+      backgroundColor: theme.primarySurface,
     }),
     singleValue: (provided) => ({
       background: theme.primarySurface,
-      color: theme.onPrimarySurface
+      color: theme.onPrimarySurface,
     }),
     container: (provided) => ({
       ...provided,
       color: theme.onPrimarySurface,
-      backgroundColor: theme.primarySurface
+      backgroundColor: theme.primarySurface,
     }),
     input: (provided) => ({
       ...provided,
       color: theme.onPrimarySurface,
-      backgroundColor: theme.primarySurface
+      backgroundColor: theme.primarySurface,
     }),
     control: (provided, selectState) => ({
       ...provided,
@@ -37,28 +37,28 @@ function AdminSelect(props) {
         ? theme.accent
         : theme.secondarySurface,
       '&:hover': {
-        borderColor: theme.accent
-      }
+        borderColor: theme.accent,
+      },
     }),
     indicatorSelector: (provided) => ({
       ...provided,
-      color: theme.onPrimarySurface
+      color: theme.onPrimarySurface,
     }),
     valueContainer: (provided) => ({
       ...provided,
       color: theme.onPrimarySurface,
-      backgroundColor: theme.primarySurface
+      backgroundColor: theme.primarySurface,
     }),
     indicatorContainer: (provided) => ({
       ...provided,
       color: theme.onPrimarySurface,
-      backgroundColor: theme.primarySurface
+      backgroundColor: theme.primarySurface,
     }),
     menu: (provided) => ({
       ...provided,
       color: theme.onSecondarySurface,
-      backgroundColor: theme.secondarySurface
-    })
+      backgroundColor: theme.secondarySurface,
+    }),
   };
   return (
     <NTColumn>

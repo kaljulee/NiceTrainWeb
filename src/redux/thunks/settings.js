@@ -4,7 +4,7 @@ import { listSettings } from '../../graphql/queries';
 import {
   createSetting,
   updateSetting,
-  deleteSetting
+  deleteSetting,
 } from '../../graphql/mutations';
 import { apiKey, SETTING_TYPE } from '../../constants';
 import { allowAPICall } from '../validators';
@@ -12,7 +12,7 @@ import { allowAPICall } from '../validators';
 export const callListSettings = createAsyncThunk('settings/fetch', async () => {
   const response = await API.graphql({
     query: listSettings,
-    authMode: apiKey
+    authMode: apiKey,
   });
   return response.data;
 });
@@ -37,7 +37,7 @@ export const callSetLongMessage = createAsyncThunk(
       return rejectWithValue();
     }
     const updatedSettingData = {
-      settingType: SETTING_TYPE.ACTIVE_LONG_MESSAGE
+      settingType: SETTING_TYPE.ACTIVE_LONG_MESSAGE,
     };
     Object.keys(data).forEach((k) => {
       if (data[k].length > 0) {

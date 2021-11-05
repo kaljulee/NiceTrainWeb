@@ -4,7 +4,7 @@ import { listLongMessages } from '../../graphql/queries';
 import {
   createLongMessage,
   updateLongMessage,
-  deleteLongMessage
+  deleteLongMessage,
 } from '../../graphql/mutations';
 import { apiKey } from '../../constants';
 import { allowAPICall, containsChanges } from '../validators';
@@ -14,7 +14,7 @@ export const callListLongMessages = createAsyncThunk(
   async () => {
     const response = await API.graphql({
       query: listLongMessages,
-      authMode: apiKey
+      authMode: apiKey,
     });
     return response.data;
   }

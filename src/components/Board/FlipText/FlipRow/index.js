@@ -43,7 +43,7 @@ export function FlipRow(props) {
       style={{
         display: 'flex',
         width: 'fit-content',
-        textAlign: 'center'
+        textAlign: 'center',
       }}
     >
       {convertStringToFlip(message, rowLength)}

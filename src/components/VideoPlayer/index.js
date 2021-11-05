@@ -20,7 +20,7 @@ function VideoPlayer(props) {
     paddingLeft: 1,
     paddingRight: 1,
     paddingTop: 1,
-    paddingBottom: 1
+    paddingBottom: 1,
   });
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function VideoPlayer(props) {
       paddingTop: heightPadding,
       paddingBottom: heightPadding,
       paddingLeft: widthPadding,
-      paddingRight: widthPadding
+      paddingRight: widthPadding,
     });
   }, [size]);
 

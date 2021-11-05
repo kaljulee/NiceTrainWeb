@@ -52,7 +52,7 @@ function getTrainDate(train) {
   const date = DateTime.fromFormat(train.train_date, 'yyyy-MM-dd');
   return date.toLocaleString({
     ...DateTime.DATE_SHORT,
-    weekday: 'long'
+    weekday: 'long',
   });
 }
 

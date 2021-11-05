@@ -4,7 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import {
   callCreateStation,
   callDeleteStation,
-  callUpdateStation
+  callUpdateStation,
 } from '../../../../redux/thunks/station';
 import { stationValidator } from '../../../../redux/validators';
 import AdminInput from '../../../../components/Admin_Old/AdminInput';
@@ -12,7 +12,7 @@ import AdminSubmitButtonBar from '../../../../components/Admin_Old/AdminSubmitBu
 import {
   NTBox,
   NTColumn,
-  NTSection
+  NTSection,
 } from '../../../../components/layoutComponents';
 import { adminUpdator } from '../../../../redux/thunks';
 
@@ -46,7 +46,7 @@ function StationForm(props) {
     const updatedStation = {
       name: nameValue,
       abbrev: abbrevValue,
-      id: currentDatum.id
+      id: currentDatum.id,
     };
     const stationValidation = stationValidator(updatedStation);
     if (!stationValidation.isOk) {
@@ -78,7 +78,7 @@ function StationForm(props) {
       <NTSection>
         <NTColumn>
           <AdminInput
-            label="name"
+            label='name'
             value={nameValue}
             onChange={handleNameChange}
             onBlur={() => {
@@ -86,7 +86,7 @@ function StationForm(props) {
             }}
           />
           <AdminInput
-            label="abbrev"
+            label='abbrev'
             value={abbrevValue}
             onChange={handleAbbrevChange}
             onBlur={() => {

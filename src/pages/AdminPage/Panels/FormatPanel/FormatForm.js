@@ -4,7 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import {
   callCreateFormat,
   callDeleteFormat,
-  callUpdateFormat
+  callUpdateFormat,
 } from '../../../../redux/thunks/format';
 import { formatValidator } from '../../../../redux/validators';
 import AdminInput from '../../../../components/Admin_Old/AdminInput';
@@ -47,7 +47,7 @@ function FormatForm(props) {
 
   function handleCreate() {
     const newFormat = {
-      name: nameValue
+      name: nameValue,
     };
     const formatValidation = formatValidator(newFormat);
     if (!formatValidation.isOk) {
@@ -66,7 +66,7 @@ function FormatForm(props) {
     <NTBox>
       <NTColumn>
         <AdminInput
-          label="name"
+          label='name'
           value={nameValue}
           onChange={handleNameChange}
           onBlur={() => saveInput({ name: nameValue })}
@@ -84,7 +84,7 @@ function FormatForm(props) {
 }
 
 FormatForm.defaultProps = {
-  currentDatum: {}
+  currentDatum: {},
 };
 
 export default FormatForm;
