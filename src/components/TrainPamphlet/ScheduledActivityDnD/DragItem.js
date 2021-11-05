@@ -21,7 +21,7 @@ import {
   PamphletLabel,
   DeleteButton
 } from '../trainPamphlet';
-import AdminSelect from '../../Admin/AdminSelect';
+import AdminSelect from '../../Admin_Old/AdminSelect';
 import { mq5 } from '../../../styles/breakpoints';
 import { stringIsOk } from '../../../redux/validators';
 

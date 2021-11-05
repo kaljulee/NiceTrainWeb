@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import FormatForm from './FormatForm';
-import AdminPanel from '../../../../components/Admin/AdminPanel';
+import AdminPanel from '../../../../components/Admin_Old/AdminPanel';
 
 function FormatPanel() {
   const title = 'Format';

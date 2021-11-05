@@ -7,8 +7,8 @@ import {
   callUpdateFormat
 } from '../../../../redux/thunks/format';
 import { formatValidator } from '../../../../redux/validators';
-import AdminInput from '../../../../components/Admin/AdminInput';
-import AdminSubmitButtonBar from '../../../../components/Admin/AdminSubmitButtonBar';
+import AdminInput from '../../../../components/Admin_Old/AdminInput';
+import AdminSubmitButtonBar from '../../../../components/Admin_Old/AdminSubmitButtonBar';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
 import { adminUpdator } from '../../../../redux/thunks';
 

@@ -8,23 +8,23 @@ import {
   callUpdateScheduledTrain
 } from '../../../../redux/thunks/scheduledTrain';
 import { scheduledTrainValidator } from '../../../../redux/validators';
-import AdminInput from '../../../../components/Admin/AdminInput';
-import AdminSubmitButtonBar from '../../../../components/Admin/AdminSubmitButtonBar';
+import AdminInput from '../../../../components/Admin_Old/AdminInput';
+import AdminSubmitButtonBar from '../../../../components/Admin_Old/AdminSubmitButtonBar';
 import {
   createOption,
   getCurrentOption,
   mapToOptions
 } from '../../../../utils';
-import AdminSelect from '../../../../components/Admin/AdminSelect';
-import AdminDatePicker from '../../../../components/Admin/AdminDatePicker';
-import AdminTimePicker from '../../../../components/Admin/AdminTimePicker';
+import AdminSelect from '../../../../components/Admin_Old/AdminSelect';
+import AdminDatePicker from '../../../../components/Admin_Old/AdminDatePicker';
+import AdminTimePicker from '../../../../components/Admin_Old/AdminTimePicker';
 import {
   NTBox,
   NTColumn,
   NTRow
 } from '../../../../components/layoutComponents';
 import { NTButton, NTLabel } from '../../../../components/styledComponents';
-import AdminList from '../../../../components/Admin/AdminList';
+import AdminList from '../../../../components/Admin_Old/AdminList';
 import ScheduledActivityPanel from '../../../../components/TrainPamphlet/ScheduledActivityEditorPamphlet';
 import { callGetScheduledActivitiesByTrain } from '../../../../redux/thunks/scheduledActivity';
 import { mq5 } from '../../../../styles/breakpoints';

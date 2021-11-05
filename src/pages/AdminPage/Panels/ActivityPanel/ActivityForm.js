@@ -7,10 +7,10 @@ import {
   callUpdateActivity
 } from '../../../../redux/thunks/activity';
 import { activityValidator } from '../../../../redux/validators';
-import AdminInput from '../../../../components/Admin/AdminInput';
-import AdminSubmitButtonBar from '../../../../components/Admin/AdminSubmitButtonBar';
+import AdminInput from '../../../../components/Admin_Old/AdminInput';
+import AdminSubmitButtonBar from '../../../../components/Admin_Old/AdminSubmitButtonBar';
 import { createOption, getCurrentOption } from '../../../../utils';
-import AdminSelect from '../../../../components/Admin/AdminSelect';
+import AdminSelect from '../../../../components/Admin_Old/AdminSelect';
 import { NTBox, NTColumn } from '../../../../components/layoutComponents';
 import { adminUpdator } from '../../../../redux/thunks';
 
