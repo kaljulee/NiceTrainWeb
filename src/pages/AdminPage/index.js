@@ -8,6 +8,8 @@ import {
 } from '@aws-amplify/ui-react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { connect, useDispatch } from 'react-redux';
+import { ThemeProvider } from '@emotion/react';
+import styled from '@emotion/styled';
 import StationPanel from './Panels/StationPanel';
 import YouTubeResourcePanel from './Panels/YouTubeResourcePanel';
 import ActivityPanel from './Panels/ActivityPanel';
@@ -20,6 +22,11 @@ import LongMessagePanel from './Panels/LongMessagePanel';
 import { calculateLoginStatus } from '../../utils';
 import { setLoginStatus } from '../../redux/reducers/settingsReducer';
 import { USER_STATES } from '../../constants';
+import { trainPamphletTheme } from '../../styles/colors';
+
+const StyledTab = styled(Tab)`
+  color: ${(p) => p.theme.onPrimarySurface};
+`;
 
 function AdminPage(props) {
   const { loginStatus } = props;
@@ -31,62 +38,64 @@ function AdminPage(props) {
   }, []);
 
   return (
-    <NTPage>
-      {loginStatus === USER_STATES.UNAUTH ? (
-        <AmplifyAuthContainer>
-          <AmplifyAuthenticator>
-            <AmplifySignIn slot='sign-in' headerText='Nice Train Admin' />
-            <AmplifySignUp
-              slot='sign-up'
-              formFields={[
-                { type: 'username' },
-                { type: 'password' },
-                { type: 'email' },
-              ]}
-            />
-          </AmplifyAuthenticator>
-        </AmplifyAuthContainer>
-      ) : (
-        <NTSection
-          style={{
-            height: '100%',
-            width: '90vw',
-            margin: 'auto',
-          }}
-        >
-          <TabContainer>
-            <Tabs>
-              <TabList>
-                <Tab>Stations</Tab>
-                <Tab>YT Resources</Tab>
-                <Tab>Formats</Tab>
-                <Tab>Activities</Tab>
-                <Tab>Train Scheduling</Tab>
-                <Tab>Information Message</Tab>
-              </TabList>
-              <TabPanel>
-                <StationPanel />
-              </TabPanel>
-              <TabPanel>
-                <YouTubeResourcePanel />
-              </TabPanel>
-              <TabPanel>
-                <FormatPanel />
-              </TabPanel>
-              <TabPanel>
-                <ActivityPanel />
-              </TabPanel>
-              <TabPanel>
-                <PamphletAdmin />
-              </TabPanel>
-              <TabPanel>
-                <LongMessagePanel />
-              </TabPanel>
-            </Tabs>
-          </TabContainer>
-        </NTSection>
-      )}
-    </NTPage>
+    <ThemeProvider theme={trainPamphletTheme}>
+      <NTPage>
+        {loginStatus === USER_STATES.UNAUTH ? (
+          <AmplifyAuthContainer>
+            <AmplifyAuthenticator>
+              <AmplifySignIn slot='sign-in' headerText='Nice Train Admin' />
+              <AmplifySignUp
+                slot='sign-up'
+                formFields={[
+                  { type: 'username' },
+                  { type: 'password' },
+                  { type: 'email' },
+                ]}
+              />
+            </AmplifyAuthenticator>
+          </AmplifyAuthContainer>
+        ) : (
+          <NTSection
+            style={{
+              height: '100%',
+              width: '90vw',
+              margin: 'auto',
+            }}
+          >
+            <TabContainer>
+              <Tabs>
+                <TabList>
+                  <StyledTab>Stations</StyledTab>
+                  <StyledTab>YT Resources</StyledTab>
+                  <StyledTab>Formats</StyledTab>
+                  <StyledTab>Activities</StyledTab>
+                  <StyledTab>Train Scheduling</StyledTab>
+                  <StyledTab>Information Message</StyledTab>
+                </TabList>
+                <TabPanel>
+                  <StationPanel />
+                </TabPanel>
+                <TabPanel>
+                  <YouTubeResourcePanel />
+                </TabPanel>
+                <TabPanel>
+                  <FormatPanel />
+                </TabPanel>
+                <TabPanel>
+                  <ActivityPanel />
+                </TabPanel>
+                <TabPanel>
+                  <PamphletAdmin />
+                </TabPanel>
+                <TabPanel>
+                  <LongMessagePanel />
+                </TabPanel>
+              </Tabs>
+            </TabContainer>
+          </NTSection>
+        )}
+      </NTPage>
+    </ThemeProvider>
   );
 }
 

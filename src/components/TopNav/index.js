@@ -15,7 +15,7 @@ const NTNavLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${(p) => p.theme.accent};
+  color: ${(p) => p.theme.onPrimarySurface};
   text-decoration: none;
   background: ${(p) => p.color};
   font-family: helvetica;
@@ -28,7 +28,7 @@ const NTNavLink = styled(NavLink)`
 const NTLinkRow = styled.div`
   position: absolute;
   grid-area: nav;
-  background: ${(p) => p.theme.background};
+  background: ${(p) => p.theme.primarySurface};
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -43,7 +43,8 @@ const SignOutWrapper = styled.div`
   height: 5vh;
   display: flex;
   align-items: center;
-  --amplify-primary-color: ${(p) => p.color};
+  --amplify-primary-color: ${(p) => p.theme.onPrimarySurface};
+  --amplify-primary-contrast: ${(p) => p.theme.primarySurface};
   --padding: 0;
   amplify-sign-out {
     padding: 0;
