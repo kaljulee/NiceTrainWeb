@@ -12,20 +12,26 @@ const BoardWrapper = styled(NTColumn)`
   background: ${(p) => p.theme.primarySurface};
   box-sizing: border-box;
   padding: 0 2vw 2vw 2vw;
+  display: grid;
+  height: 100%;
+  grid-template-rows: 15% 55% 30%;
+  grid-template-areas:
+    'header'
+    'schedule'
+    'message';
 `;
 
 const BoardSection = styled.div`
+  grid-area: ${(p) => p.area};
   margin-top: 2vh;
   box-sizing: border-box;
   background-color: ${(p) => p.theme.background};
   width: 100%;
-  align-items: center;
   justify-content: center;
   display: flex;
-  flex: ${(p) => p.$flex};
 `;
 
-const ScheduleSection = styled(BoardSection)`
+const ScrollingSection = styled(BoardSection)`
   ::-webkit-scrollbar {
     background-color: ${(p) => p.theme.background};
     width: 5px;
@@ -36,6 +42,7 @@ const ScheduleSection = styled(BoardSection)`
   ::-webkit-scrollbar-thumb {
     background-color: ${(p) => p.theme.secondarySurface};
   }
+  overflow-y: scroll;
 `;
 
 function TrainBoard() {
@@ -53,11 +60,11 @@ function TrainBoard() {
 
   return (
     <BoardWrapper>
-      <BoardSection $flex={1}>
+      <BoardSection area='header'>
         <BoardHeader />
       </BoardSection>
-      <ScheduleSection
-        $flex={10}
+      <ScrollingSection
+        area='schedule'
         style={{
           justifyContent: 'flex-start',
           alignItems: 'flex-start',
@@ -65,10 +72,10 @@ function TrainBoard() {
         }}
       >
         <BoardSchedule data={data} setTrainID={handleSetTrainID} />
-      </ScheduleSection>
-      <BoardSection $flex={4}>
+      </ScrollingSection>
+      <ScrollingSection area='message'>
         <BoardInfo message={message} />
-      </BoardSection>
+      </ScrollingSection>
       <TrainDetails trainID={trainID} clearTrainID={clearTrainID} />
     </BoardWrapper>
   );

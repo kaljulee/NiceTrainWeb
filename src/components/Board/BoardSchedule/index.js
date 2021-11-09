@@ -11,6 +11,7 @@ import { STATUS_OPTIONS } from '../../../constants';
 
 const ScheduleTable = styled.table`
   width: 100%;
+  height: 10px;
   background: ${(p) => p.theme.background};
 `;
 

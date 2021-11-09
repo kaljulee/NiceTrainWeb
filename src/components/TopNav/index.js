@@ -26,7 +26,8 @@ const NTNavLink = styled(NavLink)`
 
 const NTLinkRow = styled.div`
   position: absolute;
-  height: 5vh;
+  grid-area: nav;
+  background: ${(p) => p.theme.background};
   width: 100%;
   display: flex;
   flex-direction: row;

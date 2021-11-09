@@ -18,6 +18,7 @@ import AdminPage from './pages/AdminPage';
 import TopNav from './components/TopNav';
 import FourOhFourPage from './pages/FourOhFourPage';
 import PatchesGalleryPage from './pages/PatchesGalleryPage';
+import ViewContainer from './components/ViewContainer';
 
 const Version = styled.div`
   position: fixed;
@@ -47,30 +48,32 @@ function App() {
         >
           <Version>v1.3</Version>
           <Router>
-            <TopNav />
-            <Switch>
-              <Route path='/schedule'>
-                <SchedulePage />
-              </Route>
-              <Route exact path='/patches'>
-                <PatchesGalleryPage />
-              </Route>
-              <Route exact path='/admin'>
-                <AdminPage />
-              </Route>
-              <Route exact path='/'>
-                <Redirect to='/schedule' />
-              </Route>
-              <Route
-                exact
-                path='/test'
-                component={() => {
-                  // eslint-disable-next-line no-undef
-                  window.location.href = `https://dev.dnodsa1pfs3qf.amplifyapp.com`;
-                }}
-              />
-              <Route component={FourOhFourPage} />
-            </Switch>
+            <ViewContainer>
+              <TopNav />
+              <Switch style={{ gridArea: 'body' }}>
+                <Route path='/schedule'>
+                  <SchedulePage />
+                </Route>
+                <Route exact path='/patches'>
+                  <PatchesGalleryPage />
+                </Route>
+                <Route exact path='/admin'>
+                  <AdminPage />
+                </Route>
+                <Route exact path='/'>
+                  <Redirect to='/schedule' />
+                </Route>
+                <Route
+                  exact
+                  path='/test'
+                  component={() => {
+                    // eslint-disable-next-line no-undef
+                    window.location.href = `https://dev.dnodsa1pfs3qf.amplifyapp.com`;
+                  }}
+                />
+                <Route component={FourOhFourPage} />
+              </Switch>
+            </ViewContainer>
           </Router>
         </BreakpointProvider>
       </ThemeProvider>

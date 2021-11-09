@@ -11,9 +11,9 @@ const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100%;
-  align-self: center;
+  // justify-content: center;
+  // height: 100%;
+  // align-self: center;
 `;
 
 const InfoRow = styled.div`
