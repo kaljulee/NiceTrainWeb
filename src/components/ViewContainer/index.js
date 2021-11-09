@@ -1,11 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-// function ViewContainer(props) {
-//   const { children } = props;
-//   return <div>{children}</div>;
-// }
-
 const ViewContainer = styled.div`
   height: 100vh;
   display: grid;

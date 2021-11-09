@@ -50,7 +50,7 @@ function App() {
           <Router>
             <ViewContainer>
               <TopNav />
-              <Switch style={{ gridArea: 'body' }}>
+              <Switch>
                 <Route path='/schedule'>
                   <SchedulePage />
                 </Route>

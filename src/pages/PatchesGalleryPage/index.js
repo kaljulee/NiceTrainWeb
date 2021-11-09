@@ -16,6 +16,7 @@ const PatchPageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  grid-area: body;
 `;
 
 const PatchContainer = styled.div`
