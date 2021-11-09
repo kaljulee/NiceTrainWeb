@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import styled from '@emotion/styled';
-import { useTheme } from '@emotion/react';
+import { ThemeProvider } from '@emotion/react';
 import { connect } from 'react-redux';
 import { calculateLoginStatus } from '../../utils';
 import { USER_STATES } from '../../constants';
 import { setLoginStatus } from '../../redux/reducers/settingsReducer';
+import { niceTrainTheme, trainPamphletTheme } from '../../styles/colors';
 
 const NTNavLink = styled(NavLink)`
   padding: 0 2vh;
@@ -51,6 +52,10 @@ const SignOutWrapper = styled.div`
   }
 `;
 
+function getTheme(path) {
+  return path === '/admin' ? trainPamphletTheme : niceTrainTheme;
+}
+
 function NTLink(props) {
   const activeStyle = {
     opacity: 0.7,
@@ -60,29 +65,39 @@ function NTLink(props) {
 
 function TopNav(props) {
   const { loginStatus } = props;
-  const theme = useTheme();
+
+  const location = useLocation();
+
+  const [activeTheme, setActiveTheme] = useState(getTheme(location.pathname));
+
   useEffect(() => {
     onAuthUIStateChange((nextAuthState, authData) => {
       setLoginStatus(calculateLoginStatus(authData, nextAuthState));
     });
   }, []);
 
+  useEffect(() => {
+    setActiveTheme(getTheme(location.pathname));
+  }, [location]);
+
   return (
-    <NTLinkRow>
-      <NTLink to='/schedule'>SCHEDULE</NTLink>
-      <NTLink to='/patches'>PATCHES</NTLink>
-      <NTLink
-        to='/admin'
-        color={loginStatus === USER_STATES.GUEST ? theme.error : undefined}
-      >
-        {loginStatus === USER_STATES.GUEST ? 'GUEST' : 'ADMIN'}
-      </NTLink>
-      {loginStatus !== USER_STATES.UNAUTH && (
-        <SignOutWrapper>
-          <AmplifySignOut />
-        </SignOutWrapper>
-      )}
-    </NTLinkRow>
+    <ThemeProvider theme={activeTheme}>
+      <NTLinkRow>
+        <NTLink to='/schedule'>SCHEDULE</NTLink>
+        <NTLink to='/patches'>PATCHES</NTLink>
+        <NTLink
+          to='/admin'
+          color={loginStatus === USER_STATES.GUEST ? activeTheme : undefined}
+        >
+          {loginStatus === USER_STATES.GUEST ? 'GUEST' : 'ADMIN'}
+        </NTLink>
+        {loginStatus !== USER_STATES.UNAUTH && (
+          <SignOutWrapper>
+            <AmplifySignOut />
+          </SignOutWrapper>
+        )}
+      </NTLinkRow>
+    </ThemeProvider>
   );
 }
 
