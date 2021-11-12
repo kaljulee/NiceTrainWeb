@@ -20,10 +20,11 @@ export const trainPamphletTheme = {
   onBackground: pamphletSurface,
   primarySurface: pamphletSurface,
   onPrimarySurface: pamphletBackground,
-  secondarySurface: pamphletSurface,
+  secondarySurface: '#d3d9e2',
   onSecondarySurface: pamphletBackground,
   accent: pamphletSurface,
   onAccent: pamphletBackground,
+  fontFamily: 'Helvetica Neue, Helvetica',
 };
 
 export const niceTrainTheme = {
