@@ -62,36 +62,7 @@ function AdminPage(props) {
               margin: 'auto',
             }}
           >
-            <TabContainer>
-              <Tabs>
-                <TabList>
-                  <StyledTab>Stations</StyledTab>
-                  <StyledTab>YT Resources</StyledTab>
-                  <StyledTab>Formats</StyledTab>
-                  <StyledTab>Activities</StyledTab>
-                  <StyledTab>Train Scheduling</StyledTab>
-                  <StyledTab>Information Message</StyledTab>
-                </TabList>
-                <TabPanel>
-                  <StationPanel />
-                </TabPanel>
-                <TabPanel>
-                  <YouTubeResourcePanel />
-                </TabPanel>
-                <TabPanel>
-                  <FormatPanel />
-                </TabPanel>
-                <TabPanel>
-                  <ActivityPanel />
-                </TabPanel>
-                <TabPanel>
-                  <PamphletAdmin />
-                </TabPanel>
-                <TabPanel>
-                  <LongMessagePanel />
-                </TabPanel>
-              </Tabs>
-            </TabContainer>
+            <PamphletAdmin />
           </NTSection>
         )}
       </NTPage>
