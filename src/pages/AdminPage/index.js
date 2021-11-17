@@ -28,6 +28,10 @@ const StyledTab = styled(Tab)`
   color: ${(p) => p.theme.onPrimarySurface};
 `;
 
+const AdminPageWrapper = styled.div`
+  grid-area: body;
+`;
+
 function AdminPage(props) {
   const { loginStatus } = props;
   const dispatch = useDispatch();
@@ -38,35 +42,29 @@ function AdminPage(props) {
   }, []);
 
   return (
-    <ThemeProvider theme={trainPamphletTheme}>
-      <NTPage>
-        {loginStatus === USER_STATES.UNAUTH ? (
-          <AmplifyAuthContainer>
-            <AmplifyAuthenticator>
-              <AmplifySignIn slot='sign-in' headerText='Nice Train Admin' />
-              <AmplifySignUp
-                slot='sign-up'
-                formFields={[
-                  { type: 'username' },
-                  { type: 'password' },
-                  { type: 'email' },
-                ]}
-              />
-            </AmplifyAuthenticator>
-          </AmplifyAuthContainer>
-        ) : (
-          <NTSection
-            style={{
-              height: '100%',
-              width: '90vw',
-              margin: 'auto',
-            }}
-          >
+    <AdminPageWrapper>
+      <ThemeProvider theme={trainPamphletTheme}>
+        <NTPage>
+          {loginStatus === USER_STATES.UNAUTH ? (
+            <AmplifyAuthContainer>
+              <AmplifyAuthenticator>
+                <AmplifySignIn slot='sign-in' headerText='Nice Train Admin' />
+                <AmplifySignUp
+                  slot='sign-up'
+                  formFields={[
+                    { type: 'username' },
+                    { type: 'password' },
+                    { type: 'email' },
+                  ]}
+                />
+              </AmplifyAuthenticator>
+            </AmplifyAuthContainer>
+          ) : (
             <PamphletAdmin />
-          </NTSection>
-        )}
-      </NTPage>
-    </ThemeProvider>
+          )}
+        </NTPage>
+      </ThemeProvider>
+    </AdminPageWrapper>
   );
 }
 

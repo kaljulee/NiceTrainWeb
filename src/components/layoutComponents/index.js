@@ -12,7 +12,6 @@ export const NTBox = styled.div({
 });
 
 export const NTPage = styled(NTBox)`
-  padding-top: 5vh;
   background: ${(p) => p.theme.background};
   color: ${(p) => p.theme.onBackground};
 `;
